@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:21:45.351Z",
+  "exportedAt": "2026-08-10T12:22:09.969Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -361,6 +361,24 @@
       ],
       "createdAt": 1786364475570,
       "updatedAt": 1786364504017
+    },
+    {
+      "id": "763de73c-11c6-413e-99e0-b8882907e995",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/763de73c-11c6-413e-99e0-b8882907e995.jpg?v=63fdda330363",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Простой переход смена фото статично ефото + жельтые теплы филльтр блики",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Работа с футажем",
+      "timecodes": [
+        "0:29"
+      ],
+      "createdAt": 1786364512614,
+      "updatedAt": 1786364528967
     }
   ],
   "categories": [
@@ -391,8 +409,8 @@
     {
       "key": "работа с футажем",
       "name": "Работа с футажем",
-      "repeats": 5,
-      "uses": 5
+      "repeats": 6,
+      "uses": 6
     },
     {
       "key": "типографика",
@@ -417,7 +435,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=1d9ce010d949",
+    "lastCropSource": "assets/crop/last-source.jpg?v=7437ed4fe1b3",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
