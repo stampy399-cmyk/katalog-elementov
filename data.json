@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:25:35.353Z",
+  "exportedAt": "2026-08-10T12:25:48.700Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -11,7 +11,7 @@
       "host": "Александр",
       "id": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
       "niche": "Сантехника германия",
-      "progress": 3,
+      "progress": 4,
       "progressOverride": null,
       "title": "Dieses 50€ Betonrohr Kühlt Dein Haus FÜR IMMER. Warum Ist Es VERBOTEN?",
       "titleSource": "manual",
@@ -382,7 +382,7 @@
     },
     {
       "application": "",
-      "category": "",
+      "category": "Переход",
       "createdAt": 1786364681025,
       "description": "Интересный переход фото уходит в лево где-то на 25%? и следущее фото так же уходит влевона стольок же итого такой переход с двойнми уходом влвеов на след фото",
       "id": "ee663c55-f96c-4013-9ab3-aef344d5c53e",
@@ -396,7 +396,25 @@
       "timecodes": [
         "0:30"
       ],
-      "updatedAt": 1786364733796
+      "updatedAt": 1786364739816
+    },
+    {
+      "id": "2c55431e-e6f8-4459-b4a6-612982f98857",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/2c55431e-e6f8-4459-b4a6-612982f98857.jpg?v=6857deada202",
+      "repeatCount": 1,
+      "name": "",
+      "description": "после #022 переход",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
+      "timecodes": [
+        "0:32"
+      ],
+      "createdAt": 1786364740965,
+      "updatedAt": 1786364747698
     }
   ],
   "categories": [
@@ -415,8 +433,8 @@
     {
       "key": "переход",
       "name": "Переход",
-      "repeats": 2,
-      "uses": 2
+      "repeats": 3,
+      "uses": 3
     },
     {
       "key": "работа с камерой",
@@ -453,7 +471,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=039c876f630b",
+    "lastCropSource": "assets/crop/last-source.jpg?v=151270d553c0",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
