@@ -349,6 +349,16 @@
     .sidebar-add:active { transform: scale(.97); }
     .workspace { min-width: 0; min-height: 0; overflow-y: auto; background: var(--bg); }
     .workspace { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+    .player-dock { display: grid; grid-template-columns: minmax(360px, 640px) minmax(190px, 1fr); gap: 18px; width: min(1260px, 100%); margin: 0 auto; padding: 28px 32px 0; }
+    .player-dock[hidden] { display: none; }
+    .player-frame { position: relative; width: 100%; overflow: hidden; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 12px; background: #000; box-shadow: 0 10px 30px rgba(0, 0, 0, .16); }
+    .player-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .player-copy { align-self: center; min-width: 0; color: var(--muted); font-size: 12px; }
+    .player-copy strong { display: block; margin-bottom: 7px; color: var(--text); font-size: 13px; }
+    .player-clock { display: block; margin-bottom: 8px; color: var(--accent); font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
+    .player-status { display: block; max-width: 340px; }
+    .player-link { display: inline-block; margin-top: 9px; color: var(--accent); text-decoration: none; }
+    .player-link:hover, .player-link:focus-visible { text-decoration: underline; }
     .workspace-inner { width: min(1260px, 100%); min-height: 100%; margin: 0 auto; padding: 28px 32px 48px; }
     .workspace-empty { display: grid; min-height: 55vh; place-items: center; color: var(--muted); font-size: 13px; text-align: center; }
     .workspace-empty strong { display: block; margin-bottom: 4px; color: var(--text); font-size: 15px; }
@@ -535,8 +545,10 @@
     .modal-button { min-height: 34px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-raised); color: var(--text); cursor: pointer; }
     .modal-button:hover, .modal-button:focus-visible { border-color: var(--accent); }
     .modal-button-danger { border-color: color-mix(in srgb, var(--danger) 70%, var(--line)); background: var(--danger); color: #fff; }
+    .modal-button:disabled { cursor: not-allowed; opacity: .45; }
     .modal-help { margin-top: 9px !important; font-size: 11px; }
     @media (max-width: 680px) { .stat-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 760px) { .player-dock { grid-template-columns: 1fr; padding: 20px 18px 0; } .player-copy { padding: 0 2px; } }
     @media (max-width: 500px) { .brand { font-size: 12px; } .brand::after { content: none; } }
   </style>
 </head>
@@ -555,7 +567,13 @@
       <nav id="videoList" class="video-list" aria-label="Список роликов"></nav>
       <div class="sidebar-footer"><button id="addVideo" class="sidebar-add" type="button" aria-label="Добавить ролик">Ролик</button></div>
     </aside>
-    <main id="workspace" class="workspace" aria-live="polite"><div id="workspaceInner" class="workspace-inner"></div></main>
+    <main id="workspace" class="workspace" aria-live="polite">
+      <section id="playerDock" class="player-dock" aria-label="Плеер активного ролика" aria-live="off" hidden>
+        <div id="playerFrame" class="player-frame"></div>
+        <div class="player-copy"><strong>Источник точного таймкода</strong><span id="playerClock" class="player-clock">—</span><span id="playerStatus" class="player-status">Запустите ролик и остановите его на нужном кадре перед добавлением элемента.</span><a id="playerLink" class="player-link" target="_blank" rel="noopener noreferrer">Открыть на YouTube ↗</a></div>
+      </section>
+      <div id="workspaceInner" class="workspace-inner"></div>
+    </main>
   </div>
 
   <section id="menuPanel" class="panel menu-panel" aria-label="Меню">
@@ -588,6 +606,7 @@
       const CLOUD_POLL_INTERVAL = 2000;
       const CLOUD_WRITE_RACE_RETRIES = 3;
       const PRESENCE_WRITE_RACE_RETRIES = 3;
+      const DELETE_CONFIRMATION = 'УДАЛИТЬ';
       const GITHUB_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/data.json';
       const PRESENCE_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/presence.json';
       const GITHUB_GIT_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/git';
@@ -619,6 +638,11 @@
         videoList: byId('videoList'),
         videoListCount: byId('videoListCount'),
         workspace: byId('workspace'),
+        playerDock: byId('playerDock'),
+        playerFrame: byId('playerFrame'),
+        playerClock: byId('playerClock'),
+        playerStatus: byId('playerStatus'),
+        playerLink: byId('playerLink'),
         workspaceInner: byId('workspaceInner'),
         addVideo: byId('addVideo'),
         search: byId('search'),
@@ -666,6 +690,15 @@
         sidebarRefreshTimer: null,
         statsTimer: null,
         modal: null,
+        player: {
+          apiPromise: null,
+          instance: null,
+          projectId: null,
+          videoId: '',
+          ready: false,
+          clockTimer: null,
+          generation: 0
+        },
         cloud: {
           token: '',
           observedEtag: '',
@@ -896,11 +929,6 @@
         return firstText ? [firstText] : [];
       }
 
-      function automaticTimecode(index) {
-        const seconds = Math.max(0, Math.round(index * 1.5));
-        return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
-      }
-
       function chronologyTimestamp(record) {
         const value = Number(record?.createdAt);
         return Number.isFinite(value) && value >= 0 ? value : Number.POSITIVE_INFINITY;
@@ -916,32 +944,6 @@
 
       function chronologicalElements(elements = state.elements) {
         return [...elements].sort(compareElementsChronologically);
-      }
-
-      function nextAutomaticTimecode(projectElements) {
-        const occupied = new Set(projectElements.flatMap(timecodesFrom));
-        const maximum = Math.max(-1, ...projectElements
-          .flatMap(timecodesFrom)
-          .map(parseTimecode)
-          .filter((seconds) => seconds !== null));
-        let index = Math.max(0, Math.floor(maximum / 1.5) + 1);
-        let candidate = automaticTimecode(index);
-        while (occupied.has(candidate)) candidate = automaticTimecode(++index);
-        return candidate;
-      }
-
-      function applyAutomaticTimecodes() {
-        const changed = [];
-        for (const project of state.projects) {
-          const projectElements = elementsForProject(project.id);
-          for (const element of projectElements) {
-            if (timecodesFrom(element).length !== 0) continue;
-            element.timecodes = [nextAutomaticTimecode(projectElements)];
-            element.updatedAt = Date.now();
-            changed.push(element);
-          }
-        }
-        return changed;
       }
 
       function normalizeProject(source, now = Date.now()) {
@@ -1156,7 +1158,6 @@
         state.projects = projects.map((project) => normalizeProject(project));
         state.elements = elements.map((element) => normalizeElement(element));
         rebuildCategories(categories);
-        const automaticTimecodes = applyAutomaticTimecodes();
         await commit(() => runTransaction(['elements', 'categories'], 'readwrite', (transaction) => {
           for (const element of state.elements) transaction.objectStore('elements').put(element);
           writeCategoryRecords(transaction);
@@ -1481,8 +1482,48 @@
         </section>`;
       }
 
+      function catalogAssetUrl(source) {
+        const value = asText(source).trim();
+        if (!/^\/?assets\//i.test(value)) return value;
+        const path = value.replace(/^\/+/, '');
+        const pagePath = location.pathname.endsWith('/') ? location.pathname
+          : (/\/[^/]+\.[^/]+$/.test(location.pathname)
+            ? location.pathname.replace(/\/[^/]*$/, '/')
+            : `${location.pathname}/`);
+        return new URL(path, new URL(pagePath || '/', location.href)).href;
+      }
+
+      function previewFallbackUrl(source) {
+        const value = catalogAssetUrl(source);
+        try {
+          const url = new URL(value, location.href);
+          if (!url.searchParams.has('v')) return '';
+          url.searchParams.delete('v');
+          return url.href;
+        } catch (error) {
+          return '';
+        }
+      }
+
+      function previewImageMarkup(source) {
+        const url = catalogAssetUrl(source);
+        const fallback = previewFallbackUrl(source);
+        return `<img src="${escapeAttribute(url)}" data-preview-source="${escapeAttribute(source)}"${fallback ? ` data-preview-fallback="${escapeAttribute(fallback)}"` : ''} alt="Кадр элемента" loading="lazy" decoding="async" fetchpriority="low">`;
+      }
+
+      function previewImageKey(card, image) {
+        return `${card.dataset.elementId}\n${image.dataset.previewSource || image.getAttribute('src') || ''}`;
+      }
+
+      function showUnavailablePreview(image) {
+        const hint = document.createElement('div');
+        hint.className = 'paste-hint';
+        hint.textContent = 'Кадр недоступен';
+        image.replaceWith(hint);
+      }
+
       function elementCard(project, element) {
-        const image = element.image ? `<img src="${escapeAttribute(element.image)}" alt="Кадр элемента" loading="lazy" decoding="async">` : '<div class="paste-hint">Cmd+V</div>';
+        const image = element.image ? previewImageMarkup(element.image) : '<div class="paste-hint">Cmd+V</div>';
         const isNew = String(element.id) === String(state.newElementId);
         const isExpanded = String(element.id) === String(state.editingElementId) || isNew;
         const timecode = timecodesFrom(element)[0] || '—';
@@ -1544,6 +1585,7 @@
           const editingMarkup = editing.length ? `<section class="editing-element" aria-label="Редактируемый элемент">${editing.map((element) => elementCard(project, element)).join('')}</section>` : '';
           dom.workspaceInner.innerHTML = `${projectHeader(project)}${editingMarkup}<section id="elementGrid" class="element-grid" aria-label="Кадры элементов">${cards}<button class="grid-add" type="button" data-add-element="${escapeAttribute(project.id)}">+ элемент</button></section>`;
         }
+        renderPlayerDock();
         requestAnimationFrame(() => resizeDescriptions());
         if (state.videoComposer) requestAnimationFrame(() => dom.workspaceInner.querySelector('[data-video-field="url"]')?.focus());
         if (state.newElementId) {
@@ -1812,9 +1854,8 @@
         renderFeed();
       }
 
-      function addElement(projectId, image = '') {
-        const element = normalizeElement({ id: makeId(), projectId, image, repeatCount: 1 });
-        element.timecodes = [nextAutomaticTimecode(elementsForProject(projectId))];
+      function addElement(projectId, image = '', timecode = currentCatalogPlayerTimecode(projectId)) {
+        const element = normalizeElement({ id: makeId(), projectId, image, timecodes: timecode ? [timecode] : [], repeatCount: 1 });
         state.elements.push(element);
         state.activeProjectId = projectId;
         state.newElementId = element.id;
@@ -1844,7 +1885,10 @@
         } else {
           project[field] = value;
           markProjectFieldManual(project, field);
-          if (field === 'url') scheduleProjectMetadata(project);
+          if (field === 'url') {
+            scheduleProjectMetadata(project);
+            renderPlayerDock();
+          }
         }
         saveProject(project);
         updateProjectVisual(project);
@@ -1954,6 +1998,10 @@
         }, undoAction ? 5000 : 2600);
       }
 
+      function deleteConfirmationMatches(value) {
+        return asText(value) === DELETE_CONFIRMATION;
+      }
+
       function renderModal() {
         const modal = state.modal;
         if (!modal) {
@@ -1961,17 +2009,20 @@
           dom.modalSurface.innerHTML = '';
           return;
         }
+        const deletionConfirmed = deleteConfirmationMatches(modal.confirmation);
         dom.modalSurface.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
           <h2 id="modalTitle">Удалить ${modal.kind === 'project' ? 'ролик' : 'элемент'}?</h2>
           <p>Вы уверены? Это действие нельзя отменить.</p>
-          <div class="modal-actions"><button class="modal-button" type="button" data-modal-action="cancel">Отмена</button><button class="modal-button modal-button-danger" type="button" data-modal-action="delete">Удалить</button></div>
+          <label class="modal-help" for="deleteConfirmation">Введите «${DELETE_CONFIRMATION}» для подтверждения.</label>
+          <input id="deleteConfirmation" data-delete-confirmation value="${escapeAttribute(modal.confirmation || '')}" autocomplete="off" aria-label="Подтверждение удаления">
+          <div class="modal-actions"><button class="modal-button" type="button" data-modal-action="cancel">Отмена</button><button class="modal-button modal-button-danger" type="button" data-modal-action="delete" ${deletionConfirmed ? '' : 'disabled'}>Удалить</button></div>
         </div>`;
         dom.modalSurface.classList.add('is-open');
         requestAnimationFrame(() => dom.modalSurface.querySelector('input')?.focus());
       }
 
       function showDeleteModal(kind, record) {
-        state.modal = { type: 'delete', kind, record };
+        state.modal = { type: 'delete', kind, record, confirmation: '' };
         renderModal();
       }
 
@@ -2172,7 +2223,217 @@
         return state.projects[0]?.id || null;
       }
 
-      async function handleImagePaste(file) {
+      function youtubeVideoId(value) {
+        try {
+          const url = new URL(asText(value).trim());
+          const host = url.hostname.toLocaleLowerCase().replace(/^www\./, '');
+          let id = '';
+          if (host === 'youtu.be') id = url.pathname.split('/').filter(Boolean)[0] || '';
+          if (host === 'youtube.com' || host.endsWith('.youtube.com')) {
+            id = url.searchParams.get('v') || '';
+            if (!id) {
+              const parts = url.pathname.split('/').filter(Boolean);
+              if (['embed', 'shorts', 'live'].includes(parts[0])) id = parts[1] || '';
+            }
+          }
+          return /^[\w-]{6,}$/.test(id) ? id : '';
+        } catch (error) {
+          return '';
+        }
+      }
+
+      function youtubeStartSeconds(value) {
+        try {
+          const url = new URL(asText(value).trim());
+          const raw = asText(url.searchParams.get('t') || url.searchParams.get('start')).trim().toLocaleLowerCase();
+          if (/^\d+(?:\.\d+)?s?$/.test(raw)) return Math.max(0, Math.floor(Number(raw.replace(/s$/, ''))));
+          const parts = /^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/.exec(raw);
+          if (!parts || !parts.slice(1).some(Boolean)) return 0;
+          return Number(parts[1] || 0) * 3600 + Number(parts[2] || 0) * 60 + Number(parts[3] || 0);
+        } catch (error) {
+          return 0;
+        }
+      }
+
+      function loadYouTubePlayerApi() {
+        if (globalThis.YT?.Player) return Promise.resolve(globalThis.YT);
+        if (state.player.apiPromise) return state.player.apiPromise;
+        const promise = new Promise((resolve, reject) => {
+          const timeout = setTimeout(() => reject(new Error('YouTube Player API timeout')), 10000);
+          const previousReady = globalThis.onYouTubeIframeAPIReady;
+          globalThis.onYouTubeIframeAPIReady = () => {
+            clearTimeout(timeout);
+            try {
+              if (typeof previousReady === 'function') previousReady();
+            } finally {
+              if (globalThis.YT?.Player) resolve(globalThis.YT);
+              else reject(new Error('YouTube Player API unavailable'));
+            }
+          };
+          let script = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
+          if (!script) {
+            script = document.createElement('script');
+            script.src = 'https://www.youtube.com/iframe_api';
+            script.async = true;
+            document.head.append(script);
+          }
+          script.addEventListener('error', () => {
+            clearTimeout(timeout);
+            reject(new Error('YouTube Player API load failed'));
+          }, { once: true });
+        });
+        state.player.apiPromise = promise.catch((error) => {
+          state.player.apiPromise = null;
+          throw error;
+        });
+        return state.player.apiPromise;
+      }
+
+      function resetCatalogPlayer() {
+        state.player.generation += 1;
+        clearInterval(state.player.clockTimer);
+        state.player.clockTimer = null;
+        try {
+          state.player.instance?.destroy?.();
+        } catch (error) {
+          // A detached third-party iframe can already be destroyed by the browser.
+        }
+        state.player.instance = null;
+        state.player.projectId = null;
+        state.player.videoId = '';
+        state.player.ready = false;
+        dom.playerFrame.replaceChildren();
+        dom.playerClock.textContent = '—';
+      }
+
+      function capturedTimecodeFromPlayer(player) {
+        try {
+          return formatCapturedTimecode(player?.getCurrentTime?.());
+        } catch (error) {
+          return '';
+        }
+      }
+
+      function currentCatalogPlayerTimecode(projectId = currentProjectId()) {
+        if (!state.player.ready || String(state.player.projectId) !== String(projectId)) return '';
+        return capturedTimecodeFromPlayer(state.player.instance);
+      }
+
+      function updateCatalogPlayerClock() {
+        if (!state.player.ready) return;
+        const timecode = currentCatalogPlayerTimecode(state.player.projectId);
+        dom.playerClock.textContent = timecode || '—';
+        dom.playerStatus.textContent = timecode
+          ? 'Этот таймкод будет записан при добавлении элемента или вставке скрина.'
+          : 'Позиция плеера пока недоступна.';
+      }
+
+      function renderPlayerDock() {
+        const project = state.videoComposer ? null : findProject(state.activeProjectId);
+        const videoId = youtubeVideoId(project?.url);
+        if (!project || !videoId) {
+          dom.playerDock.hidden = true;
+          if (state.player.instance || state.player.videoId) resetCatalogPlayer();
+          return;
+        }
+        dom.playerDock.hidden = false;
+        dom.playerLink.href = project.url;
+        if (state.player.videoId === videoId && String(state.player.projectId) === String(project.id)) {
+          updateCatalogPlayerClock();
+          return;
+        }
+
+        resetCatalogPlayer();
+        const generation = state.player.generation;
+        state.player.projectId = project.id;
+        state.player.videoId = videoId;
+        dom.playerStatus.textContent = 'Загрузка плеера…';
+        const mount = document.createElement('div');
+        mount.id = 'catalogYoutubePlayer';
+        dom.playerFrame.append(mount);
+        loadYouTubePlayerApi().then((YT) => {
+          if (generation !== state.player.generation || !mount.isConnected) return;
+          const playerVars = { playsinline: 1, rel: 0, start: youtubeStartSeconds(project.url) };
+          if (/^https?:$/.test(location.protocol)) playerVars.origin = location.origin;
+          state.player.instance = new YT.Player(mount, {
+            videoId,
+            playerVars,
+            events: {
+              onReady: () => {
+                if (generation !== state.player.generation) return;
+                state.player.ready = true;
+                clearInterval(state.player.clockTimer);
+                state.player.clockTimer = setInterval(updateCatalogPlayerClock, 500);
+                updateCatalogPlayerClock();
+              },
+              onStateChange: () => {
+                if (generation === state.player.generation) updateCatalogPlayerClock();
+              },
+              onError: () => {
+                if (generation !== state.player.generation) return;
+                state.player.ready = false;
+                dom.playerClock.textContent = '—';
+                dom.playerStatus.textContent = 'Плеер недоступен. Откройте ролик по ссылке и укажите таймкод вручную.';
+              }
+            }
+          });
+        }).catch(() => {
+          if (generation !== state.player.generation) return;
+          dom.playerClock.textContent = '—';
+          dom.playerStatus.textContent = 'Плеер не загрузился. Проверьте сеть или укажите таймкод вручную.';
+        });
+      }
+
+      function formatCapturedTimecode(value) {
+        const seconds = Number(value);
+        if (!Number.isFinite(seconds) || seconds < 0) return '';
+        const wholeSeconds = Math.floor(seconds);
+        const hours = Math.floor(wholeSeconds / 3600);
+        const minutes = Math.floor(wholeSeconds % 3600 / 60);
+        const remainder = wholeSeconds % 60;
+        return hours
+          ? `${hours}:${String(minutes).padStart(2, '0')}:${String(remainder).padStart(2, '0')}`
+          : `${minutes}:${String(remainder).padStart(2, '0')}`;
+      }
+
+      function capturedTimecodeFromText(value) {
+        const text = asText(value);
+        const pair = /(^|[^\d:])((?:\d+:)?\d{1,2}:\d{2})\s*(?:\/|из)\s*(?:\d+:)?\d{1,2}:\d{2}(?=$|[^\d:])/i.exec(text);
+        if (pair) return formatCapturedTimecode(parseTimecode(pair[2]));
+        const urlTime = /[?#&](?:t|start)=(\d+(?:\.\d+)?)(?:s)?(?:[&#]|$)/i.exec(text);
+        return urlTime ? formatCapturedTimecode(urlTime[1]) : '';
+      }
+
+      function capturedTimecodeFromMedia() {
+        if (typeof HTMLMediaElement === 'undefined') return '';
+        const media = [...document.querySelectorAll('video, audio')]
+          .filter((candidate) => candidate instanceof HTMLMediaElement && Number.isFinite(candidate.currentTime) && candidate.currentTime >= 0);
+        const current = media.find((candidate) => !candidate.paused && !candidate.ended) || media[0];
+        return current ? formatCapturedTimecode(current.currentTime) : '';
+      }
+
+      function captureTimecodeAtPaste(clipboardData = null) {
+        const playerTimecode = currentCatalogPlayerTimecode();
+        if (playerTimecode) return playerTimecode;
+        const mediaTimecode = capturedTimecodeFromMedia();
+        if (mediaTimecode) return mediaTimecode;
+        if (!clipboardData?.getData) return '';
+        return capturedTimecodeFromText(clipboardData.getData('text/plain'))
+          || capturedTimecodeFromText(clipboardData.getData('text/uri-list'));
+      }
+
+      async function detectTimecodeFromScreenshot(source) {
+        if (typeof globalThis.TextDetector !== 'function') return '';
+        try {
+          const image = await imageFromDataUrl(source);
+          const detections = await new globalThis.TextDetector().detect(image);
+          return capturedTimecodeFromText(detections.map((detection) => detection.rawValue).join('\n'));
+        } catch (error) {
+          return '';
+        }
+      }
+
+      async function handleImagePaste(file, capturedTimecode = captureTimecodeAtPaste()) {
         const projectId = currentProjectId();
         if (!projectId) {
           openVideoComposer();
@@ -2181,9 +2442,10 @@
         }
         try {
           const source = await compressImageDataUrl(await dataUrlFromFile(file));
+          const timecode = capturedTimecode || await detectTimecodeFromScreenshot(source);
           state.settings.lastCropSource = source;
           saveSettings(['lastCropSource']);
-          const element = addElement(projectId, source);
+          const element = addElement(projectId, source, timecode);
           if (state.settings.cropCalibrated && state.settings.crop) {
             element.image = await cropImage(source, state.settings.crop);
             saveElement(element, false).catch(() => undefined);
@@ -2908,7 +3170,6 @@
           ? state.settings.activeProjectId : state.projects[0]?.id || null;
         state.editingElementId = null;
         state.newElementId = null;
-        const automatic = applyAutomaticTimecodes();
         const finalProjectIds = new Set(state.projects.map((project) => String(project.id)));
         const finalElementIds = new Set(state.elements.map((element) => String(element.id)));
         await commit(() => runTransaction(['projects', 'elements', 'categories', 'settings'], 'readwrite', (transaction) => {
@@ -2922,7 +3183,7 @@
           const settings = transaction.objectStore('settings');
           for (const [key, value] of Object.entries(state.settings)) settings.put({ key, value });
         }), { backup: false });
-        if (automatic.length || preservedUnknown) persistCloudOutbox(catalogSnapshot());
+        if (preservedUnknown) persistCloudOutbox(catalogSnapshot());
         applyTheme();
       }
 
@@ -3297,13 +3558,13 @@
         const previews = new Map();
         for (const card of dom.workspaceInner.querySelectorAll('[data-element-id]')) {
           const image = card.querySelector('.image-slot img');
-          if (image) previews.set(`${card.dataset.elementId}\n${image.getAttribute('src') || ''}`, image);
+          if (image) previews.set(previewImageKey(card, image), image);
         }
         render();
         for (const card of dom.workspaceInner.querySelectorAll('[data-element-id]')) {
           const image = card.querySelector('.image-slot img');
           if (!image) continue;
-          const preserved = previews.get(`${card.dataset.elementId}\n${image.getAttribute('src') || ''}`);
+          const preserved = previews.get(previewImageKey(card, image));
           if (preserved && preserved !== image) image.replaceWith(preserved);
         }
       }
@@ -3353,6 +3614,11 @@
 
       async function applyRemoteSnapshot(remote, { allowDirty = false, suppressCloudMark = false } = {}) {
         if (!remote || remote.unchanged) return false;
+        // An allowDirty merge may be needed during cloud recovery, but it must never replace a live draft.
+        if (isTextEditing()) {
+          state.cloud.pendingSnapshot = remote;
+          return false;
+        }
         if (!allowDirty && !canApplyRemote()) {
           state.cloud.pendingSnapshot = remote;
           return false;
@@ -3404,7 +3670,6 @@
         const preservedUnknown = [...projectMap.keys()].some((id) => !remoteProjectIds.has(id) && !previousKnownProjects.has(id))
           || [...elementMap.keys()].some((id) => !remoteElementIds.has(id) && !previousKnownElements.has(id));
 
-        let automatic = [];
         state.cloud.applying = true;
         applyReadOnlyState();
         try {
@@ -3416,7 +3681,6 @@
             : (state.settings.activeProjectId && findProject(state.settings.activeProjectId) ? state.settings.activeProjectId : state.projects[0]?.id || null);
           state.editingElementId = previousEditing && findElement(previousEditing) ? previousEditing : null;
           state.newElementId = previousNew && findElement(previousNew) ? previousNew : null;
-          automatic = applyAutomaticTimecodes();
           await commit(() => runTransaction(['projects', 'elements', 'categories', 'settings'], 'readwrite', (transaction) => {
             const projects = transaction.objectStore('projects');
             const elements = transaction.objectStore('elements');
@@ -3424,7 +3688,6 @@
             for (const id of deletedProjectIds) projects.delete(currentProjectKeys.get(id) ?? id);
             for (const project of remote.incoming.projects) projects.put(project);
             for (const element of appliedRemoteElements) elements.put(element);
-            for (const element of automatic) elements.put(element);
             writeCategoryRecords(transaction);
             const settings = transaction.objectStore('settings');
             for (const [key, value] of remoteSettingsEntries(remote)) settings.put({ key, value });
@@ -3432,8 +3695,8 @@
           await commitAppliedRemote(remote);
           state.cloud.pendingSnapshot = null;
           applyTheme();
-          if (changed || automatic.length) {
-            const patched = !automatic.length && patchRemoteFeed(previousActive, previousVisibleIds, new Set(
+          if (changed) {
+            const patched = patchRemoteFeed(previousActive, previousVisibleIds, new Set(
               appliedRemoteElements
                 .filter((element) => !valuesEqual(previousElements.get(String(element.id)), element))
                 .map((element) => String(element.id))
@@ -3447,9 +3710,9 @@
           state.cloud.applying = false;
           applyReadOnlyState();
         }
-        if ((automatic.length || preservedUnknown) && !suppressCloudMark) markCloudDirty();
+        if (preservedUnknown && !suppressCloudMark) markCloudDirty();
         setSaveState('saved', 'Сохранено');
-        return changed || automatic.length > 0;
+        return changed;
       }
 
       async function applyPendingRemoteSnapshot() {
@@ -4022,12 +4285,6 @@
           state.editingElementId = null;
           state.videoComposer = null;
           state.newElementId = null;
-          const automatic = applyAutomaticTimecodes();
-          if (automatic.length) {
-            await commit(() => runTransaction(['elements'], 'readwrite', (transaction) => {
-              for (const element of automatic) transaction.objectStore('elements').put(element);
-            }), { backup: false });
-          }
           markCloudDirty({ allowDuringImport: true });
           await state.cloud.syncQueue;
           if (state.cloud.outboxError) throw new Error('Импорт сохранён локально, но облачный outbox недоступен.');
@@ -4301,6 +4558,18 @@
         renderFeed();
       }
 
+      dom.workspaceInner.addEventListener('error', (event) => {
+        const image = event.target;
+        if (!(image instanceof HTMLImageElement) || !image.matches('.image-slot img')) return;
+        const fallback = image.dataset.previewFallback;
+        if (fallback && image.dataset.previewFallbackAttempted !== 'true') {
+          image.dataset.previewFallbackAttempted = 'true';
+          image.src = fallback;
+          return;
+        }
+        showUnavailablePreview(image);
+      }, true);
+
       dom.appShell.addEventListener('click', (event) => {
         if (state.cloud.applying || state.cloud.importing) {
           event.preventDefault();
@@ -4562,13 +4831,29 @@
           return;
         }
         if (action === 'delete') {
+          const confirmation = dom.modalSurface.querySelector('[data-delete-confirmation]')?.value || '';
+          if (!deleteConfirmationMatches(confirmation)) {
+            showToast(`Введите «${DELETE_CONFIRMATION}» для удаления.`);
+            return;
+          }
           closeModal();
           if (modal.kind === 'project') removeProject(modal.record);
           else removeElement(modal.record);
         }
       });
+      dom.modalSurface.addEventListener('input', (event) => {
+        const confirmation = event.target.closest('[data-delete-confirmation]');
+        if (!confirmation || !state.modal) return;
+        state.modal.confirmation = confirmation.value;
+        const button = dom.modalSurface.querySelector('[data-modal-action="delete"]');
+        if (button) button.disabled = !deleteConfirmationMatches(confirmation.value);
+      });
       dom.modalSurface.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeModal();
+        if (event.key === 'Enter' && event.target.matches('[data-delete-confirmation]')) {
+          event.preventDefault();
+          dom.modalSurface.querySelector('[data-modal-action="delete"]')?.click();
+        }
       });
 
       document.addEventListener('paste', (event) => {
@@ -4580,7 +4865,8 @@
           return;
         }
         event.preventDefault();
-        handleImagePaste(item.getAsFile());
+        const capturedTimecode = captureTimecodeAtPaste(event.clipboardData);
+        handleImagePaste(item.getAsFile(), capturedTimecode);
       });
 
       document.addEventListener('click', (event) => {
@@ -4598,6 +4884,41 @@
         if (state.calibration) closeCalibration();
         if (state.modal) closeModal();
       });
+
+      function runCatalogSelfTest() {
+        const failures = [];
+        let total = 0;
+        const expect = (condition, label) => {
+          total += 1;
+          if (!condition) failures.push(label);
+        };
+        expect(capturedTimecodeFromText('0:51 / 15:02') === '0:51', 'screenshot timecode');
+        expect(capturedTimecodeFromText('https://youtu.be/example?t=61') === '1:01', 'URL timecode');
+        expect(capturedTimecodeFromText('0:51') === '', 'ambiguous text is ignored');
+        expect(formatCapturedTimecode(3661.9) === '1:01:01', 'media timecode format');
+        expect(youtubeVideoId('https://www.youtube.com/watch?v=QOUszAHEZAE&t=211s') === 'QOUszAHEZAE', 'YouTube video ID');
+        expect(youtubeStartSeconds('https://youtu.be/QOUszAHEZAE?t=3m31s') === 211, 'YouTube start time');
+        expect(capturedTimecodeFromPlayer({ getCurrentTime: () => 51.9 }) === '0:51', 'live player timecode');
+        expect(capturedTimecodeFromPlayer(null) === '', 'missing player timecode');
+        expect(catalogAssetUrl('assets/elements/example.jpg?v=abc').includes('assets/elements/example.jpg?v=abc'), 'asset URL resolution');
+        expect(deleteConfirmationMatches('УДАЛИТЬ') && !deleteConfirmationMatches('Удалить'), 'delete confirmation word');
+
+        const base = { version: 5, projects: [], elements: [{ id: 'element', description: 'base', technique: 'base', updatedAt: 1 }], categories: [], settings: {} };
+        const remote = cloneSnapshot(base);
+        remote.elements[0].description = 'remote';
+        remote.elements[0].updatedAt = 2;
+        const local = cloneSnapshot(base);
+        local.elements[0].technique = 'local';
+        local.elements[0].updatedAt = 3;
+        const merged = mergeCloudSnapshots(base, remote, local);
+        expect(merged.ok && merged.snapshot.elements[0].description === 'remote' && merged.snapshot.elements[0].technique === 'local', 'independent field merge');
+        local.elements[0].description = 'local';
+        const conflict = mergeCloudSnapshots(base, remote, local);
+        expect(!conflict.ok && conflict.conflicts.includes('elements[element].description'), 'same-field conflict only');
+        return Object.freeze({ passed: total - failures.length, total, failures: Object.freeze(failures) });
+      }
+
+      globalThis.__catalogSelfTest = runCatalogSelfTest;
 
       async function initialize() {
         try {
