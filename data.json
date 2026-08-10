@@ -1,24 +1,7 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:17:36.046Z",
+  "exportedAt": "2026-08-10T16:48:01.963Z",
   "projects": [
-    {
-      "channel": "Verlorenes Bauwissen",
-      "channelSource": "manual",
-      "completed": false,
-      "createdAt": 1786307349915,
-      "duration": "15:02",
-      "host": "Александр",
-      "id": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "niche": "Сантехника германия",
-      "progress": 6,
-      "progressOverride": null,
-      "title": "Dieses 50€ Betonrohr Kühlt Dein Haus FÜR IMMER. Warum Ist Es VERBOTEN?",
-      "titleSource": "manual",
-      "updatedAt": 1786336777338,
-      "url": "https://www.youtube.com/watch?v=QOUszAHEZAE&t=211s"
-    }
-    ,
     {
       "channel": "Verlorenes Bauwissen",
       "channelSource": "manual",
@@ -35,6 +18,22 @@
       "titleSource": "manual",
       "updatedAt": 1786379819000,
       "url": "https://www.youtube.com/watch?v=QOUszAHEZAE&t=55s"
+    },
+    {
+      "channel": "Verlorenes Bauwissen",
+      "channelSource": "manual",
+      "completed": false,
+      "createdAt": 1786307349915,
+      "duration": "15:02",
+      "host": "Александр",
+      "id": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "niche": "Сантехника германия",
+      "progress": 6,
+      "progressOverride": null,
+      "title": "Dieses 50€ Betonrohr Kühlt Dein Haus FÜR IMMER. Warum Ist Es VERBOTEN?",
+      "titleSource": "manual",
+      "updatedAt": 1786336777338,
+      "url": "https://www.youtube.com/watch?v=QOUszAHEZAE&t=211s"
     }
   ],
   "elements": [
@@ -58,6 +57,24 @@
     },
     {
       "application": "",
+      "category": "Зум",
+      "createdAt": 1786367101035,
+      "description": "Наружный блок медленно увеличивается примерно на 4%, центр сохраняется на решётке вентилятора, края деревянных реек уходят наружу. SFX нет — фоновая музыка.",
+      "id": "0465b7fb-aab6-406f-9e44-57bdd9fa23f4",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Наезд на наружный блок",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Centered Ken Burns zoom-in около 4%",
+      "timecodes": [
+        "1:43"
+      ],
+      "updatedAt": 1786367101035
+    },
+    {
+      "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786348895238,
       "description": "Тепреь важно сразу после того как зумл вугол закончлся на #02 эо фото полся с того же ракурса (как будто прожолжилсь) спутся секунду оно плавно стало ЧБ у насе тсь такой метод реализия",
@@ -73,6 +90,78 @@
         "0:32"
       ],
       "updatedAt": 1786361396764
+    },
+    {
+      "application": "",
+      "category": "Типографика",
+      "createdAt": 1786367101046,
+      "description": "Около 1:58.9 вторым шагом ниже добавляется «KÄLTEMITTEL», верхний пункт и дуги уже стоят; появление быстрое и аккуратное, без tracking-анимации после входа. SFX нет — фоновая музыка.",
+      "id": "08de6f47-c4c8-4f49-affd-c85d3c7ad1f7",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Пункт KÄLTEMITTEL",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Sequential bullet reveal, item 2",
+      "timecodes": [
+        "1:58"
+      ],
+      "updatedAt": 1786367101046
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101032,
+      "description": "В 1:39.6 тёмные старые блоки жёстко меняются на светлый интерьер с монтажником справа. SFX нет — фоновая музыка.",
+      "id": "09e437f7-ce97-4994-8b37-be01a8d1bf7b",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Склейка на монтажника",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut with luminance contrast",
+      "timecodes": [
+        "1:39"
+      ],
+      "updatedAt": 1786367101032
+    },
+    {
+      "application": "",
+      "category": "Инфографика",
+      "createdAt": 1786367101009,
+      "description": "С 1:12.7 на белом фоне сначала рисуется вертикальная линия, потом горизонтальная вправо, после чего очень мягко проявляется сетка. SFX подтверждён (слух, 10.08.2026): whoosh на появлении графика.",
+      "id": "0d9012b9-befc-4579-b600-c3b95e316af1",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Рисование осей",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Stroke reveal осей + opacity reveal grid",
+      "timecodes": [
+        "1:12"
+      ],
+      "updatedAt": 1786367101009
+    },
+    {
+      "application": "",
+      "category": "Типографика",
+      "createdAt": 1786367101027,
+      "description": "Сразу после cut тонкая белая линия быстро растягивается по горизонтали, утолщается в округлую нижнюю плашку и в ней появляется подпись про сезонные расходы. SFX нет — фоновая музыка.",
+      "id": "0f51d188-c8da-45c9-b898-65cdc565ca19",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Белая плашка расходов",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Line-to-pill morph + masked text reveal",
+      "timecodes": [
+        "1:32"
+      ],
+      "updatedAt": 1786367101027
     },
     {
       "application": "",
@@ -94,6 +183,60 @@
     },
     {
       "application": "",
+      "category": "Зум",
+      "createdAt": 1786367101000,
+      "description": "С 0:55 светлое фото спальни очень плавно увеличивается в центр кровати, без панорамы, обычный Ken Burns как более медленный вариант #23. SFX нет — фоновая музыка.",
+      "id": "1b0c5743-bada-46d9-bbf0-c0e86f850f6e",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Медленный наезд на спальню",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Ken Burns zoom-in, scale примерно 100→106%, центр на кровати",
+      "timecodes": [
+        "0:55"
+      ],
+      "updatedAt": 1786367101000
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101039,
+      "description": "В 1:52.0 ЧБ сцена мгновенно сменяется тёмным фото ноутбука с календарём/очередью на экране. SFX нет — фоновая музыка.",
+      "id": "24f8361e-01f0-45af-8108-a49daa78448e",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Склейка на ноутбук",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Clean hard cut",
+      "timecodes": [
+        "1:52"
+      ],
+      "updatedAt": 1786367101039
+    },
+    {
+      "application": "",
+      "category": "Типографика",
+      "createdAt": 1786367101045,
+      "description": "Примерно в 1:58.5 справа первым появляется жёлтый маркер и слово «WARTUNG», коротко через opacity/лёгкий сдвиг; остальные пункты ещё скрыты. SFX нет — фоновая музыка.",
+      "id": "27278b01-002b-444e-95e7-bca9dd56da2e",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Пункт WARTUNG",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Sequential bullet reveal, item 1",
+      "timecodes": [
+        "1:58"
+      ],
+      "updatedAt": 1786367101045
+    },
+    {
+      "application": "",
       "category": "Частицы",
       "createdAt": 1786348616176,
       "description": "Обычные фото поверх которых снизу лево - вверх право идут мелкие частцы пыли",
@@ -109,6 +252,42 @@
         "0:20"
       ],
       "updatedAt": 1786361396764
+    },
+    {
+      "application": "",
+      "category": "Зум",
+      "createdAt": 1786367101002,
+      "description": "После склейки тепловизионный дом медленно увеличивается строго в центр, края деревьев понемногу уходят за кадр; цвет весь фрагмент остаётся контрастный синий–зелёный–жёлтый–красный. SFX нет — фоновая музыка.",
+      "id": "2b12a638-829c-47d3-bf94-818c544237f2",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Наезд на тепловой дом",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Плавный centered zoom-in без pan",
+      "timecodes": [
+        "1:00"
+      ],
+      "updatedAt": 1786367101002
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101020,
+      "description": "В 1:26.6 первый домашний ракурс жёстко сменяется более тёмным кадром того же мобильного кондиционера рядом с кроватью. SFX нет — фоновая музыка.",
+      "id": "2b6dc3e8-66e6-4ba2-9fba-bfc8212d6e08",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Второй ракурс у кровати",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut between matching subject angles",
+      "timecodes": [
+        "1:26"
+      ],
+      "updatedAt": 1786367101020
     },
     {
       "application": "",
@@ -130,6 +309,24 @@
     },
     {
       "application": "",
+      "category": "Инфографика",
+      "createdAt": 1786367101044,
+      "description": "С 1:58.4 жёлтый треугольник быстро проявляется и чуть увеличивается, вокруг него две дуги дорисовываются по часовой стрелке и останавливаются; по структуре близко #04/#15, но на чёрном фоне. SFX нет — фоновая музыка.",
+      "id": "32f6b65d-22eb-41d8-8f3a-8c2334462ac8",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Знак и круговые дуги",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Shape opacity/scale reveal + radial stroke trim clockwise",
+      "timecodes": [
+        "1:58"
+      ],
+      "updatedAt": 1786367101044
+    },
+    {
+      "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786348542718,
       "description": "Эффект киноплекнке берется обычное фото чутка замтенсяеся фильтром ставтся по краям черные рамки как кинокамера (они чут ьчуть движутся влева вправо) и справа белая полоса активная как киноффект",
@@ -148,6 +345,42 @@
     },
     {
       "application": "",
+      "category": "Типографика",
+      "createdAt": 1786367101023,
+      "description": "SFX подтверждён (слух, 10.08.2026): звук появления текста.",
+      "id": "39aeb24b-c537-4423-8552-20e7ba07add9",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Въезд 1.2 kW",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Horizontal mask reveal + short position/opacity ease",
+      "timecodes": [
+        "1:29"
+      ],
+      "updatedAt": 1786367101023
+    },
+    {
+      "application": "",
+      "category": "Зум",
+      "createdAt": 1786367101006,
+      "description": "Вся мансарда под типографикой медленно увеличивается в центр кровати, текст остаётся привязан к экрану и не плывёт вместе с фото. Это спокойный вариант #23. SFX нет — фоновая музыка.",
+      "id": "3a7f9f54-3bdd-457e-8f1b-6e8ddcdd4b55",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Наезд под 35°C",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Background Ken Burns zoom-in, screen-space typography",
+      "timecodes": [
+        "1:04"
+      ],
+      "updatedAt": 1786367101006
+    },
+    {
+      "application": "",
       "category": "Инфографика",
       "createdAt": 1786361675468,
       "description": "Досттаочно тяжелая техника в чем суть эта наша карусль кашалот или касатка не помню вроде С - есть фото оно быстро зумится во вней вокруг рамки как видишь оно перелистыаеся влево (как в нейш карслеи)  на фоне черный фо нкак свегда и открываестя фото до которого перпелситнулс влеов + 2 sfxa",
@@ -163,6 +396,78 @@
         "0:20"
       ],
       "updatedAt": 1786363929494
+    },
+    {
+      "application": "",
+      "category": "Зум",
+      "createdAt": 1786367101018,
+      "description": "За короткий кадр гостиная заметно увеличивается в центр дивана: окно и кресла быстро расходятся к краям, направление без боковой панорамы. SFX нет — фоновая музыка.",
+      "id": "420f51b4-d28c-48b9-9523-73b9bd3318e6",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Быстрый наезд на гостиную",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Short Ken Burns zoom-in примерно 1 секунда",
+      "timecodes": [
+        "1:23"
+      ],
+      "updatedAt": 1786367101018
+    },
+    {
+      "application": "",
+      "category": "Инфографика",
+      "createdAt": 1786367101028,
+      "description": "Около 1:33.9 поверх мужчины поднимается полупрозрачная красно-оранжевая вертикальная карточка, затем она ступенчато меняется на зелёные блоки и к концу остаётся зелёной. Фон не двигается. SFX подтверждён (слух, 10.08.2026): восходящий звук на инфографике.",
+      "id": "42e586c3-c8d3-4b13-9e67-88033924cf3a",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Красный блок становится зелёным",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Vertical block reveal + red/orange→green state animation",
+      "timecodes": [
+        "1:33"
+      ],
+      "updatedAt": 1786367101028
+    },
+    {
+      "application": "",
+      "category": "Работа с футажем",
+      "createdAt": 1786367101015,
+      "description": "Примерно с 1:18.5 тёплые жёлтые и синие цвета постепенно уходят, к 1:19.5 фото полностью ЧБ; это ровно развитие приёма #13/#19, без скачка экспозиции. SFX нет — фоновая музыка.",
+      "id": "46093894-3b18-4c9d-b0ef-73ac97e748bb",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Спальня плавно в ЧБ",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Animated saturation 100→0% поверх непрерывного zoom-out",
+      "timecodes": [
+        "1:18"
+      ],
+      "updatedAt": 1786367101015
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101003,
+      "description": "В 1:04.33 тепловизор резко затемняется и на один кадр проваливается в почти чёрную техническую сетку — это отдельная склейка, не плавный fade. SFX нет — фоновая музыка.",
+      "id": "469d29d6-7375-4e51-b7f7-313c138534dc",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Тепловизор в тёмную сетку",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut через one-frame dark grid insert",
+      "timecodes": [
+        "1:04"
+      ],
+      "updatedAt": 1786367101003
     },
     {
       "application": "",
@@ -185,6 +490,24 @@
     {
       "application": "",
       "category": "Зум",
+      "createdAt": 1786367101033,
+      "description": "Сразу после склейки монтажник и внутренний блок быстро увеличиваются примерно на 5%, потом масштаб фиксируется; центр движения в правой верхней части. SFX нет — фоновая музыка.",
+      "id": "511ccfc6-33de-453e-96a6-1e49e1160516",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Быстрый наезд на монтажника",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Short zoom-in около 5%, focus top-right",
+      "timecodes": [
+        "1:39"
+      ],
+      "updatedAt": 1786367101033
+    },
+    {
+      "application": "",
+      "category": "Зум",
       "createdAt": 1786348432626,
       "description": "Переход путем зума вперед мне кажется на 50% зума впреед появются второе фот ов в общем мы уже детаи таке",
       "id": "56075cf1-3995-4ea1-b0d4-05a087b2150d",
@@ -203,6 +526,42 @@
     {
       "application": "",
       "category": "Переход",
+      "createdAt": 1786367101017,
+      "description": "В 1:23.7 круглый прибор жёстко сменяется светлой гостиной, без вспышки и без blur. SFX нет — фоновая музыка.",
+      "id": "57a3b69a-a64d-423d-a309-59f29c2ddb94",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Гигрометр в гостиную",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut",
+      "timecodes": [
+        "1:23"
+      ],
+      "updatedAt": 1786367101017
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101034,
+      "description": "В 1:43.4 интерьер мгновенно меняется на яркое фото наружного блока Mitsubishi у деревянной стены; никакого растворения нет. SFX нет — фоновая музыка.",
+      "id": "588155fd-708f-4ff8-a2fa-bc74a86ac34e",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Монтажник в наружный блок",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Clean hard cut",
+      "timecodes": [
+        "1:43"
+      ],
+      "updatedAt": 1786367101034
+    },
+    {
+      "application": "",
+      "category": "Переход",
       "createdAt": 1786367220386,
       "description": "переход от #36 через зум в центр к статично кадру + слабый эффект кинопленки",
       "id": "59dfbf19-5d35-495f-a5e3-bb74c3975161",
@@ -217,6 +576,24 @@
         "0:54"
       ],
       "updatedAt": 1786367245785
+    },
+    {
+      "application": "",
+      "category": "Типографика",
+      "createdAt": 1786367101047,
+      "description": "В 1:59.4 третьим и последним появляется «FILTERWECHSEL», после чего весь список и круговой знак фиксируются до конца сегмента. SFX нет — фоновая музыка.",
+      "id": "5ed08b88-c7eb-408a-aad5-6179d333c637",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Пункт FILTERWECHSEL",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Sequential bullet reveal, item 3",
+      "timecodes": [
+        "1:59"
+      ],
+      "updatedAt": 1786367101047
     },
     {
       "application": "",
@@ -256,6 +633,24 @@
     },
     {
       "application": "",
+      "category": "Типографика",
+      "createdAt": 1786367101005,
+      "description": "В 1:04.6 крупное «35°C» быстро входит через прозрачность и лёгкий scale-in, а примерно в 1:05.6 снизу плавно проявляется двухстрочное пояснение. Текст не дублирует субтитры, а добавляет факт — схема как #05/#24. SFX подтверждён (слух, 10.08.2026): звук появления цифр.",
+      "id": "65779caf-9c5c-4e38-93cb-46c768d874f7",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "35°C в два этапа",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Kinetic type: opacity + scale, delayed lower copy reveal",
+      "timecodes": [
+        "1:04"
+      ],
+      "updatedAt": 1786367101005
+    },
+    {
+      "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786364475570,
       "description": "простой переход + медленный зум в центр + чб фото постпенно чб",
@@ -274,6 +669,42 @@
     },
     {
       "application": "",
+      "category": "Типографика",
+      "createdAt": 1786367101024,
+      "description": "Примерно в 1:30.6 ниже числа отдельным вторым шагом проявляется двухстрочное пояснение о 800–1 200 W, сверху вниз/через opacity; крупное число уже стоит. SFX нет — фоновая музыка.",
+      "id": "68f50ce6-52a5-4d19-8842-700077ea7783",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Подпись под 1.2 kW",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Delayed lower-copy opacity reveal",
+      "timecodes": [
+        "1:30"
+      ],
+      "updatedAt": 1786367101024
+    },
+    {
+      "application": "",
+      "category": "Типографика",
+      "createdAt": 1786367101029,
+      "description": "Внутри цветной карточки цифры быстро уменьшаются примерно от €0.8K до €0.3K, каждый шаг синхронен со сменой красного на зелёный; это count-down-приём родственник #10, но про цену. SFX подтверждён (слух, 10.08.2026): восходящий звук на инфографике.",
+      "id": "6ab58753-6dcf-4c22-bc4a-98236462963c",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Счётчик €0.8K→€0.3K",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Number scramble/count-down linked to color states",
+      "timecodes": [
+        "1:33"
+      ],
+      "updatedAt": 1786367101029
+    },
+    {
+      "application": "",
       "category": "Инфографика",
       "createdAt": 1786363944259,
       "description": "Инфограика у нас есть такое!! Слово в центре быстро увеличается в раземере вокргу рисуетс круги такие по бокам крестики с sfx каранада у нас есть такое",
@@ -289,6 +720,24 @@
         "0:41"
       ],
       "updatedAt": 1786363978883
+    },
+    {
+      "application": "",
+      "category": "Типографика",
+      "createdAt": 1786367101040,
+      "description": "SFX нет — фоновая музыка.",
+      "id": "6e219980-275f-4328-b93e-a20c19a4c678",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Годы 2026→2022",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Kinetic number scramble/count-down",
+      "timecodes": [
+        "1:52"
+      ],
+      "updatedAt": 1786367101040
     },
     {
       "application": "",
@@ -346,6 +795,24 @@
     },
     {
       "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101007,
+      "description": "В 1:10.1 мансарда и вся типографика мгновенно сменяются крупным натурным кадром датчиков метеостанции; blend и вспышки нет. SFX нет — фоновая музыка.",
+      "id": "7127d8d9-a589-424f-866a-c2add8dd2b50",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Склейка к метеостанции",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Clean hard cut",
+      "timecodes": [
+        "1:10"
+      ],
+      "updatedAt": 1786367101007
+    },
+    {
+      "application": "",
       "category": "Типографика",
       "createdAt": 1786348648567,
       "description": "Типграфка берется фон сильно зтаентся как на фото и в центр статяс цифры сечетс которые от 0 до нужного числа быстро растут потом как он идойдут ло нужнгоый цфиры за милсенкду до этого справа появлется слово снизу вверх проялется такой же шриыт (сначал полявтся как проузраночный) за это коротео время роялется как слева все такое но слово дополнение + sfx звук relay из нииш документалки нашей",
@@ -379,6 +846,42 @@
         "0:29"
       ],
       "updatedAt": 1786364528967
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101041,
+      "description": "В 1:56.4 ноутбук жёстко меняется на крупный план смартфона с входящим звонком и пальцами. SFX нет — фоновая музыка.",
+      "id": "7752f9cb-8b25-419a-8224-a7c818c24bba",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Склейка на входящий звонок",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut",
+      "timecodes": [
+        "1:56"
+      ],
+      "updatedAt": 1786367101041
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101016,
+      "description": "В 1:20.9 ЧБ спальня мгновенно меняется на крупный круглый гигрометр в тёплой металлической рамке. SFX нет — фоновая музыка.",
+      "id": "7e244cda-3c64-434a-9cc3-1417cd46cbc2",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Склейка на гигрометр",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Clean hard cut",
+      "timecodes": [
+        "1:20"
+      ],
+      "updatedAt": 1786367101016
     },
     {
       "application": "",
@@ -436,6 +939,24 @@
     },
     {
       "application": "",
+      "category": "Работа с футажем",
+      "createdAt": 1786367101038,
+      "description": "С 1:48.1 цветность последовательно снижается и примерно к 1:48.9 кадр становится полностью ЧБ, при этом наезд не останавливается; повтор схемы #13/#19 новой версией. SFX нет — фоновая музыка.",
+      "id": "92cbd20c-c8e7-4770-8f0d-ffe00da1a936",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Счёт плавно в ЧБ",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Animated desaturation during continuous zoom",
+      "timecodes": [
+        "1:48"
+      ],
+      "updatedAt": 1786367101038
+    },
+    {
+      "application": "",
       "category": "Зум",
       "createdAt": 1786348795034,
       "description": "Переход путем зума вперед ровно как кадр #05 такая же схема",
@@ -472,6 +993,60 @@
     },
     {
       "application": "",
+      "category": "Зум",
+      "createdAt": 1786367101031,
+      "description": "После cut старые кондиционеры слабо и равномерно увеличиваются в центр композиции, без бокового движения; это почти незаметный Ken Burns как #23. SFX нет — фоновая музыка.",
+      "id": "94d63808-163e-4410-9ffd-4d5883c21306",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Наезд на старые блоки",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Subtle centered zoom-in",
+      "timecodes": [
+        "1:36"
+      ],
+      "updatedAt": 1786367101031
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101001,
+      "description": "В 1:00.3 жёсткая склейка: светлая спальня мгновенно меняется на false-color дом, без растворения и без шторки. SFX нет — фоновая музыка.",
+      "id": "954c7b78-3c52-4788-8583-9bd5cf13cc46",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Склейка в тепловизор",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut, полная смена цветовой палитры",
+      "timecodes": [
+        "1:00"
+      ],
+      "updatedAt": 1786367101001
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101026,
+      "description": "В 1:32.57 второй отдельный cut: сетка мгновенно меняется на мужчину со счётом, а белая горизонтальная линия уже начинает раскрытие. SFX нет — фоновая музыка.",
+      "id": "97b833c6-bc71-489a-9074-2b28c57fb82c",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Сетка в кухню",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut after one-frame grid insert",
+      "timecodes": [
+        "1:32"
+      ],
+      "updatedAt": 1786367101026
+    },
+    {
+      "application": "",
       "category": "БАГ",
       "createdAt": 1786366863861,
       "description": "БАГ он встали не тот футаж!! программная ошибка он вствалви свой дефолтрны фон не тот кадр",
@@ -490,6 +1065,78 @@
     },
     {
       "application": "",
+      "category": "Зум",
+      "createdAt": 1786367101042,
+      "description": "Телефон и пальцы очень медленно увеличиваются примерно на 1%, направление строго в центр экрана; отдельные частицы отсутствуют по покадровой проверке. SFX нет — фоновая музыка.",
+      "id": "99de6825-8a14-4f9f-a9d7-e88ed77b3009",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Едва заметный наезд на телефон",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Very subtle centered zoom-in около 1%",
+      "timecodes": [
+        "1:56"
+      ],
+      "updatedAt": 1786367101042
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101013,
+      "description": "В 1:17.5 график начинает растворяться поверх нового фото, кадр на несколько фреймов выбеливается жёлто-оранжевым бликом и к 1:18 остаётся спальня; по настроению близко #16, но здесь настоящий crossfade. SFX подтверждён (слух, 10.08.2026): тихий переходный звук.",
+      "id": "9b2c31eb-ad88-463c-94bd-4e1d44320f25",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Тёплый флэш в спальню",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Flash crossfade + warm overexposure/light leak",
+      "timecodes": [
+        "1:17"
+      ],
+      "updatedAt": 1786367101013
+    },
+    {
+      "application": "",
+      "category": "Зум",
+      "createdAt": 1786367101021,
+      "description": "Во втором тёмном кадре кондиционер и край кровати медленно становятся крупнее, центр на белом корпусе слева; скорость ровная, без pan. SFX нет — фоновая музыка.",
+      "id": "a05fd79a-cb35-4267-b94d-73ce655577ad",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Наезд на ночной кондиционер",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Slow zoom-in, focus left-center",
+      "timecodes": [
+        "1:26"
+      ],
+      "updatedAt": 1786367101021
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101008,
+      "description": "В 1:12.7 метеостанция жёстко меняется на почти белое поле будущего графика — первый кадр уже чистый фон, без crossfade. SFX подтверждён (слух, 10.08.2026): whoosh на появлении графика.",
+      "id": "a1391310-3ca7-41dd-b06b-b5e9e6f160bb",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Склейка на белый график",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut в high-key infographic background",
+      "timecodes": [
+        "1:12"
+      ],
+      "updatedAt": 1786367101008
+    },
+    {
+      "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786367256252,
       "description": "Простой перехеод к кажру и такое же эффект искажеиня как #03 искривлние",
@@ -505,6 +1152,24 @@
         "0:56"
       ],
       "updatedAt": 1786367276134
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101004,
+      "description": "Сразу в 1:04.40 второй жёсткий cut: одно-кадровая сетка меняется на нейтрально-тёплую мансарду, без размытия и без нахлёста кадров. SFX нет — фоновая музыка.",
+      "id": "a81c09dc-a91e-4510-bfb6-544952c0041a",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Сетка в мансарду",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut после one-frame insert",
+      "timecodes": [
+        "1:04"
+      ],
+      "updatedAt": 1786367101004
     },
     {
       "application": "",
@@ -543,6 +1208,24 @@
       "updatedAt": 1786367024586
     },
     {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101030,
+      "description": "В 1:36.3 мужчина и вся ценовая инфографика мгновенно меняются на тёмное фото груды старых оконных блоков. SFX нет — фоновая музыка.",
+      "id": "b935b5ab-5b0a-4f5c-a4cd-de016b83e240",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Склейка на старые кондиционеры",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Clean hard cut",
+      "timecodes": [
+        "1:36"
+      ],
+      "updatedAt": 1786367101030
+    },
+    {
       "application": "Возможно на первом кадре ролика",
       "category": "Зум",
       "createdAt": 1786347529861,
@@ -559,6 +1242,42 @@
         "0:00"
       ],
       "updatedAt": 1786361396763
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101025,
+      "description": "В 1:32.50 ваттметр и текст обрываются в отдельный почти чёрный кадр с тонкой квадратной сеткой. SFX нет — фоновая музыка.",
+      "id": "c1a1b67c-53fd-49ba-98da-bc6d9b8ddba1",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Ваттметр в чёрную сетку",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut to one-frame technical grid",
+      "timecodes": [
+        "1:32"
+      ],
+      "updatedAt": 1786367101025
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101019,
+      "description": "В 1:24.7 светлая гостиная мгновенно меняется на вертикальный домашний футаж кондиционера у дивана, цвет сразу холоднее с розовым оттенком. SFX нет — фоновая музыка.",
+      "id": "c1da1d00-d106-439b-9b75-ca8ff991ca72",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Склейка на мобильный кондиционер",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut в другой aspect/crop source",
+      "timecodes": [
+        "1:24"
+      ],
+      "updatedAt": 1786367101019
     },
     {
       "application": "",
@@ -617,6 +1336,42 @@
     {
       "application": "",
       "category": "Инфографика",
+      "createdAt": 1786367101012,
+      "description": "С 1:14.5 точки появляются по годам слева направо, между ними дорисовывается линия и ускоренно уходит вверх к последней точке; движение заканчивается на правом верхнем пике. SFX нет — фоновая музыка.",
+      "id": "cb1ebb7a-c6ba-42f7-a492-5ad7750bc942",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Рост кривой жары",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Sequential point reveal + path trim left-to-right",
+      "timecodes": [
+        "1:14"
+      ],
+      "updatedAt": 1786367101012
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101043,
+      "description": "В 1:58.4 тёплый кадр телефона мгновенно обрывается на чистый чёрный инфографический фон; fade и flash отсутствуют. SFX нет — фоновая музыка.",
+      "id": "cda24430-604e-4882-9221-4415db3ccf35",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Телефон в чёрное предупреждение",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut to black graphic scene",
+      "timecodes": [
+        "1:58"
+      ],
+      "updatedAt": 1786367101043
+    },
+    {
+      "application": "",
+      "category": "Инфографика",
       "createdAt": 1786367086098,
       "description": "дополнние к #34 помле всего это вылезает под sfx pop зеленая шкала вверх и цфира  цирфа динаминчо растет до нужнгог преедла",
       "id": "d4cad72d-3739-4cb4-991a-ca48c98dee49",
@@ -631,6 +1386,24 @@
         "0:51"
       ],
       "updatedAt": 1786367119966
+    },
+    {
+      "application": "",
+      "category": "Зум",
+      "createdAt": 1786367101014,
+      "description": "После флэша спальня делает медленный zoom-out: кровать и балки становятся немного меньше, раскрывается больше краёв комнаты; движение ровное, без pan. SFX нет — фоновая музыка.",
+      "id": "da1fee75-b859-4c59-9bfb-df791718c627",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Медленный отъезд спальни",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Ken Burns zoom-out, centered",
+      "timecodes": [
+        "1:17"
+      ],
+      "updatedAt": 1786367101014
     },
     {
       "application": "",
@@ -670,6 +1443,24 @@
     },
     {
       "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101022,
+      "description": "В 1:29.4 тёмная спальня резко сменяется видом ваттметра и красного провода сверху. SFX нет — фоновая музыка.",
+      "id": "dc9ae1fe-a501-4376-877b-2d8ff27a8752",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Склейка на ваттметр",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut",
+      "timecodes": [
+        "1:29"
+      ],
+      "updatedAt": 1786367101022
+    },
+    {
+      "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786365439042,
       "description": "Переход к след футажу через наложение + теплый филльтр блики и через секнуд фото становится чб футаж и все эо врмя медленныслабый зум отдаление",
@@ -688,6 +1479,24 @@
     },
     {
       "application": "",
+      "category": "Переход",
+      "createdAt": 1786367101036,
+      "description": "В 1:47.0 наружный блок жёстко меняется на женщину, мастера со счётом и мобильный кондиционер; первый кадр ещё цветной. SFX нет — фоновая музыка.",
+      "id": "e48f6de4-5ca5-412d-8aae-4bc3005f6e7c",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Склейка на дорогой счёт",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Hard cut",
+      "timecodes": [
+        "1:47"
+      ],
+      "updatedAt": 1786367101036
+    },
+    {
+      "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786348841737,
       "description": "После переход путем зума впреде фото зумится дальше мделено зумится в правй угол и на нем накладватеся теплый фильтр теплых круков которые вращается атмосфера почти как чатсицы",
@@ -703,6 +1512,24 @@
         "0:28"
       ],
       "updatedAt": 1786361396764
+    },
+    {
+      "application": "",
+      "category": "Зум",
+      "createdAt": 1786367101037,
+      "description": "Сцена со счётом постепенно увеличивается примерно на 10%, центр смещён к листу в руках мастера, женщина слева сильнее выходит за край. SFX нет — фоновая музыка.",
+      "id": "ec2e704c-995c-4539-a9e2-f5e534b8c42f",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Наезд на счёт",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Ken Burns zoom-in около 10%, focus on invoice",
+      "timecodes": [
+        "1:47"
+      ],
+      "updatedAt": 1786367101037
     },
     {
       "application": "",
@@ -739,775 +1566,42 @@
         "0:44"
       ],
       "updatedAt": 1786365601934
-    }
-    ,
-    {
-      "id": "1b0c5743-bada-46d9-bbf0-c0e86f850f6e",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Медленный наезд на спальню",
-      "description": "С 0:55 светлое фото спальни очень плавно увеличивается в центр кровати, без панорамы, обычный Ken Burns как более медленный вариант #23. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Ken Burns zoom-in, scale примерно 100→106%, центр на кровати",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": ["0:55"],
-      "createdAt": 1786367101000,
-      "updatedAt": 1786367101000
     },
     {
-      "id": "954c7b78-3c52-4788-8583-9bd5cf13cc46",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Склейка в тепловизор",
-      "description": "В 1:00.3 жёсткая склейка: светлая спальня мгновенно меняется на false-color дом, без растворения и без шторки. SFX нет — фоновая музыка.",
-      "opinion": "",
       "application": "",
-      "technique": "Hard cut, полная смена цветовой палитры",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:00"],
-      "createdAt": 1786367101001,
-      "updatedAt": 1786367101001
-    },
-    {
-      "id": "2b12a638-829c-47d3-bf94-818c544237f2",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Наезд на тепловой дом",
-      "description": "После склейки тепловизионный дом медленно увеличивается строго в центр, края деревьев понемногу уходят за кадр; цвет весь фрагмент остаётся контрастный синий–зелёный–жёлтый–красный. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Плавный centered zoom-in без pan",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": ["1:00"],
-      "createdAt": 1786367101002,
-      "updatedAt": 1786367101002
-    },
-    {
-      "id": "469d29d6-7375-4e51-b7f7-313c138534dc",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Тепловизор в тёмную сетку",
-      "description": "В 1:04.33 тепловизор резко затемняется и на один кадр проваливается в почти чёрную техническую сетку — это отдельная склейка, не плавный fade. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut через one-frame dark grid insert",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:04"],
-      "createdAt": 1786367101003,
-      "updatedAt": 1786367101003
-    },
-    {
-      "id": "a81c09dc-a91e-4510-bfb6-544952c0041a",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Сетка в мансарду",
-      "description": "Сразу в 1:04.40 второй жёсткий cut: одно-кадровая сетка меняется на нейтрально-тёплую мансарду, без размытия и без нахлёста кадров. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut после one-frame insert",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:04"],
-      "createdAt": 1786367101004,
-      "updatedAt": 1786367101004
-    },
-    {
-      "id": "65779caf-9c5c-4e38-93cb-46c768d874f7",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "35°C в два этапа",
-      "description": "В 1:04.6 крупное «35°C» быстро входит через прозрачность и лёгкий scale-in, а примерно в 1:05.6 снизу плавно проявляется двухстрочное пояснение. Текст не дублирует субтитры, а добавляет факт — схема как #05/#24. SFX подтверждён (слух, 10.08.2026): звук появления цифр.",
-      "opinion": "",
-      "application": "",
-      "technique": "Kinetic type: opacity + scale, delayed lower copy reveal",
-      "legacyTagsMigrated": true,
       "category": "Типографика",
-      "timecodes": ["1:04"],
-      "createdAt": 1786367101005,
-      "updatedAt": 1786367101005
-    },
-    {
-      "id": "3a7f9f54-3bdd-457e-8f1b-6e8ddcdd4b55",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Наезд под 35°C",
-      "description": "Вся мансарда под типографикой медленно увеличивается в центр кровати, текст остаётся привязан к экрану и не плывёт вместе с фото. Это спокойный вариант #23. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Background Ken Burns zoom-in, screen-space typography",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": ["1:04"],
-      "createdAt": 1786367101006,
-      "updatedAt": 1786367101006
-    },
-    {
-      "id": "7127d8d9-a589-424f-866a-c2add8dd2b50",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Склейка к метеостанции",
-      "description": "В 1:10.1 мансарда и вся типографика мгновенно сменяются крупным натурным кадром датчиков метеостанции; blend и вспышки нет. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Clean hard cut",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:10"],
-      "createdAt": 1786367101007,
-      "updatedAt": 1786367101007
-    },
-    {
-      "id": "a1391310-3ca7-41dd-b06b-b5e9e6f160bb",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Склейка на белый график",
-      "description": "В 1:12.7 метеостанция жёстко меняется на почти белое поле будущего графика — первый кадр уже чистый фон, без crossfade. SFX подтверждён (слух, 10.08.2026): whoosh на появлении графика.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut в high-key infographic background",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:12"],
-      "createdAt": 1786367101008,
-      "updatedAt": 1786367101008
-    },
-    {
-      "id": "0d9012b9-befc-4579-b600-c3b95e316af1",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Рисование осей",
-      "description": "С 1:12.7 на белом фоне сначала рисуется вертикальная линия, потом горизонтальная вправо, после чего очень мягко проявляется сетка. SFX подтверждён (слух, 10.08.2026): whoosh на появлении графика.",
-      "opinion": "",
-      "application": "",
-      "technique": "Stroke reveal осей + opacity reveal grid",
-      "legacyTagsMigrated": true,
-      "category": "Инфографика",
-      "timecodes": ["1:12"],
-      "createdAt": 1786367101009,
-      "updatedAt": 1786367101009
-    },
-    {
-      "id": "f056f8fe-3351-45ec-ad62-78d4a1504b23",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Заголовок графика",
-      "description": "Примерно в 1:13.9 сверху плавно проявляется «Hitzetage ≥30°C, DE 1950–2020»; tracking и позиция после появления стоят на месте. Текст дополняет график, не субтитры. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Short opacity fade-in, fixed tracking",
-      "legacyTagsMigrated": true,
-      "category": "Типографика",
-      "timecodes": ["1:13"],
       "createdAt": 1786367101010,
+      "description": "Примерно в 1:13.9 сверху плавно проявляется «Hitzetage ≥30°C, DE 1950–2020»; tracking и позиция после появления стоят на месте. Текст дополняет график, не субтитры. SFX нет — фоновая музыка.",
+      "id": "f056f8fe-3351-45ec-ad62-78d4a1504b23",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Заголовок графика",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Short opacity fade-in, fixed tracking",
+      "timecodes": [
+        "1:13"
+      ],
       "updatedAt": 1786367101010
     },
     {
-      "id": "f80ca66a-6b6a-4904-b6db-353c1312d240",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Подписи осей",
-      "description": "Около 1:14.2 отдельно проявляются вертикальная подпись, «Jahr» и годы по нижней оси; все подписи входят через opacity почти одновременно и потом замораживаются. SFX нет — фоновая музыка.",
-      "opinion": "",
       "application": "",
-      "technique": "Grouped label fade-in",
-      "legacyTagsMigrated": true,
       "category": "Типографика",
-      "timecodes": ["1:14"],
       "createdAt": 1786367101011,
+      "description": "Около 1:14.2 отдельно проявляются вертикальная подпись, «Jahr» и годы по нижней оси; все подписи входят через opacity почти одновременно и потом замораживаются. SFX нет — фоновая музыка.",
+      "id": "f80ca66a-6b6a-4904-b6db-353c1312d240",
+      "image": "",
+      "legacyTagsMigrated": true,
+      "name": "Подписи осей",
+      "opinion": "",
+      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
+      "repeatCount": 1,
+      "technique": "Grouped label fade-in",
+      "timecodes": [
+        "1:14"
+      ],
       "updatedAt": 1786367101011
-    },
-    {
-      "id": "cb1ebb7a-c6ba-42f7-a492-5ad7750bc942",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Рост кривой жары",
-      "description": "С 1:14.5 точки появляются по годам слева направо, между ними дорисовывается линия и ускоренно уходит вверх к последней точке; движение заканчивается на правом верхнем пике. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Sequential point reveal + path trim left-to-right",
-      "legacyTagsMigrated": true,
-      "category": "Инфографика",
-      "timecodes": ["1:14"],
-      "createdAt": 1786367101012,
-      "updatedAt": 1786367101012
-    },
-    {
-      "id": "9b2c31eb-ad88-463c-94bd-4e1d44320f25",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Тёплый флэш в спальню",
-      "description": "В 1:17.5 график начинает растворяться поверх нового фото, кадр на несколько фреймов выбеливается жёлто-оранжевым бликом и к 1:18 остаётся спальня; по настроению близко #16, но здесь настоящий crossfade. SFX подтверждён (слух, 10.08.2026): тихий переходный звук.",
-      "opinion": "",
-      "application": "",
-      "technique": "Flash crossfade + warm overexposure/light leak",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:17"],
-      "createdAt": 1786367101013,
-      "updatedAt": 1786367101013
-    },
-    {
-      "id": "da1fee75-b859-4c59-9bfb-df791718c627",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Медленный отъезд спальни",
-      "description": "После флэша спальня делает медленный zoom-out: кровать и балки становятся немного меньше, раскрывается больше краёв комнаты; движение ровное, без pan. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Ken Burns zoom-out, centered",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": ["1:17"],
-      "createdAt": 1786367101014,
-      "updatedAt": 1786367101014
-    },
-    {
-      "id": "46093894-3b18-4c9d-b0ef-73ac97e748bb",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Спальня плавно в ЧБ",
-      "description": "Примерно с 1:18.5 тёплые жёлтые и синие цвета постепенно уходят, к 1:19.5 фото полностью ЧБ; это ровно развитие приёма #13/#19, без скачка экспозиции. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Animated saturation 100→0% поверх непрерывного zoom-out",
-      "legacyTagsMigrated": true,
-      "category": "Работа с футажем",
-      "timecodes": ["1:18"],
-      "createdAt": 1786367101015,
-      "updatedAt": 1786367101015
-    },
-    {
-      "id": "7e244cda-3c64-434a-9cc3-1417cd46cbc2",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Склейка на гигрометр",
-      "description": "В 1:20.9 ЧБ спальня мгновенно меняется на крупный круглый гигрометр в тёплой металлической рамке. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Clean hard cut",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:20"],
-      "createdAt": 1786367101016,
-      "updatedAt": 1786367101016
-    },
-    {
-      "id": "57a3b69a-a64d-423d-a309-59f29c2ddb94",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Гигрометр в гостиную",
-      "description": "В 1:23.7 круглый прибор жёстко сменяется светлой гостиной, без вспышки и без blur. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:23"],
-      "createdAt": 1786367101017,
-      "updatedAt": 1786367101017
-    },
-    {
-      "id": "420f51b4-d28c-48b9-9523-73b9bd3318e6",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Быстрый наезд на гостиную",
-      "description": "За короткий кадр гостиная заметно увеличивается в центр дивана: окно и кресла быстро расходятся к краям, направление без боковой панорамы. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Short Ken Burns zoom-in примерно 1 секунда",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": ["1:23"],
-      "createdAt": 1786367101018,
-      "updatedAt": 1786367101018
-    },
-    {
-      "id": "c1da1d00-d106-439b-9b75-ca8ff991ca72",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Склейка на мобильный кондиционер",
-      "description": "В 1:24.7 светлая гостиная мгновенно меняется на вертикальный домашний футаж кондиционера у дивана, цвет сразу холоднее с розовым оттенком. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut в другой aspect/crop source",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:24"],
-      "createdAt": 1786367101019,
-      "updatedAt": 1786367101019
-    },
-    {
-      "id": "2b6dc3e8-66e6-4ba2-9fba-bfc8212d6e08",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Второй ракурс у кровати",
-      "description": "В 1:26.6 первый домашний ракурс жёстко сменяется более тёмным кадром того же мобильного кондиционера рядом с кроватью. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut between matching subject angles",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:26"],
-      "createdAt": 1786367101020,
-      "updatedAt": 1786367101020
-    },
-    {
-      "id": "a05fd79a-cb35-4267-b94d-73ce655577ad",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Наезд на ночной кондиционер",
-      "description": "Во втором тёмном кадре кондиционер и край кровати медленно становятся крупнее, центр на белом корпусе слева; скорость ровная, без pan. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Slow zoom-in, focus left-center",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": ["1:26"],
-      "createdAt": 1786367101021,
-      "updatedAt": 1786367101021
-    },
-    {
-      "id": "dc9ae1fe-a501-4376-877b-2d8ff27a8752",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Склейка на ваттметр",
-      "description": "В 1:29.4 тёмная спальня резко сменяется видом ваттметра и красного провода сверху. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:29"],
-      "createdAt": 1786367101022,
-      "updatedAt": 1786367101022
-    },
-    {
-      "id": "39aeb24b-c537-4423-8552-20e7ba07add9",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Въезд 1.2 kW",
-      "description": "SFX подтверждён (слух, 10.08.2026): звук появления текста.",
-      "opinion": "",
-      "application": "",
-      "technique": "Horizontal mask reveal + short position/opacity ease",
-      "legacyTagsMigrated": true,
-      "category": "Типографика",
-      "timecodes": ["1:29"],
-      "createdAt": 1786367101023,
-      "updatedAt": 1786367101023
-    },
-    {
-      "id": "68f50ce6-52a5-4d19-8842-700077ea7783",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Подпись под 1.2 kW",
-      "description": "Примерно в 1:30.6 ниже числа отдельным вторым шагом проявляется двухстрочное пояснение о 800–1 200 W, сверху вниз/через opacity; крупное число уже стоит. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Delayed lower-copy opacity reveal",
-      "legacyTagsMigrated": true,
-      "category": "Типографика",
-      "timecodes": ["1:30"],
-      "createdAt": 1786367101024,
-      "updatedAt": 1786367101024
-    },
-    {
-      "id": "c1a1b67c-53fd-49ba-98da-bc6d9b8ddba1",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Ваттметр в чёрную сетку",
-      "description": "В 1:32.50 ваттметр и текст обрываются в отдельный почти чёрный кадр с тонкой квадратной сеткой. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut to one-frame technical grid",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:32"],
-      "createdAt": 1786367101025,
-      "updatedAt": 1786367101025
-    },
-    {
-      "id": "97b833c6-bc71-489a-9074-2b28c57fb82c",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Сетка в кухню",
-      "description": "В 1:32.57 второй отдельный cut: сетка мгновенно меняется на мужчину со счётом, а белая горизонтальная линия уже начинает раскрытие. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut after one-frame grid insert",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:32"],
-      "createdAt": 1786367101026,
-      "updatedAt": 1786367101026
-    },
-    {
-      "id": "0f51d188-c8da-45c9-b898-65cdc565ca19",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Белая плашка расходов",
-      "description": "Сразу после cut тонкая белая линия быстро растягивается по горизонтали, утолщается в округлую нижнюю плашку и в ней появляется подпись про сезонные расходы. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Line-to-pill morph + masked text reveal",
-      "legacyTagsMigrated": true,
-      "category": "Типографика",
-      "timecodes": ["1:32"],
-      "createdAt": 1786367101027,
-      "updatedAt": 1786367101027
-    },
-    {
-      "id": "42e586c3-c8d3-4b13-9e67-88033924cf3a",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Красный блок становится зелёным",
-      "description": "Около 1:33.9 поверх мужчины поднимается полупрозрачная красно-оранжевая вертикальная карточка, затем она ступенчато меняется на зелёные блоки и к концу остаётся зелёной. Фон не двигается. SFX подтверждён (слух, 10.08.2026): восходящий звук на инфографике.",
-      "opinion": "",
-      "application": "",
-      "technique": "Vertical block reveal + red/orange→green state animation",
-      "legacyTagsMigrated": true,
-      "category": "Инфографика",
-      "timecodes": ["1:33"],
-      "createdAt": 1786367101028,
-      "updatedAt": 1786367101028
-    },
-    {
-      "id": "6ab58753-6dcf-4c22-bc4a-98236462963c",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Счётчик €0.8K→€0.3K",
-      "description": "Внутри цветной карточки цифры быстро уменьшаются примерно от €0.8K до €0.3K, каждый шаг синхронен со сменой красного на зелёный; это count-down-приём родственник #10, но про цену. SFX подтверждён (слух, 10.08.2026): восходящий звук на инфографике.",
-      "opinion": "",
-      "application": "",
-      "technique": "Number scramble/count-down linked to color states",
-      "legacyTagsMigrated": true,
-      "category": "Типографика",
-      "timecodes": ["1:33"],
-      "createdAt": 1786367101029,
-      "updatedAt": 1786367101029
-    },
-    {
-      "id": "b935b5ab-5b0a-4f5c-a4cd-de016b83e240",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Склейка на старые кондиционеры",
-      "description": "В 1:36.3 мужчина и вся ценовая инфографика мгновенно меняются на тёмное фото груды старых оконных блоков. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Clean hard cut",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:36"],
-      "createdAt": 1786367101030,
-      "updatedAt": 1786367101030
-    },
-    {
-      "id": "94d63808-163e-4410-9ffd-4d5883c21306",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Наезд на старые блоки",
-      "description": "После cut старые кондиционеры слабо и равномерно увеличиваются в центр композиции, без бокового движения; это почти незаметный Ken Burns как #23. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Subtle centered zoom-in",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": ["1:36"],
-      "createdAt": 1786367101031,
-      "updatedAt": 1786367101031
-    },
-    {
-      "id": "09e437f7-ce97-4994-8b37-be01a8d1bf7b",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Склейка на монтажника",
-      "description": "В 1:39.6 тёмные старые блоки жёстко меняются на светлый интерьер с монтажником справа. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut with luminance contrast",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:39"],
-      "createdAt": 1786367101032,
-      "updatedAt": 1786367101032
-    },
-    {
-      "id": "511ccfc6-33de-453e-96a6-1e49e1160516",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Быстрый наезд на монтажника",
-      "description": "Сразу после склейки монтажник и внутренний блок быстро увеличиваются примерно на 5%, потом масштаб фиксируется; центр движения в правой верхней части. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Short zoom-in около 5%, focus top-right",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": ["1:39"],
-      "createdAt": 1786367101033,
-      "updatedAt": 1786367101033
-    },
-    {
-      "id": "588155fd-708f-4ff8-a2fa-bc74a86ac34e",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Монтажник в наружный блок",
-      "description": "В 1:43.4 интерьер мгновенно меняется на яркое фото наружного блока Mitsubishi у деревянной стены; никакого растворения нет. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Clean hard cut",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:43"],
-      "createdAt": 1786367101034,
-      "updatedAt": 1786367101034
-    },
-    {
-      "id": "0465b7fb-aab6-406f-9e44-57bdd9fa23f4",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Наезд на наружный блок",
-      "description": "Наружный блок медленно увеличивается примерно на 4%, центр сохраняется на решётке вентилятора, края деревянных реек уходят наружу. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Centered Ken Burns zoom-in около 4%",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": ["1:43"],
-      "createdAt": 1786367101035,
-      "updatedAt": 1786367101035
-    },
-    {
-      "id": "e48f6de4-5ca5-412d-8aae-4bc3005f6e7c",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Склейка на дорогой счёт",
-      "description": "В 1:47.0 наружный блок жёстко меняется на женщину, мастера со счётом и мобильный кондиционер; первый кадр ещё цветной. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:47"],
-      "createdAt": 1786367101036,
-      "updatedAt": 1786367101036
-    },
-    {
-      "id": "ec2e704c-995c-4539-a9e2-f5e534b8c42f",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Наезд на счёт",
-      "description": "Сцена со счётом постепенно увеличивается примерно на 10%, центр смещён к листу в руках мастера, женщина слева сильнее выходит за край. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Ken Burns zoom-in около 10%, focus on invoice",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": ["1:47"],
-      "createdAt": 1786367101037,
-      "updatedAt": 1786367101037
-    },
-    {
-      "id": "92cbd20c-c8e7-4770-8f0d-ffe00da1a936",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Счёт плавно в ЧБ",
-      "description": "С 1:48.1 цветность последовательно снижается и примерно к 1:48.9 кадр становится полностью ЧБ, при этом наезд не останавливается; повтор схемы #13/#19 новой версией. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Animated desaturation during continuous zoom",
-      "legacyTagsMigrated": true,
-      "category": "Работа с футажем",
-      "timecodes": ["1:48"],
-      "createdAt": 1786367101038,
-      "updatedAt": 1786367101038
-    },
-    {
-      "id": "24f8361e-01f0-45af-8108-a49daa78448e",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Склейка на ноутбук",
-      "description": "В 1:52.0 ЧБ сцена мгновенно сменяется тёмным фото ноутбука с календарём/очередью на экране. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Clean hard cut",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:52"],
-      "createdAt": 1786367101039,
-      "updatedAt": 1786367101039
-    },
-    {
-      "id": "6e219980-275f-4328-b93e-a20c19a4c678",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Годы 2026→2022",
-      "description": "SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Kinetic number scramble/count-down",
-      "legacyTagsMigrated": true,
-      "category": "Типографика",
-      "timecodes": ["1:52"],
-      "createdAt": 1786367101040,
-      "updatedAt": 1786367101040
-    },
-    {
-      "id": "7752f9cb-8b25-419a-8224-a7c818c24bba",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Склейка на входящий звонок",
-      "description": "В 1:56.4 ноутбук жёстко меняется на крупный план смартфона с входящим звонком и пальцами. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:56"],
-      "createdAt": 1786367101041,
-      "updatedAt": 1786367101041
-    },
-    {
-      "id": "99de6825-8a14-4f9f-a9d7-e88ed77b3009",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Едва заметный наезд на телефон",
-      "description": "Телефон и пальцы очень медленно увеличиваются примерно на 1%, направление строго в центр экрана; отдельные частицы отсутствуют по покадровой проверке. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Very subtle centered zoom-in около 1%",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": ["1:56"],
-      "createdAt": 1786367101042,
-      "updatedAt": 1786367101042
-    },
-    {
-      "id": "cda24430-604e-4882-9221-4415db3ccf35",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Телефон в чёрное предупреждение",
-      "description": "В 1:58.4 тёплый кадр телефона мгновенно обрывается на чистый чёрный инфографический фон; fade и flash отсутствуют. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Hard cut to black graphic scene",
-      "legacyTagsMigrated": true,
-      "category": "Переход",
-      "timecodes": ["1:58"],
-      "createdAt": 1786367101043,
-      "updatedAt": 1786367101043
-    },
-    {
-      "id": "32f6b65d-22eb-41d8-8f3a-8c2334462ac8",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Знак и круговые дуги",
-      "description": "С 1:58.4 жёлтый треугольник быстро проявляется и чуть увеличивается, вокруг него две дуги дорисовываются по часовой стрелке и останавливаются; по структуре близко #04/#15, но на чёрном фоне. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Shape opacity/scale reveal + radial stroke trim clockwise",
-      "legacyTagsMigrated": true,
-      "category": "Инфографика",
-      "timecodes": ["1:58"],
-      "createdAt": 1786367101044,
-      "updatedAt": 1786367101044
-    },
-    {
-      "id": "27278b01-002b-444e-95e7-bca9dd56da2e",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Пункт WARTUNG",
-      "description": "Примерно в 1:58.5 справа первым появляется жёлтый маркер и слово «WARTUNG», коротко через opacity/лёгкий сдвиг; остальные пункты ещё скрыты. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Sequential bullet reveal, item 1",
-      "legacyTagsMigrated": true,
-      "category": "Типографика",
-      "timecodes": ["1:58"],
-      "createdAt": 1786367101045,
-      "updatedAt": 1786367101045
-    },
-    {
-      "id": "08de6f47-c4c8-4f49-affd-c85d3c7ad1f7",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Пункт KÄLTEMITTEL",
-      "description": "Около 1:58.9 вторым шагом ниже добавляется «KÄLTEMITTEL», верхний пункт и дуги уже стоят; появление быстрое и аккуратное, без tracking-анимации после входа. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Sequential bullet reveal, item 2",
-      "legacyTagsMigrated": true,
-      "category": "Типографика",
-      "timecodes": ["1:58"],
-      "createdAt": 1786367101046,
-      "updatedAt": 1786367101046
-    },
-    {
-      "id": "5ed08b88-c7eb-408a-aad5-6179d333c637",
-      "projectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
-      "image": "",
-      "repeatCount": 1,
-      "name": "Пункт FILTERWECHSEL",
-      "description": "В 1:59.4 третьим и последним появляется «FILTERWECHSEL», после чего весь список и круговой знак фиксируются до конца сегмента. SFX нет — фоновая музыка.",
-      "opinion": "",
-      "application": "",
-      "technique": "Sequential bullet reveal, item 3",
-      "legacyTagsMigrated": true,
-      "category": "Типографика",
-      "timecodes": ["1:59"],
-      "createdAt": 1786367101047,
-      "updatedAt": 1786367101047
     }
   ],
   "categories": [
@@ -1520,20 +1614,20 @@
     {
       "key": "зум",
       "name": "Зум",
-      "repeats": 9,
-      "uses": 9
+      "repeats": 20,
+      "uses": 20
     },
     {
       "key": "инфографика",
       "name": "Инфографика",
-      "repeats": 5,
-      "uses": 5
+      "repeats": 9,
+      "uses": 9
     },
     {
       "key": "переход",
       "name": "Переход",
-      "repeats": 4,
-      "uses": 4
+      "repeats": 24,
+      "uses": 24
     },
     {
       "key": "работа с камерой",
@@ -1544,14 +1638,14 @@
     {
       "key": "работа с футажем",
       "name": "Работа с футажем",
-      "repeats": 10,
-      "uses": 10
+      "repeats": 12,
+      "uses": 12
     },
     {
       "key": "типографика",
       "name": "Типографика",
-      "repeats": 5,
-      "uses": 5
+      "repeats": 16,
+      "uses": 16
     },
     {
       "key": "частицы",
@@ -1561,7 +1655,7 @@
     }
   ],
   "settings": {
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "activeProjectId": "199a5705-1235-480d-8f3b-c76f02d40c58",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null,
     "crop": {
