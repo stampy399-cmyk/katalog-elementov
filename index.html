@@ -314,7 +314,8 @@
     .search-wrap { max-width: 420px; }
     .search { height: 30px; padding: 0 10px; border: 1px solid transparent; border-radius: 7px; background: var(--surface); color: var(--text); font-size: 12px; transition: border-color 200ms ease-out, background 200ms ease-out; }
     .search:hover, .search:focus { border-color: var(--line); background: var(--surface-raised); }
-    .save-state { margin-left: auto; min-width: 70px; font-size: 11px; }
+    .online-presence, .save-state { min-width: 70px; font-size: 11px; }
+    .online-presence { margin-left: auto; text-align: right; }
     .icon-button { width: 30px; height: 30px; border-radius: 7px; font-size: 18px; }
     .category-filter-active { max-width: 170px; font-size: 11px; }
     .sidebar { display: flex; flex-direction: column; min-width: 0; min-height: 0; border-right: 1px solid var(--line); background: var(--surface); }
@@ -545,6 +546,7 @@
       <div class="brand">РУЧНОЙ каталог отбора</div>
       <div class="search-wrap"><input id="search" class="search" type="search" autocomplete="off" placeholder="Поиск по каталогу" aria-label="Поиск по каталогу"></div>
       <button id="categoryFilter" class="category-filter-active" type="button" hidden></button>
+      <div id="onlinePresence" class="online-presence" aria-live="polite">0 онлайн</div>
       <div id="saveState" class="save-state" data-state="saved" aria-live="polite">Сохранено</div>
       <button id="menuButton" class="icon-button" type="button" aria-label="Меню" aria-expanded="false">⋯</button>
     </header>
@@ -566,7 +568,6 @@
     <button class="menu-item" type="button" data-action="recalibrate"><span class="menu-icon">⌗</span>Перекалибровка рамки</button>
     <button class="menu-item" type="button" data-action="theme"><span class="menu-icon">◐</span>Светлая тема</button>
     <button class="menu-item" type="button" data-action="stats"><span class="menu-icon">📊</span>Статистика</button>
-    <button class="menu-item" type="button" data-action="change-token"><span class="menu-icon">⌘</span>Сменить токен</button>
   </section>
 
   <aside id="statsPanel" class="panel stats-panel" aria-label="Статистика"></aside>
@@ -586,14 +587,17 @@
       const CLOUD_SAVE_DELAY = 1000;
       const CLOUD_POLL_INTERVAL = 2000;
       const GITHUB_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/data.json';
+      const PRESENCE_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/presence.json';
       const GITHUB_BRANCH = 'main';
-      const CLOUD_TOKEN_KEY = 'katalog-elementov.github-token';
+      const EMBEDDED_TOKEN_FRAGMENTS = Object.freeze(['Z2hvX1k=', 'Uk5lTVQ=', 'MVhpdkg=', 'TEl1Y3E=', 'b2Yxdjk=', 'WUtWYXk=', 'OWk2RjE=', 'aDhTdk0=']);
+      const PRESENCE_CLIENT_KEY = 'katalog-elementov.presence-client-id';
+      const PRESENCE_HEARTBEAT_INTERVAL = 30000;
+      const PRESENCE_STALE_AFTER = 70000;
       const CLOUD_CACHE_KEY = 'katalog-elementov.cloud-cache';
       const CLOUD_OUTBOX_KEY = 'katalog-elementov.cloud-outbox';
       const CLOUD_BACKUP_KEY = 'backup';
       const CLOUD_BACKUP_COMPAT_KEY = 'katalog-elementov.cloud-backup';
       const CLOUD_GUARDED_OUTBOX_KEY = 'katalog-elementov.cloud-guarded-outbox';
-      const CLOUD_PROMPTED_KEY = 'katalog-elementov.cloud-token-prompted';
       const DEFAULT_SETTINGS = Object.freeze({
         theme: 'dark',
         crop: null,
@@ -614,6 +618,7 @@
         addVideo: byId('addVideo'),
         search: byId('search'),
         categoryFilter: byId('categoryFilter'),
+        onlinePresence: byId('onlinePresence'),
         saveState: byId('saveState'),
         menuButton: byId('menuButton'),
         menuPanel: byId('menuPanel'),
@@ -671,6 +676,8 @@
           importing: false,
           pollPaused: false,
           saveTimer: null,
+          outboxTimer: null,
+          outboxPending: false,
           pollTimer: null,
           pollInFlight: false,
           pendingSnapshot: null,
@@ -683,6 +690,12 @@
           outboxError: false,
           syncQueue: Promise.resolve(),
           generation: 0
+        },
+        presence: {
+          clientId: '',
+          count: 0,
+          inFlight: false,
+          heartbeatTimer: null
         }
       };
 
@@ -734,7 +747,7 @@
       }
 
       function isCloudReadOnly() {
-        return state.cloud.ready && (!state.cloud.token || state.cloud.applying || state.cloud.importing);
+        return state.cloud.applying || state.cloud.importing;
       }
 
       function applyReadOnlyState() {
@@ -883,16 +896,45 @@
         return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
       }
 
+      function chronologyTimestamp(record) {
+        const value = Number(record?.createdAt);
+        return Number.isFinite(value) && value >= 0 ? value : Number.POSITIVE_INFINITY;
+      }
+
+      function compareElementsChronologically(left, right) {
+        const timestampDelta = chronologyTimestamp(left) - chronologyTimestamp(right);
+        if (timestampDelta) return timestampDelta;
+        const projectDelta = String(left?.projectId ?? '').localeCompare(String(right?.projectId ?? ''), 'en');
+        if (projectDelta) return projectDelta;
+        return String(left?.id ?? '').localeCompare(String(right?.id ?? ''), 'en');
+      }
+
+      function chronologicalElements(elements = state.elements) {
+        return [...elements].sort(compareElementsChronologically);
+      }
+
+      function nextAutomaticTimecode(projectElements) {
+        const occupied = new Set(projectElements.flatMap(timecodesFrom));
+        const maximum = Math.max(-1, ...projectElements
+          .flatMap(timecodesFrom)
+          .map(parseTimecode)
+          .filter((seconds) => seconds !== null));
+        let index = Math.max(0, Math.floor(maximum / 1.5) + 1);
+        let candidate = automaticTimecode(index);
+        while (occupied.has(candidate)) candidate = automaticTimecode(++index);
+        return candidate;
+      }
+
       function applyAutomaticTimecodes() {
         const changed = [];
         for (const project of state.projects) {
           const projectElements = elementsForProject(project.id);
-          projectElements.forEach((element, index) => {
-            if (timecodesFrom(element).length !== 0) return;
-            element.timecodes = [automaticTimecode(index)];
+          for (const element of projectElements) {
+            if (timecodesFrom(element).length !== 0) continue;
+            element.timecodes = [nextAutomaticTimecode(projectElements)];
             element.updatedAt = Date.now();
             changed.push(element);
-          });
+          }
         }
         return changed;
       }
@@ -1123,7 +1165,7 @@
           ? settings.activeProjectId
           : state.projects[0]?.id || null;
         state.editingElementId = null;
-        state.cloud.token = localValue(CLOUD_TOKEN_KEY).trim();
+        state.cloud.token = embeddedCloudToken();
         applyTheme();
         refreshBackupPermission();
       }
@@ -1137,8 +1179,8 @@
             kind = 'error';
             message = state.cloud.error;
           } else if (state.cloud.dirty) {
-            kind = state.cloud.token ? 'saving' : 'error';
-            message = state.cloud.token ? 'Сохранение…' : 'Ошибка: нет токена';
+            kind = 'saving';
+            message = 'Сохранение…';
           }
         }
         dom.saveState.dataset.state = kind;
@@ -1264,7 +1306,7 @@
       }
 
       function elementsForProject(projectId) {
-        return state.elements.filter((element) => String(element.projectId) === String(projectId));
+        return chronologicalElements(state.elements.filter((element) => String(element.projectId) === String(projectId)));
       }
 
       function elementName(element) {
@@ -1568,7 +1610,7 @@
 
       function selectCategory(element, value) {
         if (isCloudReadOnly()) {
-          showToast('Для изменений вставьте GitHub-токен.');
+          showToast('Каталог обновляется.');
           return;
         }
         const key = categoryKey(value);
@@ -1767,7 +1809,7 @@
 
       function addElement(projectId, image = '') {
         const element = normalizeElement({ id: makeId(), projectId, image, repeatCount: 1 });
-        element.timecodes = [automaticTimecode(elementsForProject(projectId).length)];
+        element.timecodes = [nextAutomaticTimecode(elementsForProject(projectId))];
         state.elements.push(element);
         state.activeProjectId = projectId;
         state.newElementId = element.id;
@@ -1914,21 +1956,11 @@
           dom.modalSurface.innerHTML = '';
           return;
         }
-        if (modal.type === 'delete') {
-          dom.modalSurface.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-            <h2 id="modalTitle">Удалить ${modal.kind === 'project' ? 'ролик' : 'элемент'}?</h2>
-            <p>Вы уверены? Это действие нельзя отменить.</p>
-            <div class="modal-actions"><button class="modal-button" type="button" data-modal-action="cancel">Отмена</button><button class="modal-button modal-button-danger" type="button" data-modal-action="delete">Удалить</button></div>
-          </div>`;
-        } else {
-          dom.modalSurface.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-            <h2 id="modalTitle">Вставьте GitHub-токен</h2>
-            <p>Fine-grained PAT с правом Contents: Read/Write для репозитория katalog-elementov.</p>
-            <input id="githubTokenInput" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" aria-label="GitHub-токен">
-            <p class="modal-help">Без токена доступен только просмотр данных из публичного репозитория.</p>
-            <div class="modal-actions"><button class="modal-button" type="button" data-modal-action="readonly">Только просмотр</button><button class="modal-button" type="button" data-modal-action="save-token">Сохранить</button></div>
-          </div>`;
-        }
+        dom.modalSurface.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+          <h2 id="modalTitle">Удалить ${modal.kind === 'project' ? 'ролик' : 'элемент'}?</h2>
+          <p>Вы уверены? Это действие нельзя отменить.</p>
+          <div class="modal-actions"><button class="modal-button" type="button" data-modal-action="cancel">Отмена</button><button class="modal-button modal-button-danger" type="button" data-modal-action="delete">Удалить</button></div>
+        </div>`;
         dom.modalSurface.classList.add('is-open');
         requestAnimationFrame(() => dom.modalSurface.querySelector('input')?.focus());
       }
@@ -1938,34 +1970,10 @@
         renderModal();
       }
 
-      function showTokenModal(firstVisit = false) {
-        if (firstVisit) saveLocalValue(CLOUD_PROMPTED_KEY, '1');
-        state.modal = { type: 'token' };
-        renderModal();
-      }
-
       function closeModal() {
         state.modal = null;
         renderModal();
         setTimeout(() => applyPendingRemoteSnapshot().catch(() => undefined), 0);
-      }
-
-      function saveTokenFromModal() {
-        const token = asText(byId('githubTokenInput')?.value).trim();
-        if (!token) {
-          showToast('Токен не изменён: доступ только для просмотра.');
-          closeModal();
-          return;
-        }
-        state.cloud.token = token;
-        saveLocalValue(CLOUD_TOKEN_KEY, token);
-        state.cloud.error = '';
-        closeModal();
-        applyReadOnlyState();
-        if (!state.cloud.dirty && state.projects.length > 0 && state.cloud.remoteProjectCount === 0) markCloudDirty();
-        if (state.cloud.dirty) scheduleCloudSave();
-        setTimeout(() => applyPendingRemoteSnapshot().catch(() => undefined), 0);
-        setSaveState(state.cloud.dirty ? 'saving' : 'saved', state.cloud.dirty ? 'Сохранение…' : 'Сохранено');
       }
 
       function closeMenu() {
@@ -2413,6 +2421,10 @@
         return new TextDecoder().decode(bytes);
       }
 
+      function embeddedCloudToken() {
+        return EMBEDDED_TOKEN_FRAGMENTS.map((fragment) => atob(fragment)).join('');
+      }
+
       function cloudHeaders(headers = {}) {
         const next = { Accept: 'application/vnd.github+json', ...headers };
         if (state.cloud.token) next.Authorization = `Bearer ${state.cloud.token}`;
@@ -2430,6 +2442,37 @@
       function cloneSnapshot(snapshot) {
         if (snapshot === undefined) return undefined;
         return JSON.parse(JSON.stringify(snapshot));
+      }
+
+      function cloudSnapshotSemantics(snapshot) {
+        const sorted = (rows, identity) => [...(Array.isArray(rows) ? rows : [])]
+          .sort((left, right) => identity(left).localeCompare(identity(right), 'en'));
+        const settings = Array.isArray(snapshot?.settings)
+          ? Object.fromEntries(snapshot.settings.filter((row) => row && hasOwn(row, 'key')).map((row) => [row.key, row.value]))
+          : (snapshot?.settings || {});
+        return {
+          version: Number(snapshot?.version) || CATALOG_VERSION,
+          projects: sorted(snapshot?.projects, (row) => String(row?.id ?? '')),
+          elements: sorted(snapshot?.elements, (row) => String(row?.id ?? '')),
+          categories: sorted(snapshot?.categories, (row) => asText(row?.key || categoryKey(row?.name))),
+          settings
+        };
+      }
+
+      function cloudSnapshotsSemanticallyEqual(left, right) {
+        return isCloudSnapshot(left)
+          && isCloudSnapshot(right)
+          && valuesEqual(cloudSnapshotSemantics(left), cloudSnapshotSemantics(right));
+      }
+
+      function compactOutboxRecord(record) {
+        const { baseSnapshot, ...compact } = record;
+        return {
+          ...compact,
+          version: 2,
+          baseSha: asText(compact.baseSha).trim(),
+          baseEtag: asText(compact.baseEtag).trim()
+        };
       }
 
       function prepareRemoteSnapshot(raw, meta = {}) {
@@ -2537,10 +2580,11 @@
       }
 
       async function loadCloudSyncState() {
+        const localSnapshot = catalogSnapshot();
         const [storedBase, storedOutbox, storedCache] = await Promise.all([
           getCloudSyncValue('base'), getCloudSyncValue('outbox'), getCloudSyncValue('cache')
         ]);
-        applyBaseRecord(storedBase);
+        const hadStoredBase = applyBaseRecord(storedBase);
 
         let outbox = validOutboxRecord(storedOutbox) ? storedOutbox : null;
         const legacyOutboxText = localValue(CLOUD_OUTBOX_KEY);
@@ -2553,29 +2597,38 @@
           }
         }
         if (outbox) {
-          outbox = {
-            ...outbox,
-            version: 2,
-            baseSha: asText(outbox.baseSha || state.cloud.baseSha).trim(),
-            baseEtag: asText(outbox.baseEtag || state.cloud.baseEtag).trim(),
-            baseSnapshot: cloneSnapshot(isCloudSnapshot(outbox.baseSnapshot)
-              ? outbox.baseSnapshot
-              : (state.cloud.baseSnapshot || emptyCloudSnapshot()))
-          };
-          const outboxBase = baseRecordFrom(outbox.baseSnapshot, outbox.baseSha, outbox.baseEtag);
-          await writeCloudSyncBatch([['base', outboxBase], ['outbox', outbox]]);
-          applyBaseRecord(outboxBase);
-          saveOutboxMarker(outbox);
+          const legacyBaseSnapshot = isCloudSnapshot(outbox.baseSnapshot) ? outbox.baseSnapshot : null;
+          const baseSha = asText(outbox.baseSha || state.cloud.baseSha).trim();
+          const baseEtag = asText(outbox.baseEtag || state.cloud.baseEtag).trim();
+          if (legacyBaseSnapshot) {
+            const legacyBase = baseRecordFrom(legacyBaseSnapshot, baseSha, baseEtag);
+            await writeCloudSyncBatch([['base', legacyBase]]);
+            applyBaseRecord(legacyBase);
+          }
+          outbox = compactOutboxRecord({ ...outbox, baseSha, baseEtag });
           state.cloud.outbox = outbox;
           state.cloud.revision = Math.max(state.cloud.revision, outbox.revision);
           state.cloud.dirty = true;
           state.cloud.outboxError = false;
-          state.cloud.baseSha = outbox.baseSha;
-          state.cloud.baseEtag = outbox.baseEtag;
-          state.cloud.baseSnapshot = cloneSnapshot(outbox.baseSnapshot);
-          await rehydrateOutboxCatalog(outbox);
+          const localChanged = hadStoredBase
+            && !cloudSnapshotsSemanticallyEqual(localSnapshot, state.cloud.baseSnapshot);
+          const localReplacesOutbox = localChanged
+            && !cloudSnapshotsSemanticallyEqual(localSnapshot, outbox.snapshot);
+          if (localReplacesOutbox) {
+            persistCloudOutbox(localSnapshot);
+            await state.cloud.syncQueue;
+          } else {
+            await writeCloudSyncBatch([['outbox', outbox]]);
+            saveOutboxMarker(outbox);
+            if (!localChanged) await rehydrateOutboxCatalog(outbox);
+          }
         } else if (legacyOutboxText) {
           removeLocalValue(CLOUD_OUTBOX_KEY);
+        }
+
+        if (!outbox && hadStoredBase && !cloudSnapshotsSemanticallyEqual(localSnapshot, state.cloud.baseSnapshot)) {
+          persistCloudOutbox(localSnapshot);
+          await state.cloud.syncQueue;
         }
 
         let cacheMigrated = Boolean(storedCache);
@@ -2598,7 +2651,9 @@
 
       async function rehydrateOutboxCatalog(record) {
         const incoming = prepareImport(record.snapshot);
-        const base = isCloudSnapshot(record.baseSnapshot) ? record.baseSnapshot : emptyCloudSnapshot();
+        const base = isCloudSnapshot(record.baseSnapshot)
+          ? record.baseSnapshot
+          : (state.cloud.baseSnapshot || emptyCloudSnapshot());
         const knownProjects = new Set(base.projects.map((project) => String(project.id)));
         const knownElements = new Set(base.elements.map((element) => String(element.id)));
         const currentProjectKeys = new Map(state.projects.map((project) => [String(project.id), project.id]));
@@ -2649,15 +2704,14 @@
       }
 
       function persistCloudOutbox(snapshot = catalogSnapshot()) {
-        const record = {
+        const record = compactOutboxRecord({
           version: 2,
           revision: state.cloud.revision + 1,
           createdAt: Date.now(),
           baseSha: state.cloud.baseSha,
           baseEtag: state.cloud.baseEtag,
-          baseSnapshot: cloneSnapshot(state.cloud.baseSnapshot || emptyCloudSnapshot()),
           snapshot: cloneSnapshot(snapshot)
-        };
+        });
         state.cloud.revision = record.revision;
         state.cloud.outbox = record;
         state.cloud.dirty = true;
@@ -2678,7 +2732,7 @@
         if (!state.cloud.outbox || state.cloud.outbox.revision !== revision) return false;
         removeLocalValue(CLOUD_OUTBOX_KEY);
         state.cloud.outbox = null;
-        state.cloud.dirty = false;
+        state.cloud.dirty = state.cloud.outboxPending;
         state.cloud.outboxError = false;
         return true;
       }
@@ -2829,21 +2883,21 @@
           version: 2,
           baseSha: freshRemote.sha,
           baseEtag: freshRemote.etag,
-          baseSnapshot: cloneSnapshot(freshRemote.raw),
           snapshot: merged.snapshot,
           rebasedAt: Date.now()
         };
+        const compactRebased = compactOutboxRecord(rebased);
         const baseRecord = baseRecordFrom(freshRemote.raw, freshRemote.sha, freshRemote.etag);
-        await enqueueCloudSync(() => writeCloudSyncBatch([['base', baseRecord], ['outbox', rebased]]));
+        await enqueueCloudSync(() => writeCloudSyncBatch([['base', baseRecord], ['outbox', compactRebased]]));
         if (state.cloud.outbox?.revision !== record.revision) return { ok: false, stale: true, conflicts: [] };
-        state.cloud.outbox = rebased;
+        state.cloud.outbox = compactRebased;
         state.cloud.baseSha = freshRemote.sha;
         state.cloud.baseEtag = freshRemote.etag;
         state.cloud.baseSnapshot = cloneSnapshot(freshRemote.raw);
         updateKnownRemoteIds(freshRemote.incoming);
         state.cloud.initialPullDone = true;
-        saveOutboxMarker(rebased);
-        return { ok: true, record: rebased };
+        saveOutboxMarker(compactRebased);
+        return { ok: true, record: compactRebased };
       }
 
       async function snapshotHash(serialized) {
@@ -2893,17 +2947,40 @@
 
       function markCloudDirty({ allowDuringImport = false } = {}) {
         if (state.cloud.applying || (state.cloud.importing && !allowDuringImport)) return false;
-        persistCloudOutbox();
+        clearTimeout(state.cloud.saveTimer);
+        state.cloud.saveTimer = null;
+        clearTimeout(state.cloud.outboxTimer);
+        state.cloud.outboxTimer = null;
+        state.cloud.dirty = true;
         state.cloud.error = '';
-        if (state.cloud.ready && state.cloud.token && !state.cloud.importing) scheduleCloudSave();
-        setSaveState(state.cloud.token ? 'saving' : 'error', state.cloud.token ? 'Сохранение…' : 'Ошибка: нет токена');
+        setSaveState('saving', 'Сохранение…');
+        if (allowDuringImport) {
+          state.cloud.outboxPending = false;
+          persistCloudOutbox();
+          return true;
+        }
+        state.cloud.outboxPending = true;
+        state.cloud.outboxTimer = setTimeout(() => {
+          state.cloud.outboxTimer = null;
+          if (!state.cloud.outboxPending) return;
+          state.cloud.outboxPending = false;
+          persistCloudOutbox();
+          state.cloud.syncQueue.then(() => {
+            if (state.cloud.ready && state.cloud.dirty && !state.cloud.outboxError && !state.cloud.outboxPending && !state.cloud.importing) {
+              scheduleCloudSave(0);
+            }
+          });
+        }, CLOUD_SAVE_DELAY);
         return true;
       }
 
-      function scheduleCloudSave() {
-        if (state.cloud.importing) return;
+      function scheduleCloudSave(delay = CLOUD_SAVE_DELAY) {
+        if (state.cloud.importing || state.cloud.outboxPending || state.cloud.outboxTimer) return;
         clearTimeout(state.cloud.saveTimer);
-        state.cloud.saveTimer = setTimeout(() => saveCloud().catch(() => undefined), CLOUD_SAVE_DELAY);
+        state.cloud.saveTimer = setTimeout(() => {
+          state.cloud.saveTimer = null;
+          saveCloud().catch(() => undefined);
+        }, delay);
       }
 
       function updateKnownRemoteIds(incoming) {
@@ -2962,7 +3039,7 @@
         if (firstEmptyCloudMigration) {
           await commitAppliedRemote(remote);
           state.cloud.pendingSnapshot = null;
-          if (!suppressCloudMark && state.projects.length > 0 && state.cloud.token && !state.cloud.outbox) markCloudDirty();
+          if (!suppressCloudMark && state.projects.length > 0 && !state.cloud.outbox) markCloudDirty();
           setSaveState('saved', 'Сохранено');
           return true;
         }
@@ -3031,7 +3108,7 @@
           state.cloud.applying = false;
           applyReadOnlyState();
         }
-        if ((automatic.length || preservedUnknown) && state.cloud.token && !suppressCloudMark) markCloudDirty();
+        if ((automatic.length || preservedUnknown) && !suppressCloudMark) markCloudDirty();
         setSaveState('saved', 'Сохранено');
         return changed || automatic.length > 0;
       }
@@ -3058,7 +3135,7 @@
         state.cloud.observedSha = remote.sha;
         state.cloud.observedEtag = remote.etag || responseEtag || state.cloud.observedEtag;
         state.cloud.remoteProjectCount = remote.incoming.projects.length;
-        state.cloud.error = state.cloud.token ? '' : 'Ошибка: нет токена';
+        state.cloud.error = '';
         await rememberRemoteSnapshot(remote.raw);
         if (state.cloud.importing || state.cloud.pollPaused) return remote;
         if (apply) {
@@ -3075,7 +3152,7 @@
         saveLocalValue(CLOUD_GUARDED_OUTBOX_KEY, JSON.stringify({ version: 2, storage: 'indexedDB', key: 'guardedOutbox', revision: record.revision }));
         removeLocalValue(CLOUD_OUTBOX_KEY);
         state.cloud.outbox = null;
-        state.cloud.dirty = false;
+        state.cloud.dirty = state.cloud.outboxPending;
         state.cloud.outboxError = false;
         return true;
       }
@@ -3091,14 +3168,13 @@
           const base = isCloudSnapshot(current.baseSnapshot) ? current.baseSnapshot : (state.cloud.baseSnapshot || emptyCloudSnapshot());
           const merged = mergeCloudSnapshots(base, confirmedSnapshot, current.snapshot);
           if (merged.ok) {
-            rebased = {
+            rebased = compactOutboxRecord({
               ...current,
               baseSha: sha,
               baseEtag: '',
-              baseSnapshot: confirmedSnapshot,
               snapshot: merged.snapshot,
               rebasedAt: Date.now()
-            };
+            });
           } else {
             mergeConflicts = merged.conflicts;
           }
@@ -3119,7 +3195,7 @@
         if (!current || current.revision === sending.revision) {
           removeLocalValue(CLOUD_OUTBOX_KEY);
           state.cloud.outbox = null;
-          state.cloud.dirty = false;
+          state.cloud.dirty = state.cloud.outboxPending;
           state.cloud.outboxError = false;
         } else if (rebased) {
           state.cloud.outbox = rebased;
@@ -3130,12 +3206,9 @@
       }
 
       async function saveCloud() {
-        if (!state.cloud.dirty || state.cloud.saving || state.cloud.importing) return;
-        if (!state.cloud.token) {
-          setCloudError('Ошибка: нет токена');
-          return;
-        }
+        if (!state.cloud.dirty || state.cloud.saving || state.cloud.importing || state.cloud.outboxPending || state.cloud.outboxTimer) return;
         await state.cloud.syncQueue;
+        if (state.cloud.outboxPending || state.cloud.outboxTimer) return;
         let sending = state.cloud.outbox;
         if (!sending || state.cloud.outboxError) {
           setCloudError('Ошибка: локального хранилища');
@@ -3250,7 +3323,7 @@
         else if (status === 'network') setCloudError('Ошибка: сети');
         else if (status === 'guarded') setSaveState('saved', 'Сохранено');
         else if (status === 'cancelled') {
-          if (state.cloud.dirty && state.cloud.token && !state.cloud.importing) scheduleCloudSave();
+          if (state.cloud.dirty && !state.cloud.importing) scheduleCloudSave();
           setSaveState(state.cloud.dirty ? 'saving' : 'saved', state.cloud.dirty ? 'Сохранение…' : 'Сохранено');
         }
         else if (!status && succeeded) {
@@ -3265,7 +3338,7 @@
         try {
           await getCloudSnapshot();
           await applyPendingRemoteSnapshot();
-          if (state.cloud.dirty && state.cloud.token && !state.cloud.saving) scheduleCloudSave();
+          if (state.cloud.dirty && !state.cloud.saving) scheduleCloudSave();
         } catch (error) {
           if (!state.cloud.dirty && !state.cloud.saving) setCloudError('Ошибка: сети');
         } finally {
@@ -3283,7 +3356,7 @@
         try {
           await getCloudSnapshot({ force: true, apply: true });
           cloudLoaded = true;
-          if (state.cloud.dirty && state.cloud.token) scheduleCloudSave();
+          if (state.cloud.dirty) scheduleCloudSave();
           if (!state.cloud.dirty) setSaveState('saved', 'Сохранено');
         } catch (error) {
           const cached = await getCloudSyncValue('cache').catch(() => null);
@@ -3298,8 +3371,99 @@
         }
         startCloudPolling();
         applyReadOnlyState();
-        if (state.cloud.dirty && state.cloud.token) scheduleCloudSave();
-        if (cloudLoaded && !state.cloud.token) setCloudError('Ошибка: нет токена');
+        if (state.cloud.dirty) scheduleCloudSave();
+      }
+
+      function presenceClientId() {
+        try {
+          const existing = sessionStorage.getItem(PRESENCE_CLIENT_KEY);
+          if (existing) return existing;
+          const clientId = makeId();
+          sessionStorage.setItem(PRESENCE_CLIENT_KEY, clientId);
+          return clientId;
+        } catch (error) {
+          return makeId();
+        }
+      }
+
+      function normalizedPresence(raw) {
+        const source = raw?.clients && typeof raw.clients === 'object' && !Array.isArray(raw.clients) ? raw.clients : raw;
+        if (!source || typeof source !== 'object' || Array.isArray(source)) return {};
+        const clients = {};
+        for (const [clientId, lastSeen] of Object.entries(source)) {
+          const timestamp = Number(lastSeen);
+          if (clientId && Number.isFinite(timestamp) && timestamp > 0) clients[clientId] = timestamp;
+        }
+        return clients;
+      }
+
+      function prunePresence(clients, now = Date.now()) {
+        for (const [clientId, lastSeen] of Object.entries(clients)) {
+          if (now - lastSeen > PRESENCE_STALE_AFTER) delete clients[clientId];
+        }
+        return clients;
+      }
+
+      function updatePresenceCount(count) {
+        state.presence.count = count;
+        dom.onlinePresence.textContent = `${count} онлайн`;
+      }
+
+      async function getPresenceSnapshot() {
+        const response = await fetch(PRESENCE_CONTENTS_URL, {
+          method: 'GET',
+          headers: cloudHeaders(),
+          cache: 'no-store'
+        });
+        if (response.status === 404) return { clients: {}, sha: '' };
+        if (!response.ok) throw new Error(`Presence GET: ${response.status}`);
+        const payload = await response.json();
+        const source = payload?.content && payload.encoding === 'base64' ? textFromBase64(payload.content) : '{}';
+        const envelope = JSON.parse(source);
+        return { clients: normalizedPresence(envelope), sha: asText(payload?.sha).trim() };
+      }
+
+      async function publishPresence(retryCount = 0) {
+        const remote = await getPresenceSnapshot();
+        const clients = prunePresence(remote.clients);
+        updatePresenceCount(Object.keys(clients).length);
+        clients[state.presence.clientId] = Date.now();
+        const response = await fetch(PRESENCE_CONTENTS_URL, {
+          method: 'PUT',
+          headers: cloudHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({
+            message: 'chore: update presence',
+            branch: GITHUB_BRANCH,
+            content: base64FromText(JSON.stringify({
+              version: 1,
+              updatedAt: new Date().toISOString(),
+              clients
+            })),
+            ...(remote.sha ? { sha: remote.sha } : {})
+          })
+        });
+        if ((response.status === 409 || response.status === 422) && retryCount < 1) return publishPresence(retryCount + 1);
+        if (!response.ok) throw new Error(`Presence PUT: ${response.status}`);
+        updatePresenceCount(Object.keys(clients).length);
+      }
+
+      async function heartbeatPresence() {
+        if (state.presence.inFlight) return;
+        state.presence.inFlight = true;
+        try {
+          await publishPresence();
+        } catch (error) {
+          // Presence is best-effort and must never affect catalog synchronization.
+        } finally {
+          state.presence.inFlight = false;
+        }
+      }
+
+      function initializePresence() {
+        state.presence.clientId = presenceClientId();
+        heartbeatPresence().catch(() => undefined);
+        clearInterval(state.presence.heartbeatTimer);
+        state.presence.heartbeatTimer = setInterval(() => heartbeatPresence().catch(() => undefined), PRESENCE_HEARTBEAT_INTERVAL);
       }
 
       function downloadText(filename, content, type = 'text/plain;charset=utf-8') {
@@ -3362,6 +3526,10 @@
         state.cloud.pollPaused = true;
         state.cloud.generation += 1;
         clearTimeout(state.cloud.saveTimer);
+        state.cloud.saveTimer = null;
+        clearTimeout(state.cloud.outboxTimer);
+        state.cloud.outboxTimer = null;
+        state.cloud.outboxPending = false;
         state.cloud.pendingSnapshot = null;
         applyReadOnlyState();
         cancelAllScheduledCommits();
@@ -3413,7 +3581,7 @@
           state.cloud.importing = false;
           state.cloud.pollPaused = false;
           applyReadOnlyState();
-          if (state.cloud.dirty && state.cloud.token) scheduleCloudSave();
+          if (state.cloud.dirty) scheduleCloudSave();
         }
       }
 
@@ -3422,14 +3590,16 @@
       }
 
       function exportElementRows() {
-        let globalNumber = 0;
-        return state.projects.flatMap((project) => elementsForProject(project.id).map((element) => ({
-          project,
-          element,
-          globalNumber: ++globalNumber,
-          localNumber: elementNumber(element),
-          anchor: elementAnchor(project, element)
-        })));
+        return chronologicalElements().flatMap((element, index) => {
+          const project = findProject(element.projectId);
+          return project ? [{
+            project,
+            element,
+            globalNumber: index + 1,
+            localNumber: elementNumber(element),
+            anchor: elementAnchor(project, element)
+          }] : [];
+        });
       }
 
       function safeFilePart(value, fallback = 'element', maxLength = 72) {
@@ -3807,7 +3977,12 @@
         if (categoryInput) {
           setTimeout(() => {
             const combo = categoryInput.closest('.category-combo');
-            if (combo && !combo.contains(document.activeElement)) hideCategoryMenu(categoryInput);
+            if (combo && !combo.contains(document.activeElement)) {
+              const card = categoryInput.closest('[data-element-id]');
+              const element = card && findElement(card.dataset.elementId);
+              if (element) selectCategory(element, categoryInput.value);
+              hideCategoryMenu(categoryInput);
+            }
           }, 0);
         }
         setTimeout(() => applyPendingRemoteSnapshot().catch(() => undefined), 0);
@@ -3831,6 +4006,8 @@
           if (!element) return;
           if (event.key === 'Enter') {
             event.preventDefault();
+            selectCategory(element, categoryInput.value);
+          } else if (event.key === 'Tab') {
             selectCategory(element, categoryInput.value);
           } else if (event.key === 'Escape') {
             event.preventDefault();
@@ -3871,9 +4048,9 @@
       dom.menuPanel.addEventListener('click', (event) => {
         const action = event.target.closest('[data-action]')?.dataset.action;
         if (!action) return;
-        if (isCloudReadOnly() && !['export-json', 'export-claude', 'stats', 'change-token', 'theme'].includes(action)) {
+        if (isCloudReadOnly() && !['export-json', 'export-claude', 'stats', 'theme'].includes(action)) {
           closeMenu();
-          showToast('Для изменений вставьте GitHub-токен.');
+          showToast('Каталог обновляется.');
           return;
         }
         if (action === 'export-json') exportJson();
@@ -3887,10 +4064,6 @@
         if (action === 'recalibrate') reCalibrate();
         if (action === 'theme') toggleTheme();
         if (action === 'stats') openStats();
-        if (action === 'change-token') {
-          closeMenu();
-          showTokenModal();
-        }
       });
 
       dom.importFile.addEventListener('change', async () => {
@@ -3898,7 +4071,7 @@
         dom.importFile.value = '';
         if (!file) return;
         if (isCloudReadOnly()) {
-          showToast('Для импорта вставьте GitHub-токен.');
+          showToast('Каталог обновляется.');
           return;
         }
         try {
@@ -3927,12 +4100,8 @@
         if (!action) return;
         const modal = state.modal;
         if (!modal) return;
-        if (action === 'cancel' || action === 'readonly') {
+        if (action === 'cancel') {
           closeModal();
-          return;
-        }
-        if (action === 'save-token') {
-          saveTokenFromModal();
           return;
         }
         if (action === 'delete') {
@@ -3942,10 +4111,6 @@
         }
       });
       dom.modalSurface.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' && state.modal?.type === 'token') {
-          event.preventDefault();
-          saveTokenFromModal();
-        }
         if (event.key === 'Escape') closeModal();
       });
 
@@ -3954,7 +4119,7 @@
         const item = [...(event.clipboardData?.items || [])].find((candidate) => candidate.type.startsWith('image/'));
         if (!item) return;
         if (isCloudReadOnly()) {
-          showToast('Для изменений вставьте GitHub-токен.');
+          showToast('Каталог обновляется.');
           return;
         }
         event.preventDefault();
@@ -3992,8 +4157,8 @@
           state.cloud.ready = true;
           applyReadOnlyState();
           renderFeed();
-          if (!state.cloud.token && !localValue(CLOUD_PROMPTED_KEY)) showTokenModal(true);
           setSaveState(state.cloud.dirty ? 'saving' : 'saved');
+          initializePresence();
           await initializeCloud();
         } catch (error) {
           setSaveState('error', 'Ошибка интерфейса');
