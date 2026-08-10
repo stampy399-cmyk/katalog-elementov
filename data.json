@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:21:20.275Z",
+  "exportedAt": "2026-08-10T12:21:37.613Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -350,7 +350,7 @@
       "image": "assets/elements/663141be-4a75-4da3-a489-83f19cab1247.jpg?v=0e69de679267",
       "repeatCount": 1,
       "name": "",
-      "description": "простой переход",
+      "description": "простой переход + медленный зум в центр + чб фото",
       "opinion": "",
       "application": "",
       "technique": "",
@@ -360,7 +360,7 @@
         "0:27"
       ],
       "createdAt": 1786364475570,
-      "updatedAt": 1786364479127
+      "updatedAt": 1786364496611
     }
   ],
   "categories": [
