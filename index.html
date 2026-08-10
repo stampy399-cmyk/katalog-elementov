@@ -586,6 +586,8 @@
       const SAVE_DELAY = 240;
       const CLOUD_SAVE_DELAY = 1000;
       const CLOUD_POLL_INTERVAL = 2000;
+      const CLOUD_WRITE_RACE_RETRIES = 3;
+      const PRESENCE_WRITE_RACE_RETRIES = 3;
       const GITHUB_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/data.json';
       const PRESENCE_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/presence.json';
       const GITHUB_GIT_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/git';
@@ -1480,7 +1482,7 @@
       }
 
       function elementCard(project, element) {
-        const image = element.image ? `<img src="${escapeAttribute(element.image)}" alt="Кадр элемента">` : '<div class="paste-hint">Cmd+V</div>';
+        const image = element.image ? `<img src="${escapeAttribute(element.image)}" alt="Кадр элемента" loading="lazy" decoding="async">` : '<div class="paste-hint">Cmd+V</div>';
         const isNew = String(element.id) === String(state.newElementId);
         const isExpanded = String(element.id) === String(state.editingElementId) || isNew;
         const timecode = timecodesFrom(element)[0] || '—';
@@ -2685,12 +2687,14 @@
       }
 
       function compactOutboxRecord(record) {
-        const { baseSnapshot, ...compact } = record;
         return {
-          ...compact,
+          ...record,
           version: 2,
-          baseSha: asText(compact.baseSha).trim(),
-          baseEtag: asText(compact.baseEtag).trim()
+          baseSha: asText(record.baseSha).trim(),
+          baseEtag: asText(record.baseEtag).trim(),
+          ...(isCloudSnapshot(record.baseSnapshot) ? { baseSnapshot: cloneSnapshot(record.baseSnapshot) } : {}),
+          ...(isCloudSnapshot(record.localSnapshot) ? { localSnapshot: cloneSnapshot(record.localSnapshot) } : {}),
+          localConflicts: Array.isArray(record.localConflicts) ? [...new Set(record.localConflicts)].sort() : []
         };
       }
 
@@ -2923,13 +2927,33 @@
       }
 
       function persistCloudOutbox(snapshot = catalogSnapshot()) {
+        const localSnapshot = cloneSnapshot(snapshot);
+        const previous = validOutboxRecord(state.cloud.outbox) ? state.cloud.outbox : null;
+        const previousLocal = isCloudSnapshot(previous?.localSnapshot) ? previous.localSnapshot : previous?.snapshot;
+        const merged = previous && isCloudSnapshot(previousLocal)
+          ? mergeCloudSnapshots(previousLocal, previous.snapshot, localSnapshot)
+          : { ok: true, snapshot: localSnapshot, conflicts: [] };
+        const previousConflicts = Array.isArray(previous?.localConflicts) ? previous.localConflicts : [];
+        const previousStickyConflicts = previousConflicts.filter((path) =>
+          !conflictFieldsChanged([path], previousLocal, localSnapshot)
+        );
+        const localConflicts = [...new Set([
+          ...previousStickyConflicts,
+          ...(merged.ok ? [] : merged.conflicts)
+        ])].sort();
+        const baseSnapshot = isCloudSnapshot(previous?.baseSnapshot)
+          ? previous.baseSnapshot
+          : (state.cloud.baseSnapshot || emptyCloudSnapshot());
         const record = compactOutboxRecord({
           version: 2,
           revision: state.cloud.revision + 1,
           createdAt: Date.now(),
-          baseSha: state.cloud.baseSha,
-          baseEtag: state.cloud.baseEtag,
-          snapshot: cloneSnapshot(snapshot)
+          baseSha: previous?.baseSha ?? state.cloud.baseSha,
+          baseEtag: previous?.baseEtag ?? state.cloud.baseEtag,
+          baseSnapshot,
+          snapshot: merged.ok ? merged.snapshot : cloneSnapshot(previous.snapshot),
+          localSnapshot,
+          localConflicts
         });
         state.cloud.revision = record.revision;
         state.cloud.outbox = record;
@@ -2966,6 +2990,30 @@
 
       function valuesEqual(left, right) {
         return stableJson(left) === stableJson(right);
+      }
+
+      function snapshotConflictValue(snapshot, path) {
+        const entity = /^(projects|elements|categories)\[([^\]]+)\](?:\.([^:]+))?/.exec(path);
+        if (entity) {
+          const [, collection, id, field] = entity;
+          const row = (snapshot?.[collection] || []).find((entry) => String(
+            collection === 'categories' ? asText(entry.key || categoryKey(entry.name)).trim() : entry.id
+          ) === id);
+          if (!field) return { exists: Boolean(row), value: row };
+          return { exists: Boolean(row && hasOwn(row, field)), value: row?.[field] };
+        }
+        const setting = /^settings\.([^:]+)/.exec(path);
+        if (setting) {
+          const settings = snapshot?.settings || {};
+          return { exists: hasOwn(settings, setting[1]), value: settings[setting[1]] };
+        }
+        return { exists: false, value: undefined };
+      }
+
+      function conflictFieldsChanged(conflicts, before, after) {
+        return conflicts.some((path) => !valuesEqual(
+          snapshotConflictValue(before, path), snapshotConflictValue(after, path)
+        ));
       }
 
       function mergeRecordFields(base, remote, local, path, conflicts) {
@@ -3102,6 +3150,7 @@
           version: 2,
           baseSha: freshRemote.sha,
           baseEtag: freshRemote.etag,
+          baseSnapshot: cloneSnapshot(freshRemote.raw),
           snapshot: merged.snapshot,
           rebasedAt: Date.now()
         };
@@ -3229,9 +3278,66 @@
         const remoteElementIds = new Set(remote.incoming.elements.map((element) => String(element.id)));
         return [...state.cloud.knownProjectIds].some((id) => !remoteProjectIds.has(id) && findProject(id))
           || [...state.cloud.knownElementIds].some((id) => !remoteElementIds.has(id) && findElement(id))
-          || remote.incoming.projects.some((project) => JSON.stringify(findProject(project.id)) !== JSON.stringify(project))
-          || remote.incoming.elements.some((element) => JSON.stringify(findElement(element.id)) !== JSON.stringify(element))
-          || remoteSettingsEntries(remote).some(([key, value]) => JSON.stringify(state.settings[key]) !== JSON.stringify(value));
+          || remote.incoming.projects.some((project) => !valuesEqual(findProject(project.id), project))
+          || remote.incoming.elements.some((element) => {
+            const local = findElement(element.id);
+            return !valuesEqual(local, remoteElementWithLocalImage(element, local));
+          })
+          || remoteSettingsEntries(remote).some(([key, value]) => !valuesEqual(state.settings[key], value));
+      }
+
+      function remoteElementWithLocalImage(remoteElement, localElement) {
+        const remoteImage = asText(remoteElement?.image).trim();
+        const localImage = asText(localElement?.image).trim();
+        if (!remoteImage && localImage) return { ...remoteElement, image: localElement.image };
+        return remoteElement;
+      }
+
+      function preservePreviewImages(render) {
+        const previews = new Map();
+        for (const card of dom.workspaceInner.querySelectorAll('[data-element-id]')) {
+          const image = card.querySelector('.image-slot img');
+          if (image) previews.set(`${card.dataset.elementId}\n${image.getAttribute('src') || ''}`, image);
+        }
+        render();
+        for (const card of dom.workspaceInner.querySelectorAll('[data-element-id]')) {
+          const image = card.querySelector('.image-slot img');
+          if (!image) continue;
+          const preserved = previews.get(`${card.dataset.elementId}\n${image.getAttribute('src') || ''}`);
+          if (preserved && preserved !== image) image.replaceWith(preserved);
+        }
+      }
+
+      function renderFeedPreservingPreviewImages() {
+        preservePreviewImages(renderFeed);
+      }
+
+      function patchRemoteFeed(previousActiveId, previousVisibleIds, changedElementIds) {
+        if (state.videoComposer || state.editingElementId || state.newElementId || state.search.trim() || state.categoryFilter) return false;
+        if (String(state.activeProjectId) !== String(previousActiveId)) return false;
+        const project = findProject(state.activeProjectId);
+        const grid = dom.workspaceInner.querySelector('#elementGrid');
+        if (!project || !grid) return false;
+
+        const cards = [...grid.children].filter((node) => node.classList.contains('element-card'));
+        const currentIds = cards.map((card) => String(card.dataset.elementId));
+        const nextElements = elementsForProject(project.id);
+        const nextIds = nextElements.map((element) => String(element.id));
+        if (!valuesEqual(currentIds, previousVisibleIds) || !valuesEqual(nextIds, previousVisibleIds)) return false;
+
+        const cardsById = new Map(cards.map((card) => [String(card.dataset.elementId), card]));
+        for (const element of nextElements) {
+          const id = String(element.id);
+          if (!changedElementIds.has(id)) continue;
+          const card = cardsById.get(id);
+          if (!card) return false;
+          preservePreviewImages(() => { card.outerHTML = elementCard(project, element); });
+        }
+        updateProjectCounts(project.id);
+        renderSidebar();
+        if (state.statsOpen) renderStats();
+        applyReadOnlyState();
+        return true;
       }
 
       function remoteSettingsEntries(remote) {
@@ -3268,6 +3374,9 @@
         const previousNew = state.newElementId;
         const previousActive = state.activeProjectId;
         const previousScroll = dom.workspace.scrollTop;
+        const previousVisibleIds = !state.videoComposer && !previousEditing && !previousNew && !state.search.trim() && !state.categoryFilter && previousActive
+          ? elementsForProject(previousActive).map((element) => String(element.id)) : [];
+        const previousElements = new Map(state.elements.map((element) => [String(element.id), element]));
         const projectMap = new Map(state.projects.map((project) => [String(project.id), project]));
         const elementMap = new Map(state.elements.map((element) => [String(element.id), element]));
         const currentProjectKeys = new Map(state.projects.map((project) => [String(project.id), project.id]));
@@ -3287,7 +3396,11 @@
           }
         }
         for (const project of remote.incoming.projects) projectMap.set(String(project.id), project);
-        for (const element of remote.incoming.elements) elementMap.set(String(element.id), element);
+        const appliedRemoteElements = remote.incoming.elements.map((element) => {
+          const next = remoteElementWithLocalImage(element, elementMap.get(String(element.id)));
+          elementMap.set(String(element.id), next);
+          return next;
+        });
         const preservedUnknown = [...projectMap.keys()].some((id) => !remoteProjectIds.has(id) && !previousKnownProjects.has(id))
           || [...elementMap.keys()].some((id) => !remoteElementIds.has(id) && !previousKnownElements.has(id));
 
@@ -3310,7 +3423,7 @@
             for (const id of deletedElementIds) elements.delete(currentElementKeys.get(id) ?? id);
             for (const id of deletedProjectIds) projects.delete(currentProjectKeys.get(id) ?? id);
             for (const project of remote.incoming.projects) projects.put(project);
-            for (const element of remote.incoming.elements) elements.put(element);
+            for (const element of appliedRemoteElements) elements.put(element);
             for (const element of automatic) elements.put(element);
             writeCategoryRecords(transaction);
             const settings = transaction.objectStore('settings');
@@ -3320,8 +3433,15 @@
           state.cloud.pendingSnapshot = null;
           applyTheme();
           if (changed || automatic.length) {
-            renderFeed();
-            dom.workspace.scrollTop = previousScroll;
+            const patched = !automatic.length && patchRemoteFeed(previousActive, previousVisibleIds, new Set(
+              appliedRemoteElements
+                .filter((element) => !valuesEqual(previousElements.get(String(element.id)), element))
+                .map((element) => String(element.id))
+            ));
+            if (!patched) {
+              renderFeedPreservingPreviewImages();
+              dom.workspace.scrollTop = previousScroll;
+            }
           }
         } finally {
           state.cloud.applying = false;
@@ -3466,21 +3586,35 @@
         let mergeConflicts = [];
         if (current && current.revision !== sending.revision) {
           const currentSnapshot = cloneSnapshot(current.snapshot);
+          const currentLocalSnapshot = isCloudSnapshot(current.localSnapshot)
+            ? cloneSnapshot(current.localSnapshot)
+            : cloneSnapshot(current.snapshot);
           applyCommittedAssetUrls(currentSnapshot, written.replacements);
-          const base = isCloudSnapshot(current.baseSnapshot) ? current.baseSnapshot : (state.cloud.baseSnapshot || emptyCloudSnapshot());
-          const merged = mergeCloudSnapshots(base, confirmedSnapshot, currentSnapshot);
-          if (merged.ok) {
+          applyCommittedAssetUrls(currentLocalSnapshot, written.replacements);
+          const rebased = mergeCloudSnapshots(sending.snapshot, confirmedSnapshot, currentSnapshot);
+          if (rebased.ok) {
             nextOutbox = compactOutboxRecord({
               ...current,
               baseSha: sha,
               baseEtag: '',
-              snapshot: merged.snapshot,
+              baseSnapshot: confirmedSnapshot,
+              snapshot: rebased.snapshot,
+              localSnapshot: currentLocalSnapshot,
               rebasedAt: Date.now()
             });
           } else {
-            mergeConflicts = merged.conflicts;
-            nextOutbox = compactOutboxRecord({ ...current, snapshot: currentSnapshot });
+            mergeConflicts = rebased.conflicts;
+            nextOutbox = compactOutboxRecord({
+              ...current,
+              baseSha: sha,
+              baseEtag: '',
+              baseSnapshot: confirmedSnapshot,
+              snapshot: currentSnapshot,
+              localSnapshot: currentLocalSnapshot,
+              localConflicts: [...(current.localConflicts || []), ...mergeConflicts]
+            });
           }
+          mergeConflicts = [...new Set([...(current.localConflicts || []), ...mergeConflicts])].sort();
         }
 
         const entries = [['base', baseRecord], ['cache', confirmedSnapshot]];
@@ -3521,6 +3655,11 @@
         let sending = state.cloud.outbox;
         if (!sending || state.cloud.outboxError) {
           setCloudError('Ошибка: локального хранилища');
+          return;
+        }
+        if (sending.localConflicts?.length) {
+          const hint = sending.localConflicts.slice(0, 2).join(', ');
+          setCloudError(`Ошибка: конфликт полей${hint ? ` — ${hint}` : ''}`);
           return;
         }
         state.cloud.saving = true;
@@ -3591,7 +3730,7 @@
                 break;
               }
               if (!error.cloudRace) throw error;
-              if (retryCount >= 1) {
+              if (retryCount >= CLOUD_WRITE_RACE_RETRIES) {
                 status = 'retry-conflict';
                 break;
               }
@@ -3636,7 +3775,7 @@
           const hint = conflictDetails.slice(0, 2).join(', ');
           setCloudError(`Ошибка: конфликт полей${hint ? ` — ${hint}` : ''}`);
         }
-        else if (status === 'retry-conflict') setCloudError('Ошибка: конфликт SHA после одного повтора');
+        else if (status === 'retry-conflict') setCloudError(`Ошибка: конфликт SHA после ${CLOUD_WRITE_RACE_RETRIES} повторов`);
         else if (status === 'backup-error') setCloudError('Ошибка: резервная копия не сохранена');
         else if (status === 'network') setCloudError('Ошибка: сети');
         else if (status === 'guarded') setSaveState('saved', 'Сохранено');
@@ -3760,7 +3899,7 @@
             ...(remote.sha ? { sha: remote.sha } : {})
           })
         });
-        if ((response.status === 409 || response.status === 422) && retryCount < 1) return publishPresence(retryCount + 1);
+        if ((response.status === 409 || response.status === 422) && retryCount < PRESENCE_WRITE_RACE_RETRIES) return publishPresence(retryCount + 1);
         if (!response.ok) throw new Error(`Presence PUT: ${response.status}`);
         updatePresenceCount(Object.keys(clients).length);
       }
