@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:01:17.587Z",
+  "exportedAt": "2026-08-10T13:01:22.161Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -600,7 +600,7 @@
       "application": "",
       "category": "",
       "createdAt": 1786366863861,
-      "description": "БАГ он",
+      "description": "БАГ он встали не тот футаж",
       "id": "983f7465-adf6-47dd-8793-2afd2da1c596",
       "image": "assets/elements/983f7465-adf6-47dd-8793-2afd2da1c596.jpg?v=a160712f1c73",
       "legacyTagsMigrated": true,
@@ -612,7 +612,7 @@
       "timecodes": [
         "0:48"
       ],
-      "updatedAt": 1786366866381
+      "updatedAt": 1786366878346
     }
   ],
   "categories": [
