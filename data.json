@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:40:02.255Z",
+  "exportedAt": "2026-08-10T12:40:56.371Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -559,14 +559,32 @@
       ],
       "createdAt": 1786365569568,
       "updatedAt": 1786365601934
+    },
+    {
+      "id": "abb4c7e8-aed5-4a25-8288-1087f5374e11",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/abb4c7e8-aed5-4a25-8288-1087f5374e11.jpg?v=840ca5194760",
+      "repeatCount": 1,
+      "name": "",
+      "description": "переход зум с прошлого кадра и зум уже фото в центр",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Зум",
+      "timecodes": [
+        "0:45"
+      ],
+      "createdAt": 1786365642993,
+      "updatedAt": 1786365655044
     }
   ],
   "categories": [
     {
       "key": "зум",
       "name": "Зум",
-      "repeats": 7,
-      "uses": 7
+      "repeats": 8,
+      "uses": 8
     },
     {
       "key": "инфографика",
@@ -615,7 +633,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=e0e2422bd27a",
+    "lastCropSource": "assets/crop/last-source.jpg?v=0d6f6b3280be",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
