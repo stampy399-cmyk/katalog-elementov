@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:21:37.613Z",
+  "exportedAt": "2026-08-10T12:21:45.351Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -350,17 +350,17 @@
       "image": "assets/elements/663141be-4a75-4da3-a489-83f19cab1247.jpg?v=0e69de679267",
       "repeatCount": 1,
       "name": "",
-      "description": "простой переход + медленный зум в центр + чб фото",
+      "description": "простой переход + медленный зум в центр + чб фото постпенно чб",
       "opinion": "",
       "application": "",
       "technique": "",
       "legacyTagsMigrated": true,
-      "category": "",
+      "category": "Работа с футажем",
       "timecodes": [
         "0:27"
       ],
       "createdAt": 1786364475570,
-      "updatedAt": 1786364496611
+      "updatedAt": 1786364504017
     }
   ],
   "categories": [
@@ -391,8 +391,8 @@
     {
       "key": "работа с футажем",
       "name": "Работа с футажем",
-      "repeats": 4,
-      "uses": 4
+      "repeats": 5,
+      "uses": 5
     },
     {
       "key": "типографика",
