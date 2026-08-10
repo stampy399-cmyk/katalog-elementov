@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:07:46.116Z",
+  "exportedAt": "2026-08-10T13:07:57.359Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -687,22 +687,22 @@
       "updatedAt": 1786367245785
     },
     {
-      "id": "a2070a5d-8c13-41dc-a16f-ee09e0de5807",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/a2070a5d-8c13-41dc-a16f-ee09e0de5807.jpg?v=a82dc199095c",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Простой перехеод к кажру и такое же эффект искажеиня как #02",
-      "opinion": "",
       "application": "",
-      "technique": "",
+      "category": "Работа с футажем",
+      "createdAt": 1786367256252,
+      "description": "Простой перехеод к кажру и такое же эффект искажеиня как #03 искривлние",
+      "id": "a2070a5d-8c13-41dc-a16f-ee09e0de5807",
+      "image": "assets/elements/a2070a5d-8c13-41dc-a16f-ee09e0de5807.jpg?v=a82dc199095c",
       "legacyTagsMigrated": true,
-      "category": "",
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:56"
       ],
-      "createdAt": 1786367256252,
-      "updatedAt": 1786367265114
+      "updatedAt": 1786367276134
     }
   ],
   "categories": [
@@ -739,8 +739,8 @@
     {
       "key": "работа с футажем",
       "name": "Работа с футажем",
-      "repeats": 9,
-      "uses": 9
+      "repeats": 10,
+      "uses": 10
     },
     {
       "key": "типографика",
@@ -756,7 +756,9 @@
     }
   ],
   "settings": {
-    "theme": "dark",
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null,
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -764,9 +766,7 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
     "lastCropSource": "assets/crop/last-source.jpg?v=698406a521a4",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null
+    "theme": "dark"
   }
 }
