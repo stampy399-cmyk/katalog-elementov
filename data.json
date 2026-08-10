@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:37:50.200Z",
+  "exportedAt": "2026-08-10T12:38:57.427Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -11,7 +11,7 @@
       "host": "Александр",
       "id": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
       "niche": "Сантехника германия",
-      "progress": 4,
+      "progress": 5,
       "progressOverride": null,
       "title": "Dieses 50€ Betonrohr Kühlt Dein Haus FÜR IMMER. Warum Ist Es VERBOTEN?",
       "titleSource": "manual",
@@ -505,6 +505,24 @@
         "0:30"
       ],
       "updatedAt": 1786364739816
+    },
+    {
+      "id": "c81d73dc-4e65-46da-b294-4390837571b2",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/c81d73dc-4e65-46da-b294-4390837571b2.jpg?v=d32a32602d93",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Простой переход на статиченое фото и теплый блик",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
+      "timecodes": [
+        "0:41"
+      ],
+      "createdAt": 1786365528882,
+      "updatedAt": 1786365536426
     }
   ],
   "categories": [
@@ -561,7 +579,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=3e8db8061819",
+    "lastCropSource": "assets/crop/last-source.jpg?v=cc35a957ac80",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
