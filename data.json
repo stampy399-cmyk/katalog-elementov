@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:35:04.413Z",
+  "exportedAt": "2026-08-10T12:35:23.763Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -451,6 +451,24 @@
         "0:30"
       ],
       "updatedAt": 1786364739816
+    },
+    {
+      "id": "db5ea07c-053d-4dcd-bbd9-ae6790e83e52",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/db5ea07c-053d-4dcd-bbd9-ae6790e83e52.jpg?v=24193004b979",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Простой переход к статичному фото и эффект кинопленки и слабые частицы",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
+      "timecodes": [
+        "0:36"
+      ],
+      "createdAt": 1786365310383,
+      "updatedAt": 1786365322762
     }
   ],
   "categories": [
@@ -507,7 +525,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=d6bc3eb21b5a",
+    "lastCropSource": "assets/crop/last-source.jpg?v=d34e0094ca16",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
