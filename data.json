@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:34:01.150Z",
+  "exportedAt": "2026-08-10T12:35:04.413Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -219,6 +219,24 @@
       "updatedAt": 1786363978883
     },
     {
+      "id": "6e96b4e4-ab5d-443f-9062-9602c270c2d2",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/6e96b4e4-ab5d-443f-9062-9602c270c2d2.jpg?v=ecea74d9fa6c",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Повторене #05 появлеин сначла цифр под звук потом текст такое же ровно как и #05\nОтлиный шритф рамзер и работа с тенями сзади чуть затемненое фото",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Типографика",
+      "timecodes": [
+        "0:35"
+      ],
+      "createdAt": 1786365199158,
+      "updatedAt": 1786365303412
+    },
+    {
       "application": "Почти в самом начале видео всегда",
       "category": "Переход",
       "createdAt": 1786347623885,
@@ -289,6 +307,24 @@
         "0:29"
       ],
       "updatedAt": 1786364528967
+    },
+    {
+      "id": "85497c8a-3468-434d-b530-bf873f565488",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/85497c8a-3468-434d-b530-bf873f565488.jpg?v=97eb563ef0af",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Хорошее фото нашел в инетрнете и меденный зум в центр",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Зум",
+      "timecodes": [
+        "0:33"
+      ],
+      "createdAt": 1786365175351,
+      "updatedAt": 1786365185818
     },
     {
       "application": "Объяснение ряда пунктов",
@@ -415,42 +451,6 @@
         "0:30"
       ],
       "updatedAt": 1786364739816
-    },
-    {
-      "id": "85497c8a-3468-434d-b530-bf873f565488",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/85497c8a-3468-434d-b530-bf873f565488.jpg?v=97eb563ef0af",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Хорошее фото нашел в инетрнете и меденный зум в центр",
-      "opinion": "",
-      "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": [
-        "0:33"
-      ],
-      "createdAt": 1786365175351,
-      "updatedAt": 1786365185818
-    },
-    {
-      "id": "6e96b4e4-ab5d-443f-9062-9602c270c2d2",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/6e96b4e4-ab5d-443f-9062-9602c270c2d2.jpg?v=ecea74d9fa6c",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Повторене #05 появлеин сначла цифр под звук потом текст такое же ровно как и #05\nОтлиный шритф рамзер и работа с тенями",
-      "opinion": "",
-      "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
-      "category": "Типографика",
-      "timecodes": [
-        "0:35"
-      ],
-      "createdAt": 1786365199158,
-      "updatedAt": 1786365240149
     }
   ],
   "categories": [
