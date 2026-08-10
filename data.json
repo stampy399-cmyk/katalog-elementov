@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:03:32.164Z",
+  "exportedAt": "2026-08-10T13:03:45.589Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -616,9 +616,9 @@
     },
     {
       "application": "",
-      "category": "",
+      "category": "Типографика",
       "createdAt": 1786367005001,
-      "description": "Это статичные фото просто появляется вот это сначала Белая штука",
+      "description": "Это статичные фото просто появляется вот это сначала Белая штука снизу вверх появляется это Белая штука а потом просто текст проявляется всё",
       "id": "b0ac9c83-97a1-4ab0-9b52-41621c047e4c",
       "image": "assets/elements/b0ac9c83-97a1-4ab0-9b52-41621c047e4c.jpg?v=5d93aceaf056",
       "legacyTagsMigrated": true,
@@ -630,7 +630,7 @@
       "timecodes": [
         "0:50"
       ],
-      "updatedAt": 1786367012002
+      "updatedAt": 1786367024586
     }
   ],
   "categories": [
@@ -673,8 +673,8 @@
     {
       "key": "типографика",
       "name": "Типографика",
-      "repeats": 4,
-      "uses": 4
+      "repeats": 5,
+      "uses": 5
     },
     {
       "key": "частицы",
