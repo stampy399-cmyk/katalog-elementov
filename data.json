@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:42:31.921Z",
+  "exportedAt": "2026-08-10T13:01:04.918Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -595,6 +595,24 @@
       ],
       "createdAt": 1786365569568,
       "updatedAt": 1786365601934
+    },
+    {
+      "id": "983f7465-adf6-47dd-8793-2afd2da1c596",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/983f7465-adf6-47dd-8793-2afd2da1c596.jpg?v=a160712f1c73",
+      "repeatCount": 1,
+      "name": "",
+      "description": "",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
+      "timecodes": [
+        "0:48"
+      ],
+      "createdAt": 1786366863861,
+      "updatedAt": 1786366863917
     }
   ],
   "categories": [
@@ -651,7 +669,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=f67be36915d5",
+    "lastCropSource": "assets/crop/last-source.jpg?v=c979065d5c54",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
