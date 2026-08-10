@@ -1,1 +1,10 @@
-{"version":1,"updatedAt":"2026-08-10T10:21:57.781Z","clients":{"c2260b0c-af4f-4fc6-af88-66dcb6f4353f":1786357317781}}
+{
+  "version": 1,
+  "updatedAt": "2026-08-10T10:25:32.345Z",
+  "clients": {
+    "c2260b0c-af4f-4fc6-af88-66dcb6f4353f": 1786357317781,
+    "verification-client": {
+      "lastSeen": "2026-08-10T10:25:32.343Z"
+    }
+  }
+}
