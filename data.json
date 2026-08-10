@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T11:29:58.895Z",
+  "exportedAt": "2026-08-10T11:30:49.095Z",
   "projects": [
     {
       "id": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
@@ -253,6 +253,24 @@
       ],
       "createdAt": 1786348841737,
       "updatedAt": 1786361396764
+    },
+    {
+      "id": "d6488acd-0a29-4a09-beba-9fab28ddba2f",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "",
+      "repeatCount": 1,
+      "name": "",
+      "description": "",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
+      "timecodes": [
+        "0:20"
+      ],
+      "createdAt": 1786361447597,
+      "updatedAt": 1786361448093
     }
   ],
   "categories": [
