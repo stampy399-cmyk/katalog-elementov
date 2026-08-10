@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:16:32.705Z",
+  "exportedAt": "2026-08-10T13:17:36.046Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -546,7 +546,7 @@
       "application": "",
       "category": "Зум",
       "createdAt": 1786367780778,
-      "description": "простой переход и плавнй зум в правую сторону",
+      "description": "простой переход и плавнй зум в правую сторону +чб фото как #13 #19",
       "id": "c247b96d-c225-4ad7-8d0e-6c9620d6e615",
       "image": "assets/elements/c247b96d-c225-4ad7-8d0e-6c9620d6e615.jpg?v=6c145c0a6a8c",
       "legacyTagsMigrated": true,
@@ -558,7 +558,7 @@
       "timecodes": [
         "0:57"
       ],
-      "updatedAt": 1786367791921
+      "updatedAt": 1786367849065
     },
     {
       "application": "",
