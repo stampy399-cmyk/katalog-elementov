@@ -314,8 +314,10 @@
     .search-wrap { max-width: 420px; }
     .search { height: 30px; padding: 0 10px; border: 1px solid transparent; border-radius: 7px; background: var(--surface); color: var(--text); font-size: 12px; transition: border-color 200ms ease-out, background 200ms ease-out; }
     .search:hover, .search:focus { border-color: var(--line); background: var(--surface-raised); }
-    .online-presence, .save-state { min-width: 70px; font-size: 11px; }
-    .online-presence { margin-left: auto; text-align: right; }
+    .online-presence, .save-state { font-size: 11px; }
+    /* Fixed widths: the status text changes constantly and must not move the topbar. */
+    .save-state { width: 148px; min-width: 148px; justify-content: flex-end; overflow: hidden; cursor: pointer; font-variant-numeric: tabular-nums; }
+    .online-presence { width: 74px; min-width: 74px; margin-left: auto; text-align: right; font-variant-numeric: tabular-nums; }
     .icon-button { width: 30px; height: 30px; border-radius: 7px; font-size: 18px; }
     .category-filter-active { max-width: 170px; font-size: 11px; }
     .sidebar { display: flex; flex-direction: column; min-width: 0; min-height: 0; border-right: 1px solid var(--line); background: var(--surface); }
@@ -410,8 +412,24 @@
     .element-category-chip { width: max-content; max-width: 100%; padding: 2px 6px; overflow: hidden; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
     .element-description-preview { display: -webkit-box; min-height: 36px; overflow: hidden; color: var(--text); font-size: 12px; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
     .element-description-preview.is-empty { color: var(--muted); }
+    .element-extra-preview { overflow: hidden; color: var(--muted); font-size: 11px; line-height: 1.4; text-overflow: ellipsis; white-space: nowrap; }
+    .element-backlinks { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; color: var(--muted); font-size: 11px; }
+    .ref-link { padding: 0 4px; border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line)); border-radius: 5px; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); font: inherit; font-variant-numeric: tabular-nums; line-height: 1.35; cursor: pointer; }
+    .ref-link:hover, .ref-link:focus-visible { background: color-mix(in srgb, var(--accent) 26%, transparent); }
+    .element-card.is-referenced { outline: 2px solid var(--accent); outline-offset: 2px; animation: reference-pulse 2.2s ease-out both; }
+    @keyframes reference-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); } 60% { box-shadow: 0 0 0 12px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
     .repeat-badge { position: absolute; z-index: 3; top: auto; right: 10px; bottom: 11px; min-width: 33px; padding: 4px 6px; border: 1px solid color-mix(in srgb, var(--line) 78%, transparent); border-radius: 99px; background: color-mix(in srgb, var(--bg) 78%, transparent); color: var(--text); font-size: 11px; backdrop-filter: blur(6px); }
     .repeat-badge:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
+    /* Repetition heat: the more a technique repeats (×N plus #NN mentions), the hotter the badge. */
+    .repeat-badge[data-heat] { border-color: color-mix(in srgb, var(--heat-color) 55%, transparent); background: color-mix(in srgb, var(--heat-color) calc(var(--heat, 0) * 82%), color-mix(in srgb, var(--bg) 78%, transparent)); color: color-mix(in srgb, #fff calc(var(--heat, 0) * 100%), var(--text)); font-size: calc(11px + var(--heat, 0) * 3px); font-weight: calc(400 + var(--heat, 0) * 300); }
+    .repeat-badge[data-heat="0"] { --heat-color: var(--muted); }
+    .repeat-badge[data-heat="1"] { --heat-color: #3d7bfd; }
+    .repeat-badge[data-heat="2"] { --heat-color: #16a37b; }
+    .repeat-badge[data-heat="3"] { --heat-color: #d8b400; }
+    .repeat-badge[data-heat="4"] { --heat-color: #ef8c1f; }
+    .repeat-badge[data-heat="5"] { --heat-color: #e3452f; }
+    .repeat-badge[data-heat="6"] { --heat-color: #c8102e; }
+    .repeat-badge[data-heat]:hover { border-color: var(--heat-color); background: var(--heat-color); color: #fff; }
     .element-editor { min-width: 0; min-height: 0; height: auto; padding: 16px 88px 16px 16px; overflow: visible; }
     .element-description { display: block; width: 100%; min-height: 104px; max-height: none; padding: 10px 11px; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-raised); color: var(--text); font-size: 13px; line-height: 1.5; resize: none; field-sizing: content; transition: border-color 190ms ease-out, background 190ms ease-out; }
     .element-description:focus { border-color: color-mix(in srgb, var(--accent) 65%, var(--line)); background: var(--surface); }
@@ -603,20 +621,32 @@
       const CATALOG_VERSION = 5;
       const SAVE_DELAY = 240;
       const CLOUD_SAVE_DELAY = 1000;
-      const CLOUD_POLL_INTERVAL = 2000;
+      // GitHub Pages rebuilds on every commit and allows only ~10 builds per hour,
+      // so catalog commits are batched instead of following each keystroke.
+      const CLOUD_PUSH_DELAY = 45000;
+      const CLOUD_PUSH_MIN_INTERVAL = 45000;
+      const CLOUD_PUSH_BLUR_DELAY = 5000;
+      const CLOUD_PUSH_MAX_DEFERRAL = 90000;
+      const TYPING_QUIET_PERIOD = 1200;
+      const CLOUD_POLL_INTERVAL = 3000;
       const CLOUD_WRITE_RACE_RETRIES = 3;
-      const PRESENCE_WRITE_RACE_RETRIES = 3;
       const DELETE_CONFIRMATION = 'УДАЛИТЬ';
       const GITHUB_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/data.json';
-      const PRESENCE_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/presence.json';
       const GITHUB_GIT_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/git';
+      const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/stampy399-cmyk/katalog-elementov/main/';
       const GITHUB_BRANCH = 'main';
       const MAX_IMAGE_ASSET_BYTES = 95 * 1024 * 1024;
       const MAX_CLOUD_JSON_BYTES = 1024 * 1024;
       const EMBEDDED_TOKEN_FRAGMENTS = Object.freeze(['Z2hvX1k=', 'Uk5lTVQ=', 'MVhpdkg=', 'TEl1Y3E=', 'b2Yxdjk=', 'WUtWYXk=', 'OWk2RjE=', 'aDhTdk0=']);
       const PRESENCE_CLIENT_KEY = 'katalog-elementov.presence-client-id';
-      const PRESENCE_HEARTBEAT_INTERVAL = 30000;
-      const PRESENCE_STALE_AFTER = 70000;
+      const PRESENCE_LOCAL_KEY = 'katalog-elementov.presence-peers';
+      const PRESENCE_CHANNEL_NAME = 'katalog-elementov.presence';
+      const PRESENCE_HEARTBEAT_INTERVAL = 5000;
+      const PRESENCE_STALE_AFTER = 15000;
+      const PRESENCE_REMOTE_WINDOW = 180000;
+      const PREVIEW_CACHE_KEY = 'katalog-elementov.local-previews';
+      const PREVIEW_CACHE_LIMIT = 14;
+      const PREVIEW_CACHE_BYTES = 3 * 1024 * 1024;
       const CLOUD_CACHE_KEY = 'katalog-elementov.cloud-cache';
       const CLOUD_OUTBOX_KEY = 'katalog-elementov.cloud-outbox';
       const CLOUD_BACKUP_KEY = 'backup';
@@ -690,6 +720,13 @@
         sidebarRefreshTimer: null,
         statsTimer: null,
         modal: null,
+        drafts: new Map(),
+        lastTypingAt: 0,
+        previewCache: new Map(),
+        previewProbes: new Set(),
+        previewResolved: new Map(),
+        statsBarsDrawn: false,
+        referenceHighlightTimer: null,
         player: {
           apiPromise: null,
           instance: null,
@@ -727,12 +764,19 @@
           outbox: null,
           outboxError: false,
           syncQueue: Promise.resolve(),
-          generation: 0
+          generation: 0,
+          writeGeneration: 0,
+          lastPushAt: 0,
+          saveDueAt: 0,
+          firstDirtyAt: 0,
+          pendingPush: false
         },
         presence: {
           clientId: '',
-          count: 0,
-          inFlight: false,
+          count: 1,
+          channel: null,
+          peers: new Map(),
+          remoteActiveAt: 0,
           heartbeatTimer: null
         }
       };
@@ -786,6 +830,67 @@
 
       function isCloudReadOnly() {
         return state.cloud.applying || state.cloud.importing;
+      }
+
+      // A local draft is never lost: while a field is focused (and shortly after) an incoming
+      // snapshot is queued, and any value the user typed is re-applied on top of it.
+      const DRAFT_TTL = 10 * 60 * 1000;
+
+      function draftKey(kind, id, field) {
+        return `${kind}:${String(id)}:${field}`;
+      }
+
+      function rememberDraft(kind, id, field, value) {
+        state.lastTypingAt = Date.now();
+        if (!id || !field) return;
+        state.drafts.set(draftKey(kind, id, field), { kind, id: String(id), field, value: asText(value), at: Date.now() });
+      }
+
+      function draftRecord(draft) {
+        return draft.kind === 'project' ? findProject(draft.id) : findElement(draft.id);
+      }
+
+      function draftValueOf(record, field) {
+        if (!record) return '';
+        if (field === 'timecode') return timecodesFrom(record)[0] || '';
+        return asText(record[field]);
+      }
+
+      function writeDraftValue(record, field, value) {
+        if (field === 'timecode') record.timecodes = timecodesFrom({ timecodes: [value] });
+        else record[field] = value;
+      }
+
+      function restoreDrafts() {
+        const now = Date.now();
+        const elements = [];
+        const projects = [];
+        const conflicts = [];
+        for (const [key, draft] of [...state.drafts]) {
+          if (now - draft.at > DRAFT_TTL) {
+            state.drafts.delete(key);
+            continue;
+          }
+          const record = draftRecord(draft);
+          if (!record) {
+            state.drafts.delete(key);
+            continue;
+          }
+          const current = draftValueOf(record, draft.field);
+          if (current === draft.value) {
+            state.drafts.delete(key);
+            continue;
+          }
+          writeDraftValue(record, draft.field, draft.value);
+          if (asText(current).trim()) conflicts.push(draft.field);
+          if (draft.kind === 'project') projects.push(record);
+          else elements.push(record);
+        }
+        return { elements, projects, conflicts, count: elements.length + projects.length };
+      }
+
+      function isTypingPause() {
+        return Date.now() - state.lastTypingAt < TYPING_QUIET_PERIOD;
       }
 
       function applyReadOnlyState() {
@@ -1180,17 +1285,21 @@
         if (state.cloud.ready && !state.cloud.applying) {
           if (state.cloud.saving) {
             kind = 'saving';
-            message = 'Сохранение…';
+            message = 'Отправка…';
           } else if (state.cloud.error) {
             kind = 'error';
             message = state.cloud.error;
           } else if (state.cloud.dirty) {
             kind = 'saving';
-            message = 'Сохранение…';
+            message = 'В очереди';
           }
         }
-        dom.saveState.dataset.state = kind;
-        dom.saveState.textContent = message || ({ saving: 'Сохранение…', saved: 'Сохранено', error: 'Ошибка' }[kind] || 'Сохранено');
+        const text = message || ({ saving: 'Сохранение…', saved: 'Сохранено', error: 'Ошибка' }[kind] || 'Сохранено');
+        if (dom.saveState.dataset.state !== kind) dom.saveState.dataset.state = kind;
+        if (dom.saveState.textContent !== text) dom.saveState.textContent = text;
+        dom.saveState.title = kind === 'error'
+          ? `${text}. Данные сохранены локально. Клик — повторить отправку.`
+          : (state.cloud.dirty ? 'Правки сохранены локально, отправка в облако пакетом. Клик — отправить сейчас.' : 'Все правки отправлены в облако.');
       }
 
       function cancelScheduledCommit(key) {
@@ -1382,6 +1491,130 @@
         return `${projectSlug(project)}#${String(elementNumber(element)).padStart(2, '0')}`;
       }
 
+      // #NN inside any text is a live link between elements. Links are derived from the text
+      // on every render, never stored, so they can never fall out of sync with the catalog.
+      const REFERENCE_PATTERN = /#(\d{1,3})/g;
+      const ELEMENT_TEXT_FIELDS = Object.freeze(['description', 'technique', 'name', 'opinion', 'application']);
+
+      function elementTextFor(element) {
+        return ELEMENT_TEXT_FIELDS.map((field) => asText(element?.[field])).join('\n');
+      }
+
+      function referenceNumbersIn(text) {
+        const numbers = new Set();
+        for (const match of asText(text).matchAll(REFERENCE_PATTERN)) {
+          const number = Number(match[1]);
+          if (Number.isInteger(number) && number > 0) numbers.add(number);
+        }
+        return numbers;
+      }
+
+      function referenceBacklinks(projectId) {
+        const backlinks = new Map();
+        const list = elementsForProject(projectId);
+        list.forEach((element, index) => {
+          const from = index + 1;
+          for (const number of referenceNumbersIn(elementTextFor(element))) {
+            if (number === from || number > list.length) continue;
+            const sources = backlinks.get(number) || new Set();
+            sources.add(from);
+            backlinks.set(number, sources);
+          }
+        });
+        return backlinks;
+      }
+
+      function linkifyReferences(text, total) {
+        const value = asText(text);
+        let result = '';
+        let cursor = 0;
+        for (const match of value.matchAll(REFERENCE_PATTERN)) {
+          const number = Number(match[1]);
+          result += escapeHtml(value.slice(cursor, match.index));
+          cursor = match.index + match[0].length;
+          const label = `#${String(number).padStart(2, '0')}`;
+          result += number > 0 && number <= total
+            ? `<button class="ref-link" type="button" data-ref-number="${number}" title="Перейти к элементу ${label}">${label}</button>`
+            : escapeHtml(match[0]);
+        }
+        return result + escapeHtml(value.slice(cursor));
+      }
+
+      // Repetition weight = explicit ×N plus every #NN mention of this element in other texts.
+      function repetitionWeight(element, backlinkCount = 0) {
+        return Math.max(1, Number(element?.repeatCount) || 1) + Math.max(0, backlinkCount);
+      }
+
+      function repeatHeatLevel(weight) {
+        if (weight <= 1) return 0;
+        return clamp(Math.round(((weight - 1) / 5) * 6), 1, 6);
+      }
+
+      function applyRepeatHeat(badge, weight) {
+        const level = repeatHeatLevel(weight);
+        if (badge.dataset.heat !== String(level)) {
+          badge.dataset.heat = String(level);
+          badge.style.setProperty('--heat', (level / 6).toFixed(3));
+        }
+        badge.title = `Клик: +1, Alt+клик: −1. Вес повторяемости ${weight} (×N и ссылки #NN).`;
+      }
+
+      // #NN links, backlink lists and repeat heat are derived from text, so they are
+      // refreshed in place instead of re-rendering the grid.
+      function referenceChipMarkup(from) {
+        const label = `#${String(from).padStart(2, '0')}`;
+        return `<button class="ref-link" type="button" data-ref-number="${from}" title="Перейти к элементу ${label}">${label}</button>`;
+      }
+
+      function refreshReferenceVisuals(projectId = state.activeProjectId) {
+        const project = findProject(projectId);
+        if (!project) return;
+        const list = elementsForProject(project.id);
+        const backlinks = referenceBacklinks(project.id);
+        list.forEach((element, index) => {
+          const card = dom.workspaceInner.querySelector(`[data-element-id="${CSS.escape(String(element.id))}"]`);
+          if (!card) return;
+          const sources = [...(backlinks.get(index + 1) || [])].sort((left, right) => left - right);
+          const badge = card.querySelector('.repeat-badge');
+          if (badge) {
+            const label = `×${element.repeatCount}`;
+            if (badge.textContent !== label) badge.textContent = label;
+            badge.dataset.repeatCount = String(element.repeatCount);
+            applyRepeatHeat(badge, repetitionWeight(element, sources.length));
+          }
+          const compact = card.querySelector('.element-compact');
+          if (!compact) return;
+          let node = compact.querySelector('.element-backlinks');
+          if (!sources.length) {
+            node?.remove();
+            return;
+          }
+          if (!node) {
+            node = document.createElement('div');
+            node.className = 'element-backlinks';
+            compact.append(node);
+          }
+          const markup = `упоминается в: ${sources.map(referenceChipMarkup).join(' ')}`;
+          if (node.innerHTML !== markup) node.innerHTML = markup;
+        });
+      }
+
+      function highlightElementNumber(number) {
+        const list = elementsForProject(state.activeProjectId);
+        const target = list[Number(number) - 1];
+        if (!target) {
+          showToast(`Элемент #${String(number).padStart(2, '0')} не найден в этом ролике.`);
+          return;
+        }
+        const card = dom.workspaceInner.querySelector(`[data-element-id="${CSS.escape(String(target.id))}"]`);
+        if (!card) return;
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        clearTimeout(state.referenceHighlightTimer);
+        for (const node of dom.workspaceInner.querySelectorAll('.is-referenced')) node.classList.remove('is-referenced');
+        card.classList.add('is-referenced');
+        state.referenceHighlightTimer = setTimeout(() => card.classList.remove('is-referenced'), 2200);
+      }
+
       async function copyAnchor(anchor) {
         try {
           if (navigator.clipboard?.writeText) {
@@ -1505,10 +1738,110 @@
         }
       }
 
-      function previewImageMarkup(source) {
-        const url = catalogAssetUrl(source);
-        const fallback = previewFallbackUrl(source);
-        return `<img src="${escapeAttribute(url)}" data-preview-source="${escapeAttribute(source)}"${fallback ? ` data-preview-fallback="${escapeAttribute(fallback)}"` : ''} alt="Кадр элемента" loading="lazy" decoding="async" fetchpriority="low">`;
+      function rawAssetUrl(source) {
+        const value = asText(source).trim();
+        if (!/^\/?assets\//i.test(value)) return '';
+        return `${GITHUB_RAW_BASE}${value.replace(/^\/+/, '')}`;
+      }
+
+      // A freshly captured frame lives in assets/ only after a GitHub Pages build, so the
+      // captured data URL stays available locally until the published file really loads.
+      function loadPreviewCache() {
+        try {
+          const raw = JSON.parse(localValue(PREVIEW_CACHE_KEY, '[]'));
+          if (!Array.isArray(raw)) return;
+          for (const row of raw) {
+            if (row && typeof row.id === 'string' && typeof row.image === 'string' && row.image.startsWith('data:')) {
+              state.previewCache.set(row.id, row.image);
+            }
+          }
+        } catch (error) {
+          state.previewCache.clear();
+        }
+      }
+
+      function persistPreviewCache() {
+        const rows = [];
+        let bytes = 0;
+        for (const [id, image] of [...state.previewCache].reverse()) {
+          bytes += image.length;
+          if (rows.length >= PREVIEW_CACHE_LIMIT || bytes > PREVIEW_CACHE_BYTES) {
+            state.previewCache.delete(id);
+            continue;
+          }
+          rows.unshift({ id, image });
+        }
+        saveLocalValue(PREVIEW_CACHE_KEY, JSON.stringify(rows));
+      }
+
+      function rememberLocalPreview(id, image) {
+        const key = String(id);
+        const value = asText(image);
+        if (!key || !value.startsWith('data:')) return;
+        state.previewCache.delete(key);
+        state.previewCache.set(key, value);
+        persistPreviewCache();
+      }
+
+      function forgetLocalPreview(id) {
+        if (!state.previewCache.delete(String(id))) return;
+        state.previewProbes.delete(String(id));
+        persistPreviewCache();
+      }
+
+      function previewResolvedKey(element) {
+        return `${String(element?.id)}\n${asText(element?.image)}`;
+      }
+
+      function previewSourceList(element) {
+        const source = asText(element?.image).trim();
+        const list = [];
+        // A URL that already rendered this exact frame is trusted first: a re-render must
+        // never downgrade a visible preview to a URL that is not published yet.
+        const resolved = state.previewResolved.get(previewResolvedKey(element));
+        if (resolved) list.push(resolved);
+        const local = state.previewCache.get(String(element?.id));
+        if (local) list.push(local);
+        if (source.startsWith('data:')) list.push(source);
+        else if (source) {
+          list.push(catalogAssetUrl(source));
+          const withoutVersion = previewFallbackUrl(source);
+          if (withoutVersion) list.push(withoutVersion);
+          const raw = rawAssetUrl(source);
+          if (raw) list.push(raw);
+        }
+        return [...new Set(list.filter(Boolean))];
+      }
+
+      // Once the published asset finally answers, the local copy is no longer needed.
+      function probePublishedPreview(element) {
+        const id = String(element?.id);
+        const source = asText(element?.image).trim();
+        if (!id || !state.previewCache.has(id) || !/^\/?assets\//i.test(source)) return;
+        if (state.previewProbes.has(id)) return;
+        state.previewProbes.add(id);
+        const probe = new Image();
+        probe.decoding = 'async';
+        probe.addEventListener('load', () => {
+          state.previewResolved.set(previewResolvedKey(element), probe.src);
+          forgetLocalPreview(id);
+          for (const image of dom.workspaceInner.querySelectorAll(`[data-element-id="${CSS.escape(id)}"] .image-slot img`)) {
+            image.dataset.previewSources = JSON.stringify([probe.src]);
+            image.dataset.previewIndex = '0';
+            image.src = probe.src;
+          }
+        }, { once: true });
+        probe.addEventListener('error', () => {
+          state.previewProbes.delete(id);
+        }, { once: true });
+        probe.src = catalogAssetUrl(source);
+      }
+
+      function previewImageMarkup(element) {
+        const sources = previewSourceList(element);
+        if (!sources.length) return '<div class="paste-hint">Cmd+V</div>';
+        probePublishedPreview(element);
+        return `<img src="${escapeAttribute(sources[0])}" data-preview-source="${escapeAttribute(asText(element.image))}" data-preview-sources="${escapeAttribute(JSON.stringify(sources))}" data-preview-index="0" alt="Кадр элемента" decoding="async">`;
       }
 
       function previewImageKey(card, image) {
@@ -1523,13 +1856,20 @@
       }
 
       function elementCard(project, element) {
-        const image = element.image ? previewImageMarkup(element.image) : '<div class="paste-hint">Cmd+V</div>';
+        const image = previewImageMarkup(element);
         const isNew = String(element.id) === String(state.newElementId);
         const isExpanded = String(element.id) === String(state.editingElementId) || isNew;
         const timecode = timecodesFrom(element)[0] || '—';
         const number = String(elementNumber(element)).padStart(2, '0');
         const anchor = elementAnchor(project, element);
         const preview = asText(element.description).trim();
+        const total = elementsForProject(project.id).length;
+        const backlinkNumbers = [...(referenceBacklinks(project.id).get(Number(number)) || [])].sort((left, right) => left - right);
+        const weight = repetitionWeight(element, backlinkNumbers.length);
+        const extras = ELEMENT_TEXT_FIELDS.filter((field) => field !== 'description')
+          .map((field) => asText(element[field]).trim())
+          .filter(Boolean)
+          .map((value) => linkifyReferences(value, total));
         const editor = `<div class="element-editor">
           <textarea class="element-description" data-element-field="description" placeholder="Что это и как работает" aria-label="Описание">${escapeHtml(element.description)}</textarea>
           <input class="element-technique" data-element-field="technique" value="${escapeAttribute(element.technique)}" placeholder="Техника" aria-label="Техника" autocomplete="off">
@@ -1546,8 +1886,8 @@
           <div class="card-frame"><div class="image-slot">${image}</div><div class="card-overlay">
             <button class="element-number" type="button" data-copy-anchor="${escapeAttribute(anchor)}" title="Копировать якорь ${escapeAttribute(anchor)}" aria-label="Копировать якорь ${escapeAttribute(anchor)}">#${number}</button>
             <span class="card-timecode">${escapeHtml(timecode)}</span></div></div>
-          ${isExpanded ? editor : `<div class="element-compact">${element.category ? `<span class="element-category-chip"><span class="category-icon">${categoryIcon(element.category)}</span>${escapeHtml(element.category)}</span>` : ''}<div class="element-description-preview ${preview ? '' : 'is-empty'}">${escapeHtml(preview || 'Что это и как работает')}</div></div>`}
-          <button class="repeat-badge" type="button" title="Клик: +1, Alt+клик: −1" aria-label="Повторы ${element.repeatCount}">×${element.repeatCount}</button>
+          ${isExpanded ? editor : `<div class="element-compact">${element.category ? `<span class="element-category-chip"><span class="category-icon">${categoryIcon(element.category)}</span>${escapeHtml(element.category)}</span>` : ''}<div class="element-description-preview ${preview ? '' : 'is-empty'}">${preview ? linkifyReferences(preview, total) : 'Что это и как работает'}</div>${extras.length ? `<div class="element-extra-preview">${extras.join(' · ')}</div>` : ''}${backlinkNumbers.length ? `<div class="element-backlinks">упоминается в: ${backlinkNumbers.map((from) => `<button class="ref-link" type="button" data-ref-number="${from}" title="Перейти к элементу #${String(from).padStart(2, '0')}">#${String(from).padStart(2, '0')}</button>`).join(' ')}</div>` : ''}</div>`}
+          <button class="repeat-badge" type="button" data-heat="${repeatHeatLevel(weight)}" data-repeat-count="${element.repeatCount}" style="--heat:${(repeatHeatLevel(weight) / 6).toFixed(3)}" title="Клик: +1, Alt+клик: −1. Вес повторяемости ${weight} (×${element.repeatCount}${backlinkNumbers.length ? ` и ${backlinkNumbers.length} ссылок #NN` : ''})." aria-label="Повторы ${element.repeatCount}">×${element.repeatCount}</button>
           <div class="element-top-actions" aria-label="Действия элемента">${isExpanded ? '<button class="element-top-action element-collapse" type="button" data-collapse-element title="Свернуть" aria-label="Свернуть">−</button>' : ''}<button class="element-top-action delete" type="button" data-delete-element title="Удалить" aria-label="Удалить"><svg class="action-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 4.5h9M6 4.5V3h4v1.5M5 6.5l.5 6h5l.5-6"></path></svg></button></div>
           <div class="card-actions" aria-label="Действия элемента"><button class="card-action" type="button" data-copy-element title="Копировать" aria-label="Копировать"><svg class="action-icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="5.25" y="5.25" width="8" height="8" rx="1.5"></rect><path d="M10.75 5.25V3.5A1.5 1.5 0 0 0 9.25 2h-5.5A1.75 1.75 0 0 0 2 3.75v5.5a1.5 1.5 0 0 0 1.5 1.5h1.75"></path></svg></button></div>
         </article>`;
@@ -1564,11 +1904,43 @@
         return `<div class="field"><label>${label}</label><input data-video-field="${field}" value="${escapeAttribute(draft[field] || '')}" placeholder="${escapeAttribute(placeholder)}" autocomplete="off"></div>`;
       }
 
+      // The sidebar is patched in place: rebuilding its markup on every sync made the
+      // progress row visibly jump while the user was working.
+      function patchVideoRow(row, project) {
+        const active = String(state.activeProjectId) === String(project.id);
+        const untitled = !asText(project.title).trim() || project.title === 'Без названия';
+        const progress = projectProgress(project);
+        const elements = elementsForProject(project.id);
+        row.classList.toggle('is-active', active);
+        row.classList.toggle('is-untitled', untitled);
+        row.classList.toggle('is-complete', progress >= 100);
+        const currentProgress = row.style.getPropertyValue('--progress');
+        if (currentProgress !== `${progress}%`) row.style.setProperty('--progress', `${progress}%`);
+        const setText = (selector, text) => {
+          const node = row.querySelector(selector);
+          if (node && node.textContent !== text) node.textContent = text;
+        };
+        setText('.video-row-title', project.title || 'Без названия');
+        setText('.video-row-channel', project.channel || project.niche || 'Канал не указан');
+        setText('.row-number', `${progress}%`);
+        setText('.row-count', `${elements.length} эл.`);
+        const select = row.querySelector('.video-row-select');
+        if (select) select.setAttribute('aria-current', active ? 'page' : 'false');
+      }
+
       function renderSidebar() {
         const query = state.search.trim();
         const visible = state.projects.filter((project) => matchesProject(project, query, state.categoryFilter));
-        dom.videoList.innerHTML = visible.map(videoRow).join('') || '<div class="empty-state">Ничего не найдено</div>';
-        dom.videoListCount.textContent = `${visible.length}/${state.projects.length}`;
+        const rows = [...dom.videoList.querySelectorAll('.video-row')];
+        const sameOrder = rows.length === visible.length
+          && rows.every((row, index) => row.dataset.selectProject === String(visible[index].id));
+        if (sameOrder && visible.length) {
+          rows.forEach((row, index) => patchVideoRow(row, visible[index]));
+        } else {
+          dom.videoList.innerHTML = visible.map(videoRow).join('') || '<div class="empty-state">Ничего не найдено</div>';
+        }
+        const counter = `${visible.length}/${state.projects.length}`;
+        if (dom.videoListCount.textContent !== counter) dom.videoListCount.textContent = counter;
       }
 
       function renderWorkspace() {
@@ -1856,6 +2228,7 @@
 
       function addElement(projectId, image = '', timecode = currentCatalogPlayerTimecode(projectId)) {
         const element = normalizeElement({ id: makeId(), projectId, image, timecodes: timecode ? [timecode] : [], repeatCount: 1 });
+        rememberLocalPreview(element.id, image);
         state.elements.push(element);
         state.activeProjectId = projectId;
         state.newElementId = element.id;
@@ -1921,6 +2294,7 @@
             badge.classList.add('is-pulsing');
           }
         }
+        refreshReferenceVisuals(element.projectId);
         updateProjectCounts(element.projectId);
         scheduleStatsUpdate();
       }
@@ -2009,16 +2383,26 @@
           dom.modalSurface.innerHTML = '';
           return;
         }
-        const deletionConfirmed = deleteConfirmationMatches(modal.confirmation);
+        // Deleting a video destroys every element inside it, so it asks for the typed word.
+        // Deleting a single element only asks for a deliberate second click.
+        const typedRequired = modal.kind === 'project';
+        const deletionConfirmed = !typedRequired || deleteConfirmationMatches(modal.confirmation);
+        const elements = typedRequired ? elementsForProject(modal.record?.id).length : 0;
         dom.modalSurface.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-          <h2 id="modalTitle">Удалить ${modal.kind === 'project' ? 'ролик' : 'элемент'}?</h2>
-          <p>Вы уверены? Это действие нельзя отменить.</p>
-          <label class="modal-help" for="deleteConfirmation">Введите «${DELETE_CONFIRMATION}» для подтверждения.</label>
-          <input id="deleteConfirmation" data-delete-confirmation value="${escapeAttribute(modal.confirmation || '')}" autocomplete="off" aria-label="Подтверждение удаления">
+          <h2 id="modalTitle">Удалить ${typedRequired ? 'ролик' : 'элемент'}?</h2>
+          <p>${typedRequired
+            ? `Ролик «${escapeHtml(modal.record?.title || 'Без названия')}» и ${elements} ${elements === 1 ? 'элемент' : 'элементов'} будут удалены безвозвратно.`
+            : 'Элемент будет удалён безвозвратно.'}</p>
+          ${typedRequired ? `<label class="modal-help" for="deleteConfirmation">Введите «${DELETE_CONFIRMATION}» для подтверждения.</label>
+          <input id="deleteConfirmation" data-delete-confirmation value="${escapeAttribute(modal.confirmation || '')}" autocomplete="off" aria-label="Подтверждение удаления">` : ''}
           <div class="modal-actions"><button class="modal-button" type="button" data-modal-action="cancel">Отмена</button><button class="modal-button modal-button-danger" type="button" data-modal-action="delete" ${deletionConfirmed ? '' : 'disabled'}>Удалить</button></div>
         </div>`;
         dom.modalSurface.classList.add('is-open');
-        requestAnimationFrame(() => dom.modalSurface.querySelector('input')?.focus());
+        requestAnimationFrame(() => {
+          const field = dom.modalSurface.querySelector('input');
+          if (field) field.focus();
+          else dom.modalSurface.querySelector('[data-modal-action="cancel"]')?.focus();
+        });
       }
 
       function showDeleteModal(kind, record) {
@@ -2053,6 +2437,7 @@
       function openStats() {
         closeMenu();
         state.statsOpen = true;
+        state.statsBarsDrawn = false;
         renderStats();
         dom.statsPanel.classList.add('is-open');
       }
@@ -2202,6 +2587,7 @@
           const element = findElement(calibration.targetElementId);
           if (!element) return;
           element.image = await cropImage(calibration.source, frame);
+          rememberLocalPreview(element.id, element.image);
           saveElement(element, false).catch(() => undefined);
           renderFeed();
         } catch (error) {
@@ -2448,6 +2834,7 @@
           const element = addElement(projectId, source, timecode);
           if (state.settings.cropCalibrated && state.settings.crop) {
             element.image = await cropImage(source, state.settings.crop);
+            rememberLocalPreview(element.id, element.image);
             saveElement(element, false).catch(() => undefined);
             renderFeed();
           } else {
@@ -2523,8 +2910,29 @@
           }
         }
         const duration = projects.reduce((sum, project) => sum + (parseTimecode(project.duration) || 0), 0);
-        const plannedSeconds = elements.length * 1.5;
+        // Timeline coverage is the last marked frame against the video length, not a guess.
+        const coveredSeconds = projects.reduce((sum, project) => {
+          const times = elementsForProject(project.id)
+            .map((element) => parseTimecode(timecodesFrom(element)[0]))
+            .filter((value) => value !== null);
+          return sum + (times.length ? Math.max(...times) : 0);
+        }, 0);
+        const mentions = new Map();
+        for (const project of projects) {
+          const list = elementsForProject(project.id);
+          for (const [number, sources] of referenceBacklinks(project.id)) {
+            const target = list[number - 1];
+            if (target) mentions.set(String(target.id), { element: target, project, count: sources.size, sources: [...sources].sort((a, b) => a - b), number });
+          }
+        }
+        const repeated = elements
+          .filter((element) => Math.max(1, Number(element.repeatCount) || 1) > 1)
+          .sort((left, right) => (right.repeatCount || 1) - (left.repeatCount || 1));
         return {
+          coveredSeconds,
+          mentions: [...mentions.values()].sort((left, right) => right.count - left.count || left.number - right.number),
+          repeated,
+          marked: elements.filter((element) => asText(element.description).trim() || asText(element.category).trim()).length,
           projects,
           elements,
           repeats: totalRepeats(elements),
@@ -2534,7 +2942,6 @@
           withImage: elements.filter((element) => Boolean(element.image)).length,
           withTimecode: elements.filter((element) => timecodesFrom(element).length > 0).length,
           completed: projects.filter((project) => project.completed).length,
-          plannedSeconds,
           duration
         };
       }
@@ -2549,7 +2956,8 @@
         return `<div class="stat-summary">
           ${includeProjects ? `<div class="kpi"><div class="kpi-value">${stats.projects.length}</div><div class="kpi-label">Роликов</div></div>` : ''}
           <div class="kpi"><div class="kpi-value">${stats.elements.length}</div><div class="kpi-label">Элементов</div></div>
-          <div class="kpi"><div class="kpi-value">${stats.repeats}</div><div class="kpi-label">Повторов</div></div>
+          <div class="kpi"><div class="kpi-value">${stats.repeats}</div><div class="kpi-label">Повторов ×N</div></div>
+          <div class="kpi"><div class="kpi-value">${stats.marked}/${stats.elements.length}</div><div class="kpi-label">Размечено</div></div>
           <div class="kpi"><div class="kpi-value">${stats.withImage}/${stats.elements.length}</div><div class="kpi-label">С картинкой</div></div>
           <div class="kpi"><div class="kpi-value">${completePercent}%</div><div class="kpi-label">Закончен</div></div>
         </div>`;
@@ -2564,6 +2972,14 @@
         }).join('')}</div>`;
       }
 
+      // Repetition of a technique shows up two ways: the ×N badge and #NN mentions in texts.
+      function repetitionsMarkup(stats) {
+        const label = (number) => `#${String(number).padStart(2, '0')}`;
+        const mentions = stats.mentions.slice(0, 10).map((row) => `<div class="stat-entry"><span class="stat-entry-name"><button class="ref-link" type="button" data-ref-number="${row.number}">${label(row.number)}</button> ${escapeHtml(elementName(row.element))}</span><span class="stat-entry-value">${row.count} упом. · ${row.sources.map(label).join(', ')}</span></div>`);
+        const repeated = stats.repeated.slice(0, 10).map((element) => `<div class="stat-entry"><span class="stat-entry-name"><button class="ref-link" type="button" data-ref-number="${elementNumber(element)}">${label(elementNumber(element))}</button> ${escapeHtml(elementName(element))}</span><span class="stat-entry-value">×${element.repeatCount}</span></div>`);
+        return `<h4>Чаще всего упоминают (#NN в текстах)</h4>${mentions.length ? `<div class="stat-list">${mentions.join('')}</div>` : '<div class="stat-note">Ссылок #NN пока нет</div>'}<h4>Повторы приёма (×N)</h4>${repeated.length ? `<div class="stat-list">${repeated.join('')}</div>` : '<div class="stat-note">Повторов пока нет</div>'}`;
+      }
+
       function updateStatsPanel() {
         if (!state.statsOpen || !byId('statsCurrent')) return;
         const active = findProject(state.activeProjectId);
@@ -2575,11 +2991,15 @@
         byId('statsTechniques').innerHTML = `<h4>Текущий ролик</h4>${statsListMarkup(current.techniques, current.elements.length, 'technique')}<h4>Все ролики</h4>${statsListMarkup(all.techniques, all.elements.length, 'technique')}`;
         byId('statsKeywords').innerHTML = `<h4>Текущий ролик</h4>${statsListMarkup(current.keywords, current.elements.length, 'keyword')}<h4>Все ролики</h4>${statsListMarkup(all.keywords, all.elements.length, 'keyword')}`;
         const coverage = (stats) => stats.duration
-          ? `${formatSeconds(stats.plannedSeconds)} из ${formatSeconds(stats.duration)} · ${Math.round((stats.plannedSeconds / stats.duration) * 100)}%`
-          : `${formatSeconds(stats.plannedSeconds)} · длительность не указана`;
+          ? `${formatSeconds(stats.coveredSeconds)} из ${formatSeconds(stats.duration)} · ${Math.round((stats.coveredSeconds / stats.duration) * 100)}%`
+          : `${formatSeconds(stats.coveredSeconds)} · длительность не указана`;
         byId('statsCoverage').innerHTML = `<div class="stat-list"><div class="stat-entry"><span class="stat-entry-name">Текущий: картинки / без</span><span class="stat-entry-value">${current.withImage} / ${current.elements.length - current.withImage}</span></div><div class="stat-entry"><span class="stat-entry-name">Текущий: таймкод / без</span><span class="stat-entry-value">${current.withTimecode} / ${current.elements.length - current.withTimecode}</span></div><div class="stat-entry"><span class="stat-entry-name">Покрытие таймлайна</span><span class="stat-entry-value">${coverage(current)}</span></div><div class="stat-entry"><span class="stat-entry-name">Все: картинки / без</span><span class="stat-entry-value">${all.withImage} / ${all.elements.length - all.withImage}</span></div><div class="stat-entry"><span class="stat-entry-name">Все: таймкод / без</span><span class="stat-entry-value">${all.withTimecode} / ${all.elements.length - all.withTimecode}</span></div><div class="stat-entry"><span class="stat-entry-name">Все: покрытие</span><span class="stat-entry-value">${coverage(all)}</span></div></div>`;
+        byId('statsRepetitions').innerHTML = repetitionsMarkup(current);
         byId('statsTimeline').innerHTML = state.projects.map(timelineMarkup).join('') || '<div class="stat-note">Пока нет роликов</div>';
-        requestAnimationFrame(() => drawBars(byId('statsBars')));
+        if (!state.statsBarsDrawn) {
+          state.statsBarsDrawn = true;
+          requestAnimationFrame(() => drawBars(byId('statsBars')));
+        }
       }
 
       function scheduleStatsUpdate() {
@@ -2595,6 +3015,7 @@
             <section class="stats-block"><h3>Все ролики</h3><div id="statsAll"></div></section>
             <section class="stats-block"><h3>Ролики: элементы + повторы</h3><canvas id="statsBars" class="bar-chart" aria-label="График роликов"></canvas></section>
             <section class="stats-block"><h3>Категории</h3><div id="statsCategories"></div></section>
+            <section class="stats-block"><h3>Повторения приёмов</h3><div id="statsRepetitions"></div></section>
             <section class="stats-block"><h3>Топ техник</h3><div id="statsTechniques"></div></section>
             <section class="stats-block"><h3>Топ ключевых слов</h3><div id="statsKeywords"></div></section>
             <section class="stats-block"><h3>Покрытие и качество данных</h3><div id="statsCoverage"></div></section>
@@ -3476,8 +3897,10 @@
 
       function markCloudDirty({ allowDuringImport = false } = {}) {
         if (state.cloud.applying || (state.cloud.importing && !allowDuringImport)) return false;
+        if (!state.cloud.dirty || !state.cloud.firstDirtyAt) state.cloud.firstDirtyAt = Date.now();
         clearTimeout(state.cloud.saveTimer);
         state.cloud.saveTimer = null;
+        state.cloud.saveDueAt = 0;
         clearTimeout(state.cloud.outboxTimer);
         state.cloud.outboxTimer = null;
         state.cloud.dirty = true;
@@ -3496,20 +3919,46 @@
           persistCloudOutbox();
           state.cloud.syncQueue.then(() => {
             if (state.cloud.ready && state.cloud.dirty && !state.cloud.outboxError && !state.cloud.outboxPending && !state.cloud.importing) {
-              scheduleCloudSave(0);
+              scheduleCloudSave();
             }
           });
         }, CLOUD_SAVE_DELAY);
         return true;
       }
 
-      function scheduleCloudSave(delay = CLOUD_SAVE_DELAY) {
+      // Every push is a commit and every commit is a GitHub Pages build, so pushes are
+      // batched: at most one per CLOUD_PUSH_MIN_INTERVAL, and never one per keystroke.
+      // A pending deadline is never pushed further away — the poll runs every few seconds
+      // and would otherwise postpone the upload forever.
+      function scheduleCloudSave(delay = CLOUD_PUSH_DELAY) {
         if (state.cloud.importing || state.cloud.outboxPending || state.cloud.outboxTimer) return;
+        const now = Date.now();
+        const earliest = state.cloud.lastPushAt ? state.cloud.lastPushAt + CLOUD_PUSH_MIN_INTERVAL : now;
+        const latest = (state.cloud.firstDirtyAt || now) + CLOUD_PUSH_MAX_DEFERRAL;
+        const dueAt = Math.max(Math.min(now + delay, Math.max(latest, earliest)), earliest);
+        if (state.cloud.saveTimer && state.cloud.saveDueAt <= dueAt) return;
         clearTimeout(state.cloud.saveTimer);
+        state.cloud.saveDueAt = dueAt;
+        state.cloud.pendingPush = true;
         state.cloud.saveTimer = setTimeout(() => {
           state.cloud.saveTimer = null;
+          state.cloud.saveDueAt = 0;
+          state.cloud.pendingPush = false;
           saveCloud().catch(() => undefined);
-        }, delay);
+        }, Math.max(0, dueAt - Date.now()));
+        setSaveState('saving');
+      }
+
+      function flushCloudSave(force = false) {
+        if (!state.cloud.dirty || state.cloud.importing) return;
+        if (!force) {
+          scheduleCloudSave(CLOUD_PUSH_BLUR_DELAY);
+          return;
+        }
+        clearTimeout(state.cloud.saveTimer);
+        state.cloud.saveTimer = null;
+        state.cloud.pendingPush = false;
+        saveCloud().catch(() => undefined);
       }
 
       function updateKnownRemoteIds(incoming) {
@@ -3531,7 +3980,7 @@
       }
 
       function canApplyRemote() {
-        return !state.cloud.dirty && !state.cloud.saving && !state.cloud.importing && !isTextEditing();
+        return !state.cloud.dirty && !state.cloud.saving && !state.cloud.importing && !isTextEditing() && !isTypingPause();
       }
 
       function remoteDataChanged(remote) {
@@ -3615,7 +4064,7 @@
       async function applyRemoteSnapshot(remote, { allowDirty = false, suppressCloudMark = false } = {}) {
         if (!remote || remote.unchanged) return false;
         // An allowDirty merge may be needed during cloud recovery, but it must never replace a live draft.
-        if (isTextEditing()) {
+        if (isTextEditing() || isTypingPause()) {
           state.cloud.pendingSnapshot = remote;
           return false;
         }
@@ -3636,6 +4085,7 @@
         }
 
         const changed = remoteDataChanged(remote);
+        const hadInitialPull = state.cloud.initialPullDone;
         const previousEditing = state.editingElementId;
         const previousNew = state.newElementId;
         const previousActive = state.activeProjectId;
@@ -3670,6 +4120,7 @@
         const preservedUnknown = [...projectMap.keys()].some((id) => !remoteProjectIds.has(id) && !previousKnownProjects.has(id))
           || [...elementMap.keys()].some((id) => !remoteElementIds.has(id) && !previousKnownElements.has(id));
 
+        let restored = { elements: [], projects: [], conflicts: [], count: 0 };
         state.cloud.applying = true;
         applyReadOnlyState();
         try {
@@ -3681,6 +4132,7 @@
             : (state.settings.activeProjectId && findProject(state.settings.activeProjectId) ? state.settings.activeProjectId : state.projects[0]?.id || null);
           state.editingElementId = previousEditing && findElement(previousEditing) ? previousEditing : null;
           state.newElementId = previousNew && findElement(previousNew) ? previousNew : null;
+          restored = restoreDrafts();
           await commit(() => runTransaction(['projects', 'elements', 'categories', 'settings'], 'readwrite', (transaction) => {
             const projects = transaction.objectStore('projects');
             const elements = transaction.objectStore('elements');
@@ -3688,6 +4140,8 @@
             for (const id of deletedProjectIds) projects.delete(currentProjectKeys.get(id) ?? id);
             for (const project of remote.incoming.projects) projects.put(project);
             for (const element of appliedRemoteElements) elements.put(element);
+            for (const element of restored.elements) elements.put(element);
+            for (const project of restored.projects) projects.put(project);
             writeCategoryRecords(transaction);
             const settings = transaction.objectStore('settings');
             for (const [key, value] of remoteSettingsEntries(remote)) settings.put({ key, value });
@@ -3710,7 +4164,12 @@
           state.cloud.applying = false;
           applyReadOnlyState();
         }
-        if (preservedUnknown && !suppressCloudMark) markCloudDirty();
+        if ((preservedUnknown || restored.count) && !suppressCloudMark) markCloudDirty();
+        if (restored.conflicts.length) {
+          showToast(`Ваш текст сохранён: партнёр правил ${[...new Set(restored.conflicts)].slice(0, 2).join(', ')}.`);
+        }
+        // The very first pull always differs from an empty catalog; that is not a partner.
+        if (changed && hadInitialPull) markRemotePresence();
         setSaveState('saved', 'Сохранено');
         return changed;
       }
@@ -3723,7 +4182,11 @@
 
       async function getCloudSnapshot({ force = false, apply = true } = {}) {
         const headers = cloudHeaders(force ? {} : { 'If-None-Match': state.cloud.observedEtag || '""' });
+        // A response that started before our own write finished is already stale: applying it
+        // would roll the catalog back to the pre-write state.
+        const writeGeneration = state.cloud.writeGeneration;
         const response = await fetch(GITHUB_CONTENTS_URL, { method: 'GET', headers, cache: 'no-store' });
+        if (writeGeneration !== state.cloud.writeGeneration && !force) return { unchanged: true };
         if (response.status === 304) return { unchanged: true };
         const responseEtag = response.headers.get('ETag') || '';
         let remote;
@@ -3741,6 +4204,7 @@
         await rememberRemoteSnapshot(remote.raw);
         if (state.cloud.importing || state.cloud.pollPaused) return remote;
         if (apply) {
+          if (writeGeneration !== state.cloud.writeGeneration) return remote;
           if (canApplyRemote()) await applyRemoteSnapshot(remote);
           else state.cloud.pendingSnapshot = remote;
         }
@@ -3800,7 +4264,11 @@
       function applyPreparedAssetUrlsToCatalog(localChanges) {
         for (const change of localChanges.elements) {
           const element = state.elements.find((row) => String(row.id) === change.id);
-          if (element?.image === change.source) element.image = change.value;
+          if (element?.image === change.source) {
+            // The asset URL only starts working after the next Pages build; keep the frame visible.
+            rememberLocalPreview(change.id, change.source);
+            element.image = change.value;
+          }
         }
         if (localChanges.lastCropSource && state.settings.lastCropSource === localChanges.lastCropSource.source) {
           state.settings.lastCropSource = localChanges.lastCropSource.value;
@@ -3894,6 +4362,9 @@
           applyReadOnlyState();
         }
         applyPreparedAssetUrlsToCatalog(localChanges);
+        state.cloud.writeGeneration += 1;
+        state.cloud.lastPushAt = Date.now();
+        state.cloud.firstDirtyAt = 0;
         state.cloud.baseSha = sha;
         state.cloud.baseEtag = '';
         state.cloud.baseSnapshot = confirmedSnapshot;
@@ -4106,84 +4577,116 @@
         }
       }
 
-      function normalizedPresence(raw) {
-        const source = raw?.clients && typeof raw.clients === 'object' && !Array.isArray(raw.clients) ? raw.clients : raw;
-        if (!source || typeof source !== 'object' || Array.isArray(source)) return {};
-        const clients = {};
-        for (const [clientId, lastSeen] of Object.entries(source)) {
-          const timestamp = Number(lastSeen);
-          if (clientId && Number.isFinite(timestamp) && timestamp > 0) clients[clientId] = timestamp;
-        }
-        return clients;
-      }
-
-      function prunePresence(clients, now = Date.now()) {
-        for (const [clientId, lastSeen] of Object.entries(clients)) {
-          if (now - lastSeen > PRESENCE_STALE_AFTER) delete clients[clientId];
-        }
-        return clients;
-      }
-
-      function updatePresenceCount(count) {
-        state.presence.count = count;
-        dom.onlinePresence.textContent = `${count} онлайн`;
-      }
-
-      async function getPresenceSnapshot() {
-        const response = await fetch(PRESENCE_CONTENTS_URL, {
-          method: 'GET',
-          headers: cloudHeaders(),
-          cache: 'no-store'
-        });
-        if (response.status === 404) return { clients: {}, sha: '' };
-        if (!response.ok) throw new Error(`Presence GET: ${response.status}`);
-        const payload = await response.json();
-        const source = payload?.content && payload.encoding === 'base64' ? textFromBase64(payload.content) : '{}';
-        const envelope = JSON.parse(source);
-        return { clients: normalizedPresence(envelope), sha: asText(payload?.sha).trim() };
-      }
-
-      async function publishPresence(retryCount = 0) {
-        const remote = await getPresenceSnapshot();
-        const clients = prunePresence(remote.clients);
-        updatePresenceCount(Object.keys(clients).length);
-        clients[state.presence.clientId] = Date.now();
-        const response = await fetch(PRESENCE_CONTENTS_URL, {
-          method: 'PUT',
-          headers: cloudHeaders({ 'Content-Type': 'application/json' }),
-          body: JSON.stringify({
-            message: 'chore: update presence',
-            branch: GITHUB_BRANCH,
-            content: base64FromText(JSON.stringify({
-              version: 1,
-              updatedAt: new Date().toISOString(),
-              clients
-            })),
-            ...(remote.sha ? { sha: remote.sha } : {})
-          })
-        });
-        if ((response.status === 409 || response.status === 422) && retryCount < PRESENCE_WRITE_RACE_RETRIES) return publishPresence(retryCount + 1);
-        if (!response.ok) throw new Error(`Presence PUT: ${response.status}`);
-        updatePresenceCount(Object.keys(clients).length);
-      }
-
-      async function heartbeatPresence() {
-        if (state.presence.inFlight) return;
-        state.presence.inFlight = true;
+      // Presence never writes to the repository: a commit per heartbeat exhausted the
+      // GitHub Pages build budget (~10 builds/hour) and every deploy started to fail.
+      function readPresencePeers() {
         try {
-          await publishPresence();
+          const raw = JSON.parse(localValue(PRESENCE_LOCAL_KEY, '{}'));
+          if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return {};
+          const peers = {};
+          for (const [clientId, lastSeen] of Object.entries(raw)) {
+            const timestamp = Number(lastSeen);
+            if (clientId && Number.isFinite(timestamp) && timestamp > 0) peers[clientId] = timestamp;
+          }
+          return peers;
         } catch (error) {
-          // Presence is best-effort and must never affect catalog synchronization.
-        } finally {
-          state.presence.inFlight = false;
+          return {};
         }
+      }
+
+      function writePresencePeers(peers) {
+        saveLocalValue(PRESENCE_LOCAL_KEY, JSON.stringify(peers));
+      }
+
+      function livePresencePeers(now = Date.now()) {
+        for (const [clientId, lastSeen] of state.presence.peers) {
+          if (now - lastSeen > PRESENCE_STALE_AFTER) state.presence.peers.delete(clientId);
+        }
+        return state.presence.peers;
+      }
+
+      function presenceCount(now = Date.now()) {
+        const peers = livePresencePeers(now);
+        const tabs = new Set([state.presence.clientId, ...peers.keys()]).size;
+        const remote = now - state.presence.remoteActiveAt < PRESENCE_REMOTE_WINDOW ? 1 : 0;
+        return { tabs, remote, total: tabs + remote };
+      }
+
+      function renderPresence() {
+        const { tabs, remote, total } = presenceCount();
+        state.presence.count = total;
+        dom.onlinePresence.textContent = `${total} онлайн`;
+        dom.onlinePresence.title = remote
+          ? `Вкладок этого браузера: ${tabs}. Партнёр правил каталог менее ${Math.round(PRESENCE_REMOTE_WINDOW / 60000)} мин назад.`
+          : `Вкладок этого браузера: ${tabs}. Правок с других машин недавно не было.`;
+      }
+
+      function markRemotePresence() {
+        state.presence.remoteActiveAt = Date.now();
+        renderPresence();
+      }
+
+      function heartbeatPresence() {
+        const now = Date.now();
+        const peers = readPresencePeers();
+        for (const [clientId, lastSeen] of Object.entries(peers)) {
+          if (clientId !== state.presence.clientId && now - lastSeen <= PRESENCE_STALE_AFTER) {
+            state.presence.peers.set(clientId, lastSeen);
+          }
+        }
+        peers[state.presence.clientId] = now;
+        for (const [clientId, lastSeen] of Object.entries(peers)) {
+          if (now - lastSeen > PRESENCE_STALE_AFTER) delete peers[clientId];
+        }
+        writePresencePeers(peers);
+        try {
+          state.presence.channel?.postMessage({ type: 'ping', clientId: state.presence.clientId, at: now });
+        } catch (error) {
+          // BroadcastChannel is optional; localStorage already carries the heartbeat.
+        }
+        renderPresence();
       }
 
       function initializePresence() {
         state.presence.clientId = presenceClientId();
-        heartbeatPresence().catch(() => undefined);
+        if (typeof BroadcastChannel === 'function') {
+          try {
+            state.presence.channel = new BroadcastChannel(PRESENCE_CHANNEL_NAME);
+            state.presence.channel.addEventListener('message', (event) => {
+              const message = event.data;
+              if (!message || message.clientId === state.presence.clientId) return;
+              if (message.type === 'leave') state.presence.peers.delete(message.clientId);
+              else state.presence.peers.set(message.clientId, Date.now());
+              renderPresence();
+            });
+          } catch (error) {
+            state.presence.channel = null;
+          }
+        }
+        globalThis.addEventListener('storage', (event) => {
+          if (event.key === PRESENCE_LOCAL_KEY) {
+            const now = Date.now();
+            for (const [clientId, lastSeen] of Object.entries(readPresencePeers())) {
+              if (clientId !== state.presence.clientId && now - lastSeen <= PRESENCE_STALE_AFTER) {
+                state.presence.peers.set(clientId, lastSeen);
+              }
+            }
+            renderPresence();
+          }
+        });
+        globalThis.addEventListener('pagehide', () => {
+          try {
+            state.presence.channel?.postMessage({ type: 'leave', clientId: state.presence.clientId, at: Date.now() });
+          } catch (error) {
+            // Nothing to do while the tab is closing.
+          }
+          const peers = readPresencePeers();
+          delete peers[state.presence.clientId];
+          writePresencePeers(peers);
+        });
+        heartbeatPresence();
         clearInterval(state.presence.heartbeatTimer);
-        state.presence.heartbeatTimer = setInterval(() => heartbeatPresence().catch(() => undefined), PRESENCE_HEARTBEAT_INTERVAL);
+        state.presence.heartbeatTimer = setInterval(heartbeatPresence, PRESENCE_HEARTBEAT_INTERVAL);
       }
 
       function downloadText(filename, content, type = 'text/plain;charset=utf-8') {
@@ -4558,13 +5061,28 @@
         renderFeed();
       }
 
+      dom.workspaceInner.addEventListener('load', (event) => {
+        const image = event.target;
+        if (!(image instanceof HTMLImageElement) || !image.matches('.image-slot img')) return;
+        const card = image.closest('[data-element-id]');
+        if (!card) return;
+        const key = `${card.dataset.elementId}\n${image.dataset.previewSource || ''}`;
+        state.previewResolved.set(key, image.currentSrc || image.src);
+      }, true);
+
       dom.workspaceInner.addEventListener('error', (event) => {
         const image = event.target;
         if (!(image instanceof HTMLImageElement) || !image.matches('.image-slot img')) return;
-        const fallback = image.dataset.previewFallback;
-        if (fallback && image.dataset.previewFallbackAttempted !== 'true') {
-          image.dataset.previewFallbackAttempted = 'true';
-          image.src = fallback;
+        let sources = [];
+        try {
+          sources = JSON.parse(image.dataset.previewSources || '[]');
+        } catch (parseError) {
+          sources = [];
+        }
+        const next = Number(image.dataset.previewIndex || 0) + 1;
+        if (Array.isArray(sources) && sources[next]) {
+          image.dataset.previewIndex = String(next);
+          image.src = sources[next];
           return;
         }
         showUnavailablePreview(image);
@@ -4619,6 +5137,12 @@
           copyAnchor(anchorButton.dataset.copyAnchor);
           return;
         }
+        const referenceLink = event.target.closest('[data-ref-number]');
+        if (referenceLink) {
+          event.stopPropagation();
+          highlightElementNumber(referenceLink.dataset.refNumber);
+          return;
+        }
         const collapse = event.target.closest('[data-collapse-element]');
         if (collapse) {
           event.stopPropagation();
@@ -4650,6 +5174,7 @@
       dom.appShell.addEventListener('input', (event) => {
         if (state.cloud.applying || state.cloud.importing) return;
         const input = event.target;
+        state.lastTypingAt = Date.now();
         const videoField = input.dataset.videoField;
         if (videoField) {
           updateVideoDraft(videoField, input.value);
@@ -4659,7 +5184,10 @@
         const projectField = input.dataset.projectField;
         if (projectField && section) {
           const project = findProject(section.dataset.projectId);
-          if (project) updateProject(project, projectField, input.value);
+          if (project) {
+            if (projectField !== 'progress') rememberDraft('project', project.id, projectField, input.value);
+            updateProject(project, projectField, input.value);
+          }
           return;
         }
         if (input.matches('[data-category-input]')) {
@@ -4671,6 +5199,7 @@
         if (elementField && card) {
           const element = findElement(card.dataset.elementId);
           if (element) {
+            rememberDraft('element', element.id, elementField, input.value);
             updateElement(element, elementField, input.value);
             if (input.matches('.element-description')) resizeDescription(input);
           }
@@ -4710,6 +5239,10 @@
               hideCategoryMenu(categoryInput);
             }
           }, 0);
+        }
+        if (event.target.matches('input, textarea')) {
+          flushCloudSave();
+          if (event.target.dataset.elementField) refreshReferenceVisuals();
         }
         setTimeout(() => applyPendingRemoteSnapshot().catch(() => undefined), 0);
       });
@@ -4809,6 +5342,11 @@
 
       dom.statsPanel.addEventListener('click', (event) => {
         if (event.target.closest('[data-close-stats]')) closeStats();
+        const referenceLink = event.target.closest('[data-ref-number]');
+        if (referenceLink) {
+          closeStats();
+          highlightElementNumber(referenceLink.dataset.refNumber);
+        }
       });
 
       dom.calibrationSurface.addEventListener('click', (event) => {
@@ -4831,10 +5369,12 @@
           return;
         }
         if (action === 'delete') {
-          const confirmation = dom.modalSurface.querySelector('[data-delete-confirmation]')?.value || '';
-          if (!deleteConfirmationMatches(confirmation)) {
-            showToast(`Введите «${DELETE_CONFIRMATION}» для удаления.`);
-            return;
+          if (modal.kind === 'project') {
+            const confirmation = dom.modalSurface.querySelector('[data-delete-confirmation]')?.value || '';
+            if (!deleteConfirmationMatches(confirmation)) {
+              showToast(`Введите «${DELETE_CONFIRMATION}» для удаления.`);
+              return;
+            }
           }
           closeModal();
           if (modal.kind === 'project') removeProject(modal.record);
@@ -4903,6 +5443,45 @@
         expect(catalogAssetUrl('assets/elements/example.jpg?v=abc').includes('assets/elements/example.jpg?v=abc'), 'asset URL resolution');
         expect(deleteConfirmationMatches('УДАЛИТЬ') && !deleteConfirmationMatches('Удалить'), 'delete confirmation word');
 
+        expect(linkifyReferences('ровно как #05 и #24', 30).match(/data-ref-number="(\d+)"/g)?.join() === 'data-ref-number="5",data-ref-number="24"', '#NN links in text');
+        expect(!linkifyReferences('#99', 5).includes('data-ref-number'), 'unknown #NN stays plain text');
+        expect(linkifyReferences('<b>#03</b>', 5).startsWith('&lt;b&gt;'), 'reference text stays escaped');
+        expect([...referenceNumbersIn('см. #05, #24 и #5')].join() === '5,24', 'reference numbers parsed');
+
+        const previewElement = { id: 'preview-test', image: 'assets/elements/preview-test.jpg?v=7' };
+        expect(previewSourceList(previewElement).length === 3, 'published preview falls back to raw URL');
+        state.previewCache.set('preview-test', 'data:image/jpeg;base64,AAAA');
+        expect(previewSourceList(previewElement)[0].startsWith('data:'), 'captured frame is shown before the build lands');
+        state.previewCache.delete('preview-test');
+
+        const draftElement = normalizeElement({ id: 'draft-test', projectId: 'draft-project', description: 'remote text' });
+        state.elements.push(draftElement);
+        state.drafts.set(draftKey('element', 'draft-test', 'description'), { kind: 'element', id: 'draft-test', field: 'description', value: 'мой черновик', at: Date.now() });
+        const restoredDrafts = restoreDrafts();
+        expect(restoredDrafts.count === 1 && draftElement.description === 'мой черновик', 'draft survives an incoming snapshot');
+        expect(restoredDrafts.conflicts.length === 1, 'overwritten remote text is reported');
+        state.elements = state.elements.filter((element) => element.id !== 'draft-test');
+        state.drafts.clear();
+
+        const typingAt = state.lastTypingAt;
+        state.lastTypingAt = Date.now();
+        expect(!canApplyRemote(), 'incoming sync waits while the user types');
+        state.lastTypingAt = typingAt;
+
+        const capturedFrame = 'data:image/jpeg;base64,AAAA';
+        const capturedElement = normalizeElement({ id: 'capture-test', projectId: 'capture-project', image: capturedFrame });
+        state.elements.push(capturedElement);
+        rememberLocalPreview(capturedElement.id, capturedFrame);
+        applyPreparedAssetUrlsToCatalog({ elements: [{ id: 'capture-test', source: capturedFrame, value: 'assets/elements/capture-test.jpg?v=1' }], lastCropSource: null });
+        expect(capturedElement.image === 'assets/elements/capture-test.jpg?v=1', 'externalized asset URL is applied to the catalog');
+        expect(previewSourceList(capturedElement)[0] === capturedFrame, 'captured frame stays visible until the Pages build lands');
+        expect(previewImageMarkup(capturedElement).includes('data:image/jpeg'), 'card markup keeps the captured frame');
+        state.elements = state.elements.filter((element) => element.id !== 'capture-test');
+        forgetLocalPreview('capture-test');
+
+        expect(CLOUD_PUSH_MIN_INTERVAL >= 30000 && CLOUD_PUSH_DELAY >= 30000, 'cloud pushes are batched');
+        expect(presenceCount().total >= 1, 'presence counts at least this tab');
+
         const base = { version: 5, projects: [], elements: [{ id: 'element', description: 'base', technique: 'base', updatedAt: 1 }], categories: [], settings: {} };
         const remote = cloneSnapshot(base);
         remote.elements[0].description = 'remote';
@@ -4920,7 +5499,23 @@
 
       globalThis.__catalogSelfTest = runCatalogSelfTest;
 
+      dom.saveState.addEventListener('click', () => {
+        if (state.cloud.dirty) {
+          showToast('Отправляю правки в облако…');
+          flushCloudSave(true);
+        } else {
+          showToast('Все правки уже в облаке.');
+        }
+      });
+
+      globalThis.addEventListener('beforeunload', (event) => {
+        if (!state.cloud.dirty) return;
+        event.preventDefault();
+        event.returnValue = '';
+      });
+
       async function initialize() {
+        loadPreviewCache();
         try {
           state.db = await openDatabase();
           await loadCatalog();
