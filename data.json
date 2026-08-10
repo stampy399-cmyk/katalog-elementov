@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:12:59.884Z",
+  "exportedAt": "2026-08-10T12:13:43.145Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -11,7 +11,7 @@
       "host": "Александр",
       "id": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
       "niche": "Сантехника германия",
-      "progress": 2,
+      "progress": 3,
       "progressOverride": null,
       "title": "Dieses 50€ Betonrohr Kühlt Dein Haus FÜR IMMER. Warum Ist Es VERBOTEN?",
       "titleSource": "manual",
@@ -147,6 +147,24 @@
       "updatedAt": 1786361396764
     },
     {
+      "id": "6c6e31f3-c414-4bff-bca3-013e83e62a96",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/6c6e31f3-c414-4bff-bca3-013e83e62a96.jpg?v=2a84452f5caf",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Инфограика у нас есть такое!! Слово в центре быстро увеличается в раземере вокргу рисуетс круги такие по бокам крестики с sfx каранада у нас есть такое",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Инфографика",
+      "timecodes": [
+        "0:21"
+      ],
+      "createdAt": 1786363944259,
+      "updatedAt": 1786363978883
+    },
+    {
       "application": "Почти в самом начале видео всегда",
       "category": "Переход",
       "createdAt": 1786347623885,
@@ -273,22 +291,22 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "6c6e31f3-c414-4bff-bca3-013e83e62a96",
+      "id": "11b81132-8907-40d1-b176-571242a74644",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/6c6e31f3-c414-4bff-bca3-013e83e62a96.jpg?v=2a84452f5caf",
+      "image": "assets/elements/11b81132-8907-40d1-b176-571242a74644.jpg?v=9e4219c97dfa",
       "repeatCount": 1,
       "name": "",
-      "description": "Инфограика у нас есть такое!! Слово в центре быстро увеличается в раземере вокргу рисуетс круги такие по бокам крестики с sfx каранада у нас есть такое",
+      "description": "Переход второй раз уже повторстя как эффект глитча но без глитча и с теплым фильтмром",
       "opinion": "",
       "application": "",
       "technique": "",
       "legacyTagsMigrated": true,
-      "category": "Инфографика",
+      "category": "",
       "timecodes": [
-        "0:21"
+        "0:23"
       ],
-      "createdAt": 1786363944259,
-      "updatedAt": 1786363978883
+      "createdAt": 1786364003527,
+      "updatedAt": 1786364022143
     }
   ],
   "categories": [
@@ -345,7 +363,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=a7862feae901",
+    "lastCropSource": "assets/crop/last-source.jpg?v=6a14f251ffdf",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
