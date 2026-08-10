@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:05:45.409Z",
+  "exportedAt": "2026-08-10T13:06:01.328Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -418,6 +418,24 @@
     },
     {
       "application": "",
+      "category": "Работа с футажем",
+      "createdAt": 1786367126735,
+      "description": "простой переход на такое фото и эффект кинополеленки как #08",
+      "id": "941d279e-a93b-4ac5-8486-1c7b44cf22d3",
+      "image": "assets/elements/941d279e-a93b-4ac5-8486-1c7b44cf22d3.jpg?v=6fbca529a6cb",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
+      "timecodes": [
+        "0:53"
+      ],
+      "updatedAt": 1786367154127
+    },
+    {
+      "application": "",
       "category": "БАГ",
       "createdAt": 1786366863861,
       "description": "БАГ он встали не тот футаж!! программная ошибка он вствалви свой дефолтрны фон не тот кадр",
@@ -526,6 +544,24 @@
     },
     {
       "application": "",
+      "category": "Инфографика",
+      "createdAt": 1786367086098,
+      "description": "дополнние к #34 помле всего это вылезает под sfx pop зеленая шкала вверх и цфира  цирфа динаминчо растет до нужнгог преедла",
+      "id": "d4cad72d-3739-4cb4-991a-ca48c98dee49",
+      "image": "assets/elements/d4cad72d-3739-4cb4-991a-ca48c98dee49.jpg?v=73c6d3fcef5b",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
+      "timecodes": [
+        "0:51"
+      ],
+      "updatedAt": 1786367119966
+    },
+    {
+      "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786347727766,
       "description": "Искривление фото по горизонтали",
@@ -631,42 +667,6 @@
         "0:44"
       ],
       "updatedAt": 1786365601934
-    },
-    {
-      "application": "",
-      "category": "Инфографика",
-      "createdAt": 1786367086098,
-      "description": "дополнние к #34 помле всего это вылезает под sfx pop зеленая шкала вверх и цфира  цирфа динаминчо растет до нужнгог преедла",
-      "id": "d4cad72d-3739-4cb4-991a-ca48c98dee49",
-      "image": "assets/elements/d4cad72d-3739-4cb4-991a-ca48c98dee49.jpg?v=73c6d3fcef5b",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "repeatCount": 1,
-      "technique": "",
-      "timecodes": [
-        "0:51"
-      ],
-      "updatedAt": 1786367119966
-    },
-    {
-      "application": "",
-      "category": "",
-      "createdAt": 1786367126735,
-      "description": "простой переход на такое фото и эффект кинополеленки как",
-      "id": "941d279e-a93b-4ac5-8486-1c7b44cf22d3",
-      "image": "assets/elements/941d279e-a93b-4ac5-8486-1c7b44cf22d3.jpg?v=6fbca529a6cb",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "repeatCount": 1,
-      "technique": "",
-      "timecodes": [
-        "0:53"
-      ],
-      "updatedAt": 1786367141164
     }
   ],
   "categories": [
@@ -703,8 +703,8 @@
     {
       "key": "работа с футажем",
       "name": "Работа с футажем",
-      "repeats": 8,
-      "uses": 8
+      "repeats": 9,
+      "uses": 9
     },
     {
       "key": "типографика",
