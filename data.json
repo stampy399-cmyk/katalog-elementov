@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:41:17.359Z",
+  "exportedAt": "2026-08-10T12:41:25.941Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -75,21 +75,21 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "2c55431e-e6f8-4459-b4a6-612982f98857",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/2c55431e-e6f8-4459-b4a6-612982f98857.jpg?v=6857deada202",
-      "repeatCount": 1,
-      "name": "",
-      "description": "после #022 переход и зума оставлилвается и частиц снежико идут",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Частицы",
+      "createdAt": 1786364740965,
+      "description": "после #022 переход и зума оставлилвается и частиц снежико идут",
+      "id": "2c55431e-e6f8-4459-b4a6-612982f98857",
+      "image": "assets/elements/2c55431e-e6f8-4459-b4a6-612982f98857.jpg?v=6857deada202",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:32"
       ],
-      "createdAt": 1786364740965,
       "updatedAt": 1786364760825
     },
     {
@@ -183,21 +183,21 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "6346a349-7d21-4eab-88dc-8005260a7133",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/6346a349-7d21-4eab-88dc-8005260a7133.jpg?v=c110dd429d47",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Простой переход и быстырй зум в центр оченб бытрв кадр",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Зум",
+      "createdAt": 1786365545223,
+      "description": "Простой переход и быстырй зум в центр оченб бытрв кадр",
+      "id": "6346a349-7d21-4eab-88dc-8005260a7133",
+      "image": "assets/elements/6346a349-7d21-4eab-88dc-8005260a7133.jpg?v=c110dd429d47",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:42"
       ],
-      "createdAt": 1786365545223,
       "updatedAt": 1786365560934
     },
     {
@@ -237,21 +237,21 @@
       "updatedAt": 1786363978883
     },
     {
-      "id": "6e96b4e4-ab5d-443f-9062-9602c270c2d2",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/6e96b4e4-ab5d-443f-9062-9602c270c2d2.jpg?v=ecea74d9fa6c",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Повторене #05 появлеин сначла цифр под звук потом текст такое же ровно как и #05\nОтлиный шритф рамзер и работа с тенями сзади чуть затемненое фото",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Типографика",
+      "createdAt": 1786365199158,
+      "description": "Повторене #05 появлеин сначла цифр под звук потом текст такое же ровно как и #05\nОтлиный шритф рамзер и работа с тенями сзади чуть затемненое фото",
+      "id": "6e96b4e4-ab5d-443f-9062-9602c270c2d2",
+      "image": "assets/elements/6e96b4e4-ab5d-443f-9062-9602c270c2d2.jpg?v=ecea74d9fa6c",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:35"
       ],
-      "createdAt": 1786365199158,
       "updatedAt": 1786365303412
     },
     {
@@ -327,39 +327,39 @@
       "updatedAt": 1786364528967
     },
     {
-      "id": "85497c8a-3468-434d-b530-bf873f565488",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/85497c8a-3468-434d-b530-bf873f565488.jpg?v=97eb563ef0af",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Хорошее фото нашел в инетрнете и меденный зум в центр",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Зум",
+      "createdAt": 1786365175351,
+      "description": "Хорошее фото нашел в инетрнете и меденный зум в центр",
+      "id": "85497c8a-3468-434d-b530-bf873f565488",
+      "image": "assets/elements/85497c8a-3468-434d-b530-bf873f565488.jpg?v=97eb563ef0af",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:33"
       ],
-      "createdAt": 1786365175351,
       "updatedAt": 1786365185818
     },
     {
-      "id": "8add73ec-dfca-4846-a95c-1210b7837518",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/8add73ec-dfca-4846-a95c-1210b7837518.jpg?v=3df00b87fda9",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Вот это уже серьезная инфограки 1) под sfx появлиен таблицы палок ввверх вправо и grid сзади потом зум ближе + поялвние ткста выше плавно далее нарисвока полосы  (сначала точки потом полоса провдится )графика и ее рост  и появлние текст слева вертикального",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Инфографика",
+      "createdAt": 1786365345375,
+      "description": "Вот это уже серьезная инфограки 1) под sfx появлиен таблицы палок ввверх вправо и grid сзади потом зум ближе + поялвние ткста выше плавно далее нарисвока полосы  (сначала точки потом полоса провдится )графика и ее рост  и появлние текст слева вертикального",
+      "id": "8add73ec-dfca-4846-a95c-1210b7837518",
+      "image": "assets/elements/8add73ec-dfca-4846-a95c-1210b7837518.jpg?v=3df00b87fda9",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:38"
       ],
-      "createdAt": 1786365345375,
       "updatedAt": 1786365432738
     },
     {
@@ -435,21 +435,21 @@
       "updatedAt": 1786364368185
     },
     {
-      "id": "c81d73dc-4e65-46da-b294-4390837571b2",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/c81d73dc-4e65-46da-b294-4390837571b2.jpg?v=d32a32602d93",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Простой переход на статиченое фото и теплый блик",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Работа с футажем",
+      "createdAt": 1786365528882,
+      "description": "Простой переход на статиченое фото и теплый блик",
+      "id": "c81d73dc-4e65-46da-b294-4390837571b2",
+      "image": "assets/elements/c81d73dc-4e65-46da-b294-4390837571b2.jpg?v=d32a32602d93",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:41"
       ],
-      "createdAt": 1786365528882,
       "updatedAt": 1786365540351
     },
     {
@@ -471,39 +471,39 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "db5ea07c-053d-4dcd-bbd9-ae6790e83e52",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/db5ea07c-053d-4dcd-bbd9-ae6790e83e52.jpg?v=24193004b979",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Простой переход к статичному фото и эффект кинопленки и слабые частицы",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Частицы",
+      "createdAt": 1786365310383,
+      "description": "Простой переход к статичному фото и эффект кинопленки и слабые частицы",
+      "id": "db5ea07c-053d-4dcd-bbd9-ae6790e83e52",
+      "image": "assets/elements/db5ea07c-053d-4dcd-bbd9-ae6790e83e52.jpg?v=24193004b979",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:36"
       ],
-      "createdAt": 1786365310383,
       "updatedAt": 1786365325901
     },
     {
-      "id": "e37e9de2-450e-4dd4-be5f-63525550f62e",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/e37e9de2-450e-4dd4-be5f-63525550f62e.jpg?v=b1c1734ffc5f",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Переход к след футажу через наложение + теплый филльтр блики и через секнуд фото становится чб футаж и все эо врмя медленныслабый зум отдаление",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Работа с футажем",
+      "createdAt": 1786365439042,
+      "description": "Переход к след футажу через наложение + теплый филльтр блики и через секнуд фото становится чб футаж и все эо врмя медленныслабый зум отдаление",
+      "id": "e37e9de2-450e-4dd4-be5f-63525550f62e",
+      "image": "assets/elements/e37e9de2-450e-4dd4-be5f-63525550f62e.jpg?v=b1c1734ffc5f",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:39"
       ],
-      "createdAt": 1786365439042,
       "updatedAt": 1786365469784
     },
     {
@@ -543,58 +543,58 @@
       "updatedAt": 1786364739816
     },
     {
-      "id": "ef54a32e-6b18-4a99-bed0-bc3b55cbd070",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/ef54a32e-6b18-4a99-bed0-bc3b55cbd070.jpg?v=608c4f37b6f4",
-      "repeatCount": 1,
-      "name": "",
-      "description": "статичное фото + эффект книопленки + зум тпереход ровно такой же как и #21",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Зум",
+      "createdAt": 1786365569568,
+      "description": "статичное фото + эффект книопленки + зум тпереход ровно такой же как и #21",
+      "id": "ef54a32e-6b18-4a99-bed0-bc3b55cbd070",
+      "image": "assets/elements/ef54a32e-6b18-4a99-bed0-bc3b55cbd070.jpg?v=608c4f37b6f4",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:44"
       ],
-      "createdAt": 1786365569568,
       "updatedAt": 1786365601934
     },
     {
-      "id": "abb4c7e8-aed5-4a25-8288-1087f5374e11",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/abb4c7e8-aed5-4a25-8288-1087f5374e11.jpg?v=840ca5194760",
-      "repeatCount": 1,
-      "name": "",
-      "description": "переход зум с прошлого кадра и зум уже фото в центр",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Зум",
+      "createdAt": 1786365642993,
+      "description": "переход зум с прошлого кадра и зум уже фото в центр",
+      "id": "abb4c7e8-aed5-4a25-8288-1087f5374e11",
+      "image": "assets/elements/abb4c7e8-aed5-4a25-8288-1087f5374e11.jpg?v=840ca5194760",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:45"
       ],
-      "createdAt": 1786365642993,
       "updatedAt": 1786365655044
     },
     {
-      "id": "03b04530-5607-4e4f-a6bb-a805d1e90644",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/03b04530-5607-4e4f-a6bb-a805d1e90644.jpg?v=42f98b32694a",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Простой переход к фоти повляние инофгари ровно как",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "",
+      "createdAt": 1786365664629,
+      "description": "Простой переход к фоти повляние инофгари ровно как #05",
+      "id": "03b04530-5607-4e4f-a6bb-a805d1e90644",
+      "image": "assets/elements/03b04530-5607-4e4f-a6bb-a805d1e90644.jpg?v=42f98b32694a",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:47"
       ],
-      "createdAt": 1786365664629,
-      "updatedAt": 1786365675427
+      "updatedAt": 1786365680998
     }
   ],
   "categories": [
@@ -642,7 +642,9 @@
     }
   ],
   "settings": {
-    "theme": "dark",
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null,
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -650,9 +652,7 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
     "lastCropSource": "assets/crop/last-source.jpg?v=f67be36915d5",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null
+    "theme": "dark"
   }
 }
