@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:03:26.046Z",
+  "exportedAt": "2026-08-10T13:03:32.164Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -615,22 +615,22 @@
       "updatedAt": 1786365601934
     },
     {
-      "id": "b0ac9c83-97a1-4ab0-9b52-41621c047e4c",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/b0ac9c83-97a1-4ab0-9b52-41621c047e4c.jpg?v=5d93aceaf056",
-      "repeatCount": 1,
-      "name": "",
-      "description": "",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "",
+      "createdAt": 1786367005001,
+      "description": "Это статичные фото просто появляется вот это сначала Белая штука",
+      "id": "b0ac9c83-97a1-4ab0-9b52-41621c047e4c",
+      "image": "assets/elements/b0ac9c83-97a1-4ab0-9b52-41621c047e4c.jpg?v=5d93aceaf056",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:50"
       ],
-      "createdAt": 1786367005001,
-      "updatedAt": 1786367005044
+      "updatedAt": 1786367012002
     }
   ],
   "categories": [
@@ -684,7 +684,9 @@
     }
   ],
   "settings": {
-    "theme": "dark",
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null,
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -692,9 +694,7 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
     "lastCropSource": "assets/crop/last-source.jpg?v=5db1a156f151",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null
+    "theme": "dark"
   }
 }
