@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:35:45.077Z",
+  "exportedAt": "2026-08-10T12:35:52.417Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -469,6 +469,24 @@
         "0:30"
       ],
       "updatedAt": 1786364739816
+    },
+    {
+      "id": "8add73ec-dfca-4846-a95c-1210b7837518",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/8add73ec-dfca-4846-a95c-1210b7837518.jpg?v=3df00b87fda9",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Вот это уже серьезная инфограки 1)",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
+      "timecodes": [
+        "0:38"
+      ],
+      "createdAt": 1786365345375,
+      "updatedAt": 1786365351162
     }
   ],
   "categories": [
@@ -525,7 +543,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=eebef9d324b0",
+    "lastCropSource": "assets/crop/last-source.jpg?v=46f654a29a22",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
