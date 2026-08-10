@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:19:48.762Z",
+  "exportedAt": "2026-08-10T12:20:00.627Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -273,21 +273,21 @@
       "updatedAt": 1786361396763
     },
     {
-      "id": "c72d86e1-b184-4157-b8ae-7a24045e79f5",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/c72d86e1-b184-4157-b8ae-7a24045e79f5.jpg?v=256bbe342635",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Быстрый зум фото в угол нижний правый",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Зум",
+      "createdAt": 1786364354925,
+      "description": "Быстрый зум фото в угол нижний правый",
+      "id": "c72d86e1-b184-4157-b8ae-7a24045e79f5",
+      "image": "assets/elements/c72d86e1-b184-4157-b8ae-7a24045e79f5.jpg?v=256bbe342635",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:24"
       ],
-      "createdAt": 1786364354925,
       "updatedAt": 1786364368185
     },
     {
@@ -327,22 +327,22 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "70a553d1-99be-4a8a-8d36-a0b32e233c1a",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/70a553d1-99be-4a8a-8d36-a0b32e233c1a.jpg?v=4349bd2b1638",
-      "repeatCount": 1,
-      "name": "",
-      "description": "",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "",
+      "createdAt": 1786364387671,
+      "description": "Обычный переход просто смена кадра и статич",
+      "id": "70a553d1-99be-4a8a-8d36-a0b32e233c1a",
+      "image": "assets/elements/70a553d1-99be-4a8a-8d36-a0b32e233c1a.jpg?v=4349bd2b1638",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:26"
       ],
-      "createdAt": 1786364387671,
-      "updatedAt": 1786364387760
+      "updatedAt": 1786364394543
     }
   ],
   "categories": [
@@ -390,7 +390,9 @@
     }
   ],
   "settings": {
-    "theme": "dark",
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null,
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -398,9 +400,7 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
     "lastCropSource": "assets/crop/last-source.jpg?v=e328cfab2f67",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null
+    "theme": "dark"
   }
 }
