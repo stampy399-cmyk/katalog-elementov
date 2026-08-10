@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:39:35.899Z",
+  "exportedAt": "2026-08-10T12:39:46.293Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -548,7 +548,7 @@
       "image": "assets/elements/ef54a32e-6b18-4a99-bed0-bc3b55cbd070.jpg?v=608c4f37b6f4",
       "repeatCount": 1,
       "name": "",
-      "description": "статичное фото + эффект книопленки",
+      "description": "статичное фото + эффект книопленки + зум тпереход ровно такой же как и",
       "opinion": "",
       "application": "",
       "technique": "",
@@ -558,7 +558,7 @@
         "0:44"
       ],
       "createdAt": 1786365569568,
-      "updatedAt": 1786365574897
+      "updatedAt": 1786365585293
     }
   ],
   "categories": [
