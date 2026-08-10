@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:39:46.293Z",
+  "exportedAt": "2026-08-10T12:40:02.255Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -181,6 +181,24 @@
         "0:06"
       ],
       "updatedAt": 1786361396764
+    },
+    {
+      "id": "6346a349-7d21-4eab-88dc-8005260a7133",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/6346a349-7d21-4eab-88dc-8005260a7133.jpg?v=c110dd429d47",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Простой переход и быстырй зум в центр оченб бытрв кадр",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Зум",
+      "timecodes": [
+        "0:42"
+      ],
+      "createdAt": 1786365545223,
+      "updatedAt": 1786365560934
     },
     {
       "application": "",
@@ -417,6 +435,24 @@
       "updatedAt": 1786364368185
     },
     {
+      "id": "c81d73dc-4e65-46da-b294-4390837571b2",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/c81d73dc-4e65-46da-b294-4390837571b2.jpg?v=d32a32602d93",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Простой переход на статиченое фото и теплый блик",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Работа с футажем",
+      "timecodes": [
+        "0:41"
+      ],
+      "createdAt": 1786365528882,
+      "updatedAt": 1786365540351
+    },
+    {
       "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786347727766,
@@ -507,66 +543,30 @@
       "updatedAt": 1786364739816
     },
     {
-      "id": "c81d73dc-4e65-46da-b294-4390837571b2",
+      "id": "ef54a32e-6b18-4a99-bed0-bc3b55cbd070",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/c81d73dc-4e65-46da-b294-4390837571b2.jpg?v=d32a32602d93",
+      "image": "assets/elements/ef54a32e-6b18-4a99-bed0-bc3b55cbd070.jpg?v=608c4f37b6f4",
       "repeatCount": 1,
       "name": "",
-      "description": "Простой переход на статиченое фото и теплый блик",
-      "opinion": "",
-      "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
-      "category": "Работа с футажем",
-      "timecodes": [
-        "0:41"
-      ],
-      "createdAt": 1786365528882,
-      "updatedAt": 1786365540351
-    },
-    {
-      "id": "6346a349-7d21-4eab-88dc-8005260a7133",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/6346a349-7d21-4eab-88dc-8005260a7133.jpg?v=c110dd429d47",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Простой переход и быстырй зум в центр оченб бытрв кадр",
+      "description": "статичное фото + эффект книопленки + зум тпереход ровно такой же как и #21",
       "opinion": "",
       "application": "",
       "technique": "",
       "legacyTagsMigrated": true,
       "category": "Зум",
       "timecodes": [
-        "0:42"
-      ],
-      "createdAt": 1786365545223,
-      "updatedAt": 1786365560934
-    },
-    {
-      "id": "ef54a32e-6b18-4a99-bed0-bc3b55cbd070",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/ef54a32e-6b18-4a99-bed0-bc3b55cbd070.jpg?v=608c4f37b6f4",
-      "repeatCount": 1,
-      "name": "",
-      "description": "статичное фото + эффект книопленки + зум тпереход ровно такой же как и",
-      "opinion": "",
-      "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
-      "category": "",
-      "timecodes": [
         "0:44"
       ],
       "createdAt": 1786365569568,
-      "updatedAt": 1786365585293
+      "updatedAt": 1786365601934
     }
   ],
   "categories": [
     {
       "key": "зум",
       "name": "Зум",
-      "repeats": 6,
-      "uses": 6
+      "repeats": 7,
+      "uses": 7
     },
     {
       "key": "инфографика",
