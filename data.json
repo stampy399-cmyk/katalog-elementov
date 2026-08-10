@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:41:35.105Z",
+  "exportedAt": "2026-08-10T12:42:31.921Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -20,6 +20,24 @@
     }
   ],
   "elements": [
+    {
+      "id": "03b04530-5607-4e4f-a6bb-a805d1e90644",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/03b04530-5607-4e4f-a6bb-a805d1e90644.jpg?v=42f98b32694a",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Простой переход к фоти повляние инофгари ровно как #05 и #24",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Типографика",
+      "timecodes": [
+        "0:47"
+      ],
+      "createdAt": 1786365664629,
+      "updatedAt": 1786365751075
+    },
     {
       "application": "",
       "category": "Работа с футажем",
@@ -399,6 +417,24 @@
       "updatedAt": 1786361396764
     },
     {
+      "id": "abb4c7e8-aed5-4a25-8288-1087f5374e11",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/abb4c7e8-aed5-4a25-8288-1087f5374e11.jpg?v=840ca5194760",
+      "repeatCount": 1,
+      "name": "",
+      "description": "переход зум с прошлого кадра и зум уже фото в центр",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Зум",
+      "timecodes": [
+        "0:45"
+      ],
+      "createdAt": 1786365642993,
+      "updatedAt": 1786365655044
+    },
+    {
       "application": "Возможно на первом кадре ролика",
       "category": "Зум",
       "createdAt": 1786347529861,
@@ -559,42 +595,6 @@
       ],
       "createdAt": 1786365569568,
       "updatedAt": 1786365601934
-    },
-    {
-      "id": "abb4c7e8-aed5-4a25-8288-1087f5374e11",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/abb4c7e8-aed5-4a25-8288-1087f5374e11.jpg?v=840ca5194760",
-      "repeatCount": 1,
-      "name": "",
-      "description": "переход зум с прошлого кадра и зум уже фото в центр",
-      "opinion": "",
-      "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
-      "category": "Зум",
-      "timecodes": [
-        "0:45"
-      ],
-      "createdAt": 1786365642993,
-      "updatedAt": 1786365655044
-    },
-    {
-      "id": "03b04530-5607-4e4f-a6bb-a805d1e90644",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/03b04530-5607-4e4f-a6bb-a805d1e90644.jpg?v=42f98b32694a",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Простой переход к фоти повляние инофгари ровно как #05 и #24",
-      "opinion": "",
-      "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
-      "category": "",
-      "timecodes": [
-        "0:47"
-      ],
-      "createdAt": 1786365664629,
-      "updatedAt": 1786365693595
     }
   ],
   "categories": [
@@ -631,8 +631,8 @@
     {
       "key": "типографика",
       "name": "Типографика",
-      "repeats": 3,
-      "uses": 3
+      "repeats": 4,
+      "uses": 4
     },
     {
       "key": "частицы",
