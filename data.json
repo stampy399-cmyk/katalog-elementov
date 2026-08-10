@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T11:34:23.583Z",
+  "exportedAt": "2026-08-10T11:34:29.630Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -253,24 +253,6 @@
         "0:17"
       ],
       "updatedAt": 1786361396764
-    },
-    {
-      "id": "592d5357-16c4-4bc2-a317-e4686bca3b08",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/592d5357-16c4-4bc2-a317-e4686bca3b08.jpg?v=d4cf4146cc19",
-      "repeatCount": 1,
-      "name": "",
-      "description": "",
-      "opinion": "",
-      "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
-      "category": "",
-      "timecodes": [
-        "0:20"
-      ],
-      "createdAt": 1786361662564,
-      "updatedAt": 1786361662583
     }
   ],
   "categories": [
