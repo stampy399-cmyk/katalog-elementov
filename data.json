@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:05:06.501Z",
+  "exportedAt": "2026-08-10T13:05:21.377Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -634,9 +634,9 @@
     },
     {
       "application": "",
-      "category": "",
+      "category": "Инфографика",
       "createdAt": 1786367086098,
-      "description": "дополнние к #34 помле всего это вылезает под sfx pop зеленая шкала вверх и цфира",
+      "description": "дополнние к #34 помле всего это вылезает под sfx pop зеленая шкала вверх и цфира  цирфа динаминчо растет до нужнгог преедла",
       "id": "d4cad72d-3739-4cb4-991a-ca48c98dee49",
       "image": "assets/elements/d4cad72d-3739-4cb4-991a-ca48c98dee49.jpg?v=73c6d3fcef5b",
       "legacyTagsMigrated": true,
@@ -648,7 +648,7 @@
       "timecodes": [
         "0:51"
       ],
-      "updatedAt": 1786367105499
+      "updatedAt": 1786367119966
     }
   ],
   "categories": [
@@ -667,8 +667,8 @@
     {
       "key": "инфографика",
       "name": "Инфографика",
-      "repeats": 4,
-      "uses": 4
+      "repeats": 5,
+      "uses": 5
     },
     {
       "key": "переход",
