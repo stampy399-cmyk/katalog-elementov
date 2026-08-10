@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:40:56.371Z",
+  "exportedAt": "2026-08-10T12:41:17.359Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -577,6 +577,24 @@
       ],
       "createdAt": 1786365642993,
       "updatedAt": 1786365655044
+    },
+    {
+      "id": "03b04530-5607-4e4f-a6bb-a805d1e90644",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/03b04530-5607-4e4f-a6bb-a805d1e90644.jpg?v=42f98b32694a",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Простой переход к фоти повляние инофгари ровно как",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
+      "timecodes": [
+        "0:47"
+      ],
+      "createdAt": 1786365664629,
+      "updatedAt": 1786365675427
     }
   ],
   "categories": [
@@ -633,7 +651,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=0d6f6b3280be",
+    "lastCropSource": "assets/crop/last-source.jpg?v=f67be36915d5",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
