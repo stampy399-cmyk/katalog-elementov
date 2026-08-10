@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:35:52.417Z",
+  "exportedAt": "2026-08-10T12:36:05.962Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -476,7 +476,7 @@
       "image": "assets/elements/8add73ec-dfca-4846-a95c-1210b7837518.jpg?v=3df00b87fda9",
       "repeatCount": 1,
       "name": "",
-      "description": "Вот это уже серьезная инфограки 1)",
+      "description": "Вот это уже серьезная инфограки 1) под sfx появлиен таблицы палок ввверх вправо и",
       "opinion": "",
       "application": "",
       "technique": "",
@@ -486,7 +486,7 @@
         "0:38"
       ],
       "createdAt": 1786365345375,
-      "updatedAt": 1786365351162
+      "updatedAt": 1786365364960
     }
   ],
   "categories": [
