@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T11:31:48.916Z",
+  "exportedAt": "2026-08-10T11:31:57.534Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -253,24 +253,6 @@
         "0:17"
       ],
       "updatedAt": 1786361396764
-    },
-    {
-      "application": "",
-      "category": "",
-      "createdAt": 1786361479097,
-      "description": "Достаточно сложный",
-      "id": "6a46e7bd-116f-40d3-a66f-05b95385b76c",
-      "image": "assets/elements/6a46e7bd-116f-40d3-a66f-05b95385b76c.jpg?v=04609176f010",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "repeatCount": 1,
-      "technique": "",
-      "timecodes": [
-        "0:20"
-      ],
-      "updatedAt": 1786361483251
     }
   ],
   "categories": [
