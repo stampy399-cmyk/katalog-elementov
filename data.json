@@ -1,344 +1,324 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T11:30:53.670Z",
+  "exportedAt": "2026-08-10T11:31:20.129Z",
   "projects": [
     {
+      "id": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "url": "https://www.youtube.com/watch?v=QOUszAHEZAE&t=211s",
+      "title": "Dieses 50€ Betonrohr Kühlt Dein Haus FÜR IMMER. Warum Ist Es VERBOTEN?",
       "channel": "Verlorenes Bauwissen",
-      "channelSource": "manual",
-      "completed": false,
-      "createdAt": 1786307349915,
+      "niche": "Сантехника германия",
       "duration": "15:02",
       "host": "Александр",
-      "id": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "niche": "Сантехника германия",
       "progress": 2,
-      "progressOverride": null,
-      "title": "Dieses 50€ Betonrohr Kühlt Dein Haus FÜR IMMER. Warum Ist Es VERBOTEN?",
-      "titleSource": "manual",
+      "completed": false,
+      "createdAt": 1786307349915,
       "updatedAt": 1786336777338,
-      "url": "https://www.youtube.com/watch?v=QOUszAHEZAE&t=211s"
+      "progressOverride": null,
+      "titleSource": "manual",
+      "channelSource": "manual"
     }
   ],
   "elements": [
     {
-      "application": "",
-      "category": "Работа с футажем",
-      "createdAt": 1786348895238,
-      "description": "Тепреь важно сразу после того как зумл вугол закончлся на #02 эо фото полся с того же ракурса (как будто прожолжилсь) спутся секунду оно плавно стало ЧБ у насе тсь такой метод реализия",
       "id": "06092cc6-1730-4af7-b409-48a19477029a",
-      "image": "assets/elements/06092cc6-1730-4af7-b409-48a19477029a.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/06092cc6-1730-4af7-b409-48a19477029a.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Тепреь важно сразу после того как зумл вугол закончлся на #02 эо фото полся с того же ракурса (как будто прожолжилсь) спутся секунду оно плавно стало ЧБ у насе тсь такой метод реализия",
+      "opinion": "",
+      "application": "",
       "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Работа с футажем",
       "timecodes": [
         "0:18"
       ],
+      "createdAt": 1786348895238,
       "updatedAt": 1786361396764
     },
     {
-      "application": "",
-      "category": "Частицы",
-      "createdAt": 1786348616176,
-      "description": "Обычные фото поверх которых снизу лево - вверх право идут мелкие частцы пыли",
       "id": "29f32a7c-13be-43ad-8486-66a5b8e24eab",
-      "image": "assets/elements/29f32a7c-13be-43ad-8486-66a5b8e24eab.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/29f32a7c-13be-43ad-8486-66a5b8e24eab.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Обычные фото поверх которых снизу лево - вверх право идут мелкие частцы пыли",
+      "opinion": "",
+      "application": "",
       "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Частицы",
       "timecodes": [
         "0:12"
       ],
+      "createdAt": 1786348616176,
       "updatedAt": 1786361396764
     },
     {
-      "application": "",
-      "category": "Работа с футажем",
-      "createdAt": 1786348542718,
-      "description": "Эффект киноплекнке берется обычное фото чутка замтенсяеся фильтром ставтся по краям черные рамки как кинокамера (они чут ьчуть движутся влева вправо) и справа белая полоса активная как киноффект",
       "id": "374cb1d8-215b-43b5-89c8-d78edcb8e723",
-      "image": "assets/elements/374cb1d8-215b-43b5-89c8-d78edcb8e723.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/374cb1d8-215b-43b5-89c8-d78edcb8e723.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Эффект киноплекнке берется обычное фото чутка замтенсяеся фильтром ставтся по краям черные рамки как кинокамера (они чут ьчуть движутся влева вправо) и справа белая полоса активная как киноффект",
+      "opinion": "",
+      "application": "",
       "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Работа с футажем",
       "timecodes": [
         "0:11"
       ],
+      "createdAt": 1786348542718,
       "updatedAt": 1786361396764
     },
     {
-      "application": "",
-      "category": "Частицы",
-      "createdAt": 1786348500902,
-      "description": "Частицы это не видно практечески но на этом фото у нас сверху нвзи ппааются белые сатсицы снежинок немного",
       "id": "4d2c1310-c451-4e86-9ed7-38ed60688ccb",
-      "image": "assets/elements/4d2c1310-c451-4e86-9ed7-38ed60688ccb.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/4d2c1310-c451-4e86-9ed7-38ed60688ccb.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Частицы это не видно практечески но на этом фото у нас сверху нвзи ппааются белые сатсицы снежинок немного",
+      "opinion": "",
+      "application": "",
       "technique": "Обычные чатсицы с хромокея удаленнве или чет тип тго",
+      "legacyTagsMigrated": true,
+      "category": "Частицы",
       "timecodes": [
         "0:09"
       ],
+      "createdAt": 1786348500902,
       "updatedAt": 1786361396764
     },
     {
-      "application": "",
-      "category": "Зум",
-      "createdAt": 1786348432626,
-      "description": "Переход путем зума вперед мне кажется на 50% зума впреед появются второе фот ов в общем мы уже детаи таке",
       "id": "56075cf1-3995-4ea1-b0d4-05a087b2150d",
-      "image": "assets/elements/56075cf1-3995-4ea1-b0d4-05a087b2150d.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "Хоороший переход у нас есть аткое",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/56075cf1-3995-4ea1-b0d4-05a087b2150d.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Переход путем зума вперед мне кажется на 50% зума впреед появются второе фот ов в общем мы уже детаи таке",
+      "opinion": "Хоороший переход у нас есть аткое",
+      "application": "",
       "technique": "Зум вперед и перехо",
+      "legacyTagsMigrated": true,
+      "category": "Зум",
       "timecodes": [
         "0:08"
       ],
+      "createdAt": 1786348432626,
       "updatedAt": 1786361396764
     },
     {
-      "application": "",
-      "category": "Типографика",
-      "createdAt": 1786347936700,
-      "description": "Типоарафика появлние текста текст НЕ дублирует субттриа а лшиь дополаняет",
       "id": "6319a565-645a-4a07-a9aa-6fd278a46165",
-      "image": "assets/elements/6319a565-645a-4a07-a9aa-6fd278a46165.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "Оченькрутая вещь используем точно пару раз за ролик но учти что текст не дублитуретс субттиры или голос алишь доплняют сверху ч егда цифры снизу разъяснение в 1 строку где-то",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/6319a565-645a-4a07-a9aa-6fd278a46165.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Типоарафика появлние текста текст НЕ дублирует субттриа а лшиь дополаняет",
+      "opinion": "Оченькрутая вещь используем точно пару раз за ролик но учти что текст не дублитуретс субттиры или голос алишь доплняют сверху ч егда цифры снизу разъяснение в 1 строку где-то",
+      "application": "",
       "technique": "Как работет - цифры сверху появлятс оченб быстро но плавно соева направо проявоябтся текст снизу проявлстися снизу вверх так же быстро и лпанво но с небольшой адеркой после цифр",
+      "legacyTagsMigrated": true,
+      "category": "Типографика",
       "timecodes": [
         "0:06"
       ],
+      "createdAt": 1786347936700,
       "updatedAt": 1786361396764
     },
     {
-      "application": "Почти в самом начале видео всегда",
-      "category": "Переход",
-      "createdAt": 1786347623885,
-      "description": "Переход эффект глитяа",
       "id": "6ebdb220-74b8-40dd-83e0-5fa3d2763eae",
-      "image": "assets/elements/6ebdb220-74b8-40dd-83e0-5fa3d2763eae.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "Очень классная вещь",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/6ebdb220-74b8-40dd-83e0-5fa3d2763eae.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Переход эффект глитяа",
+      "opinion": "Очень классная вещь",
+      "application": "Почти в самом начале видео всегда",
       "technique": "Наложение 1 кадра на 2 и поверх эффект глитч с sfx на секукнду буклваьно +белая вспышка",
+      "legacyTagsMigrated": true,
+      "category": "Переход",
       "timecodes": [
         "0:02"
       ],
+      "createdAt": 1786347623885,
       "updatedAt": 1786361396764
     },
     {
-      "application": "",
-      "category": "Типографика",
-      "createdAt": 1786348648567,
-      "description": "Типграфка берется фон сильно зтаентся как на фото и в центр статяс цифры сечетс которые от 0 до нужного числа быстро растут потом как он идойдут ло нужнгоый цфиры за милсенкду до этого справа появлется слово снизу вверх проялется такой же шриыт (сначал полявтся как проузраночный) за это коротео время роялется как слева все такое но слово дополнение + sfx звук relay из нииш документалки нашей",
       "id": "721d63bf-85f1-4fcc-ad69-8c78b0af8ac5",
-      "image": "assets/elements/721d63bf-85f1-4fcc-ad69-8c78b0af8ac5.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "Имба вещь",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/721d63bf-85f1-4fcc-ad69-8c78b0af8ac5.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Типграфка берется фон сильно зтаентся как на фото и в центр статяс цифры сечетс которые от 0 до нужного числа быстро растут потом как он идойдут ло нужнгоый цфиры за милсенкду до этого справа появлется слово снизу вверх проялется такой же шриыт (сначал полявтся как проузраночный) за это коротео время роялется как слева все такое но слово дополнение + sfx звук relay из нииш документалки нашей",
+      "opinion": "Имба вещь",
+      "application": "",
       "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Типографика",
       "timecodes": [
         "0:14"
       ],
+      "createdAt": 1786348648567,
       "updatedAt": 1786361396764
     },
     {
-      "application": "Объяснение ряда пунктов",
-      "category": "Инфографика",
-      "createdAt": 1786347823331,
-      "description": "Желтый знак опаснсости то есть слева анимация справа список пунктом максиум 2-3 слова перчлиние",
       "id": "8db2b615-0793-41a6-8adb-de10e34f5054",
-      "image": "assets/elements/8db2b615-0793-41a6-8adb-de10e34f5054.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "Очень классная вещь в перечислениях",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/8db2b615-0793-41a6-8adb-de10e34f5054.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Желтый знак опаснсости то есть слева анимация справа список пунктом максиум 2-3 слова перчлиние",
+      "opinion": "Очень классная вещь в перечислениях",
+      "application": "Объяснение ряда пунктов",
       "technique": "У нас есть такое 1в1",
+      "legacyTagsMigrated": true,
+      "category": "Инфографика",
       "timecodes": [
         "0:05"
       ],
+      "createdAt": 1786347823331,
       "updatedAt": 1786361396764
     },
     {
-      "application": "",
-      "category": "Зум",
-      "createdAt": 1786348795034,
-      "description": "Переход путем зума вперед ровно как кадр #05 такая же схема",
       "id": "92dc27ac-1364-4063-a6cb-30798e9a50e5",
-      "image": "assets/elements/92dc27ac-1364-4063-a6cb-30798e9a50e5.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/92dc27ac-1364-4063-a6cb-30798e9a50e5.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Переход путем зума вперед ровно как кадр #05 такая же схема",
+      "opinion": "",
+      "application": "",
       "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Зум",
       "timecodes": [
         "0:15"
       ],
+      "createdAt": 1786348795034,
       "updatedAt": 1786361396764
     },
     {
-      "application": "Возможно на первом кадре ролика",
-      "category": "Зум",
-      "createdAt": 1786347529861,
-      "description": "Кадр магазина и быстрый зум в ценр",
       "id": "bcac988d-d712-4f74-a72e-6b141cc5f20a",
-      "image": "assets/elements/bcac988d-d712-4f74-a72e-6b141cc5f20a.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "Стандартный прием",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/bcac988d-d712-4f74-a72e-6b141cc5f20a.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Кадр магазина и быстрый зум в ценр",
+      "opinion": "Стандартный прием",
+      "application": "Возможно на первом кадре ролика",
       "technique": "Простой обычный зум в центр",
+      "legacyTagsMigrated": true,
+      "category": "Зум",
       "timecodes": [
         "0:00"
       ],
+      "createdAt": 1786347529861,
       "updatedAt": 1786361396763
     },
     {
-      "application": "",
-      "category": "Работа с футажем",
-      "createdAt": 1786347727766,
-      "description": "Искривление фото по горизонтали",
       "id": "dad55967-d5d7-4efd-a790-222c57d83e04",
-      "image": "assets/elements/dad55967-d5d7-4efd-a790-222c57d83e04.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/dad55967-d5d7-4efd-a790-222c57d83e04.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "Искривление фото по горизонтали",
+      "opinion": "",
+      "application": "",
       "technique": "Не знаю изучи сам этот фрагмент",
+      "legacyTagsMigrated": true,
+      "category": "Работа с футажем",
       "timecodes": [
         "0:03"
       ],
+      "createdAt": 1786347727766,
       "updatedAt": 1786361396764
     },
     {
-      "application": "",
-      "category": "Работа с футажем",
-      "createdAt": 1786348841737,
-      "description": "После переход путем зума впреде фото зумится дальше мделено зумится в правй угол и на нем накладватеся теплый фильтр теплых круков которые вращается атмосфера почти как чатсицы",
       "id": "eba7d7f7-e032-468a-97d4-fffd6364da91",
-      "image": "assets/elements/eba7d7f7-e032-468a-97d4-fffd6364da91.png",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/eba7d7f7-e032-468a-97d4-fffd6364da91.png",
       "repeatCount": 1,
+      "name": "",
+      "description": "После переход путем зума впреде фото зумится дальше мделено зумится в правй угол и на нем накладватеся теплый фильтр теплых круков которые вращается атмосфера почти как чатсицы",
+      "opinion": "",
+      "application": "",
       "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Работа с футажем",
       "timecodes": [
         "0:17"
       ],
+      "createdAt": 1786348841737,
       "updatedAt": 1786361396764
     },
     {
-      "application": "",
-      "category": "",
-      "createdAt": 1786361447597,
-      "description": "",
-      "id": "d6488acd-0a29-4a09-beba-9fab28ddba2f",
-      "image": "",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
+      "id": "6a46e7bd-116f-40d3-a66f-05b95385b76c",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/6a46e7bd-116f-40d3-a66f-05b95385b76c.jpg?v=04609176f010",
       "repeatCount": 1,
+      "name": "",
+      "description": "",
+      "opinion": "",
+      "application": "",
       "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
       "timecodes": [
         "0:20"
       ],
-      "updatedAt": 1786361450521
-    },
-    {
-      "id": "a7bb943e-cd64-44bd-9045-c044f22771b8",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/a7bb943e-cd64-44bd-9045-c044f22771b8.jpg?v=04609176f010",
-      "repeatCount": 1,
-      "name": "",
-      "description": "",
-      "opinion": "",
-      "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
-      "category": "",
-      "timecodes": [
-        "0:21"
-      ],
-      "createdAt": 1786361451168,
-      "updatedAt": 1786361451194
+      "createdAt": 1786361479097,
+      "updatedAt": 1786361479128
     }
   ],
   "categories": [
     {
       "key": "зум",
       "name": "Зум",
-      "repeats": 3,
-      "uses": 3
+      "uses": 3,
+      "repeats": 3
     },
     {
       "key": "инфографика",
       "name": "Инфографика",
-      "repeats": 1,
-      "uses": 1
+      "uses": 1,
+      "repeats": 1
     },
     {
       "key": "переход",
       "name": "Переход",
-      "repeats": 1,
-      "uses": 1
+      "uses": 1,
+      "repeats": 1
     },
     {
       "key": "работа с камерой",
       "name": "Работа с камерой",
-      "repeats": 0,
-      "uses": 0
+      "uses": 0,
+      "repeats": 0
     },
     {
       "key": "работа с футажем",
       "name": "Работа с футажем",
-      "repeats": 4,
-      "uses": 4
+      "uses": 4,
+      "repeats": 4
     },
     {
       "key": "типографика",
       "name": "Типографика",
-      "repeats": 2,
-      "uses": 2
+      "uses": 2,
+      "repeats": 2
     },
     {
       "key": "частицы",
       "name": "Частицы",
-      "repeats": 2,
-      "uses": 2
+      "uses": 2,
+      "repeats": 2
     }
   ],
   "settings": {
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null,
+    "theme": "light",
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -346,7 +326,9 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
     "lastCropSource": "assets/crop/last-source.jpg?v=067c47fc58f8",
-    "theme": "light"
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null
   }
 }
