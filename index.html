@@ -588,7 +588,10 @@
       const CLOUD_POLL_INTERVAL = 2000;
       const GITHUB_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/data.json';
       const PRESENCE_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/presence.json';
+      const GITHUB_GIT_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/git';
       const GITHUB_BRANCH = 'main';
+      const MAX_IMAGE_ASSET_BYTES = 95 * 1024 * 1024;
+      const MAX_CLOUD_JSON_BYTES = 1024 * 1024;
       const EMBEDDED_TOKEN_FRAGMENTS = Object.freeze(['Z2hvX1k=', 'Uk5lTVQ=', 'MVhpdkg=', 'TEl1Y3E=', 'b2Yxdjk=', 'WUtWYXk=', 'OWk2RjE=', 'aDhTdk0=']);
       const PRESENCE_CLIENT_KEY = 'katalog-elementov.presence-client-id';
       const PRESENCE_HEARTBEAT_INTERVAL = 30000;
@@ -2431,6 +2434,222 @@
         return next;
       }
 
+      function cloudWriteError(message, status = 0, race = false) {
+        const error = new Error(message);
+        error.status = status;
+        error.cloudRace = race;
+        return error;
+      }
+
+      async function githubApiJson(path, { method = 'GET', body } = {}, label = 'GitHub') {
+        const response = await fetch(`${GITHUB_GIT_URL}${path}`, {
+          method,
+          headers: cloudHeaders(body === undefined ? {} : { 'Content-Type': 'application/json' }),
+          ...(body === undefined ? {} : { body: JSON.stringify(body) }),
+          cache: 'no-store'
+        });
+        let payload = null;
+        try {
+          payload = await response.json();
+        } catch (error) {
+          // Some GitHub failures have an empty response body; the status remains actionable.
+        }
+        if (!response.ok) {
+          const detail = asText(payload?.message).trim();
+          throw cloudWriteError(`${label}: GitHub ${response.status}${detail ? ` — ${detail}` : ''}`, response.status);
+        }
+        return payload;
+      }
+
+      function safeAssetId(value) {
+        const raw = asText(value).trim();
+        if (!raw) throw cloudWriteError('Изображение элемента без id не может быть сохранено в облако.');
+        if (/^[A-Za-z0-9][A-Za-z0-9._-]{0,95}$/.test(raw)) return raw;
+        const slug = raw.replace(/[^A-Za-z0-9._-]+/g, '-').replace(/^[.-]+|[.-]+$/g, '').slice(0, 80) || 'element';
+        let hash = 2166136261;
+        for (let index = 0; index < raw.length; index += 1) hash = Math.imul(hash ^ raw.charCodeAt(index), 16777619) >>> 0;
+        return `${slug}-${hash.toString(16).padStart(8, '0')}`;
+      }
+
+      function imageDataPayload(value, label) {
+        const source = asText(value);
+        if (!/^data:/i.test(source)) return null;
+        const match = /^data:image\/(png|jpeg|webp);base64,([A-Za-z0-9+/=\s]+)$/i.exec(source);
+        if (!match) throw cloudWriteError(`${label}: поддерживаются только data URL PNG, JPEG и WebP.`);
+        let content = match[2].replace(/\s/g, '');
+        if (!content || content.length % 4 === 1 || !/^[A-Za-z0-9+/]*={0,2}$/.test(content)) {
+          throw cloudWriteError(`${label}: повреждённые base64-данные.`);
+        }
+        content += '='.repeat((4 - content.length % 4) % 4);
+        const padding = content.endsWith('==') ? 2 : (content.endsWith('=') ? 1 : 0);
+        const bytes = content.length * 3 / 4 - padding;
+        if (bytes > MAX_IMAGE_ASSET_BYTES) {
+          throw cloudWriteError(`${label}: файл ${Math.ceil(bytes / 1024 / 1024)} МБ превышает лимит ${Math.floor(MAX_IMAGE_ASSET_BYTES / 1024 / 1024)} МБ.`);
+        }
+        return { content, bytes, extension: match[1].toLowerCase() === 'jpeg' ? 'jpg' : match[1].toLowerCase() };
+      }
+
+      function snapshotSettingValue(snapshot, key) {
+        if (Array.isArray(snapshot?.settings)) return snapshot.settings.find((row) => row && row.key === key)?.value;
+        return snapshot?.settings?.[key];
+      }
+
+      function setSnapshotSettingValue(snapshot, key, value) {
+        if (Array.isArray(snapshot.settings)) {
+          const row = snapshot.settings.find((item) => item && item.key === key);
+          if (row) row.value = value;
+        } else {
+          snapshot.settings[key] = value;
+        }
+      }
+
+      async function uploadGitBlob(asset) {
+        const payload = await githubApiJson('/blobs', {
+          method: 'POST',
+          body: { content: asset.content, encoding: 'base64' }
+        }, `Загрузка ${asset.path}`);
+        const sha = asText(payload?.sha).trim();
+        if (!sha) throw cloudWriteError(`Загрузка ${asset.path}: GitHub не вернул SHA.`);
+        return sha;
+      }
+
+      async function externalizeSnapshotDataUrls(sourceSnapshot) {
+        const snapshot = cloneSnapshot(sourceSnapshot);
+        const assets = new Map();
+        const targets = [];
+        const register = (path, payload, target) => {
+          const existing = assets.get(path);
+          if (existing && existing.content !== payload.content) throw cloudWriteError(`Коллизия пути облачного актива: ${path}.`);
+          if (!existing) assets.set(path, { path, content: payload.content, bytes: payload.bytes, sha: '' });
+          targets.push({ ...target, path });
+        };
+
+        for (const element of snapshot.elements) {
+          const source = asText(element.image);
+          const payload = imageDataPayload(source, `Элемент ${asText(element.id) || 'без id'}`);
+          if (!payload) continue;
+          register(`assets/elements/${safeAssetId(element.id)}.${payload.extension}`, payload, {
+            kind: 'element', id: String(element.id), source
+          });
+        }
+        const cropSource = asText(snapshotSettingValue(snapshot, 'lastCropSource'));
+        const cropPayload = imageDataPayload(cropSource, 'Источник последней обрезки');
+        if (cropPayload) {
+          register(`assets/crop/last-source.${cropPayload.extension}`, cropPayload, {
+            kind: 'lastCropSource', source: cropSource
+          });
+        }
+
+        const pendingAssets = [...assets.values()];
+        for (let start = 0; start < pendingAssets.length; start += 4) {
+          await Promise.all(pendingAssets.slice(start, start + 4).map(async (asset) => {
+            asset.sha = await uploadGitBlob(asset);
+          }));
+        }
+
+        const replacements = { elements: [], lastCropSource: null };
+        for (const target of targets) {
+          const asset = assets.get(target.path);
+          const value = `${target.path}?v=${asset.sha.slice(0, 12)}`;
+          if (target.kind === 'element') {
+            const element = snapshot.elements.find((row) => String(row.id) === target.id && row.image === target.source);
+            if (!element) throw cloudWriteError(`Элемент ${target.id}: исходное изображение изменилось во время подготовки.`);
+            element.image = value;
+            replacements.elements.push({ id: target.id, source: target.source, value });
+          } else {
+            setSnapshotSettingValue(snapshot, 'lastCropSource', value);
+            replacements.lastCropSource = { source: target.source, value };
+          }
+        }
+        return {
+          snapshot,
+          replacements,
+          assets: pendingAssets.map(({ path, sha }) => ({ path, sha }))
+        };
+      }
+
+      async function commitSnapshotWithGitData(snapshot, expectedDataSha, shouldCancel = () => false) {
+        const externalized = await externalizeSnapshotDataUrls(snapshot);
+        if (shouldCancel()) {
+          const error = cloudWriteError('Облачная запись отменена из-за замены каталога.');
+          error.cloudCancelled = true;
+          throw error;
+        }
+        const serialized = JSON.stringify(externalized.snapshot, null, 2);
+        const serializedBytes = new TextEncoder().encode(serialized).byteLength;
+        if (serializedBytes > MAX_CLOUD_JSON_BYTES) {
+          throw cloudWriteError(`data.json после выноса изображений занимает ${Math.ceil(serializedBytes / 1024)} КБ; лимит ${MAX_CLOUD_JSON_BYTES / 1024} КБ.`);
+        }
+        const dataBlob = await githubApiJson('/blobs', {
+          method: 'POST',
+          body: { content: serialized, encoding: 'utf-8' }
+        }, 'Запись data.json blob');
+        const dataBlobSha = asText(dataBlob?.sha).trim();
+        if (!dataBlobSha) throw cloudWriteError('Запись data.json blob: GitHub не вернул SHA.');
+        if (shouldCancel()) {
+          const error = cloudWriteError('Облачная запись отменена из-за замены каталога.');
+          error.cloudCancelled = true;
+          throw error;
+        }
+
+        const branch = encodeURIComponent(GITHUB_BRANCH);
+        const ref = await githubApiJson(`/ref/heads/${branch}`, {}, 'Чтение main ref');
+        const headSha = asText(ref?.object?.sha).trim();
+        if (!headSha) throw cloudWriteError('Чтение main ref: GitHub не вернул SHA коммита.');
+        const headCommit = await githubApiJson(`/commits/${encodeURIComponent(headSha)}`, {}, 'Чтение head commit');
+        const baseTreeSha = asText(headCommit?.tree?.sha).trim();
+        if (!baseTreeSha) throw cloudWriteError('Чтение head commit: GitHub не вернул SHA дерева.');
+        const baseTree = await githubApiJson(`/trees/${encodeURIComponent(baseTreeSha)}`, {}, 'Проверка base tree');
+        const actualDataSha = asText(baseTree?.tree?.find((entry) => entry.path === 'data.json' && entry.type === 'blob')?.sha).trim();
+        if (actualDataSha !== asText(expectedDataSha).trim()) {
+          throw cloudWriteError('data.json изменился перед созданием коммита.', 409, true);
+        }
+
+        const tree = await githubApiJson('/trees', {
+          method: 'POST',
+          body: {
+            base_tree: baseTreeSha,
+            tree: [
+              { path: 'data.json', mode: '100644', type: 'blob', sha: dataBlobSha },
+              ...externalized.assets.map((asset) => ({ path: asset.path, mode: '100644', type: 'blob', sha: asset.sha }))
+            ]
+          }
+        }, 'Создание catalog tree');
+        const treeSha = asText(tree?.sha).trim();
+        if (!treeSha) throw cloudWriteError('Создание catalog tree: GitHub не вернул SHA.');
+        const commitPayload = await githubApiJson('/commits', {
+          method: 'POST',
+          body: { message: 'chore: update catalog data', tree: treeSha, parents: [headSha] }
+        }, 'Создание catalog commit');
+        const commitSha = asText(commitPayload?.sha).trim();
+        if (!commitSha) throw cloudWriteError('Создание catalog commit: GitHub не вернул SHA.');
+        if (shouldCancel()) {
+          const error = cloudWriteError('Облачная запись отменена из-за замены каталога.');
+          error.cloudCancelled = true;
+          throw error;
+        }
+        try {
+          await githubApiJson(`/refs/heads/${branch}`, {
+            method: 'PATCH',
+            body: { sha: commitSha, force: false }
+          }, 'Обновление main ref');
+        } catch (error) {
+          if (error.status === 409 || error.status === 422) error.cloudRace = true;
+          throw error;
+        }
+        return { dataBlobSha, commitSha, ...externalized };
+      }
+
+      async function recoverCommittedGitData(snapshot, remote) {
+        const externalized = await externalizeSnapshotDataUrls(snapshot);
+        if (!cloudSnapshotsSemanticallyEqual(externalized.snapshot, remote?.raw)) return null;
+        return {
+          dataBlobSha: remote.sha,
+          commitSha: '',
+          ...externalized
+        };
+      }
+
       function emptyCloudSnapshot() {
         return { version: CATALOG_VERSION, exportedAt: '', projects: [], elements: [], categories: [], settings: {} };
       }
@@ -3157,18 +3376,101 @@
         return true;
       }
 
-      async function finalizeCloudPut(sending, sha) {
-        await state.cloud.syncQueue;
-        const confirmedSnapshot = cloneSnapshot(sending.snapshot);
+      function applyCommittedAssetUrls(snapshot, replacements) {
+        if (!isCloudSnapshot(snapshot)) return false;
+        let changed = false;
+        for (const replacement of replacements.elements) {
+          const element = snapshot.elements.find((row) => String(row.id) === replacement.id);
+          if (element?.image === replacement.source) {
+            element.image = replacement.value;
+            changed = true;
+          }
+        }
+        const crop = replacements.lastCropSource;
+        if (crop && snapshotSettingValue(snapshot, 'lastCropSource') === crop.source) {
+          setSnapshotSettingValue(snapshot, 'lastCropSource', crop.value);
+          changed = true;
+        }
+        return changed;
+      }
+
+      function prepareCommittedAssetUrlsForCatalog(replacements) {
+        const elements = [];
+        for (const replacement of replacements.elements) {
+          const element = state.elements.find((row) => String(row.id) === replacement.id);
+          if (element?.image === replacement.source) {
+            elements.push({
+              id: replacement.id,
+              source: replacement.source,
+              value: replacement.value,
+              record: { ...cloneSnapshot(element), image: replacement.value }
+            });
+          }
+        }
+        const crop = replacements.lastCropSource;
+        const lastCropSource = crop && state.settings.lastCropSource === crop.source
+          ? { source: crop.source, value: crop.value }
+          : null;
+        return { elements, lastCropSource };
+      }
+
+      function applyPreparedAssetUrlsToCatalog(localChanges) {
+        for (const change of localChanges.elements) {
+          const element = state.elements.find((row) => String(row.id) === change.id);
+          if (element?.image === change.source) element.image = change.value;
+        }
+        if (localChanges.lastCropSource && state.settings.lastCropSource === localChanges.lastCropSource.source) {
+          state.settings.lastCropSource = localChanges.lastCropSource.value;
+        }
+      }
+
+      function writeCloudFinalization(entries, deleteKeys, localChanges) {
+        const storeNames = ['cloudSync'];
+        if (localChanges.elements.length) storeNames.push('elements');
+        if (localChanges.lastCropSource) storeNames.push('settings');
+        return runTransaction(storeNames, 'readwrite', (transaction) => {
+          const cloudSync = transaction.objectStore('cloudSync');
+          for (const [key, value] of entries) cloudSync.put({ key, value, updatedAt: Date.now() });
+          for (const key of deleteKeys) cloudSync.delete(key);
+          if (localChanges.elements.length) {
+            const elements = transaction.objectStore('elements');
+            for (const change of localChanges.elements) elements.put(change.record);
+          }
+          if (localChanges.lastCropSource) {
+            transaction.objectStore('settings').put({ key: 'lastCropSource', value: localChanges.lastCropSource.value });
+          }
+        });
+      }
+
+      async function finalizeCloudPut(sending, written) {
+        if (state.cloud.outboxPending) {
+          clearTimeout(state.cloud.outboxTimer);
+          state.cloud.outboxTimer = null;
+          state.cloud.outboxPending = false;
+          persistCloudOutbox();
+        }
+        let pendingWrites;
+        let pendingSync;
+        do {
+          pendingWrites = state.writeQueue;
+          pendingSync = state.cloud.syncQueue;
+          await Promise.all([pendingWrites, pendingSync]);
+        } while (pendingWrites !== state.writeQueue || pendingSync !== state.cloud.syncQueue);
+
+        const sha = written.dataBlobSha;
+        const confirmedSnapshot = cloneSnapshot(written.snapshot);
+        const localChanges = prepareCommittedAssetUrlsForCatalog(written.replacements);
         const baseRecord = baseRecordFrom(confirmedSnapshot, sha, '');
         const current = state.cloud.outbox;
-        let rebased = null;
+        let nextOutbox = null;
         let mergeConflicts = [];
         if (current && current.revision !== sending.revision) {
+          const currentSnapshot = cloneSnapshot(current.snapshot);
+          applyCommittedAssetUrls(currentSnapshot, written.replacements);
           const base = isCloudSnapshot(current.baseSnapshot) ? current.baseSnapshot : (state.cloud.baseSnapshot || emptyCloudSnapshot());
-          const merged = mergeCloudSnapshots(base, confirmedSnapshot, current.snapshot);
+          const merged = mergeCloudSnapshots(base, confirmedSnapshot, currentSnapshot);
           if (merged.ok) {
-            rebased = compactOutboxRecord({
+            nextOutbox = compactOutboxRecord({
               ...current,
               baseSha: sha,
               baseEtag: '',
@@ -3177,14 +3479,24 @@
             });
           } else {
             mergeConflicts = merged.conflicts;
+            nextOutbox = compactOutboxRecord({ ...current, snapshot: currentSnapshot });
           }
         }
+
         const entries = [['base', baseRecord], ['cache', confirmedSnapshot]];
         const deleteKeys = [];
         if (!current || current.revision === sending.revision) deleteKeys.push('outbox');
-        else if (rebased) entries.push(['outbox', rebased]);
-        await enqueueCloudSync(() => writeCloudSyncBatch(entries, deleteKeys));
+        else entries.push(['outbox', nextOutbox]);
 
+        state.cloud.applying = true;
+        applyReadOnlyState();
+        try {
+          await enqueueCloudSync(() => writeCloudFinalization(entries, deleteKeys, localChanges));
+        } finally {
+          state.cloud.applying = false;
+          applyReadOnlyState();
+        }
+        applyPreparedAssetUrlsToCatalog(localChanges);
         state.cloud.baseSha = sha;
         state.cloud.baseEtag = '';
         state.cloud.baseSnapshot = confirmedSnapshot;
@@ -3192,16 +3504,13 @@
         updateKnownRemoteIds(prepareImport(confirmedSnapshot));
         state.cloud.initialPullDone = true;
         state.cloud.pendingSnapshot = null;
-        if (!current || current.revision === sending.revision) {
-          removeLocalValue(CLOUD_OUTBOX_KEY);
-          state.cloud.outbox = null;
-          state.cloud.dirty = state.cloud.outboxPending;
-          state.cloud.outboxError = false;
-        } else if (rebased) {
-          state.cloud.outbox = rebased;
-          state.cloud.dirty = true;
-          saveOutboxMarker(rebased);
-        }
+        state.cloud.outbox = nextOutbox;
+        state.cloud.dirty = Boolean(nextOutbox) || state.cloud.outboxPending;
+        state.cloud.outboxError = false;
+
+        if (state.cloud.outbox) saveOutboxMarker(state.cloud.outbox);
+        else removeLocalValue(CLOUD_OUTBOX_KEY);
+        if (localChanges.elements.length || localChanges.lastCropSource) renderFeed();
         return { ok: mergeConflicts.length === 0, conflicts: mergeConflicts };
       }
 
@@ -3232,17 +3541,27 @@
               status = 'guarded';
             }
           } else if (remote.sha !== asText(sending.baseSha).trim()) {
-            const rebased = await rebaseOutboxRecord(sending, remote);
-            if (rebased.stale) status = 'cancelled';
-            else if (!rebased.ok) {
-              conflictDetails = rebased.conflicts;
-              status = 'merge-conflict';
+            const recovered = await recoverCommittedGitData(sending.snapshot, remote);
+            if (recovered) {
+              const finalized = await finalizeCloudPut(sending, recovered);
+              succeeded = true;
+              if (!finalized.ok) {
+                conflictDetails = finalized.conflicts;
+                status = 'post-put-conflict';
+              }
             } else {
-              sending = rebased.record;
+              const rebased = await rebaseOutboxRecord(sending, remote);
+              if (rebased.stale) status = 'cancelled';
+              else if (!rebased.ok) {
+                conflictDetails = rebased.conflicts;
+                status = 'merge-conflict';
+              } else {
+                sending = rebased.record;
+              }
             }
           }
 
-          while (!status) {
+          while (!status && !succeeded) {
             if (generation !== state.cloud.generation || state.cloud.importing || state.cloud.outbox?.revision !== sending.revision) {
               status = 'cancelled';
               break;
@@ -3259,17 +3578,19 @@
               status = 'backup-error';
               break;
             }
-            const response = await fetch(GITHUB_CONTENTS_URL, {
-              method: 'PUT',
-              headers: cloudHeaders({ 'Content-Type': 'application/json' }),
-              body: JSON.stringify({
-                message: 'chore: update catalog data',
-                branch: GITHUB_BRANCH,
-                content: base64FromText(JSON.stringify(sending.snapshot, null, 2)),
-                ...(sending.baseSha ? { sha: sending.baseSha } : {})
-              })
-            });
-            if (response.status === 409 || response.status === 422) {
+            let written;
+            try {
+              written = await commitSnapshotWithGitData(
+                sending.snapshot,
+                sending.baseSha,
+                () => generation !== state.cloud.generation || state.cloud.importing
+              );
+            } catch (error) {
+              if (error.cloudCancelled) {
+                status = 'cancelled';
+                break;
+              }
+              if (!error.cloudRace) throw error;
               if (retryCount >= 1) {
                 status = 'retry-conflict';
                 break;
@@ -3298,10 +3619,7 @@
               retryCount += 1;
               continue;
             }
-            if (!response.ok) throw new Error(`GitHub PUT: ${response.status}`);
-            const payload = await response.json();
-            const sha = asText(payload?.content?.sha).trim() || sending.baseSha;
-            const finalized = await finalizeCloudPut(sending, sha);
+            const finalized = await finalizeCloudPut(sending, written);
             succeeded = true;
             if (!finalized.ok) {
               conflictDetails = finalized.conflicts;
