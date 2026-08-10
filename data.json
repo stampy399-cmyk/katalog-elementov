@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:13:52.594Z",
+  "exportedAt": "2026-08-10T12:19:22.428Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -37,6 +37,24 @@
         "0:18"
       ],
       "updatedAt": 1786361396764
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786364003527,
+      "description": "Переход второй раз уже повторстя как эффект глитча но без глитча и с теплым фильтмром оранежвые блики",
+      "id": "11b81132-8907-40d1-b176-571242a74644",
+      "image": "assets/elements/11b81132-8907-40d1-b176-571242a74644.jpg?v=9e4219c97dfa",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
+      "timecodes": [
+        "0:23"
+      ],
+      "updatedAt": 1786364028233
     },
     {
       "application": "",
@@ -291,22 +309,22 @@
       "updatedAt": 1786361396764
     },
     {
-      "application": "",
-      "category": "Переход",
-      "createdAt": 1786364003527,
-      "description": "Переход второй раз уже повторстя как эффект глитча но без глитча и с теплым фильтмром оранежвые блики",
-      "id": "11b81132-8907-40d1-b176-571242a74644",
-      "image": "assets/elements/11b81132-8907-40d1-b176-571242a74644.jpg?v=9e4219c97dfa",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
+      "id": "c72d86e1-b184-4157-b8ae-7a24045e79f5",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/c72d86e1-b184-4157-b8ae-7a24045e79f5.jpg?v=256bbe342635",
       "repeatCount": 1,
+      "name": "",
+      "description": "Быстрый зум фото в угол",
+      "opinion": "",
+      "application": "",
       "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
       "timecodes": [
-        "0:23"
+        "0:24"
       ],
-      "updatedAt": 1786364028233
+      "createdAt": 1786364354925,
+      "updatedAt": 1786364360378
     }
   ],
   "categories": [
@@ -354,9 +372,7 @@
     }
   ],
   "settings": {
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null,
+    "theme": "dark",
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -364,7 +380,9 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "lastCropSource": "assets/crop/last-source.jpg?v=6a14f251ffdf",
-    "theme": "dark"
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "lastCropSource": "assets/crop/last-source.jpg?v=eb1b4c225db5",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null
   }
 }
