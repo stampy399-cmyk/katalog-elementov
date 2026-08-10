@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:19:22.428Z",
+  "exportedAt": "2026-08-10T12:19:29.186Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -314,25 +314,25 @@
       "image": "assets/elements/c72d86e1-b184-4157-b8ae-7a24045e79f5.jpg?v=256bbe342635",
       "repeatCount": 1,
       "name": "",
-      "description": "Быстрый зум фото в угол",
+      "description": "Быстрый зум фото в угол нижний правый",
       "opinion": "",
       "application": "",
       "technique": "",
       "legacyTagsMigrated": true,
-      "category": "",
+      "category": "Зум",
       "timecodes": [
         "0:24"
       ],
       "createdAt": 1786364354925,
-      "updatedAt": 1786364360378
+      "updatedAt": 1786364368185
     }
   ],
   "categories": [
     {
       "key": "зум",
       "name": "Зум",
-      "repeats": 3,
-      "uses": 3
+      "repeats": 4,
+      "uses": 4
     },
     {
       "key": "инфографика",
