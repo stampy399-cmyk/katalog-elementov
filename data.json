@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:33:43.965Z",
+  "exportedAt": "2026-08-10T12:33:49.451Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -75,21 +75,21 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "2c55431e-e6f8-4459-b4a6-612982f98857",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/2c55431e-e6f8-4459-b4a6-612982f98857.jpg?v=6857deada202",
-      "repeatCount": 1,
-      "name": "",
-      "description": "после #022 переход и зума оставлилвается и частиц снежико идут",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Частицы",
+      "createdAt": 1786364740965,
+      "description": "после #022 переход и зума оставлилвается и частиц снежико идут",
+      "id": "2c55431e-e6f8-4459-b4a6-612982f98857",
+      "image": "assets/elements/2c55431e-e6f8-4459-b4a6-612982f98857.jpg?v=6857deada202",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:32"
       ],
-      "createdAt": 1786364740965,
       "updatedAt": 1786364760825
     },
     {
@@ -417,40 +417,40 @@
       "updatedAt": 1786364739816
     },
     {
-      "id": "85497c8a-3468-434d-b530-bf873f565488",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/85497c8a-3468-434d-b530-bf873f565488.jpg?v=97eb563ef0af",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Хорошее фото нашел в инетрнете и меденный зум в центр",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Зум",
+      "createdAt": 1786365175351,
+      "description": "Хорошее фото нашел в инетрнете и меденный зум в центр",
+      "id": "85497c8a-3468-434d-b530-bf873f565488",
+      "image": "assets/elements/85497c8a-3468-434d-b530-bf873f565488.jpg?v=97eb563ef0af",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:33"
       ],
-      "createdAt": 1786365175351,
       "updatedAt": 1786365185818
     },
     {
-      "id": "6e96b4e4-ab5d-443f-9062-9602c270c2d2",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/6e96b4e4-ab5d-443f-9062-9602c270c2d2.jpg?v=ecea74d9fa6c",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Повторене #05 появлеин сначла цифр под звук потом текст такое же ровно как и #05",
-      "opinion": "",
       "application": "",
-      "technique": "",
+      "category": "Типографика",
+      "createdAt": 1786365199158,
+      "description": "Повторене #05 появлеин сначла цифр под звук потом текст такое же ровно как и #05",
+      "id": "6e96b4e4-ab5d-443f-9062-9602c270c2d2",
+      "image": "assets/elements/6e96b4e4-ab5d-443f-9062-9602c270c2d2.jpg?v=ecea74d9fa6c",
       "legacyTagsMigrated": true,
-      "category": "",
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:35"
       ],
-      "createdAt": 1786365199158,
-      "updatedAt": 1786365222964
+      "updatedAt": 1786365227584
     }
   ],
   "categories": [
@@ -487,8 +487,8 @@
     {
       "key": "типографика",
       "name": "Типографика",
-      "repeats": 2,
-      "uses": 2
+      "repeats": 3,
+      "uses": 3
     },
     {
       "key": "частицы",
@@ -498,7 +498,9 @@
     }
   ],
   "settings": {
-    "theme": "dark",
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null,
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -506,9 +508,7 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
     "lastCropSource": "assets/crop/last-source.jpg?v=d6bc3eb21b5a",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null
+    "theme": "dark"
   }
 }
