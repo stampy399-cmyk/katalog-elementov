@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:20:11.975Z",
+  "exportedAt": "2026-08-10T12:21:20.275Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -343,6 +343,24 @@
         "0:17"
       ],
       "updatedAt": 1786361396764
+    },
+    {
+      "id": "663141be-4a75-4da3-a489-83f19cab1247",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/663141be-4a75-4da3-a489-83f19cab1247.jpg?v=0e69de679267",
+      "repeatCount": 1,
+      "name": "",
+      "description": "простой переход",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
+      "timecodes": [
+        "0:27"
+      ],
+      "createdAt": 1786364475570,
+      "updatedAt": 1786364479127
     }
   ],
   "categories": [
@@ -399,7 +417,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=e328cfab2f67",
+    "lastCropSource": "assets/crop/last-source.jpg?v=1d9ce010d949",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
