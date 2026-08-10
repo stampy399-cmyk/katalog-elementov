@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:24:42.066Z",
+  "exportedAt": "2026-08-10T12:24:51.240Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -165,21 +165,21 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "663141be-4a75-4da3-a489-83f19cab1247",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/663141be-4a75-4da3-a489-83f19cab1247.jpg?v=0e69de679267",
-      "repeatCount": 1,
-      "name": "",
-      "description": "простой переход + медленный зум в центр + чб фото постпенно чб",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Работа с футажем",
+      "createdAt": 1786364475570,
+      "description": "простой переход + медленный зум в центр + чб фото постпенно чб",
+      "id": "663141be-4a75-4da3-a489-83f19cab1247",
+      "image": "assets/elements/663141be-4a75-4da3-a489-83f19cab1247.jpg?v=0e69de679267",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:27"
       ],
-      "createdAt": 1786364475570,
       "updatedAt": 1786364504017
     },
     {
@@ -219,21 +219,21 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "70a553d1-99be-4a8a-8d36-a0b32e233c1a",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/70a553d1-99be-4a8a-8d36-a0b32e233c1a.jpg?v=4349bd2b1638",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Обычный переход просто смена кадра и статичное фото + эффект кинопленки ки мелик частицы",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Частицы",
+      "createdAt": 1786364387671,
+      "description": "Обычный переход просто смена кадра и статичное фото + эффект кинопленки ки мелик частицы",
+      "id": "70a553d1-99be-4a8a-8d36-a0b32e233c1a",
+      "image": "assets/elements/70a553d1-99be-4a8a-8d36-a0b32e233c1a.jpg?v=4349bd2b1638",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:26"
       ],
-      "createdAt": 1786364387671,
       "updatedAt": 1786364411500
     },
     {
@@ -255,21 +255,21 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "763de73c-11c6-413e-99e0-b8882907e995",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/763de73c-11c6-413e-99e0-b8882907e995.jpg?v=63fdda330363",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Простой переход смена фото статично ефото + жельтые теплы филльтр блики",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Работа с футажем",
+      "createdAt": 1786364512614,
+      "description": "Простой переход смена фото статично ефото + жельтые теплы филльтр блики",
+      "id": "763de73c-11c6-413e-99e0-b8882907e995",
+      "image": "assets/elements/763de73c-11c6-413e-99e0-b8882907e995.jpg?v=63fdda330363",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:29"
       ],
-      "createdAt": 1786364512614,
       "updatedAt": 1786364528967
     },
     {
@@ -327,21 +327,21 @@
       "updatedAt": 1786361396763
     },
     {
-      "id": "c72d86e1-b184-4157-b8ae-7a24045e79f5",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/c72d86e1-b184-4157-b8ae-7a24045e79f5.jpg?v=256bbe342635",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Быстрый зум фото в угол нижний правый",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Зум",
+      "createdAt": 1786364354925,
+      "description": "Быстрый зум фото в угол нижний правый",
+      "id": "c72d86e1-b184-4157-b8ae-7a24045e79f5",
+      "image": "assets/elements/c72d86e1-b184-4157-b8ae-7a24045e79f5.jpg?v=256bbe342635",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:24"
       ],
-      "createdAt": 1786364354925,
       "updatedAt": 1786364368185
     },
     {
@@ -381,22 +381,22 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "ee663c55-f96c-4013-9ab3-aef344d5c53e",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/ee663c55-f96c-4013-9ab3-aef344d5c53e.jpg?v=a0c62c7b3ac1",
-      "repeatCount": 1,
-      "name": "",
-      "description": "",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "",
+      "createdAt": 1786364681025,
+      "description": "Интересный переход фото уходит в лево где-т",
+      "id": "ee663c55-f96c-4013-9ab3-aef344d5c53e",
+      "image": "assets/elements/ee663c55-f96c-4013-9ab3-aef344d5c53e.jpg?v=a0c62c7b3ac1",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:30"
       ],
-      "createdAt": 1786364681025,
-      "updatedAt": 1786364681064
+      "updatedAt": 1786364688162
     }
   ],
   "categories": [
@@ -444,7 +444,9 @@
     }
   ],
   "settings": {
-    "theme": "dark",
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null,
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -452,9 +454,7 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
     "lastCropSource": "assets/crop/last-source.jpg?v=039c876f630b",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null
+    "theme": "dark"
   }
 }
