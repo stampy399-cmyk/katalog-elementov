@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:06:01.328Z",
+  "exportedAt": "2026-08-10T13:07:10.204Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -667,6 +667,24 @@
         "0:44"
       ],
       "updatedAt": 1786365601934
+    },
+    {
+      "id": "59dfbf19-5d35-495f-a5e3-bb74c3975161",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/59dfbf19-5d35-495f-a5e3-bb74c3975161.jpg?v=3456d3cfb31a",
+      "repeatCount": 1,
+      "name": "",
+      "description": "переход от #36 через зум в центр к статично кадру",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
+      "timecodes": [
+        "0:54"
+      ],
+      "createdAt": 1786367220386,
+      "updatedAt": 1786367229203
     }
   ],
   "categories": [
@@ -720,9 +738,7 @@
     }
   ],
   "settings": {
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null,
+    "theme": "dark",
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -730,7 +746,9 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "lastCropSource": "assets/crop/last-source.jpg?v=189c26342ccc",
-    "theme": "dark"
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "lastCropSource": "assets/crop/last-source.jpg?v=9a7f9e07b04d",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null
   }
 }
