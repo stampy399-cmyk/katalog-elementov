@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:36:42.013Z",
+  "exportedAt": "2026-08-10T12:36:46.993Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -75,21 +75,21 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "2c55431e-e6f8-4459-b4a6-612982f98857",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/2c55431e-e6f8-4459-b4a6-612982f98857.jpg?v=6857deada202",
-      "repeatCount": 1,
-      "name": "",
-      "description": "после #022 переход и зума оставлилвается и частиц снежико идут",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Частицы",
+      "createdAt": 1786364740965,
+      "description": "после #022 переход и зума оставлилвается и частиц снежико идут",
+      "id": "2c55431e-e6f8-4459-b4a6-612982f98857",
+      "image": "assets/elements/2c55431e-e6f8-4459-b4a6-612982f98857.jpg?v=6857deada202",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:32"
       ],
-      "createdAt": 1786364740965,
       "updatedAt": 1786364760825
     },
     {
@@ -219,21 +219,21 @@
       "updatedAt": 1786363978883
     },
     {
-      "id": "6e96b4e4-ab5d-443f-9062-9602c270c2d2",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/6e96b4e4-ab5d-443f-9062-9602c270c2d2.jpg?v=ecea74d9fa6c",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Повторене #05 появлеин сначла цифр под звук потом текст такое же ровно как и #05\nОтлиный шритф рамзер и работа с тенями сзади чуть затемненое фото",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Типографика",
+      "createdAt": 1786365199158,
+      "description": "Повторене #05 появлеин сначла цифр под звук потом текст такое же ровно как и #05\nОтлиный шритф рамзер и работа с тенями сзади чуть затемненое фото",
+      "id": "6e96b4e4-ab5d-443f-9062-9602c270c2d2",
+      "image": "assets/elements/6e96b4e4-ab5d-443f-9062-9602c270c2d2.jpg?v=ecea74d9fa6c",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:35"
       ],
-      "createdAt": 1786365199158,
       "updatedAt": 1786365303412
     },
     {
@@ -309,21 +309,21 @@
       "updatedAt": 1786364528967
     },
     {
-      "id": "85497c8a-3468-434d-b530-bf873f565488",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/85497c8a-3468-434d-b530-bf873f565488.jpg?v=97eb563ef0af",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Хорошее фото нашел в инетрнете и меденный зум в центр",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Зум",
+      "createdAt": 1786365175351,
+      "description": "Хорошее фото нашел в инетрнете и меденный зум в центр",
+      "id": "85497c8a-3468-434d-b530-bf873f565488",
+      "image": "assets/elements/85497c8a-3468-434d-b530-bf873f565488.jpg?v=97eb563ef0af",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:33"
       ],
-      "createdAt": 1786365175351,
       "updatedAt": 1786365185818
     },
     {
@@ -417,21 +417,21 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "db5ea07c-053d-4dcd-bbd9-ae6790e83e52",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/db5ea07c-053d-4dcd-bbd9-ae6790e83e52.jpg?v=24193004b979",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Простой переход к статичному фото и эффект кинопленки и слабые частицы",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Частицы",
+      "createdAt": 1786365310383,
+      "description": "Простой переход к статичному фото и эффект кинопленки и слабые частицы",
+      "id": "db5ea07c-053d-4dcd-bbd9-ae6790e83e52",
+      "image": "assets/elements/db5ea07c-053d-4dcd-bbd9-ae6790e83e52.jpg?v=24193004b979",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:36"
       ],
-      "createdAt": 1786365310383,
       "updatedAt": 1786365325901
     },
     {
@@ -471,22 +471,22 @@
       "updatedAt": 1786364739816
     },
     {
-      "id": "8add73ec-dfca-4846-a95c-1210b7837518",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/8add73ec-dfca-4846-a95c-1210b7837518.jpg?v=3df00b87fda9",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Вот это уже серьезная инфограки 1) под sfx появлиен таблицы палок ввверх вправо и grid сзади потом зум ближе + поялвние ткста выше плавно далее нарисвока полосы графика и ее рост  и появлние текст слева вертикального",
-      "opinion": "",
       "application": "",
-      "technique": "",
+      "category": "Инфографика",
+      "createdAt": 1786365345375,
+      "description": "Вот это уже серьезная инфограки 1) под sfx появлиен таблицы палок ввверх вправо и grid сзади потом зум ближе + поялвние ткста выше плавно далее нарисвока полосы графика и ее рост  и появлние текст слева вертикального",
+      "id": "8add73ec-dfca-4846-a95c-1210b7837518",
+      "image": "assets/elements/8add73ec-dfca-4846-a95c-1210b7837518.jpg?v=3df00b87fda9",
       "legacyTagsMigrated": true,
-      "category": "",
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:38"
       ],
-      "createdAt": 1786365345375,
-      "updatedAt": 1786365401012
+      "updatedAt": 1786365403283
     }
   ],
   "categories": [
@@ -499,8 +499,8 @@
     {
       "key": "инфографика",
       "name": "Инфографика",
-      "repeats": 3,
-      "uses": 3
+      "repeats": 4,
+      "uses": 4
     },
     {
       "key": "переход",
@@ -534,7 +534,9 @@
     }
   ],
   "settings": {
-    "theme": "dark",
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null,
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -542,9 +544,7 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
     "lastCropSource": "assets/crop/last-source.jpg?v=46f654a29a22",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null
+    "theme": "dark"
   }
 }
