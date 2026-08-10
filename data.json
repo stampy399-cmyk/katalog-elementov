@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:01:44.511Z",
+  "exportedAt": "2026-08-10T13:03:26.046Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -11,7 +11,7 @@
       "host": "Александр",
       "id": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
       "niche": "Сантехника германия",
-      "progress": 5,
+      "progress": 6,
       "progressOverride": null,
       "title": "Dieses 50€ Betonrohr Kühlt Dein Haus FÜR IMMER. Warum Ist Es VERBOTEN?",
       "titleSource": "manual",
@@ -418,6 +418,24 @@
     },
     {
       "application": "",
+      "category": "БАГ",
+      "createdAt": 1786366863861,
+      "description": "БАГ он встали не тот футаж!! программная ошибка он вствалви свой дефолтрны фон не тот кадр",
+      "id": "983f7465-adf6-47dd-8793-2afd2da1c596",
+      "image": "assets/elements/983f7465-adf6-47dd-8793-2afd2da1c596.jpg?v=a160712f1c73",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
+      "timecodes": [
+        "0:48"
+      ],
+      "updatedAt": 1786366904219
+    },
+    {
+      "application": "",
       "category": "Зум",
       "createdAt": 1786365642993,
       "description": "переход зум с прошлого кадра и зум уже фото в центр",
@@ -597,22 +615,22 @@
       "updatedAt": 1786365601934
     },
     {
-      "application": "",
-      "category": "БАГ",
-      "createdAt": 1786366863861,
-      "description": "БАГ он встали не тот футаж!! программная ошибка он вствалви свой дефолтрны фон не тот кадр",
-      "id": "983f7465-adf6-47dd-8793-2afd2da1c596",
-      "image": "assets/elements/983f7465-adf6-47dd-8793-2afd2da1c596.jpg?v=a160712f1c73",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
+      "id": "b0ac9c83-97a1-4ab0-9b52-41621c047e4c",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/b0ac9c83-97a1-4ab0-9b52-41621c047e4c.jpg?v=5d93aceaf056",
       "repeatCount": 1,
+      "name": "",
+      "description": "",
+      "opinion": "",
+      "application": "",
       "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
       "timecodes": [
-        "0:48"
+        "0:50"
       ],
-      "updatedAt": 1786366904219
+      "createdAt": 1786367005001,
+      "updatedAt": 1786367005044
     }
   ],
   "categories": [
@@ -666,9 +684,7 @@
     }
   ],
   "settings": {
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null,
+    "theme": "dark",
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -676,7 +692,9 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "lastCropSource": "assets/crop/last-source.jpg?v=c979065d5c54",
-    "theme": "dark"
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "lastCropSource": "assets/crop/last-source.jpg?v=5db1a156f151",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null
   }
 }
