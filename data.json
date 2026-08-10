@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:12:25.303Z",
+  "exportedAt": "2026-08-10T12:12:59.884Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -278,17 +278,17 @@
       "image": "assets/elements/6c6e31f3-c414-4bff-bca3-013e83e62a96.jpg?v=2a84452f5caf",
       "repeatCount": 1,
       "name": "",
-      "description": "",
+      "description": "Инфограика у нас есть такое!! Слово в центре быстро увеличается в раземере вокргу рисуетс круги такие по бокам крестики с sfx каранада у нас есть такое",
       "opinion": "",
       "application": "",
       "technique": "",
       "legacyTagsMigrated": true,
-      "category": "",
+      "category": "Инфографика",
       "timecodes": [
         "0:21"
       ],
       "createdAt": 1786363944259,
-      "updatedAt": 1786363944302
+      "updatedAt": 1786363978883
     }
   ],
   "categories": [
@@ -301,8 +301,8 @@
     {
       "key": "инфографика",
       "name": "Инфографика",
-      "repeats": 2,
-      "uses": 2
+      "repeats": 3,
+      "uses": 3
     },
     {
       "key": "переход",
