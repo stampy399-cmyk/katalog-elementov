@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:07:57.359Z",
+  "exportedAt": "2026-08-10T13:16:32.705Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -181,6 +181,24 @@
         "0:08"
       ],
       "updatedAt": 1786361396764
+    },
+    {
+      "application": "",
+      "category": "Переход",
+      "createdAt": 1786367220386,
+      "description": "переход от #36 через зум в центр к статично кадру + слабый эффект кинопленки",
+      "id": "59dfbf19-5d35-495f-a5e3-bb74c3975161",
+      "image": "assets/elements/59dfbf19-5d35-495f-a5e3-bb74c3975161.jpg?v=3456d3cfb31a",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
+      "timecodes": [
+        "0:54"
+      ],
+      "updatedAt": 1786367245785
     },
     {
       "application": "",
@@ -454,6 +472,24 @@
     },
     {
       "application": "",
+      "category": "Работа с футажем",
+      "createdAt": 1786367256252,
+      "description": "Простой перехеод к кажру и такое же эффект искажеиня как #03 искривлние",
+      "id": "a2070a5d-8c13-41dc-a16f-ee09e0de5807",
+      "image": "assets/elements/a2070a5d-8c13-41dc-a16f-ee09e0de5807.jpg?v=a82dc199095c",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
+      "timecodes": [
+        "0:56"
+      ],
+      "updatedAt": 1786367276134
+    },
+    {
+      "application": "",
       "category": "Зум",
       "createdAt": 1786365642993,
       "description": "переход зум с прошлого кадра и зум уже фото в центр",
@@ -505,6 +541,24 @@
         "0:00"
       ],
       "updatedAt": 1786361396763
+    },
+    {
+      "application": "",
+      "category": "Зум",
+      "createdAt": 1786367780778,
+      "description": "простой переход и плавнй зум в правую сторону",
+      "id": "c247b96d-c225-4ad7-8d0e-6c9620d6e615",
+      "image": "assets/elements/c247b96d-c225-4ad7-8d0e-6c9620d6e615.jpg?v=6c145c0a6a8c",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
+      "timecodes": [
+        "0:57"
+      ],
+      "updatedAt": 1786367791921
     },
     {
       "application": "",
@@ -667,42 +721,6 @@
         "0:44"
       ],
       "updatedAt": 1786365601934
-    },
-    {
-      "application": "",
-      "category": "Переход",
-      "createdAt": 1786367220386,
-      "description": "переход от #36 через зум в центр к статично кадру + слабый эффект кинопленки",
-      "id": "59dfbf19-5d35-495f-a5e3-bb74c3975161",
-      "image": "assets/elements/59dfbf19-5d35-495f-a5e3-bb74c3975161.jpg?v=3456d3cfb31a",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "repeatCount": 1,
-      "technique": "",
-      "timecodes": [
-        "0:54"
-      ],
-      "updatedAt": 1786367245785
-    },
-    {
-      "application": "",
-      "category": "Работа с футажем",
-      "createdAt": 1786367256252,
-      "description": "Простой перехеод к кажру и такое же эффект искажеиня как #03 искривлние",
-      "id": "a2070a5d-8c13-41dc-a16f-ee09e0de5807",
-      "image": "assets/elements/a2070a5d-8c13-41dc-a16f-ee09e0de5807.jpg?v=a82dc199095c",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "repeatCount": 1,
-      "technique": "",
-      "timecodes": [
-        "0:56"
-      ],
-      "updatedAt": 1786367276134
     }
   ],
   "categories": [
@@ -715,8 +733,8 @@
     {
       "key": "зум",
       "name": "Зум",
-      "repeats": 8,
-      "uses": 8
+      "repeats": 9,
+      "uses": 9
     },
     {
       "key": "инфографика",
@@ -766,7 +784,7 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "lastCropSource": "assets/crop/last-source.jpg?v=698406a521a4",
+    "lastCropSource": "assets/crop/last-source.jpg?v=f6b4b6aeb45e",
     "theme": "dark"
   }
 }
