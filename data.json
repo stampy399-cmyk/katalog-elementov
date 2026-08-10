@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:05:00.488Z",
+  "exportedAt": "2026-08-10T13:05:06.501Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -636,7 +636,7 @@
       "application": "",
       "category": "",
       "createdAt": 1786367086098,
-      "description": "дополнние к #34",
+      "description": "дополнние к #34 помле всего это вылезает под sfx pop зеленая шкала вверх и цфира",
       "id": "d4cad72d-3739-4cb4-991a-ca48c98dee49",
       "image": "assets/elements/d4cad72d-3739-4cb4-991a-ca48c98dee49.jpg?v=73c6d3fcef5b",
       "legacyTagsMigrated": true,
@@ -648,7 +648,7 @@
       "timecodes": [
         "0:51"
       ],
-      "updatedAt": 1786367092249
+      "updatedAt": 1786367105499
     }
   ],
   "categories": [
