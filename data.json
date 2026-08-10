@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:22:09.969Z",
+  "exportedAt": "2026-08-10T12:24:42.066Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -165,6 +165,24 @@
       "updatedAt": 1786361396764
     },
     {
+      "id": "663141be-4a75-4da3-a489-83f19cab1247",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/663141be-4a75-4da3-a489-83f19cab1247.jpg?v=0e69de679267",
+      "repeatCount": 1,
+      "name": "",
+      "description": "простой переход + медленный зум в центр + чб фото постпенно чб",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Работа с футажем",
+      "timecodes": [
+        "0:27"
+      ],
+      "createdAt": 1786364475570,
+      "updatedAt": 1786364504017
+    },
+    {
       "application": "",
       "category": "Инфографика",
       "createdAt": 1786363944259,
@@ -235,6 +253,24 @@
         "0:14"
       ],
       "updatedAt": 1786361396764
+    },
+    {
+      "id": "763de73c-11c6-413e-99e0-b8882907e995",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/763de73c-11c6-413e-99e0-b8882907e995.jpg?v=63fdda330363",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Простой переход смена фото статично ефото + жельтые теплы филльтр блики",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Работа с футажем",
+      "timecodes": [
+        "0:29"
+      ],
+      "createdAt": 1786364512614,
+      "updatedAt": 1786364528967
     },
     {
       "application": "Объяснение ряда пунктов",
@@ -345,40 +381,22 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "663141be-4a75-4da3-a489-83f19cab1247",
+      "id": "ee663c55-f96c-4013-9ab3-aef344d5c53e",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/663141be-4a75-4da3-a489-83f19cab1247.jpg?v=0e69de679267",
+      "image": "assets/elements/ee663c55-f96c-4013-9ab3-aef344d5c53e.jpg?v=a0c62c7b3ac1",
       "repeatCount": 1,
       "name": "",
-      "description": "простой переход + медленный зум в центр + чб фото постпенно чб",
+      "description": "",
       "opinion": "",
       "application": "",
       "technique": "",
       "legacyTagsMigrated": true,
-      "category": "Работа с футажем",
+      "category": "",
       "timecodes": [
-        "0:27"
+        "0:30"
       ],
-      "createdAt": 1786364475570,
-      "updatedAt": 1786364504017
-    },
-    {
-      "id": "763de73c-11c6-413e-99e0-b8882907e995",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/763de73c-11c6-413e-99e0-b8882907e995.jpg?v=63fdda330363",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Простой переход смена фото статично ефото + жельтые теплы филльтр блики",
-      "opinion": "",
-      "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
-      "category": "Работа с футажем",
-      "timecodes": [
-        "0:29"
-      ],
-      "createdAt": 1786364512614,
-      "updatedAt": 1786364528967
+      "createdAt": 1786364681025,
+      "updatedAt": 1786364681064
     }
   ],
   "categories": [
@@ -435,7 +453,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=7437ed4fe1b3",
+    "lastCropSource": "assets/crop/last-source.jpg?v=039c876f630b",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
