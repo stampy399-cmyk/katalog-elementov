@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:39:20.685Z",
+  "exportedAt": "2026-08-10T12:39:24.710Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -526,7 +526,7 @@
     },
     {
       "application": "",
-      "category": "",
+      "category": "Зум",
       "createdAt": 1786365545223,
       "description": "Простой переход и быстырй зум в центр оченб бытрв кадр",
       "id": "6346a349-7d21-4eab-88dc-8005260a7133",
@@ -540,15 +540,15 @@
       "timecodes": [
         "0:42"
       ],
-      "updatedAt": 1786365557463
+      "updatedAt": 1786365560934
     }
   ],
   "categories": [
     {
       "key": "зум",
       "name": "Зум",
-      "repeats": 5,
-      "uses": 5
+      "repeats": 6,
+      "uses": 6
     },
     {
       "key": "инфографика",
