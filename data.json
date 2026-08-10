@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:24:51.240Z",
+  "exportedAt": "2026-08-10T12:25:35.353Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -384,7 +384,7 @@
       "application": "",
       "category": "",
       "createdAt": 1786364681025,
-      "description": "Интересный переход фото уходит в лево где-т",
+      "description": "Интересный переход фото уходит в лево где-то на 25%? и следущее фото так же уходит влевона стольок же итого такой переход с двойнми уходом влвеов на след фото",
       "id": "ee663c55-f96c-4013-9ab3-aef344d5c53e",
       "image": "assets/elements/ee663c55-f96c-4013-9ab3-aef344d5c53e.jpg?v=a0c62c7b3ac1",
       "legacyTagsMigrated": true,
@@ -396,7 +396,7 @@
       "timecodes": [
         "0:30"
       ],
-      "updatedAt": 1786364688162
+      "updatedAt": 1786364733796
     }
   ],
   "categories": [
@@ -444,9 +444,7 @@
     }
   ],
   "settings": {
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null,
+    "theme": "dark",
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -454,7 +452,9 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
     "lastCropSource": "assets/crop/last-source.jpg?v=039c876f630b",
-    "theme": "dark"
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null
   }
 }
