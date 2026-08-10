@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:37:13.739Z",
+  "exportedAt": "2026-08-10T12:37:35.966Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -327,6 +327,24 @@
       "updatedAt": 1786365185818
     },
     {
+      "id": "8add73ec-dfca-4846-a95c-1210b7837518",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/8add73ec-dfca-4846-a95c-1210b7837518.jpg?v=3df00b87fda9",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Вот это уже серьезная инфограки 1) под sfx появлиен таблицы палок ввверх вправо и grid сзади потом зум ближе + поялвние ткста выше плавно далее нарисвока полосы  (сначала точки потом полоса провдится )графика и ее рост  и появлние текст слева вертикального",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Инфографика",
+      "timecodes": [
+        "0:38"
+      ],
+      "createdAt": 1786365345375,
+      "updatedAt": 1786365432738
+    },
+    {
       "application": "Объяснение ряда пунктов",
       "category": "Инфографика",
       "createdAt": 1786347823331,
@@ -471,22 +489,22 @@
       "updatedAt": 1786364739816
     },
     {
-      "id": "8add73ec-dfca-4846-a95c-1210b7837518",
+      "id": "e37e9de2-450e-4dd4-be5f-63525550f62e",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/8add73ec-dfca-4846-a95c-1210b7837518.jpg?v=3df00b87fda9",
+      "image": "assets/elements/e37e9de2-450e-4dd4-be5f-63525550f62e.jpg?v=b1c1734ffc5f",
       "repeatCount": 1,
       "name": "",
-      "description": "Вот это уже серьезная инфограки 1) под sfx появлиен таблицы палок ввверх вправо и grid сзади потом зум ближе + поялвние ткста выше плавно далее нарисвока полосы  (сначала точки потом полоса провдится )графика и ее рост  и появлние текст слева вертикального",
+      "description": "Переход к след футажу через наложение + теплый филльтр блики и через секнуд фото становится чб футаж",
       "opinion": "",
       "application": "",
       "technique": "",
       "legacyTagsMigrated": true,
-      "category": "Инфографика",
+      "category": "",
       "timecodes": [
-        "0:38"
+        "0:39"
       ],
-      "createdAt": 1786365345375,
-      "updatedAt": 1786365432738
+      "createdAt": 1786365439042,
+      "updatedAt": 1786365454966
     }
   ],
   "categories": [
@@ -543,7 +561,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=46f654a29a22",
+    "lastCropSource": "assets/crop/last-source.jpg?v=3e8db8061819",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
