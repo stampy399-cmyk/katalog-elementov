@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:07:16.096Z",
+  "exportedAt": "2026-08-10T13:07:26.787Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -672,7 +672,7 @@
       "application": "",
       "category": "Переход",
       "createdAt": 1786367220386,
-      "description": "переход от #36 через зум в центр к статично кадру",
+      "description": "переход от #36 через зум в центр к статично кадру + слабый эффект кинопленки",
       "id": "59dfbf19-5d35-495f-a5e3-bb74c3975161",
       "image": "assets/elements/59dfbf19-5d35-495f-a5e3-bb74c3975161.jpg?v=3456d3cfb31a",
       "legacyTagsMigrated": true,
@@ -684,7 +684,7 @@
       "timecodes": [
         "0:54"
       ],
-      "updatedAt": 1786367232314
+      "updatedAt": 1786367245785
     }
   ],
   "categories": [
