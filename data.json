@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:13:43.145Z",
+  "exportedAt": "2026-08-10T12:13:52.594Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -75,21 +75,21 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "3bf9cff8-3ab0-476d-9780-57dc9be48cc2",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/3bf9cff8-3ab0-476d-9780-57dc9be48cc2.jpg?v=2ca7e81b4793",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Досттаочно тяжелая техника в чем суть эта наша карусль кашалот или касатка не помню вроде С - есть фото оно быстро зумится во вней вокруг рамки как видишь оно перелистыаеся влево (как в нейш карслеи)  на фоне черный фо нкак свегда и открываестя фото до которого перпелситнулс влеов + 2 sfxa",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Инфографика",
+      "createdAt": 1786361675468,
+      "description": "Досттаочно тяжелая техника в чем суть эта наша карусль кашалот или касатка не помню вроде С - есть фото оно быстро зумится во вней вокруг рамки как видишь оно перелистыаеся влево (как в нейш карслеи)  на фоне черный фо нкак свегда и открываестя фото до которого перпелситнулс влеов + 2 sfxa",
+      "id": "3bf9cff8-3ab0-476d-9780-57dc9be48cc2",
+      "image": "assets/elements/3bf9cff8-3ab0-476d-9780-57dc9be48cc2.jpg?v=2ca7e81b4793",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:20"
       ],
-      "createdAt": 1786361675468,
       "updatedAt": 1786363929494
     },
     {
@@ -147,21 +147,21 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "6c6e31f3-c414-4bff-bca3-013e83e62a96",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/6c6e31f3-c414-4bff-bca3-013e83e62a96.jpg?v=2a84452f5caf",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Инфограика у нас есть такое!! Слово в центре быстро увеличается в раземере вокргу рисуетс круги такие по бокам крестики с sfx каранада у нас есть такое",
-      "opinion": "",
       "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
       "category": "Инфографика",
+      "createdAt": 1786363944259,
+      "description": "Инфограика у нас есть такое!! Слово в центре быстро увеличается в раземере вокргу рисуетс круги такие по бокам крестики с sfx каранада у нас есть такое",
+      "id": "6c6e31f3-c414-4bff-bca3-013e83e62a96",
+      "image": "assets/elements/6c6e31f3-c414-4bff-bca3-013e83e62a96.jpg?v=2a84452f5caf",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:21"
       ],
-      "createdAt": 1786363944259,
       "updatedAt": 1786363978883
     },
     {
@@ -291,22 +291,22 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "11b81132-8907-40d1-b176-571242a74644",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/11b81132-8907-40d1-b176-571242a74644.jpg?v=9e4219c97dfa",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Переход второй раз уже повторстя как эффект глитча но без глитча и с теплым фильтмром",
-      "opinion": "",
       "application": "",
-      "technique": "",
+      "category": "Переход",
+      "createdAt": 1786364003527,
+      "description": "Переход второй раз уже повторстя как эффект глитча но без глитча и с теплым фильтмром оранежвые блики",
+      "id": "11b81132-8907-40d1-b176-571242a74644",
+      "image": "assets/elements/11b81132-8907-40d1-b176-571242a74644.jpg?v=9e4219c97dfa",
       "legacyTagsMigrated": true,
-      "category": "",
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
       "timecodes": [
         "0:23"
       ],
-      "createdAt": 1786364003527,
-      "updatedAt": 1786364022143
+      "updatedAt": 1786364028233
     }
   ],
   "categories": [
@@ -325,8 +325,8 @@
     {
       "key": "переход",
       "name": "Переход",
-      "repeats": 1,
-      "uses": 1
+      "repeats": 2,
+      "uses": 2
     },
     {
       "key": "работа с камерой",
@@ -354,7 +354,9 @@
     }
   ],
   "settings": {
-    "theme": "dark",
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null,
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -362,9 +364,7 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
     "lastCropSource": "assets/crop/last-source.jpg?v=6a14f251ffdf",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null
+    "theme": "dark"
   }
 }
