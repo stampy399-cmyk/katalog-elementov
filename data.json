@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:03:45.589Z",
+  "exportedAt": "2026-08-10T13:04:47.204Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -453,6 +453,24 @@
       "updatedAt": 1786365655044
     },
     {
+      "application": "",
+      "category": "Типографика",
+      "createdAt": 1786367005001,
+      "description": "Это статичные фото просто появляется вот это сначала Белая штука снизу вверх появляется это Белая штука а потом просто текст проявляется всё",
+      "id": "b0ac9c83-97a1-4ab0-9b52-41621c047e4c",
+      "image": "assets/elements/b0ac9c83-97a1-4ab0-9b52-41621c047e4c.jpg?v=5d93aceaf056",
+      "legacyTagsMigrated": true,
+      "name": "",
+      "opinion": "",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "repeatCount": 1,
+      "technique": "",
+      "timecodes": [
+        "0:50"
+      ],
+      "updatedAt": 1786367024586
+    },
+    {
       "application": "Возможно на первом кадре ролика",
       "category": "Зум",
       "createdAt": 1786347529861,
@@ -615,22 +633,22 @@
       "updatedAt": 1786365601934
     },
     {
-      "application": "",
-      "category": "Типографика",
-      "createdAt": 1786367005001,
-      "description": "Это статичные фото просто появляется вот это сначала Белая штука снизу вверх появляется это Белая штука а потом просто текст проявляется всё",
-      "id": "b0ac9c83-97a1-4ab0-9b52-41621c047e4c",
-      "image": "assets/elements/b0ac9c83-97a1-4ab0-9b52-41621c047e4c.jpg?v=5d93aceaf056",
-      "legacyTagsMigrated": true,
-      "name": "",
-      "opinion": "",
+      "id": "d4cad72d-3739-4cb4-991a-ca48c98dee49",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/d4cad72d-3739-4cb4-991a-ca48c98dee49.jpg?v=73c6d3fcef5b",
       "repeatCount": 1,
+      "name": "",
+      "description": "",
+      "opinion": "",
+      "application": "",
       "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "",
       "timecodes": [
-        "0:50"
+        "0:51"
       ],
-      "updatedAt": 1786367024586
+      "createdAt": 1786367086098,
+      "updatedAt": 1786367086203
     }
   ],
   "categories": [
@@ -684,9 +702,7 @@
     }
   ],
   "settings": {
-    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "backupDirectoryHandle": null,
-    "backupLastWrittenAt": null,
+    "theme": "dark",
     "crop": {
       "x": 0.0087414,
       "y": 0.2322195,
@@ -694,7 +710,9 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "lastCropSource": "assets/crop/last-source.jpg?v=5db1a156f151",
-    "theme": "dark"
+    "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+    "lastCropSource": "assets/crop/last-source.jpg?v=0ef854c03385",
+    "backupDirectoryHandle": null,
+    "backupLastWrittenAt": null
   }
 }
