@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T13:05:40.832Z",
+  "exportedAt": "2026-08-10T13:05:45.409Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -654,7 +654,7 @@
       "application": "",
       "category": "",
       "createdAt": 1786367126735,
-      "description": "простой переход на такое фото и эффект кинополеленки",
+      "description": "простой переход на такое фото и эффект кинополеленки как",
       "id": "941d279e-a93b-4ac5-8486-1c7b44cf22d3",
       "image": "assets/elements/941d279e-a93b-4ac5-8486-1c7b44cf22d3.jpg?v=6fbca529a6cb",
       "legacyTagsMigrated": true,
@@ -666,7 +666,7 @@
       "timecodes": [
         "0:53"
       ],
-      "updatedAt": 1786367139831
+      "updatedAt": 1786367141164
     }
   ],
   "categories": [
