@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:19:29.186Z",
+  "exportedAt": "2026-08-10T12:19:48.762Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -273,6 +273,24 @@
       "updatedAt": 1786361396763
     },
     {
+      "id": "c72d86e1-b184-4157-b8ae-7a24045e79f5",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/c72d86e1-b184-4157-b8ae-7a24045e79f5.jpg?v=256bbe342635",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Быстрый зум фото в угол нижний правый",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Зум",
+      "timecodes": [
+        "0:24"
+      ],
+      "createdAt": 1786364354925,
+      "updatedAt": 1786364368185
+    },
+    {
       "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786347727766,
@@ -309,22 +327,22 @@
       "updatedAt": 1786361396764
     },
     {
-      "id": "c72d86e1-b184-4157-b8ae-7a24045e79f5",
+      "id": "70a553d1-99be-4a8a-8d36-a0b32e233c1a",
       "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/c72d86e1-b184-4157-b8ae-7a24045e79f5.jpg?v=256bbe342635",
+      "image": "assets/elements/70a553d1-99be-4a8a-8d36-a0b32e233c1a.jpg?v=4349bd2b1638",
       "repeatCount": 1,
       "name": "",
-      "description": "Быстрый зум фото в угол нижний правый",
+      "description": "",
       "opinion": "",
       "application": "",
       "technique": "",
       "legacyTagsMigrated": true,
-      "category": "Зум",
+      "category": "",
       "timecodes": [
-        "0:24"
+        "0:26"
       ],
-      "createdAt": 1786364354925,
-      "updatedAt": 1786364368185
+      "createdAt": 1786364387671,
+      "updatedAt": 1786364387760
     }
   ],
   "categories": [
@@ -381,7 +399,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=eb1b4c225db5",
+    "lastCropSource": "assets/crop/last-source.jpg?v=e328cfab2f67",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
