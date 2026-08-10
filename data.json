@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:37:35.966Z",
+  "exportedAt": "2026-08-10T12:37:50.200Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -453,6 +453,24 @@
       "updatedAt": 1786365325901
     },
     {
+      "id": "e37e9de2-450e-4dd4-be5f-63525550f62e",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/e37e9de2-450e-4dd4-be5f-63525550f62e.jpg?v=b1c1734ffc5f",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Переход к след футажу через наложение + теплый филльтр блики и через секнуд фото становится чб футаж и все эо врмя медленныслабый зум отдаление",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Работа с футажем",
+      "timecodes": [
+        "0:39"
+      ],
+      "createdAt": 1786365439042,
+      "updatedAt": 1786365469784
+    },
+    {
       "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786348841737,
@@ -487,24 +505,6 @@
         "0:30"
       ],
       "updatedAt": 1786364739816
-    },
-    {
-      "id": "e37e9de2-450e-4dd4-be5f-63525550f62e",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/e37e9de2-450e-4dd4-be5f-63525550f62e.jpg?v=b1c1734ffc5f",
-      "repeatCount": 1,
-      "name": "",
-      "description": "Переход к след футажу через наложение + теплый филльтр блики и через секнуд фото становится чб футаж",
-      "opinion": "",
-      "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
-      "category": "",
-      "timecodes": [
-        "0:39"
-      ],
-      "createdAt": 1786365439042,
-      "updatedAt": 1786365454966
     }
   ],
   "categories": [
@@ -535,8 +535,8 @@
     {
       "key": "работа с футажем",
       "name": "Работа с футажем",
-      "repeats": 6,
-      "uses": 6
+      "repeats": 7,
+      "uses": 7
     },
     {
       "key": "типографика",
