@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:33:20.189Z",
+  "exportedAt": "2026-08-10T12:33:29.648Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -440,7 +440,7 @@
       "image": "assets/elements/6e96b4e4-ab5d-443f-9062-9602c270c2d2.jpg?v=ecea74d9fa6c",
       "repeatCount": 1,
       "name": "",
-      "description": "",
+      "description": "Повторене #05",
       "opinion": "",
       "application": "",
       "technique": "",
@@ -450,7 +450,7 @@
         "0:35"
       ],
       "createdAt": 1786365199158,
-      "updatedAt": 1786365199187
+      "updatedAt": 1786365208646
     }
   ],
   "categories": [
