@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:25:48.700Z",
+  "exportedAt": "2026-08-10T12:26:01.564Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -73,6 +73,24 @@
         "0:12"
       ],
       "updatedAt": 1786361396764
+    },
+    {
+      "id": "2c55431e-e6f8-4459-b4a6-612982f98857",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/2c55431e-e6f8-4459-b4a6-612982f98857.jpg?v=6857deada202",
+      "repeatCount": 1,
+      "name": "",
+      "description": "после #022 переход и зума оставлилвается и частиц снежико идут",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Частицы",
+      "timecodes": [
+        "0:32"
+      ],
+      "createdAt": 1786364740965,
+      "updatedAt": 1786364760825
     },
     {
       "application": "",
@@ -397,24 +415,6 @@
         "0:30"
       ],
       "updatedAt": 1786364739816
-    },
-    {
-      "id": "2c55431e-e6f8-4459-b4a6-612982f98857",
-      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-      "image": "assets/elements/2c55431e-e6f8-4459-b4a6-612982f98857.jpg?v=6857deada202",
-      "repeatCount": 1,
-      "name": "",
-      "description": "после #022 переход",
-      "opinion": "",
-      "application": "",
-      "technique": "",
-      "legacyTagsMigrated": true,
-      "category": "",
-      "timecodes": [
-        "0:32"
-      ],
-      "createdAt": 1786364740965,
-      "updatedAt": 1786364747698
     }
   ],
   "categories": [
@@ -457,8 +457,8 @@
     {
       "key": "частицы",
       "name": "Частицы",
-      "repeats": 3,
-      "uses": 3
+      "repeats": 4,
+      "uses": 4
     }
   ],
   "settings": {
