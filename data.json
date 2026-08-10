@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-10T12:26:01.564Z",
+  "exportedAt": "2026-08-10T12:33:07.438Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -415,14 +415,32 @@
         "0:30"
       ],
       "updatedAt": 1786364739816
+    },
+    {
+      "id": "85497c8a-3468-434d-b530-bf873f565488",
+      "projectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
+      "image": "assets/elements/85497c8a-3468-434d-b530-bf873f565488.jpg?v=97eb563ef0af",
+      "repeatCount": 1,
+      "name": "",
+      "description": "Хорошее фото нашел в инетрнете и меденный зум в центр",
+      "opinion": "",
+      "application": "",
+      "technique": "",
+      "legacyTagsMigrated": true,
+      "category": "Зум",
+      "timecodes": [
+        "0:33"
+      ],
+      "createdAt": 1786365175351,
+      "updatedAt": 1786365185818
     }
   ],
   "categories": [
     {
       "key": "зум",
       "name": "Зум",
-      "repeats": 4,
-      "uses": 4
+      "repeats": 5,
+      "uses": 5
     },
     {
       "key": "инфографика",
@@ -471,7 +489,7 @@
     },
     "cropCalibrated": true,
     "activeProjectId": "c7b3604b-d801-49ca-b17e-4ba549e1e1d9",
-    "lastCropSource": "assets/crop/last-source.jpg?v=151270d553c0",
+    "lastCropSource": "assets/crop/last-source.jpg?v=4987d818a6e5",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
   }
