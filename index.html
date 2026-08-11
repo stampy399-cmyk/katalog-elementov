@@ -1041,21 +1041,24 @@
         return firstText ? [firstText] : [];
       }
 
-      function chronologyTimestamp(record) {
-        const value = Number(record?.createdAt);
-        return Number.isFinite(value) && value >= 0 ? value : Number.POSITIVE_INFINITY;
+      function elementStartSeconds(record) {
+        const range = timecodesFrom(record)[0] || '';
+        const start = range.split(/\s*[–—-]\s*/, 1)[0];
+        const seconds = parseTimecode(start);
+        return seconds === null || seconds < 0 ? Number.POSITIVE_INFINITY : seconds;
       }
 
       function compareElementsChronologically(left, right) {
-        const timestampDelta = chronologyTimestamp(left) - chronologyTimestamp(right);
-        if (timestampDelta) return timestampDelta;
-        const projectDelta = String(left?.projectId ?? '').localeCompare(String(right?.projectId ?? ''), 'en');
-        if (projectDelta) return projectDelta;
-        return String(left?.id ?? '').localeCompare(String(right?.id ?? ''), 'en');
+        const leftStart = elementStartSeconds(left);
+        const rightStart = elementStartSeconds(right);
+        return leftStart === rightStart ? 0 : leftStart - rightStart;
       }
 
       function chronologicalElements(elements = state.elements) {
-        return [...elements].sort(compareElementsChronologically);
+        return [...elements]
+          .map((element, index) => ({ element, index }))
+          .sort((left, right) => compareElementsChronologically(left.element, right.element) || left.index - right.index)
+          .map(({ element }) => element);
       }
 
       function normalizeProject(source, now = Date.now()) {
@@ -1464,8 +1467,8 @@
         const duration = parseTimecode(project.duration);
         if (!duration || duration <= 0) return 0;
         const last = Math.max(0, ...elementsForProject(project.id)
-          .map((element) => parseTimecode(timecodesFrom(element)[0]))
-          .filter((timecode) => timecode !== null));
+          .map(elementStartSeconds)
+          .filter(Number.isFinite));
         return clamp(Math.round((last / duration) * 100), 0, 100);
       }
 
@@ -2880,8 +2883,8 @@
         let stack = 0;
         const markers = [];
         for (const element of elements) {
-          const time = parseTimecode(timecodesFrom(element)[0]);
-          if (duration && time !== null && time <= duration) {
+          const time = elementStartSeconds(element);
+          if (duration && Number.isFinite(time) && time <= duration) {
             const position = clamp((time / duration) * 100, 0, 100);
             markers.push(`<button class="timeline-marker" type="button" style="left:${position}%" aria-label="${escapeAttribute(elementName(element))}"><span class="timeline-tooltip">${escapeHtml(elementName(element))}</span></button>`);
           } else {
@@ -2898,7 +2901,7 @@
 
       function statisticsFor(projects) {
         const projectIds = new Set(projects.map((project) => String(project.id)));
-        const elements = state.elements.filter((element) => projectIds.has(String(element.projectId)));
+        const elements = chronologicalElements(state.elements.filter((element) => projectIds.has(String(element.projectId))));
         const categories = new Map();
         const techniques = new Map();
         const keywords = new Map();
@@ -2920,8 +2923,8 @@
         // Timeline coverage is the last marked frame against the video length, not a guess.
         const coveredSeconds = projects.reduce((sum, project) => {
           const times = elementsForProject(project.id)
-            .map((element) => parseTimecode(timecodesFrom(element)[0]))
-            .filter((value) => value !== null);
+            .map(elementStartSeconds)
+            .filter(Number.isFinite);
           return sum + (times.length ? Math.max(...times) : 0);
         }, 0);
         const mentions = new Map();
@@ -2934,7 +2937,7 @@
         }
         const repeated = elements
           .filter((element) => Math.max(1, Number(element.repeatCount) || 1) > 1)
-          .sort((left, right) => (right.repeatCount || 1) - (left.repeatCount || 1));
+          .sort((left, right) => (right.repeatCount || 1) - (left.repeatCount || 1) || compareElementsChronologically(left, right));
         return {
           coveredSeconds,
           mentions: [...mentions.values()].sort((left, right) => right.count - left.count || left.number - right.number),
@@ -5532,6 +5535,14 @@
         expect(capturedTimecodeFromText('https://youtu.be/example?t=61') === '1:01', 'URL timecode');
         expect(capturedTimecodeFromText('0:51') === '', 'ambiguous text is ignored');
         expect(formatCapturedTimecode(3661.9) === '1:01:01', 'media timecode format');
+        const earlyRange = { id: 'early', timecodes: ['0:03–0:10'] };
+        const middleRange = { id: 'middle', timecodes: ['2:51–2:59'] };
+        const lateRange = { id: 'late', timecodes: ['10:55.0–10:56.5'] };
+        expect(elementStartSeconds(earlyRange) === 3, 'range start 0:03 is numeric 3');
+        expect(elementStartSeconds(middleRange) === 171, 'range start 2:51 is numeric 171');
+        expect(elementStartSeconds(lateRange) === 655, 'range start 10:55.0 is numeric 655');
+        const stableOrder = chronologicalElements([lateRange, middleRange, earlyRange, { ...middleRange, id: 'middle-2' }]).map((element) => element.id);
+        expect(stableOrder.join() === 'early,middle,middle-2,late', 'range ordering is numeric and stable');
         expect(youtubeVideoId('https://www.youtube.com/watch?v=QOUszAHEZAE&t=211s') === 'QOUszAHEZAE', 'YouTube video ID');
         expect(youtubeStartSeconds('https://youtu.be/QOUszAHEZAE?t=3m31s') === 211, 'YouTube start time');
         expect(capturedTimecodeFromPlayer({ getCurrentTime: () => 51.9 }) === '0:51', 'live player timecode');

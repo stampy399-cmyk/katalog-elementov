@@ -25,3 +25,24 @@
 - Исходный commit свежего клона: `a340cd7` (`origin/main`).
 
 Изменён код фронтенда: `/private/tmp/katalog-front-fix-1108/index.html`.
+
+## Вторая задача: хронологический порядок карточек
+
+### Было
+
+- `elementsForProject()` вызывал `chronologicalElements()`, но comparator использовал `createdAt`, затем `projectId/id`.
+- При одинаковом `createdAt` UUID определял видимый порядок; начало `timecodes[0]` не парсилось и не участвовало в сортировке.
+
+### Изменено
+
+- Начало первого таймкода отделяется от диапазона по `–`, `—` или `-` и парсится `parseTimecode()` в секунды типа Number.
+- Карточки сортируются по числовому start time по возрастанию; элементы без валидного таймкода идут в конце.
+- Равные start time сохраняют исходный порядок явным index tie-breaker.
+- `elementNumber()`, поиск, ссылки `#NN`, timeline, coverage и статистические element-коллекции используют тот же хронологический порядок.
+
+### Проверено
+
+- Node: `0:03–0:10 = 3`, `2:51–2:59 = 171`, `10:55.0–10:56.5 = 655`; порядок `3 < 171 < 655` — PASS.
+- Node: стабильность двух элементов с одинаковым start time — PASS.
+- Node: все 331 элемента в 5 проектах после comparator имеют неубывающий start time — PASS.
+- JavaScript syntax, `jq empty data.json`, `git diff --exit-code -- data.json assets`, `git diff --check` — PASS.
