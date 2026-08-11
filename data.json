@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-11T16:30:48Z",
+  "exportedAt": "2026-08-11T16:59:42Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -382,42 +382,6 @@
       "updatedAt": "2026-08-11T07:40:29Z"
     },
     {
-      "application": "Использовать один ненавязчивый CTA в середине и один ближе к финалу.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Компактные Like/Subscribe элементы появляются в правом нижнем углу карты и экрана телефона.",
-      "id": "1969537e-6d0c-4cd2-9f9f-9ad8a1584162",
-      "image": "assets/elements/1969537e-6d0c-4cd2-9f9f-9ad8a1584162.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Социальный CTA-бейдж",
-      "opinion": "Не мешают основному содержанию, но стилистически выглядят как стандартный шаблон YouTube.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 2,
-      "technique": "Готовый UI overlay с иконками, белой капсулой и коротким pop/bounce.",
-      "timecodes": [
-        "3:59.5–4:10.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Всегда подсвечивать одну строку и при необходимости увеличивать её рядом.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "В архивных таблицах нужные записи выделены красной рамкой, выносным фрагментом или подписью NAME PREFIX.",
-      "id": "196af30b-10df-4f36-9723-f0d0b7255aa9",
-      "image": "assets/elements/196af30b-10df-4f36-9723-f0d0b7255aa9.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Подсветка строки документа",
-      "opinion": "Направляет взгляд в плотном документе; без подсветки материал был бы неразборчив.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 2,
-      "technique": "Rectangle stroke 2–4 px, crop magnifier, затемнение остального листа и короткий fade/scale.",
-      "timecodes": [
-        "3:40.5–3:47.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "id": "1D328DA3-1B10-423D-82DB-074651821521",
       "projectId": "195BF0E6-9E46-4A87-8436-823EFF05F63E",
       "image": "assets/elements/1D328DA3-1B10-423D-82DB-074651821521.jpg",
@@ -452,42 +416,6 @@
       ],
       "createdAt": "2026-08-11T13:30:00Z",
       "updatedAt": "2026-08-11T14:30:00.000Z"
-    },
-    {
-      "application": "Ограничить галерею пятью карточками и привязать каждое появление к тезису.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Карточки документов или вертикальных фото последовательно собираются на светлом фоне и сменяют друг друга.",
-      "id": "1a26b9a4-9e72-4004-9670-22824fe32f80",
-      "image": "assets/elements/1a26b9a4-9e72-4004-9670-22824fe32f80.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Галерея документов и домов",
-      "opinion": "Позволяет показать серию доказательств без дробной нарезки; в эпизоде с домами слегка затянуто.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 3,
-      "technique": "Layered cards, staggered X/Y movement, scale 90–100%, drop shadow и фон warm white/beige.",
-      "timecodes": [
-        "8:23.5–8:31"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Унифицировать как один location/name lower third для всех регионов.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Названия Schmid, Huber Hof Tirol и Nürnberger закрепляются поверх архивного или натурного плана.",
-      "id": "1b72e368-532f-45d5-9d92-db00793f9460",
-      "image": "assets/elements/1b72e368-532f-45d5-9d92-db00793f9460.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Географический титр",
-      "opinion": "Помогает считывать термин без отдельной карточки; стиль между эпизодами немного различается.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 3,
-      "technique": "Bold sans-serif, фиксированный safe-area отступ, fade либо короткий slide-up.",
-      "timecodes": [
-        "3:17–3:22"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "Использовать как вторичный слой фирменного стингера, синхронный с пиком вспышки.",
@@ -563,24 +491,6 @@
       "updatedAt": "2026-08-11T14:30:00.000Z"
     },
     {
-      "application": "Применять для каждого нового региона: слева происхождение, справа визуальный пример.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Экран делится между картой/схемой и фото местности, деревни либо отрасли.",
-      "id": "22c7dcac-7b8d-4808-bca6-98e38b3934e0",
-      "image": "assets/elements/22c7dcac-7b8d-4808-bca6-98e38b3934e0.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Карта рядом с примером",
-      "opinion": "Связывает абстрактную географию с узнаваемым образом; композиция читается быстро.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 3,
-      "technique": "Две маски 45/55 или чередующиеся вертикальные панели, общий лёгкий zoom и единый grade.",
-      "timecodes": [
-        "0:15.5–0:21.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "id": "24FEA3C9-CF35-40B1-913E-1EE38B6630D3",
       "projectId": "195BF0E6-9E46-4A87-8436-823EFF05F63E",
       "image": "assets/elements/24FEA3C9-CF35-40B1-913E-1EE38B6630D3.jpg",
@@ -597,60 +507,6 @@
       ],
       "createdAt": "2026-08-11T09:35:43Z",
       "updatedAt": "2026-08-11T14:30:00.000Z"
-    },
-    {
-      "application": "Использовать для хроники, сохраняя поля и единый уровень зерна.",
-      "category": "Работа с футажем",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Узкая кинохроника сохраняет исходное соотношение сторон, чёрные поля, мягкую виньетку и плёночную фактуру.",
-      "id": "2647b6b1-09f9-4ce9-a2d1-3a34c3672b7d",
-      "image": "assets/elements/2647b6b1-09f9-4ce9-a2d1-3a34c3672b7d.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Архив 4:3 с виньеткой",
-      "opinion": "Подчёркивает подлинность и не растягивает материал; частые смены формата не мешают благодаря общей обработке.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 7,
-      "technique": "Source fit-to-height/width, black pillarbox, vignette, grain, slight flicker and optional sepia tint.",
-      "timecodes": [
-        "2:57.5–3:00.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Использовать как короткий предметный перебивочный кадр перед заключением или источником.",
-      "category": "Работа с футажем",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Белый конверт с красной печатью удерживается отдельным чистым планом в 15:29.5–15:33.5 перед финальным призывом.",
-      "id": "2647b6b1-09f9-4ce9-a2d1-3a34c3672b7e",
-      "image": "assets/elements/2647b6b1-09f9-4ce9-a2d1-3a34c3672b7e.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Конверт с сургучной печатью",
-      "opinion": "Создаёт тактильную паузу и рифмуется с фирменной печатью финального кадра.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Centered product shot, high-key white background, locked camera and match cut по красной печати к end card.",
-      "timecodes": [
-        "15:29.5–15:33.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Применять для отказа от неверной версии или смены архивного источника.",
-      "category": "Переход",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Лист сжимается в бумажный комок и раскрывает следующую карту в 13:04.5–13:06.",
-      "id": "2834fa5e-5877-43ca-81b8-bb54f995001d",
-      "image": "assets/elements/2834fa5e-5877-43ca-81b8-bb54f995001d.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Скомканная бумага",
-      "opinion": "Запоминающийся тематический переход к документам; чуть игровой, но уместный один раз.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Морфинг/готовый paper-crumple asset, маска деформации и motion blur поверх фонового изображения.",
-      "timecodes": [
-        "13:04.5–13:06"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "",
@@ -671,24 +527,6 @@
       "updatedAt": 1786361396764
     },
     {
-      "application": "Использовать для акцента на персонаже или связи фото с реконструкцией.",
-      "category": "Работа с футажем",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Старинная улица переходит из фото в рисунок, а гравюра ремесла получает выборочную цветную заливку.",
-      "id": "2c51f0b2-8e9c-42d8-a932-c48c96af5b94",
-      "image": "assets/elements/2c51f0b2-8e9c-42d8-a932-c48c96af5b94.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Оживление старого изображения",
-      "opinion": "Помогает увидеть историческую сцену как живую; выборочный цвет работает лучше полного эффекта.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 2,
-      "technique": "Crossfade photo↔illustration, masked colorization и локальная saturation поверх monochrome source.",
-      "timecodes": [
-        "0:24.5–0:27.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "application": "",
       "category": "Частицы",
       "createdAt": 1786364740965,
@@ -705,42 +543,6 @@
         "0:55"
       ],
       "updatedAt": 1786364760825
-    },
-    {
-      "application": "Сильнее затемнять хронику и укрупнять две сравниваемые формы.",
-      "category": "Работа с футажем",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Две чёрные карточки Frankfurter и варианты фамилии стоят поверх движущейся чёрно-белой улицы в 12:42.5–12:49.",
-      "id": "2d7f4976-d921-4af0-87db-f1f6319cd12b",
-      "image": "assets/elements/2d7f4976-d921-4af0-87db-f1f6319cd12b.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Две карточки поверх хроники",
-      "opinion": "Сочетает контекст и сравнение, но фон конкурирует с мелким текстом.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Looped archive background at 35–45% brightness, two bordered title cards and staggered replacement.",
-      "timecodes": [
-        "12:42.5–12:49"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Применять к редким архивам, сохраняя длительность 3–5 с.",
-      "category": "Работа с футажем",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Фото или видео центрируется на чёрном поле с большим свободным пространством и подписью снизу.",
-      "id": "31db7b7a-995e-459b-bf37-7f1307a7759c",
-      "image": "assets/elements/31db7b7a-995e-459b-bf37-7f1307a7759c.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Архивная вставка на чёрном",
-      "opinion": "Придаёт источнику вес и решает проблему низкого разрешения; длинные эпизоды выглядят статично.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 8,
-      "technique": "Fit source inside black 16:9 canvas, thin border/soft shadow, optional slow scale and caption.",
-      "timecodes": [
-        "2:12.5–2:15.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "id": "356508F1-E223-41FE-BA05-7F516953E01D",
@@ -888,24 +690,6 @@
       "updatedAt": 1786363929494
     },
     {
-      "application": "Выводить 4–6 классов, увеличенную легенду и подсветку обсуждаемой области.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Плотная тематическая карта окрашивает районы и показывает легенду распределения фамилий.",
-      "id": "40786199-3dbb-4f8c-b49e-ec8171855d15",
-      "image": "assets/elements/40786199-3dbb-4f8c-b49e-ec8171855d15.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Карта распределения фамилий",
-      "opinion": "Даёт ощущение данных и масштаба; легенда слишком мелкая, но цветовые кластеры считываются.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 2,
-      "technique": "Choropleth polygons, discrete color scale, legend и медленный push-in.",
-      "timecodes": [
-        "3:59.5–4:10.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "id": "417BC501-C20E-4790-840A-A4E44FB50456",
       "projectId": "195BF0E6-9E46-4A87-8436-823EFF05F63E",
       "image": "assets/elements/417BC501-C20E-4790-840A-A4E44FB50456.jpg",
@@ -922,42 +706,6 @@
       ],
       "createdAt": "2026-08-11T07:57:20Z",
       "updatedAt": "2026-08-11T13:51:39.808Z"
-    },
-    {
-      "application": "Использовать как единый фон для вертикальных фото и карт.",
-      "category": "Частицы",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Крупные мягкие оранжевые круги и размытые цветовые пятна заполняют поля вокруг вертикальных архивов.",
-      "id": "434b58af-3a58-4616-b856-af2116566f5b",
-      "image": "assets/elements/434b58af-3a58-4616-b856-af2116566f5b.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Боке по бокам кадра",
-      "opinion": "Маскирует несовпадение форматов и добавляет глубину; повторяется достаточно последовательно.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 3,
-      "technique": "Дубликат исходника в background, сильный Gaussian Blur, затемнение и отдельный bokeh overlay на Screen.",
-      "timecodes": [
-        "1:31.5–1:34.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Применять для двух групп с максимум четырьмя пунктами в каждой.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "На текстуре рукописи две тёмные колонки группируют славянские и нижненемецкие суффиксы в 7:16–7:21.",
-      "id": "449bb3cf-b99a-4222-93aa-d6912260088f",
-      "image": "assets/elements/449bb3cf-b99a-4222-93aa-d6912260088f.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Матрица языковых групп",
-      "opinion": "Удобно показывает классификацию, но мелкий белый текст требует увеличения.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Two-column dark cards, white uppercase labels, parchment background и последовательное появление второй колонки.",
-      "timecodes": [
-        "7:16–7:21"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "Использовать один тип схемы на один вопрос: реакция, энергетический поток, стоимость или архитектура подключения.",
@@ -1123,42 +871,6 @@
       "updatedAt": "2026-08-11T07:40:29Z"
     },
     {
-      "application": "Использовать с 0.8–1 с на дату и общей линией времени.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "На затемнённом архивном фоне последовательно появляются даты 2026, 2021, 1961 и 1947 в 13:14.5–13:17.5.",
-      "id": "4efa8ade-a8de-450c-b989-2031f8570885",
-      "image": "assets/elements/4efa8ade-a8de-450c-b989-2031f8570885.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Историческая шкала",
-      "opinion": "Сжимает большой временной скачок в три секунды; направление времени считывается, но даты мелькают быстро.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Tinted archive background, centered date labels и crossfade/step по временным точкам.",
-      "timecodes": [
-        "13:14.5–13:17.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Применять для количества шагов, регионов или паттернов, повторяя в recap.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Число быстро досчитывается до 15, затем достраивается слово Patterns; приём повторён в начале и финале.",
-      "id": "504b2c55-5067-4563-a831-56a4f4cda892",
-      "image": "assets/elements/504b2c55-5067-4563-a831-56a4f4cda892.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Счётчик 15 Patterns",
-      "opinion": "Хорошо фиксирует структуру и создаёт кольцевую композицию ролика.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 2,
-      "technique": "Text animator с заменой чисел по кадрам, затем position/opacity reveal второй части строки.",
-      "timecodes": [
-        "0:58.5–1:02"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "application": "",
       "category": "Зум",
       "createdAt": 1786348432626,
@@ -1175,42 +887,6 @@
         "0:12"
       ],
       "updatedAt": 1786361396764
-    },
-    {
-      "application": "На каждый тезис выбирать один прямой визуальный пример на 3–6 с и чередовать эпохи.",
-      "category": "Работа с футажем",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Рассказ непрерывно иллюстрируется картами в руках, городами, ремёслами, архивами, пейзажами и семейными фото.",
-      "id": "588c1742-db4a-44cf-a0b9-f9d49e6e2cb4",
-      "image": "assets/elements/588c1742-db4a-44cf-a0b9-f9d49e6e2cb4.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Смысловая B-roll нарезка",
-      "opinion": "Высокая визуальная плотность удерживает длинный ролик; иногда планы сменяются быстрее, чем успевает считаться источник.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 40,
-      "technique": "Hard cuts по смысловым фразам, короткие 2–8-секундные планы, общий тёплый grade и J/L-связь с непрерывной озвучкой.",
-      "timecodes": [
-        "0:07.5–0:10"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Применять для серий городов, домов или социальных групп, ограничивая коллаж четырьмя кадрами.",
-      "category": "Работа с футажем",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Несколько изображений накладываются под разными углами или собираются в квадранты/полароиды.",
-      "id": "58fc8e23-fcef-4c47-be92-05a9d900b842",
-      "image": "assets/elements/58fc8e23-fcef-4c47-be92-05a9d900b842.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Коллаж перекрывающихся фото",
-      "opinion": "Быстро показывает разнообразие примеров и создаёт ручную архивную фактуру.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 4,
-      "technique": "Layered photos with rotation ±3°, white borders, shadows, staggered scale/position animation.",
-      "timecodes": [
-        "2:36.5–2:43"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "",
@@ -1248,78 +924,6 @@
       ],
       "createdAt": "2026-08-11T13:30:00Z",
       "updatedAt": "2026-08-11T15:00:00.000Z"
-    },
-    {
-      "application": "Ставить между архивом и современным футажем, когда жёсткая склейка слишком заметна.",
-      "category": "Переход",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Кадр на полсекунды уходит в белый или молочный свет перед новым источником.",
-      "id": "5a391a05-7a59-48ab-8485-4613f3cc5223",
-      "image": "assets/elements/5a391a05-7a59-48ab-8485-4613f3cc5223.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Белая засветка",
-      "opinion": "Мягко скрывает разницу форматов и эпох; при редком использовании работает.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 4,
-      "technique": "Exposure ramp либо белый solid с Screen/Add и быстрым подъёмом/спадом opacity.",
-      "timecodes": [
-        "6:24–6:24.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Использовать только перед ключевыми сравнениями, сохраняя один цветовой код.",
-      "category": "Переход",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Яркая оранжевая засветка поверх чёрной координатной сетки открывает карточку сравнения.",
-      "id": "5cba816a-9a7d-4a23-b5bd-bcbb323d0ffc",
-      "image": "assets/elements/5cba816a-9a7d-4a23-b5bd-bcbb323d0ffc.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Оранжевая вспышка-сетка",
-      "opinion": "Сильный повторяемый маркер смены смыслового блока; работает как фирменная пунктуация.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 5,
-      "technique": "Короткий 0.5–1 с слой gradient/light leak с additive blend над grid background.",
-      "timecodes": [
-        "0:45.5–0:46.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Добавлять на реконструкции архивной работы с низкой плотностью частиц.",
-      "category": "Частицы",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Мелкие светлые частицы плавают над свечой и работой писца в 1:43.5–1:48.",
-      "id": "5d138acc-47b4-4060-9a24-63101c171fe0",
-      "image": "assets/elements/5d138acc-47b4-4060-9a24-63101c171fe0.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Пыль в луче света",
-      "opinion": "Усиливает атмосферу старого архива, оставаясь фоновым эффектом.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Dust stock/particle emitter, Screen blend, slow drift и небольшая depth-of-field разница.",
-      "timecodes": [
-        "1:43.5–1:48"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Применять для переходов карта→местность и фото→иллюстрация.",
-      "category": "Переход",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Соседние карты, фотографии и футажи на короткое время смешиваются прозрачностью.",
-      "id": "5dceed02-6df1-4e0d-90e0-99b65c7f2be0",
-      "image": "assets/elements/5dceed02-6df1-4e0d-90e0-99b65c7f2be0.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Мягкий наплыв",
-      "opinion": "Связывает похожие формы и эпохи без визуального удара; работает лучше всего на совпадающей композиции.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 5,
-      "technique": "Cross Dissolve 8–20 кадров, иногда с параллельным изменением экспозиции и масштаба.",
-      "timecodes": [
-        "0:09.5–0:10"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "Для мгновенной смены сюжетного плана без визуального смягчения.",
@@ -2222,42 +1826,6 @@
       "updatedAt": 1786364504017
     },
     {
-      "application": "Использовать для портретных архивов и мобильных кадров.",
-      "category": "Работа с футажем",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Узкое фото или карта остаётся в центре, а боковые поля заполняются размытым и затемнённым дубликатом.",
-      "id": "67eab056-504a-44dc-a48e-4c92c055d37f",
-      "image": "assets/elements/67eab056-504a-44dc-a48e-4c92c055d37f.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Вертикальный источник с фоном",
-      "opinion": "Сохраняет весь исходник и визуально заполняет 16:9; боковой фон не отвлекает.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 3,
-      "technique": "Background duplicate scale-to-fill + Gaussian Blur 40–80 px; foreground fit-to-height with subtle shadow.",
-      "timecodes": [
-        "1:31.5–1:34.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Использовать для сравнения 2–3 профессий или сословий.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Три монохромные карточки Pomeranian Merchant и Polish Fisherwoman появляются на сером фоне в 7:33.5–7:38.",
-      "id": "682555c8-73a4-481f-ab60-605b9c2d788e",
-      "image": "assets/elements/682555c8-73a4-481f-ab60-605b9c2d788e.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Портретные карточки типов",
-      "opinion": "Быстро материализует социальные группы; подписи мелкие, но структура ясна.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Portrait cutouts в одинаковых frames, lower labels и последовательный opacity/position reveal.",
-      "timecodes": [
-        "7:33.5–7:38"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "id": "69adc879-cc3f-49d8-9986-81a85dc08e4c",
       "projectId": "195BF0E6-9E46-4A87-8436-823EFF05F63E",
       "image": "assets/elements/69adc879-cc3f-49d8-9986-81a85dc08e4c.jpg",
@@ -2335,24 +1903,6 @@
       "updatedAt": "2026-08-11T13:51:39.808Z"
     },
     {
-      "application": "Использовать для архивной иллюстрации с короткой подписью до 35 знаков.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Небольшая белая строка под центрированным изображением на чёрном фоне называет тип окончания, вариант фамилии или происхождение.",
-      "id": "6b08d4b0-1fc0-4cd1-9020-a1ad89ab8f0d",
-      "image": "assets/elements/6b08d4b0-1fc0-4cd1-9020-a1ad89ab8f0d.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Подпись под вставкой",
-      "opinion": "Формат аккуратный и музейный; мелкий кегль требует просмотра на большом экране.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 8,
-      "technique": "Centered media card на black canvas, подпись 18–24 px, иногда медленный scale-in самой карточки.",
-      "timecodes": [
-        "2:12.5–2:15.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "application": "",
       "category": "Инфографика",
       "createdAt": 1786363944259,
@@ -2369,24 +1919,6 @@
         "0:41"
       ],
       "updatedAt": 1786363978883
-    },
-    {
-      "application": "Использовать для 3–5 источников, синхронизируя появление с перечислением в дикторском тексте.",
-      "category": "Переход",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Фотографии и документы въезжают, раздвигаются и собираются в многослойную композицию.",
-      "id": "6d422381-d0de-4d74-bf5c-71484a689f26",
-      "image": "assets/elements/6d422381-d0de-4d74-bf5c-71484a689f26.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Сдвиг карточек",
-      "opinion": "Хорошо структурирует серии примеров; в длинных галереях темп слегка замедляется.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 6,
-      "technique": "Position/Scale keyframes с масками, stagger 4–10 кадров и лёгким ease-out.",
-      "timecodes": [
-        "2:36.5–2:37.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "Для мгновенного перехода от измерения уклона к результату укладки труб.",
@@ -2731,24 +2263,6 @@
       "updatedAt": "2026-08-11T07:40:29Z"
     },
     {
-      "application": "Применять для цепочки из 3–5 языковых преобразований.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Жёлтая волнообразная линия с узлами и подписями показывает переход слов и регионов в 7:40.5–7:44.5.",
-      "id": "75971da9-3b09-42b5-99f4-a8c16fdf1960",
-      "image": "assets/elements/75971da9-3b09-42b5-99f4-a8c16fdf1960.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Лингвистическая кривая",
-      "opinion": "Необычно и наглядно объясняет фонетическую связь; высокая плотность текста требует паузы.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Vector path, circular nodes, labels над точками и поэтапное раскрытие слева направо.",
-      "timecodes": [
-        "7:40.5–7:44.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786364512614,
@@ -2765,24 +2279,6 @@
         "0:29"
       ],
       "updatedAt": 1786364528967
-    },
-    {
-      "application": "Записывать интерфейс отдельно и при необходимости композить крупнее поверх устройства.",
-      "category": "Работа с футажем",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Поиск показывается через телефон, запись карт, Google и цифровые экраны; интерфейс остаётся частью повествования.",
-      "id": "77630caf-f93f-45cd-9963-e92b1b55bd35",
-      "image": "assets/elements/77630caf-f93f-45cd-9963-e92b1b55bd35.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Экран и устройство в кадре",
-      "opinion": "Делает исследование практическим; самые светлые карты теряют детали из-за низкого контраста.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 5,
-      "technique": "Screen recording/device B-roll, perspective corner pin, cursor/pin preservation и мягкое затемнение окружения.",
-      "timecodes": [
-        "7:21–7:22.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "id": "7BCD6B0B-FD57-4BE7-AC44-8C4830BF2FED",
@@ -3762,24 +3258,6 @@
       "updatedAt": "2026-08-11T07:40:29Z"
     },
     {
-      "application": "Использовать для сопоставления соседних стран или регионов.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "На светлой карте появляются красные ярлыки Germany, Austria и Switzerland с флагами и линиями.",
-      "id": "956da2be-358b-4825-8285-aa44ed836c43",
-      "image": "assets/elements/956da2be-358b-4825-8285-aa44ed836c43.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Карта стран с флагами",
-      "opinion": "Мгновенно задаёт международный контекст и хорошо читается даже на мобильном экране.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 2,
-      "technique": "Vector borders, red pin/line leaders, rectangular flag labels и stagger по странам.",
-      "timecodes": [
-        "11:09.5–11:14.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "id": "96631752-98a3-4de2-9eaa-0f5b7ebe215d",
       "projectId": "195BF0E6-9E46-4A87-8436-823EFF05F63E",
       "image": "assets/elements/96631752-98a3-4de2-9eaa-0f5b7ebe215d.jpg",
@@ -3796,24 +3274,6 @@
       ],
       "createdAt": "2026-08-11T10:17:03.364428Z",
       "updatedAt": "2026-08-11T15:00:00.000Z"
-    },
-    {
-      "application": "Применять для разбора названий городов и значимых объектов.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "На белом фоне поэтапно проявляется красно-серый силуэт города с подписями башен в 11:50.5–11:55.5.",
-      "id": "9687f44b-a3c4-4b48-9ec2-bf7f95462ae4",
-      "image": "assets/elements/9687f44b-a3c4-4b48-9ec2-bf7f95462ae4.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Рисованный городской силуэт",
-      "opinion": "Создаёт визуальную паузу и объясняет топоним через ориентиры; работает чисто.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Ink/line-art reveal через маску, selective red accent и небольшие text labels.",
-      "timecodes": [
-        "11:50.5–11:55.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "",
@@ -3850,42 +3310,6 @@
       ],
       "createdAt": "2026-08-11T07:57:20Z",
       "updatedAt": "2026-08-11T13:51:39.808Z"
-    },
-    {
-      "application": "Использовать для цитат эксперта, редких хроник и демонстрации документа.",
-      "category": "Работа с футажем",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Видео интервью или архивный фрагмент помещён на карту-пергамент с рамкой и сургучной печатью.",
-      "id": "9c702cb9-0a50-4ff9-90f2-b8b31d174a83",
-      "image": "assets/elements/9c702cb9-0a50-4ff9-90f2-b8b31d174a83.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Вставка в пергаментной рамке",
-      "opinion": "Сохраняет фирменную историческую оболочку даже для современных источников; работает убедительно.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 4,
-      "technique": "Nested 16:9 media frame over parchment, drop shadow, wax-seal PNG и лёгкий background parallax.",
-      "timecodes": [
-        "6:38.5–6:42.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Использовать для короткого вывода или определения внизу кадра.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Подпись “Spelling: a soft clue” постепенно допечатывается в тёмном прямоугольнике в 3:54.5–3:59.5.",
-      "id": "9c8b3647-9b97-4c06-b1a7-d0acaee071ea",
-      "image": "assets/elements/9c8b3647-9b97-4c06-b1a7-d0acaee071ea.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Нижний титр в тёмной полосе",
-      "opinion": "Читается стабильно и поддерживает объяснение без остановки футажа.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Lower third с 55–65% opacity, белый шрифт и текстовый reveal по словам.",
-      "timecodes": [
-        "3:54.5–3:59.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "Показывать годовые расходы, диапазон цены, энергопотребление и экономию.",
@@ -4289,24 +3713,6 @@
       "updatedAt": "2026-08-11T14:50:41Z"
     },
     {
-      "application": "Использовать для 3–4 диагностических признаков фамилии.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Белая карточка SWABIAN -LE DIMINUTIVES с зелёной шапкой и чекбоксами наложена на мастерскую в 4:46–4:53.",
-      "id": "a1120e24-ea34-40b6-89fa-f9ade3234868",
-      "image": "assets/elements/a1120e24-ea34-40b6-89fa-f9ade3234868.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Чек-лист на карточке",
-      "opinion": "Хорошо переводит объяснение в проверяемые признаки; карточка немного перегружена мелким текстом.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "UI-card с header band, checkbox icons и построчным reveal поверх слегка затемнённого футажа.",
-      "timecodes": [
-        "4:46–4:53"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786367256252,
@@ -4343,24 +3749,6 @@
       ],
       "createdAt": "2026-08-11T10:23:28+00:00Z",
       "updatedAt": "2026-08-11T15:00:00.000Z"
-    },
-    {
-      "application": "Использовать с крупной обводкой нужного региона и короткой легендой.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "На старых атласах показаны границы и цветные регионы, иногда рядом несколько листов.",
-      "id": "a9c33a6e-2b02-4bbc-b056-c5d3fbc5c4d9",
-      "image": "assets/elements/a9c33a6e-2b02-4bbc-b056-c5d3fbc5c4d9.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Исторические карты с выделением",
-      "opinion": "Даёт документальную опору; мелкие подписи не читаются, но цветовое выделение сохраняет смысл.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 7,
-      "technique": "Crop/zoom исторической карты, red outline или цветные polygon overlays, мягкая виньетка.",
-      "timecodes": [
-        "0:21.5–0:24.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "Использовать вместо непрозрачной плашки, когда важно не терять атмосферу кадра.",
@@ -5099,24 +4487,6 @@
         "0:50"
       ],
       "updatedAt": 1786367024586
-    },
-    {
-      "application": "Сделать конструктор карты с заменяемыми подписями, подсветкой региона и камерой.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Старинная карта с виньеткой, световым пятном и фамилиями/суффиксами служит повторяющейся инфографической сценой.",
-      "id": "b0ea4c10-3839-4bdf-8bff-d83cfff26653",
-      "image": "assets/elements/b0ea4c10-3839-4bdf-8bff-d83cfff26653.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Пергаментная карта фамилий",
-      "opinion": "Главный визуальный язык ролика: сразу сообщает географию и сохраняет единство длинного рассказа.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 21,
-      "technique": "Текстура parchment, dark vignette, masked amber glow, serif labels и анимация opacity/position.",
-      "timecodes": [
-        "0:00–0:02.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "Держать единый стиль субтитров на всём ролике и оставлять безопасные поля под интерфейс плеера.",
@@ -8108,24 +7478,6 @@
       "updatedAt": 1786361396763
     },
     {
-      "application": "Использовать для пути семьи, миграции и сравнения соседних регионов.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "На светлой карте рисуются линии миграции и последовательно появляются белые подписи направлений или фамилий.",
-      "id": "c134a135-9b93-47bc-b883-9f4097b3921f",
-      "image": "assets/elements/c134a135-9b93-47bc-b883-9f4097b3921f.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Маршрутная карта с ярлыками",
-      "opinion": "Понятно визуализирует движение и родственные ветви; повторение сохраняет ориентацию зрителя.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 9,
-      "technique": "Shape-path trim animation, rounded label boxes, лёгкий paper noise и staggered opacity.",
-      "timecodes": [
-        "0:10–0:15.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "application": "",
       "category": "Зум",
       "createdAt": 1786367780778,
@@ -8162,24 +7514,6 @@
       "updatedAt": 1786364368185
     },
     {
-      "application": "Использовать для одной главной фразы в холодном открытии.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Фраза “Your surname is a compass” помещена в компактную белую плашку поверх компаса в 0:02.5–0:04.5.",
-      "id": "c7b93150-5997-421c-8a6a-9a856770d1f6",
-      "image": "assets/elements/c7b93150-5997-421c-8a6a-9a856770d1f6.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Тезис на белой плашке",
-      "opinion": "Мгновенно формулирует обещание ролика и хорошо читается на сложном фоне.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Белый rectangle с небольшим padding, чёрный sans-serif, короткий opacity/scale-in.",
-      "timecodes": [
-        "0:02.5–0:04.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786365528882,
@@ -8196,24 +7530,6 @@
         "0:41"
       ],
       "updatedAt": 1786365540351
-    },
-    {
-      "application": "Собрать шаблон для двух вариантов фамилии, документов или регионов.",
-      "category": "Инфографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Две подписанные карточки источников или значений стоят рядом на чёрном grid-фоне.",
-      "id": "c86bae4a-98c4-4927-86fe-a655b2888ee6",
-      "image": "assets/elements/c86bae4a-98c4-4927-86fe-a655b2888ee6.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Сравнение на чёрной сетке",
-      "opinion": "Один из самых ясных повторяемых шаблонов; мгновенно переводит рассказ в режим сравнения.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 5,
-      "technique": "Black grid background, две media cards с белой рамкой, охристые labels и синхронный scale-in.",
-      "timecodes": [
-        "0:46.5–0:48.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "Применять при первом упоминании учёного, изобретателя или эксперта.",
@@ -8250,24 +7566,6 @@
         "0:45.0–0:51.0"
       ],
       "updatedAt": "2026-08-11T07:40:29Z"
-    },
-    {
-      "application": "Применять для важных исключений и предупреждений длиной до двух строк.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Фраза “Caution to US viewers: spellings changed” собирается слева направо и построчно в 3:31–3:35.5.",
-      "id": "d2a46a3b-f827-48fb-9505-df304b4a5f52",
-      "image": "assets/elements/d2a46a3b-f827-48fb-9505-df304b4a5f52.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Построчный набор предупреждения",
-      "opinion": "Удерживает внимание на оговорке; набор выглядит осмысленным, а не декоративным.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Маска-вайп или type-on animator по словам, белый bold на затемнённом участке кадра.",
-      "timecodes": [
-        "3:31–3:35.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "",
@@ -8324,24 +7622,6 @@
       "updatedAt": 1786365325901
     },
     {
-      "application": "Использовать на фото предков, реестрах и исторических картах с направлением движения к смысловой детали.",
-      "category": "Зум",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Архивные карты, документы и фотографии медленно увеличиваются или смещаются внутри кадра.",
-      "id": "e1236aaa-5d26-48df-85d6-cefb38beca9a",
-      "image": "assets/elements/e1236aaa-5d26-48df-85d6-cefb38beca9a.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Ken Burns на архиве",
-      "opinion": "Добавляет движение неподвижным источникам и поддерживает темп; эффект умеренный и уместный.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 21,
-      "technique": "Анимация Position и Scale на 4–10 с, масштаб обычно 100–112%, без резких ключей.",
-      "timecodes": [
-        "0:21.5–0:24.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786365439042,
@@ -8396,60 +7676,6 @@
       "updatedAt": "2026-08-11T07:40:29Z"
     },
     {
-      "application": "Сократить до двух строк и использовать для приглашения к следующему выпуску.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Белый текст о чтении комментариев и выборе имён появляется на синем цифровом футаже в 15:41.5–15:47.",
-      "id": "e70decae-a691-4a6b-a085-0c754d94300a",
-      "image": "assets/elements/e70decae-a691-4a6b-a085-0c754d94300a.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Финальное сообщение",
-      "opinion": "Даёт конкретный call-to-action без агрессивной плашки; работает, но строк многовато.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Centered multiline sans-serif, opacity fade, затемнённый фон без отдельного контейнера.",
-      "timecodes": [
-        "15:41.5–15:47"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Применять для фамилии, записи или места с единым стилем меток.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Небольшие белые или тёмные ярлыки указывают Hendriks Entry, Manor Farm, Böttcher и Altenbach.",
-      "id": "e855936f-51d6-4ce6-ae1a-3e9b964e6476",
-      "image": "assets/elements/e855936f-51d6-4ce6-ae1a-3e9b964e6476.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Точечные подписи к объектам",
-      "opinion": "Быстро объясняет, куда смотреть; работает, когда ярлык не перекрывает ключевую деталь.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 4,
-      "technique": "Rounded rectangle, короткая подпись, anchor к объекту; opacity/scale-in без длинной анимации.",
-      "timecodes": [
-        "5:44.5–5:46.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Использовать для кульминационной цитаты из 3–4 коротких строк.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "На чёрно-белом архиве фраза о миллионах фамилий собирается отдельными жёлтыми прямоугольниками в 13:33–13:37.5.",
-      "id": "ea24ef7b-9fca-4ff9-a029-1a4ddd839aae",
-      "image": "assets/elements/ea24ef7b-9fca-4ff9-a029-1a4ddd839aae.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Жёлтые кинетические строки",
-      "opinion": "Самый заметный текстовый акцент ролика; хорошо подходит для эмоционального вывода.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Каждая строка на отдельной mustard-yellow плашке, staggered slide/opacity и небольшая разница по X.",
-      "timecodes": [
-        "13:33–13:37.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "application": "",
       "category": "Работа с футажем",
       "createdAt": 1786348841737,
@@ -8466,24 +7692,6 @@
         "0:28"
       ],
       "updatedAt": 1786361396764
-    },
-    {
-      "application": "Применять к картам происхождения и главам с географической привязкой фамилии.",
-      "category": "Зум",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Медленный цифровой наезд удерживает карту и подсвеченные фамильные зоны; точные эпизоды перечислены в timecodes.",
-      "id": "ed69fa1c-562d-4c40-a968-913d544e3c35",
-      "image": "assets/elements/ed69fa1c-562d-4c40-a968-913d544e3c35.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Наезд на пергаментную карту",
-      "opinion": "Создаёт ощущение исследования и не даёт статичной карте застыть; работает последовательно.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 20,
-      "technique": "Scale 100–108% с плавным ease-in-out, иногда с микропанорамой к подсвеченной области.",
-      "timecodes": [
-        "0:00–0:02.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "application": "",
@@ -8522,42 +7730,6 @@
       "updatedAt": 1786365601934
     },
     {
-      "application": "Использовать как короткий end card до 3 с с неизменной композицией.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "NAMED BY HISTORY с подзаголовком и сургучной печатью стоит на пергаментной карте в 15:39–15:41.5 и 15:47–15:49.4.",
-      "id": "f12d8440-e898-4647-a511-500e262484e2",
-      "image": "assets/elements/f12d8440-e898-4647-a511-500e262484e2.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Финальный логотип-заголовок",
-      "opinion": "Создаёт завершённую фирменную точку и повторно закрепляет название канала.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 2,
-      "technique": "Серийный serif, tracking, центральная композиция; лёгкая плёночная текстура и статичный seal graphic.",
-      "timecodes": [
-        "15:39–15:41.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Применять в практических шагах поиска населённого пункта или архива.",
-      "category": "Зум",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Экранные карты приближаются и смещаются от общего региона к конкретному месту.",
-      "id": "f1d416f7-68d1-4a80-bcb6-4e17d410b2d5",
-      "image": "assets/elements/f1d416f7-68d1-4a80-bcb6-4e17d410b2d5.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Зум по цифровой карте",
-      "opinion": "Показывает путь от тезиса к проверяемой точке; интерфейс местами слишком светлый, но логика ясна.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 4,
-      "technique": "Запись экрана либо анимация raster map с масштабированием, панорамой и сохранённым курсором/меткой.",
-      "timecodes": [
-        "4:10.5–4:15.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "application": "Показывать КПД, долю энергопотребления или достижение цели на фоне релевантного оборудования.",
       "category": "Инфографика",
       "createdAt": "2026-08-11T07:40:29Z",
@@ -8576,60 +7748,6 @@
       "updatedAt": "2026-08-11T07:40:29Z"
     },
     {
-      "application": "Использовать одним регулируемым overlay-пакетом для архивных глав.",
-      "category": "Частицы",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "По краям архивных сцен проходят цветные засветки, царапины и зерно; особенно заметно на карте и финальном брендинге.",
-      "id": "f8b04880-2b28-4e19-b377-0ede4281a70f",
-      "image": "assets/elements/f8b04880-2b28-4e19-b377-0ede4281a70f.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Плёночные засветки и зерно",
-      "opinion": "Склеивает разнородные источники общей фактурой; местами эффект чуть сильнее нужного.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 3,
-      "technique": "Film grain, scratches, gate weave и orange/blue light leak в режимах Overlay/Screen.",
-      "timecodes": [
-        "3:15.5–3:22"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Использовать для названий глав, не более одной строки.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Белый заголовок на полупрозрачной тёмной полосе появляется поверх архива в 1:24.5–1:27.5.",
-      "id": "fb715352-3a60-4bd8-8745-2630090054cb",
-      "image": "assets/elements/fb715352-3a60-4bd8-8745-2630090054cb.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Заголовок The Hidden Twist",
-      "opinion": "Чётко маркирует поворот сюжета; контраст и длительность удачны.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 1,
-      "technique": "Тёмный translucent bar, белый semibold sans-serif, fade-in 6–8 кадров.",
-      "timecodes": [
-        "1:24.5–1:27.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
-      "application": "Применять для терминов, показывая один термин на одном визуальном примере.",
-      "category": "Типографика",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "Крупные равенства Bach=stream, Berg=hill, Dorf=village, Feld=field, Stein=stone/rock и Burg=fortress наложены на подходящие планы.",
-      "id": "fc69f4b6-39d4-4fa3-bd19-0e375a1d8366",
-      "image": "assets/elements/fc69f4b6-39d4-4fa3-bd19-0e375a1d8366.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Словарные подписи поверх пейзажа",
-      "opinion": "Сильная связка слова и образа; крупный белый текст читается, хотя верхняя строка иногда дублирует смысл.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 6,
-      "technique": "Белый bold sans-serif с лёгкой тенью; простое появление opacity на 2–3-секундных клипах.",
-      "timecodes": [
-        "14:04.5–14:06.5"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
-    },
-    {
       "application": "Делать один короткий CTA в середине и полный набор действий в финале.",
       "category": "Типографика",
       "createdAt": "2026-08-11T07:40:29Z",
@@ -8646,24 +7764,6 @@
         "3:59.0–4:01.0"
       ],
       "updatedAt": "2026-08-11T07:40:29Z"
-    },
-    {
-      "application": "Использовать лишь для перехода к цифровому поиску или спорному факту.",
-      "category": "Переход",
-      "createdAt": "2026-08-11T07:56:35Z",
-      "description": "На границе сцен появляются горизонтальные полосы, цветовое смещение и краткий сбой изображения.",
-      "id": "ffbb3321-c029-4e48-94b0-e937fef8baa0",
-      "image": "assets/elements/ffbb3321-c029-4e48-94b0-e937fef8baa0.jpg",
-      "legacyTagsMigrated": true,
-      "name": "Цифровой глитч",
-      "opinion": "Добавляет нервный акцент, но стилистически выбивается из спокойной исторической темы.",
-      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
-      "repeatCount": 3,
-      "technique": "RGB split, horizontal displacement, scanline blocks и 2–6 кадров drop-frame имитации.",
-      "timecodes": [
-        "0:27–0:28"
-      ],
-      "updatedAt": "2026-08-11T07:56:35Z"
     },
     {
       "id": "7D2FF642-1155-4F0E-9B14-E41283ACEAF4",
@@ -10579,6 +9679,985 @@
       ],
       "createdAt": "2026-08-11T18:55:00Z",
       "updatedAt": "2026-08-11T18:55:00Z"
+    },
+    {
+      "id": "64AB1A9D-4974-42F2-958E-BCCD289C9BAF",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/64AB1A9D-4974-42F2-958E-BCCD289C9BAF.jpg",
+      "repeatCount": 1,
+      "name": "Карта распространения фамилий с локальной подсветкой",
+      "description": "Полноэкранная состаренная карта Европы уже собрана на границе начала ролика. На карте расставлены фамилии и суффиксы, а несколько территорий выделены мягкими тёплыми пятнами света. Композиция остаётся неподвижной до жёсткой склейки на крупный план компаса. Слои снизу вверх: пергаментная карта, подписи, локальные световые пятна.",
+      "opinion": "Полезно красть как мгновенный географический тезис: зритель одновременно видит общий ареал, конкретные фамилии и зоны внимания без последовательного перечисления.",
+      "application": "Открытие ролика о происхождении имён, языковых ареалах или миграциях, когда основной вывод должен считываться в первом кадре.",
+      "technique": "Собрать карту в полный кадр 16:9 без заметного движения масштаба. Разместить подписи SCHMIDT, HESS, BÖHM, HUBER, BAUER и видимые суффиксы поверх карты; под ключевыми подписями сделать мягкие тёплые световые пятна с размытым краем. Вход: граница проекта, карта уже полностью собрана. Выход: жёсткая склейка за 0,083 с. Между in- и out-листами не покрыто JPG примерно 0,817 с. предположение: карта непрерывно удерживается в собранном виде расчётные 2,417 с, потому что геометрия, подписи и подсветки совпадают на кадрах по обе стороны непокрытого интервала; это не выдаётся за покадрово наблюдаемый hold. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "0:00.000–0:02.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "3CE2C9E0-1BF0-4A43-9C05-3AA992D85774",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/3CE2C9E0-1BF0-4A43-9C05-3AA992D85774.jpg",
+      "repeatCount": 1,
+      "name": "Белая реплика-указатель поверх компаса",
+      "description": "После жёсткой склейки появляется сепийный крупный план компаса. Поверх него быстро проявляется белая горизонтальная плашка с коротким хвостом-указателем и фразой “Your surname is a compass”. Плашка удерживается до следующей жёсткой склейки.",
+      "opinion": "Связка предмета-метафоры и короткой фразы превращает обычный крупный план в ясный смысловой хук, не перекрывая центральную фактуру компаса.",
+      "application": "Короткие тезисы, определения и метафоры поверх предметного B-roll, когда текст должен выглядеть как подпись к объекту, а не как отдельный титульный экран.",
+      "technique": "Поставить сепийный крупный план компаса на весь кадр. В верхней половине разместить белую прямоугольную плашку с небольшим хвостом вниз и экранным текстом “Your surname is a compass”. Вход фона: жёсткая склейка за 0,083 с; плашку проявить изменением opacity за наблюдаемые 0,167 с. Выход всей композиции: жёсткая склейка за 0,083 с. Между in- и out-листами не покрыто JPG примерно 0,317 с. предположение: полностью собранная плашка непрерывно удерживается расчётные 1,667 с, потому что её положение, текст и opacity совпадают на соседних наблюдаемых кадрах до и после интервала; точный hold сквозь интервал не наблюдался. Точное easing проявления по кадрам не различимо. “Your surname is a compass” — экранная типографика, не речевой якорь. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Типографика",
+      "timecodes": [
+        "0:02.500–0:04.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "881F40E3-A987-49EF-8138-6F9FCC2C67BB",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/881F40E3-A987-49EF-8138-6F9FCC2C67BB.jpg",
+      "repeatCount": 1,
+      "name": "Карта фамильных суффиксов с тёплыми зонами",
+      "description": "Жёсткой склейкой открывается пергаментная карта с крупными подписями -SEN, -OW, -ITZ, -HUBER и -BAUER. Территории под группами подписей выделены мягкими тёплыми пятнами. Карта удерживается без доказанного зума и закрывается жёсткой склейкой на аэросъёмку.",
+      "opinion": "Хорошая форма для одновременного сравнения нескольких языковых признаков: взгляд перемещается между крупными суффиксами и географическими зонами без дополнительных выносок.",
+      "application": "Объяснение региональных окончаний, диалектов, вариантов написания и любых категорий, которые удобно привязать к нескольким областям карты.",
+      "technique": "Собрать полноэкранную состаренную карту. Поверх расставить крупные подписи -SEN, -OW, -ITZ, -HUBER и -BAUER; под группами сделать мягкие тёплые световые пятна с размытым краем. Вход и выход: жёсткие склейки по 0,083 с. Между in- и out-листами не покрыто JPG примерно 1,317 с. предположение: карта непрерывно удерживается в собранном виде расчётные 2,834 с, потому что все подписи, подсветки и масштаб совпадают на кадрах по обе стороны интервала; это не покадрово наблюдаемый hold. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "0:04.500–0:07.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "05925C27-5A09-45CE-98F2-A5920D07561A",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/05925C27-5A09-45CE-98F2-A5920D07561A.jpg",
+      "repeatCount": 1,
+      "name": "Сопоставление карты и альпийской иллюстрации",
+      "description": "Кадр разделён на две равные вертикальные части. Слева показана пергаментная карта с выделенной областью и подписями HUBER и GRUBER, справа — тёплая историческая иллюстрация альпийского поселения. Обе половины входят и выходят одной жёсткой склейкой, без раздельной анимации.",
+      "opinion": "Сильная доказательная пара: абстрактная география сразу получает предметный образ места, поэтому зрителю не приходится удерживать карту до следующего кадра.",
+      "application": "Сравнение “где” и “как это выглядит”: карта плюс архив, схема плюс пример, статистика плюс визуальное свидетельство.",
+      "technique": "Разделить холст 16:9 вертикально 50/50. Слева поместить пергаментную карту с тёплой локальной подсветкой и подписями HUBER и GRUBER; справа — альпийскую историческую иллюстрацию, обрезанную до заполнения половины. Не добавлять промежуток между колонками. Вход и выход всей пары: жёсткие склейки по 0,083 с. Между in- и out-листами не покрыто JPG примерно 4,317 с. предположение: готовая пара непрерывно удерживается расчётные 5,834 с, потому что граница 50/50, кадрирование и слои совпадают на кадрах по обе стороны интервала; это не покадрово наблюдаемый hold. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "0:15.500–0:21.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "4A065B17-38A0-418A-A9A4-19F61383B929",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/4A065B17-38A0-418A-A9A4-19F61383B929.jpg",
+      "repeatCount": 1,
+      "name": "RGB-глитч со сканлайнами между архивными планами",
+      "description": "Красноватое изображение старого поселения удерживается в первой части диапазона. Затем кадр за несколько последовательных фаз распадается на горизонтальные полосы, RGB-смещения, смешанные фрагменты двух планов и светлый импульс; из помех собирается новый кадр с писцом при свечах.",
+      "opinion": "Переход уместен как резкий тематический скачок внутри исторического материала: он сохраняет фактуру архива, но явно маркирует смену смыслового блока.",
+      "application": "Переход между двумя архивными сценами, эпохами или источниками, когда обычная склейка слишком нейтральна, а длительный морфинг замедлит темп.",
+      "technique": "Вход: исходный красноватый кадр уже показан полностью. Наблюдаемый hold исходного кадра: 0,583 с. Затем за наблюдаемые 0,417 с провести пять последовательных фаз: тонкие горизонтальные разрывы → усиленные RGB-смещения → смешение фрагментов исходного и следующего кадров → светлый цианово-белый импульс → чистый новый кадр. Как только смешанные фрагменты занимают большую часть изображения, запустить светлый импульс; на его спаде оставить только кадр с писцом. Весь диапазон 1,000 с покрыт готовыми JPG на сетке 12 fps; непокрытого интервала нет. Отдельного статичного hold нового кадра внутри диапазона нет. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "0:27.000–0:28.000"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "6527480E-3BFB-4823-870E-EFED546835AF",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/6527480E-3BFB-4823-870E-EFED546835AF.jpg",
+      "repeatCount": 1,
+      "name": "Вспышка-сборка двух архивных карточек",
+      "description": "После архива появляется чёрная техническая сетка. По центру быстро разгорается оранжево-красная радиальная вспышка до белого ядра. Когда вспышка спадает, две связанные карточки вместе увеличиваются до сравнительного макета; под ними закреплены подписи “19TH C. REGISTER” и “NAME CLUSTERS MAP”. Композиция удерживается и целиком уходит жёсткой склейкой.",
+      "opinion": "Вспышка работает как причинный импульс сборки, а парный масштаб сохраняет равноправие источников. Получается эффектный, но читаемый переход от рассказа к доказательству.",
+      "application": "Сравнение первичного документа и аналитической схемы, двух источников или состояния “до/после”, которые должны появиться как единый аргумент.",
+      "technique": "Слои снизу вверх: чёрный фон с тонкой серой сеткой; радиальный оранжево-красный градиент с белым ядром; левая и правая карточки; две коричневые подписи с белым текстом. Вход сетки: жёсткая склейка за 0,083 с. Наблюдаемая вспышка: рост и спад за 0,417 с. Как только белое ядро начинает спадать, запустить общий scale двух карточек от малого центрального состояния к боковому макету за наблюдаемые 0,417 с; подписи движутся и масштабируются вместе со своими карточками. Выход: жёсткая склейка за 0,083 с. Совмещённые листы №0015–0016 оставляют непокрытым JPG примерно 0,317 с. предположение: собранная пара непрерывно удерживается расчётные 2,000 с, потому что макет карточек и сетка совпадают на соседних кадрах до и после интервала; точный hold сквозь него не наблюдался. Точное easing масштаба не различимо. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "0:45.500–0:48.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "9081A2F7-F869-4F90-BC43-B164F8F95CFB",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/9081A2F7-F869-4F90-BC43-B164F8F95CFB.jpg",
+      "repeatCount": 1,
+      "name": "Перелистывающийся счётчик “15 Patterns”",
+      "description": "На затемнённом фоне крупные белые две цифры перелистываются от 00 к 15 с вертикальным нахлёстом значений. В конце in-листа слово “Patterns” только начинает проявляться; out-лист уже показывает готовый титр “15 Patterns”. Точный момент завершения между листами не покрыт JPG.",
+      "opinion": "Счётчик превращает сухое количество в короткое ожидание и подчёркивает итоговое число; задержанное слово не конкурирует с движущимися цифрами.",
+      "application": "Ввод количества пунктов, закономерностей, этапов или результатов перед списком либо новой главой объясняющего ролика.",
+      "technique": "Затемнить фоновый план. По центру поставить контейнер двух крупных белых цифр с маской по высоте. На последовательных in-кадрах наблюдается перелистывание 00→15 с вертикальным нахлёстом значений; на последнем участке in-листа слово “Patterns” только начинает проявляться. Out-лист начинается уже собранным “15 Patterns” и заканчивается жёсткой склейкой за 0,083 с. Между листами не покрыто JPG примерно 1,817 с; точные момент завершения счётчика, длительность проявления слова и полный hold внутри этого интервала не определяются. предположение: после неизвестного момента завершения слово и число остаются собранными до out-листа, потому что первый out-кадр уже стабилен; прежние точные 1,167 с, 0,167 с и hold 2,083 с не подтверждены как непрерывно наблюдаемые. Точное easing не различимо. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Типографика",
+      "timecodes": [
+        "0:58.500–1:02.000"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "F8663D1F-BC8C-4E7F-A775-F4FF386FDE85",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/F8663D1F-BC8C-4E7F-A775-F4FF386FDE85.jpg",
+      "repeatCount": 1,
+      "name": "Карта ареала SCHWEIZER с выходом подписи Unger",
+      "description": "Пергаментная карта показывает SCHWEIZER и тёплые локальные зоны. На in-листе Unger отсутствует, а первый out-кадр уже содержит эту подпись; затем Unger гаснет перед жёсткой склейкой на альпийский план. Точный вход Unger находится в непокрытом JPG-интервале.",
+      "opinion": "Статичная карта с локальными пятнами подходит для паузы после серии B-roll: зритель получает один устойчивый географический вывод и время его прочитать.",
+      "application": "Географическая привязка фамилии, термина, события или группы после динамичного монтажного блока.",
+      "technique": "Разместить пергаментную карту в полный кадр. Добавить подпись SCHWEIZER и наблюдаемые тёплые пятна с размытым краем. Вход карты: жёсткая склейка за 0,083 с. На in-листе подписи Unger нет; первый out-кадр уже содержит Unger, после чего подпись гаснет по наблюдаемым кадрам примерно за 0,500 с, затем карта сменяется жёсткой склейкой. Между листами не покрыто JPG примерно 3,317 с. Точный вход Unger находится в непокрытом интервале и не реконструируется. предположение: базовая карта и SCHWEIZER непрерывно сохраняются через интервал, потому что их геометрия, масштаб и подсветки совпадают на кадрах по обе стороны; непрерывный hold 4,834 с не заявляется как наблюдаемый факт. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "1:10.500–1:15.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "9D15D04B-8247-4CCA-B0A5-360D63514259",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/9D15D04B-8247-4CCA-B0A5-360D63514259.jpg",
+      "repeatCount": 1,
+      "name": "Глава “The Hidden Twist” на затемнённой ленте",
+      "description": "Чёрно-белый исторический план лесной дороги входит жёсткой склейкой уже с собранным заголовком. Крупная белая фраза “The Hidden Twist” лежит на широкой полупрозрачной тёмной ленте поперёк кадра. Текст и лента неподвижны, тогда как фон продолжает двигаться; вся композиция уходит следующей склейкой.",
+      "opinion": "Лента отделяет главу от сложного движущегося фона, а короткая интригующая формулировка ясно маркирует поворот в повествовании.",
+      "application": "Название новой главы, контраргумента или неожиданного вывода поверх документального B-roll.",
+      "technique": "Поставить чёрно-белый исторический план на весь кадр. Поверх провести широкую полупрозрачную тёмную горизонтальную ленту и разместить на ней крупный жирный белый экранный текст “The Hidden Twist”. Вход и выход всей собранной композиции: жёсткие склейки по 0,083 с. Фон движется, лента и текст закреплены в кадре на наблюдаемых участках. Между in- и out-листами не покрыто JPG примерно 1,317 с. предположение: лента и текст непрерывно удерживаются расчётные 2,834 с, потому что их положение и opacity совпадают по обе стороны интервала; точное состояние фонового движения внутри него не реконструируется. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Типографика",
+      "timecodes": [
+        "1:24.500–1:27.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "EA94CF6B-6838-4BC2-9E61-92A1B4194267",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/EA94CF6B-6838-4BC2-9E61-92A1B4194267.jpg",
+      "repeatCount": 1,
+      "name": "Проявление цвета внутри одного архивного плана",
+      "description": "Один городской архивный план начинается в чёрно-белом виде и за несколько последовательных кадров приобретает тёплый цвет. Геометрия объектов и движение не сменяются, поэтому это изменение цветокоррекции того же источника, а не переход между двумя кадрами. Цветной результат удерживается до жёсткой склейки.",
+      "opinion": "Цветовое проявление мягко переводит прошлое в ощущение настоящего, не ломая пространственную непрерывность и не отвлекая новым ракурсом.",
+      "application": "Исторические реконструкции, переход от архивного факта к современному прочтению или акцент на оживлении конкретного места.",
+      "technique": "Использовать один и тот же городской план. Вход: первые наблюдаемые 0,083 с оставить чёрно-белыми, затем за 0,500 с увеличить насыщенность и ввести тёплую цветокоррекцию, не меняя transform и opacity источника. После достижения конечного цвета — наблюдаемый hold 0,834 с. Выход: жёсткая склейка за 0,083 с. Весь диапазон 1,500 с покрыт готовыми JPG на сетке 12 fps; непокрытого интервала нет. Точное easing цветового перехода не различимо. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Работа с футажем",
+      "timecodes": [
+        "1:30.000–1:31.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "0DB817AC-217E-4EDA-B3EE-004DD3FCD541",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/0DB817AC-217E-4EDA-B3EE-004DD3FCD541.jpg",
+      "repeatCount": 1,
+      "name": "Вертикальный архив с боке в боковых полях",
+      "description": "Вертикальная архивная фотография вписана по высоте в горизонтальный кадр. Свободные боковые поля заполнены тёмной размытой поддержкой с крупными тёпло-оранжевыми и холодно-синими кругами боке, которые меняют положение и яркость между кадрами. Центральный источник остаётся читаемым и неподвижным.",
+      "opinion": "Решение сохраняет полный вертикальный источник без грубой обрезки, а цветные боковые поля делают его частью общего визуального языка ролика.",
+      "application": "Вертикальные фотографии, портреты, документы и телефонные кадры внутри выпуска 16:9, когда важны края оригинала.",
+      "technique": "Основной вертикальный источник масштабировать режимом contain и выровнять по центру. Под ним создать заполняющую кадр размытую тёмную подложку из того же цветового диапазона. Поверх боковых полей, но под центральным источником, разместить крупные мягкие круги боке: тёплые оранжевые с одной стороны и холодные синие с другой; на наблюдаемых кадрах меняются их position и opacity. Вход и выход связки: жёсткие склейки по 0,083 с. Между in- и out-листами не покрыто JPG примерно 1,317 с. предположение: боке продолжает существовать и двигаться через интервал, потому что та же система кругов присутствует по обе стороны; точные траектории, скорости и opacity внутри интервала не реконструируются, а hold 2,834 с не выдаётся за покадрово покрытый. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Работа с футажем",
+      "timecodes": [
+        "1:31.500–1:34.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "B5F31C2A-0F2E-4DBA-9D19-31B75E108000",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/B5F31C2A-0F2E-4DBA-9D19-31B75E108000.jpg",
+      "repeatCount": 1,
+      "name": "Сквозной оверлей светлых частиц через смену планов",
+      "description": "Мелкие светлые частицы образуют верхний движущийся слой на сюжетном материале. На первом наблюдаемом кадре свечи после склейки «женщина → свеча» слой уже активен; позиции частиц меняются независимо от движения рук, свечи и камеры. При следующей жёсткой склейке на чистый светлый лист частицы исчезают вместе со своим слоем.",
+      "opinion": "Полезный сквозной слой связывает разные планы одной атмосферой и при этом остаётся отделимым от исходного футажа по независимому движению и отдельному исчезновению.",
+      "application": "Связать два или несколько исторических либо предметных B-roll-планов пылью, искрами или светлыми частицами без запекания эффекта в каждый источник.",
+      "technique": "Разместить слой мелких светлых частиц над сюжетными планами и не привязывать его transform к движению источников. Режим наложения, точные скорость и вектор по JPG не определяются. На границе «женщина → свеча» первый кадр свечи уже содержит активный слой; точный первый кадр появления на малоконтрастном плане женщины не различим, поэтому fade-in не заявляется. На наблюдаемых кадрах свечи частицы меняют позиции независимо. Между in- и out-листами не покрыто JPG примерно 2,817 с. предположение: один и тот же слой непрерывно работает через этот интервал, потому что частицы одинакового размера и яркости присутствуют на кадрах свечи по обе стороны; конкретные траектории внутри интервала не реконструируются. Выход наблюдаем: слой исчезает на жёсткой склейке к чистому светлому листу за 0,083 с. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Частицы",
+      "timecodes": [
+        "1:43.500–1:48.000"
+      ],
+      "createdAt": "2026-08-11T16:12:11Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "448F7CB3-F992-479E-9399-B3B14FD9D5B1",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/448F7CB3-F992-479E-9399-B3B14FD9D5B1.jpg",
+      "repeatCount": 1,
+      "name": "Карта окончаний -OW и -ITZ",
+      "description": "Полноэкранная пергаментная карта входит жёсткой склейкой. На ней крупно подписаны -OW и -ITZ, а соответствующие территории выделены мягкими тёплыми световыми пятнами. Все элементы удерживаются неподвижно и закрываются жёсткой склейкой на городской план.",
+      "opinion": "Минимальная карта с двумя признаками быстро устанавливает региональную связь и не перегружает кадр лишними ветками или легендой.",
+      "application": "Парное сравнение суффиксов, терминов, ареалов или двух категорий перед переходом к примерам.",
+      "technique": "Собрать состаренную карту в полный кадр. Разместить крупные подписи -OW и -ITZ над соответствующими зонами; под ними сделать мягкие тёплые пятна с размытым краем. Вход и выход: жёсткие склейки по 0,083 с. Между in- и out-листами не покрыто JPG примерно 1,817 с. предположение: карта непрерывно удерживается в собранном виде расчётные 3,334 с, потому что масштаб, подписи и подсветки совпадают на кадрах по обе стороны интервала; это не покадрово наблюдаемый hold. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "2:00.000–2:03.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "0B8AFC29-EFD8-4733-8F07-F35526C6EC3C",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/0B8AFC29-EFD8-4733-8F07-F35526C6EC3C.jpg",
+      "repeatCount": 1,
+      "name": "Рост архивного портрета с последующей подписью",
+      "description": "На чёрном фоне центральный архивный портрет бородатого мужчины увеличивается из маленького состояния до конечной прямоугольной карточки. Как только портрет достигает полного размера, под ним слева направо открывается белая строка “Eastern Slavic Name Endings”. Изображение и подпись удерживаются одной композицией до жёсткой склейки.",
+      "opinion": "Причинный порядок “сначала свидетельство, затем пояснение” удерживает внимание на лице и только после этого даёт зрителю категорию, к которой относится пример.",
+      "application": "Представление исторической фигуры, архивного документа или примера с коротким поясняющим тезисом.",
+      "technique": "Сделать чёрный полноэкранный фон. По центру поставить архивный портрет. На in-листе наблюдается увеличение scale от малого центрального состояния до прямоугольной карточки за 0,500 с; после него нижний экранный текст “Eastern Slavic Name Endings” открывается маской слева направо за 0,250 с. Выход пары: жёсткая склейка за 0,083 с. Между in- и out-листами не покрыто JPG примерно 1,317 с. предположение: собранная пара непрерывно удерживается расчётные 2,167 с, потому что размеры, положение и opacity портрета и текста совпадают по обе стороны интервала; точный hold сквозь него не наблюдался. Подпись остаётся привязана к портрету; точное easing масштаба не различимо. “Eastern Slavic Name Endings” — экранная типографика, не речевой якорь. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Типографика",
+      "timecodes": [
+        "2:12.500–2:15.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "070C1D44-85A9-461E-BA2E-8C8C4F8F2A68",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/070C1D44-85A9-461E-BA2E-8C8C4F8F2A68.jpg",
+      "repeatCount": 1,
+      "name": "Вертикальный архив в боковой системе с заменой источника",
+      "description": "Вертикальная историческая карта удерживается по центру поверх тёмной подложки с мягким цветным боке в боковых полях. В конце диапазона карта жёстко сменяется крупным планом рукописной страницы. Более поздняя открытая книга из листа №0039 является другим источником и не объединяется с этой карточкой.",
+      "opinion": "Единая система полей связывает разнородные вертикальные источники, а внутренняя склейка сохраняет темп и не заставляет каждый документ заново “въезжать” в кадр.",
+      "application": "Последовательный показ карт, страниц, фотографий или портретов разной ширины внутри горизонтального документального ролика.",
+      "technique": "Источник 1 масштабировать режимом contain и выровнять по центру; под ним сделать тёмную размытую подложку, в боковых полях добавить крупные мягкие оранжевые и синие круги. Вход первой связки: жёсткая склейка за 0,083 с. На out-листе источник 1 жёстко сменяется вертикальной рукописной страницей; эта склейка является выходом карточки за 0,083 с. Между in- и out-листами диапазона 2:24.500–2:26.500 не покрыто JPG примерно 0,317 с. предположение: источник 1 и боковая система непрерывно удерживаются расчётные 1,834 с, потому что их кадрирование и боке совпадают по обе стороны интервала; точный hold не наблюдался. Поздняя открытая книга из out-листа №0039 — другой центральный источник и в эту карточку не входит. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Работа с футажем",
+      "timecodes": [
+        "2:24.500–2:26.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "98F4A4D8-385A-47AD-A851-B4AA2E9F5750",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/98F4A4D8-385A-47AD-A851-B4AA2E9F5750.jpg",
+      "repeatCount": 1,
+      "name": "Карта вариантов SCHMIDT, SCHMITT и SCHMID",
+      "description": "После короткого хвоста крупного плана букв жёсткой склейкой появляется пергаментная карта Европы. На трёх подсвеченных территориях стоят варианты SCHMIDT, SCHMITT и SCHMID. Карта удерживается без доказанного зума; в конце тёплая коричневая вспышка переводит её в светлый лист следующей карты.",
+      "opinion": "Три варианта имени считываются как единая система благодаря одинаковой подсветке, а короткая тёплая вспышка визуально связывает карту ареалов со следующим маршрутом.",
+      "application": "Сопоставление вариантов написания, родственных терминов или трёх региональных форм перед переходом к более детальному пути.",
+      "technique": "Вход: первые наблюдаемые 0,167 с оставить хвост предыдущего крупного плана и выполнить жёсткую склейку. Затем показать полноэкранную пергаментную карту с тремя мягкими тёплыми пятнами и подписями SCHMIDT, SCHMITT и SCHMID. В последние наблюдаемые 0,167 с развернуть тёплую коричневую вспышку до светлого пергаментного поля следующего кадра; когда вспышка закрывает подписи, заменить карту следующим светлым листом. Между in- и out-листами не покрыто JPG примерно 4,317 с. предположение: карта непрерывно удерживается расчётные 5,666 с, потому что её масштаб, подписи и подсветки совпадают на кадрах по обе стороны интервала; точный hold сквозь него не наблюдался. Нижней строки автосубтитров на кадрах нет; речевой якорь не указан.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "3:04.500–3:10.500"
+      ],
+      "createdAt": "2026-08-11T14:34:49Z",
+      "updatedAt": "2026-08-11T16:12:11Z"
+    },
+    {
+      "id": "5C23C890-818D-407D-A666-C5443A5F0F11",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/5C23C890-818D-407D-A666-C5443A5F0F11.jpg",
+      "repeatCount": 1,
+      "name": "Географический титр Schmid поверх архива",
+      "description": "Поверх архивного плана слева одновременно проявляются крупный белый заголовок «Schmid» и пояснение «points south to Bavaria, / Swabia an Switzerland». Сборка идёт ненаправленным fade за 4 последовательных кадра, 0.33 с. Заявленный hold типографики — 4.33 с; доступные JPG подтверждают одинаковое полное состояние после входа и перед выходом, но внутри есть непокрытый интервал ~2.817 с. Предположение: заголовок и пояснение остаются неизменными на всём hold 4.33 с, потому что их положение, начертание и содержание совпадают в наблюдаемых окнах по обе стороны интервала; непрерывность внутри интервала напрямую не доказана. На выходе вся типографика ненаправленно гаснет за 4 кадра, 0.34 с, вместе с уходящим архивным планом. Итого при этом предположении: 0.33 + 4.33 + 0.34 = 5.00 с. Слои снизу вверх: архивный футаж, заголовок, двухстрочное пояснение.",
+      "opinion": "Полезный титр: фамилия считывается первой, а географический вывод остаётся вторым уровнем и не мешает архиву. Брать как один акцент на смену смыслового региона.",
+      "application": "Ставить при первом переходе от фамилии к её региональному происхождению. Крупная строка должна быть короткой, нижняя — давать новый географический вывод, а не повторять заголовок.",
+      "technique": "TC 3:17.0–3:22.0. t+0.00–0.33: Title и subtitle Opacity 0→100% одновременно, без направленного движения; easing не различим по кадрам. Триггер: первый архивный план смыслового блока запускает общий fade. t+0.33–4.66 — заявленный hold: в доступных JPG по обе стороны непокрытого интервала ~2.817 с оба текста статичны относительно экрана, меняется только футаж под ними. Предположение: оба текста сохраняют это состояние на всём t+0.33–4.66, потому что состояние совпадает в наблюдаемых окнах до и после интервала; кадры внутри интервала не предоставлены. t+4.66–5.00: оба текста и текущий план Opacity 100→0% ненаправленно; следующий архивный план становится видимым. Выход завершает общий мастер, отдельного ухода строк нет. Речевой якорь не предоставлен в TSV; нижняя строка автосубтитров в наблюдаемых кадрах отсутствует. «Swabia an Switzerland» — экранное пояснение, не речевой якорь.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "category": "Типографика",
+      "legacyTagsMigrated": false,
+      "createdAt": "2026-08-11T14:33:16Z",
+      "updatedAt": "2026-08-11T14:33:16Z",
+      "timecodes": [
+        "3:17.0–3:22.0"
+      ]
+    },
+    {
+      "id": "4C496201-DFBA-434C-ACD1-557E01188CC4",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/4C496201-DFBA-434C-ACD1-557E01188CC4.jpg",
+      "repeatCount": 1,
+      "name": "Карточка с пером и набором вариантов фамилии",
+      "description": "Архивный план сменяется чёрным полем с тёплым световым проходом; в центре из малого размера увеличивается фотография пера в белой рамке. Как только фото достигает рабочего размера, под ним посимвольно набирается «Schmidt/Schmitt/Schmid». Вход фото и световой проход занимают 0.50 с, набор подписи — следующие 0.42 с. Заявленный hold полной композиции — 6.08 с; доступные JPG подтверждают одинаковое полное состояние в наблюдаемых окнах, но не покрывают весь hold. Предположение: фото и подпись остаются неизменными до общей прямой склейки, потому что их положение и содержание совпадают по обе стороны непокрытого интервала; непрерывность внутри него напрямую не наблюдается. Итого при этом предположении: 0.50 + 0.42 + 6.08 + 0.00 = 7.00 с. Слои: чёрный фон, световой переход, фото с рамкой, подпись.",
+      "opinion": "Сильная мини-карточка для фиксации терминов: изображение даёт тему, а короткий type-on превращает варианты написания в главный вывод. Не стоит повторять для каждой иллюстрации.",
+      "application": "Использовать после архивного доказательства, когда нужно собрать несколько написаний одного имени в одну запоминаемую строку. Все связанные слои выпускать одним мастер-рецептом.",
+      "technique": "TC 3:24.0–3:31.0. t+0.00–0.50: на чёрном фоне провести тёплый ненаправленный световой переход; одновременно Scale центрального фото растёт от малого различимого размера до финального, точные проценты и easing не различимы. Триггер: достижение фото финального размера запускает подпись. t+0.50–0.92: набрать слева направо «Schmidt/Schmitt/Schmid» за 5 последовательных кадров. t+0.92–7.00 — заявленный hold. Предположение: фото и подпись статичны на всём hold, потому что их полное состояние совпадает в доступных JPG до и после непокрытого интервала; кадры внутри интервала не предоставлены. t+7.00: общий hard cut на следующий план, промежуточного кадра нет. Речевой якорь не предоставлен в TSV; нижняя строка автосубтитров в наблюдаемых кадрах отсутствует. «Schmidt/Schmitt/Schmid» — экранная подпись, не речевой якорь.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "category": "Инфографика",
+      "legacyTagsMigrated": false,
+      "createdAt": "2026-08-11T14:33:16Z",
+      "updatedAt": "2026-08-11T14:33:16Z",
+      "timecodes": [
+        "3:24.0–3:31.0"
+      ]
+    },
+    {
+      "id": "06B75361-E923-4DE6-8CB8-765CBB354FF4",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/06B75361-E923-4DE6-8CB8-765CBB354FF4.jpg",
+      "repeatCount": 2,
+      "name": "Оранжевая вспышка раскрывает парное сравнение",
+      "description": "Один мастер объединяет переход и следующую сравнительную сцену. После короткого удержания исходного плана включается искривлённая белая сетка на чёрном фоне; по ней проходит оранжево-белая вспышка. Как только яркость достигает пика, исходный план заменяется сеткой, появляются две нижние плашки и из малого размера одновременно вырастают две карточки. После достижения финального размера пара удерживается до прямой склейки. В первом повторе подписи «DIALECT VARIANTS» и «STANDARDIZED NAMES», во втором — «SCHLESWIG-HOLSTEIN» и «19TH C REGISTER». Фазы первого повтора покрыты доступными JPG. Во втором повторе заявленный финальный hold 2.42 с пересекает непокрытый интервал. Предположение: обе карточки и плашки сохраняют финальное состояние на всём втором hold, потому что композиция совпадает в наблюдаемых окнах по обе стороны интервала; непрерывность внутри него напрямую не наблюдается. Точные проценты Scale и easing не различимы. Слои: исходный план, чёрное поле, сетка, вспышка, две плашки, две карточки.",
+      "opinion": "Ценный причинный переход: вспышка не просто разделяет планы, а готовит графическую среду для сравнения. Парная симметрия позволяет считать тезис за один взгляд.",
+      "application": "Применять перед сравнением двух документов, вариантов имени или источников. Обе карточки и обе подписи должны входить как одна система; дробить вспышку и сравнение на независимые рецепты нельзя.",
+      "technique": "TC 3:35.5–3:38.5: t+0.00–0.67 исходный план удерживается; t+0.67–1.33 сетка и ненаправленная оранжево-белая вспышка нарастают и спадают; пик яркости запускает замену плана; t+1.33–2.08 две плашки появляются, обе карточки синхронно Scale от малого размера до финального; t+2.08–3.00 все слои статичны; t+3.00 общий hard cut. Сумма 0.67 + 0.66 + 0.75 + 0.92 + 0.00 = 3.00 с. TC 5:30.5–5:35.0: те же фазы 0.67 + 0.66 + 0.75; заявленный финальный hold 2.42 с; общий hard cut 0.00 с. Предположение: финальное состояние карточек и плашек сохраняется на всём втором hold 2.42 с, потому что оно совпадает в доступных JPG до и после непокрытого интервала; кадры внутри интервала не предоставлены. Итого при этом предположении: 0.67 + 0.66 + 0.75 + 2.42 + 0.00 = 4.50 с. Речевой якорь не предоставлен в TSV; нижняя строка автосубтитров в наблюдаемых кадрах обоих повторов отсутствует. «spellings changed» — экранная надпись графической сцены, не речевой якорь.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "category": "Инфографика",
+      "legacyTagsMigrated": false,
+      "createdAt": "2026-08-11T14:33:16Z",
+      "updatedAt": "2026-08-11T14:33:16Z",
+      "timecodes": [
+        "3:35.5–3:38.5",
+        "5:30.5–5:35.0"
+      ]
+    },
+    {
+      "id": "8871736F-16EB-4C53-BE78-4903529A7D23",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/8871736F-16EB-4C53-BE78-4903529A7D23.jpg",
+      "repeatCount": 1,
+      "name": "Карточка книг с поэтапной подписью",
+      "description": "На чёрном фоне фотография корешков книг увеличивается из малого размера до центральной карточки в тонкой светлой рамке. Как только Scale останавливается, под изображением слева направо набирается «Schmidt / Schmitt / Schmid». Рост фото занимает 0.58 с, набор строки — 0.33 с. Заявленный hold полной композиции — 3.09 с; доступные JPG подтверждают одинаковое полное состояние в наблюдаемых окнах, но не покрывают весь hold. Предположение: фото и строка остаются неизменными до общей прямой склейки, потому что их положение и содержание совпадают по обе стороны непокрытого интервала; непрерывность внутри него напрямую не наблюдается. Итого при этом предположении: 0.58 + 0.33 + 3.09 + 0.00 = 4.00 с. Слои: чёрный фон, фото с рамкой, подпись.",
+      "opinion": "Хороший компактный рецепт для архивного примера: зритель сначала узнаёт тип источника, затем получает точную формулировку. Ценность именно в задержке подписи после фото.",
+      "application": "Ставить на короткой остановке после документа или реестра, когда одна иллюстрация подтверждает несколько вариантов написания. Подпись держать одной строкой.",
+      "technique": "TC 3:50.5–3:54.5. t+0.00–0.58: Scale фото растёт от малого различимого размера до финального по центру; направление ненаправленное, точные проценты и easing не различимы. Триггер: остановка Scale запускает type-on. t+0.58–0.91: строка «Schmidt / Schmitt / Schmid» набирается слева направо за 4 последовательных кадра. t+0.91–4.00 — заявленный hold. Предположение: фото и строка статичны на всём hold, потому что их полное состояние совпадает в доступных JPG до и после непокрытого интервала; кадры внутри интервала не предоставлены. t+4.00: общий hard cut, промежуточного кадра нет. Речевой якорь не предоставлен в TSV; нижняя строка автосубтитров в наблюдаемых кадрах отсутствует. «Schmidt / Schmitt / Schmid» — экранная подпись, не речевой якорь.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "category": "Инфографика",
+      "legacyTagsMigrated": false,
+      "createdAt": "2026-08-11T14:33:16Z",
+      "updatedAt": "2026-08-11T14:33:16Z",
+      "timecodes": [
+        "3:50.5–3:54.5"
+      ]
+    },
+    {
+      "id": "98CE4C2B-F4CE-4426-B92E-0372F570880A",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/98CE4C2B-F4CE-4426-B92E-0372F570880A.jpg",
+      "repeatCount": 1,
+      "name": "Карта абсолютного распределения с легендой",
+      "description": "После оранжевого светового перехода на весь кадр открывается светлая карта Германии: муниципальные области закодированы от жёлтого до тёмно-красного, справа стоит легенда «Absolute distribution». Переход и стабилизация карты занимают 0.50 с. Заявленный hold карты — 10.50 с; доступные JPG подтверждают одинаковое состояние карты и легенды в наблюдаемых окнах, но не покрывают весь hold. Предположение: карта и легенда остаются неподвижными до прямой склейки на цифровую карту, потому что их положение и содержание совпадают по обе стороны непокрытого интервала; непрерывность внутри него напрямую не наблюдается. Итого при этом предположении: 0.50 + 10.50 + 0.00 = 11.00 с. Экранный CTA внизу справа является независимой системой и в рецепт карты не входит. Слои: светлый фон, карта с границами, цветовые области, легенда.",
+      "opinion": "Полезная доказательная инфографика: градиент и легенда показывают не отдельную точку, а плотность по всей территории. Работает, если зрителю дают достаточно времени на чтение шкалы.",
+      "application": "Использовать после словесного тезиса о распространённости фамилии или варианта написания. Выбирать одну шкалу, сохранять контраст границ и не накладывать поверх дополнительную географическую анимацию.",
+      "technique": "TC 3:59.5–4:10.5. t+0.00–0.50: ненаправленный оранжевый световой переход гасит предыдущий план и раскрывает полноэкранную карту; карта и легенда достигают полной видимости одновременно. Триггер: завершение вспышки запускает hold. t+0.50–11.00 — заявленный hold. Предположение: карта, цветовые области и легенда статичны на всём hold, потому что их состояние совпадает в доступных JPG до и после непокрытого интервала; кадры внутри интервала не предоставлены. CTA снизу справа не связывать с мастером карты. t+11.00: общий hard cut на цифровую карту, переходного кадра нет. Речевой якорь не предоставлен в TSV; нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "category": "Инфографика",
+      "legacyTagsMigrated": false,
+      "createdAt": "2026-08-11T14:33:16Z",
+      "updatedAt": "2026-08-11T14:33:16Z",
+      "timecodes": [
+        "3:59.5–4:10.5"
+      ]
+    },
+    {
+      "id": "BD7DC3D6-A10B-4578-8714-C30B63F848A7",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/BD7DC3D6-A10B-4578-8714-C30B63F848A7.jpg",
+      "repeatCount": 4,
+      "name": "Пергаментная карта с подсвеченными регионами",
+      "description": "Полноэкранная пергаментная карта появляется прямой склейкой, удерживает неподвижные границы, тёплые локальные подсветки и крупные подписи, затем целиком сменяется следующим планом прямой склейкой. В повторах показаны «-LE», пара «-S»/«-SEN» и тройка «HESS»/«BAYER»/«BÖHM». Самостоятельного зума карты ни в одном из четырёх диапазонов нет. Заявленные hold четырёх повторов пересекают непокрытые JPG-интервалы. Предположение: в каждом повторе карта, подписи и подсветки сохраняют наблюдаемое статичное состояние на всём заявленном hold, потому что композиция совпадает в доступных окнах по обе стороны интервала; непрерывность внутри интервалов напрямую не наблюдается. Слои: пергаментная подложка, контуры карты, локальные световые пятна, подписи.",
+      "opinion": "Удачный повторяемый географический шаблон: единый стиль карты связывает разные языковые признаки, а подсветка удерживает внимание на нужной территории. Частое повторение оправдано только при смене данных.",
+      "application": "Применять при последовательном разборе суффиксов или региональных вариантов. На каждом повторе менять подпись и подсвеченную область, сохраняя масштаб и композицию.",
+      "technique": "Вход каждого повтора: hard cut на полноэкранную карту, переходного кадра нет, 0.00 с. Заявленные hold: TC 4:15.5–4:19.0 — 3.50 с, подпись «-LE»; TC 5:16.0–5:20.5 — 4.50 с, подписи «-S» и «-SEN»; TC 5:51.0–5:58.5 — 7.50 с, подписи «-S» и «-SEN»; TC 6:16.5–6:20.5 — 4.00 с, подписи «HESS», «BAYER», «BÖHM». Предположение: карта, подписи и подсветки статичны на всём hold каждого повтора, потому что их состояние совпадает в доступных JPG до и после соответствующего непокрытого интервала; кадры внутри интервалов не предоставлены. Наблюдаемого Scale/Position нет. Выход каждого повтора: общий hard cut на следующий план, 0.00 с. Суммы при этом предположении: 0.00 + 3.50 + 0.00 = 3.50 с; 0.00 + 4.50 + 0.00 = 4.50 с; 0.00 + 7.50 + 0.00 = 7.50 с; 0.00 + 4.00 + 0.00 = 4.00 с. Триггер входа — смысловая смена региона; следующий план запускает выход. Речевой якорь не предоставлен в TSV; нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "category": "Инфографика",
+      "legacyTagsMigrated": false,
+      "createdAt": "2026-08-11T14:33:16Z",
+      "updatedAt": "2026-08-11T14:33:16Z",
+      "timecodes": [
+        "4:15.5–4:19.0",
+        "5:16.0–5:20.5",
+        "5:51.0–5:58.5",
+        "6:16.5–6:20.5"
+      ]
+    },
+    {
+      "id": "526C71EE-6EF9-4006-B5AB-DECC668B1872",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/526C71EE-6EF9-4006-B5AB-DECC668B1872.jpg",
+      "repeatCount": 1,
+      "name": "Карточка города с подписью Swabian '-le' Names",
+      "description": "После городского плана кадр становится чёрным; в центре из малого размера увеличивается фотография речной панорамы в светлой рамке. Как только фото достигает финального размера, под ним слева направо набирается «Swabian '-le' Names». Рост фото занимает 0.58 с, набор подписи — 0.42 с, полный кадр удерживается 2.00 с и целиком сменяется следующим планом прямой склейкой. Итого: 0.58 + 0.42 + 2.00 + 0.00 = 3.00 с. Слои: чёрный фон, фото с рамкой, подпись.",
+      "opinion": "Хорошая пауза между насыщенными планами: одна фотография и одна строка быстро закрепляют региональный паттерн. Приём ценен именно как короткое резюме, а не как обычная фотогалерея.",
+      "application": "Ставить после серии примеров, когда нужно назвать общий класс региональных фамилий. Подпись должна завершать мысль и появляться только после стабилизации фото.",
+      "technique": "TC 4:37.0–4:40.0. t+0.00–0.58: на чёрном фоне Scale фото растёт от малого различимого размера до финального по центру; точные проценты и easing не различимы. Триггер: завершение Scale запускает type-on. t+0.58–1.00: строка «Swabian '-le' Names» набирается слева направо за 5 последовательных кадров. t+1.00–3.00: фото и подпись статичны. t+3.00: общий hard cut на план с рукой и словом Stuttgart. Речевой якорь не предоставлен в TSV; нижняя строка автосубтитров в наблюдаемых кадрах отсутствует. «Swabian '-le' Names» — экранная подпись, не речевой якорь.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "category": "Инфографика",
+      "legacyTagsMigrated": false,
+      "createdAt": "2026-08-11T14:33:16Z",
+      "updatedAt": "2026-08-11T14:33:16Z",
+      "timecodes": [
+        "4:37.0–4:40.0"
+      ]
+    },
+    {
+      "id": "D5F63187-6F9A-454C-95F0-3887AA9A6AA3",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/D5F63187-6F9A-454C-95F0-3887AA9A6AA3.jpg",
+      "repeatCount": 1,
+      "name": "Бежевая метка Hendriks Entry на рукописи",
+      "description": "После прямой склейки на полноэкранную рукопись рядом с нужной строкой ненаправленно проявляется бежевая прямоугольная метка с текстом «Hendriks Entry». Fade занимает 2 последовательных кадра, 0.17 с; затем метка 1.83 с остаётся неподвижной относительно статичного документа. Вся сцена сменяется спутниковым планом прямой склейкой. Итого: 0.17 + 1.83 + 0.00 = 2.00 с. Слои: документ, бежевая плашка, тёмный текст.",
+      "opinion": "Полезная точечная аннотация: она сразу превращает трудночитаемую рукопись в доказательство, не закрывая страницу. Сильнее стрелки, когда нужная строка уже находится рядом.",
+      "application": "Использовать на реестрах и анкетах для одного конкретного имени или поля. Метку ставить рядом с записью, а не поверх неё; на одном документе — один главный указатель.",
+      "technique": "TC 5:44.5–5:46.5. t+0.00–0.17: после первого стабильного кадра рукописи плашка и текст вместе Opacity 0→100%, ненаправленный fade; easing не различим. Триггер: появление полноэкранного документа запускает метку. t+0.17–2.00: документ и метка статичны, отдельного трекинга не требуется. t+2.00: общий hard cut на спутниковый план, переходного кадра нет. Речевой якорь не предоставлен в TSV; нижняя строка автосубтитров в наблюдаемых кадрах отсутствует. «Hendriks Entry» — экранная метка, не речевой якорь.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "category": "Типографика",
+      "legacyTagsMigrated": false,
+      "createdAt": "2026-08-11T14:33:16Z",
+      "updatedAt": "2026-08-11T14:33:16Z",
+      "timecodes": [
+        "5:44.5–5:46.5"
+      ]
+    },
+    {
+      "id": "82414131-3976-47D8-B219-9309F5FEAFB7",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/82414131-3976-47D8-B219-9309F5FEAFB7.jpg",
+      "repeatCount": 1,
+      "name": "Архив 4:3 с размытым боковым заполнением",
+      "description": "План парохода формата 4:3 помещён по центру горизонтального кадра без обрезки; свободные боковые зоны заполнены увеличенной размытой копией того же изображения. Композиция входит прямой склейкой с пергаментной карты. Заявленный hold фиксированного кадрирования — 4.50 с; доступные JPG подтверждают одинаковую двухслойную раскладку в наблюдаемых окнах, но не покрывают весь hold. Предположение: Scale и Position обоих монтажных слоёв остаются неизменными на всём hold, потому что раскладка совпадает по обе стороны непокрытого интервала; непрерывность внутри него напрямую не наблюдается. Движение парохода относится только к исходному футажу. Итого при этом предположении: 0.00 + 4.50 + 0.00 = 4.50 с. Слои: увеличенная размытая копия, оригинальный архив 4:3 по центру.",
+      "opinion": "Практичный способ сохранить весь старый кадр без пустых чёрных полей. Размытый дубль поддерживает цвет и свет оригинала, но не конкурирует с центральным изображением.",
+      "application": "Использовать для редких архивов 4:3, когда обрезка уничтожает контекст по краям. Не смешивать в одном блоке с другим оформлением боковых полей без смысловой причины.",
+      "technique": "TC 5:58.5–6:03.0. t+0.00: hard cut на двухслойную композицию, промежуточного кадра нет. Нижний дубль масштабировать до заполнения 16:9 и размыть; верхний оставить целиком по центру в исходном соотношении 4:3. Точные Scale и радиус Blur не различимы по кадрам. t+0.00–4.50 — заявленный hold. Предположение: оба монтажных слоя закреплены на всём hold, потому что их раскладка совпадает в доступных JPG до и после непокрытого интервала; кадры внутри интервала не предоставлены. Движение парохода относится только к исходному футажу. t+4.50: оба слоя одновременно уходят hard cut на цветной берег. Речевой якорь не предоставлен в TSV; нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "category": "Работа с футажем",
+      "legacyTagsMigrated": false,
+      "createdAt": "2026-08-11T14:33:16Z",
+      "updatedAt": "2026-08-11T14:33:16Z",
+      "timecodes": [
+        "5:58.5–6:03.0"
+      ]
+    },
+    {
+      "id": "0B7AF3B9-B437-44EB-ABBE-8C01753414A2",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/0B7AF3B9-B437-44EB-ABBE-8C01753414A2.jpg",
+      "repeatCount": 1,
+      "name": "Белая вспышка между семейным архивом и хроникой",
+      "description": "Сепия семейного архива перекрывается ненаправленным белым bloom: яркость за 2 кадра поднимается почти до сплошного белого, 2 кадра держится на пике и за 2 кадра спадает, раскрывая чёрно-белый железнодорожный план. Пик вспышки является моментом замены исходного и входящего кадров. Итого: 0.17 + 0.16 + 0.17 = 0.50 с; отдельного hold после перехода нет. Слои: уходящий план, белая вспышка, входящий план.",
+      "opinion": "Сильный короткий разделитель эпох: белый пик маскирует резкую разницу между сепией и контрастной чёрно-белой хроникой. Использовать редко, иначе вспышка быстро утомляет.",
+      "application": "Ставить на смене источника или времени, когда обычная склейка слишком жёсткая. Новый план должен стать различимым только после пика яркости.",
+      "technique": "TC 6:24.0–6:24.5. t+0.00–0.17: белый полноэкранный слой ненаправленно Opacity 0→100%, одновременно уходящий план теряет различимость. Триггер: максимум яркости заменяет семейный кадр железнодорожным. t+0.17–0.33: белый пик удерживается 2 кадра. t+0.33–0.50: Opacity белого слоя 100→0%, открывая новый план. Easing не различим. Речевой якорь не предоставлен в TSV; нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "category": "Переход",
+      "legacyTagsMigrated": false,
+      "createdAt": "2026-08-11T14:33:16Z",
+      "updatedAt": "2026-08-11T14:33:16Z",
+      "timecodes": [
+        "6:24.0–6:24.5"
+      ]
+    },
+    {
+      "id": "ED9F61E7-16DD-4237-A4F0-6525BE61A935",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/ED9F61E7-16DD-4237-A4F0-6525BE61A935.jpg",
+      "repeatCount": 1,
+      "name": "Архив 4:3 на чёрном поле",
+      "description": "Чёрно-белая железнодорожная хроника сохранена целиком по центру широкого кадра, а свободные боковые зоны оставлены чёрными. После завершения белой вспышки начинается заявленный hold фиксированной раскладки 4.50 с; доступные JPG подтверждают одинаковые Scale и Position в наблюдаемых окнах, но не покрывают весь hold. Предположение: размер и положение архивного кадра остаются неизменными на всём hold, потому что раскладка совпадает по обе стороны непокрытого интервала; непрерывность внутри него напрямую не наблюдается. Движение людей и поездов относится к исходному футажу. На выходе архив целиком сменяется цветным планом раскрытого реестра прямой склейкой. Итого при этом предположении: 0.00 + 4.50 + 0.00 = 4.50 с. Слои: чёрная подложка, оригинальный архивный кадр по центру.",
+      "opinion": "Самый нейтральный способ показать ценный узкий архив без выдуманного окружения. Чёрные поля сохраняют документальность и не отвлекают от движения внутри хроники.",
+      "application": "Использовать для коротких блоков хроники, где важна целостность кадра и размытое заполнение выглядело бы слишком современно. Сохранять одинаковый размер внутри одного архивного блока.",
+      "technique": "TC 6:24.5–6:29.0. t+0.00: после полного спада белой вспышки оригинал уже виден целиком; дополнительной анимации входа нет. Поместить чёрную подложку на 16:9, сверху центрировать архив без crop; точный Scale не различим. t+0.00–4.50 — заявленный hold. Предположение: Position и Scale статичны на всём hold, потому что раскладка совпадает в доступных JPG до и после непокрытого интервала; кадры внутри интервала не предоставлены. Движение остаётся внутри исходного футажа. t+4.50: hard cut всей композиции на цветной реестр, промежуточного кадра нет. Речевой якорь не предоставлен в TSV; нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "category": "Работа с футажем",
+      "legacyTagsMigrated": false,
+      "createdAt": "2026-08-11T14:33:16Z",
+      "updatedAt": "2026-08-11T14:33:16Z",
+      "timecodes": [
+        "6:24.5–6:29.0"
+      ]
+    },
+    {
+      "id": "ea0d53d3-fa8e-4b37-9fd1-8c5ad03cb837",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/ea0d53d3-fa8e-4b37-9fd1-8c5ad03cb837.jpg",
+      "repeatCount": 1,
+      "name": "Архивное видео в пергаментной рамке с засветкой",
+      "description": "После кадра с рукой архивное видео появляется внутри центрального прямоугольника на готовом пергаментном фоне с тёмными краями и сургучной печатью. Слои связаны и размечены одним мастер-рецептом: пергамент, рамка, видео, печать; в конце весь комплект перекрывает светлая полосатая засветка. Доказательство: bursts/0104/in-sheet.jpg и bursts/0104/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Ценная связка для отделения источника от основного повествования: рамка сразу сообщает архивный статус, а засветка закрывает смену носителя.",
+      "application": "Интервью, хроника и экранные записи внутри исторического или документального оформления, когда вставку нужно визуально связать с соседними документами.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. В in-sheet наблюдается вход пергаментного мастера с вложенным видео; в out-sheet — тот же собранный мастер, затем полосатая засветка и следующий документ. Между листами нет доказательной сетки примерно 2,317 с; точная длительность hold не утверждается. предположение: собранный мастер сохраняется в непокрытом интервале, потому что его компоновка одинакова по обе стороны разрыва и в начале out-sheet нет повторного входа.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Работа с футажем",
+      "timecodes": [
+        "6:38.5–6:42.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "79ac43ae-3f47-49c7-9cd5-11d9fdce7dd8",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/79ac43ae-3f47-49c7-9cd5-11d9fdce7dd8.jpg",
+      "repeatCount": 2,
+      "name": "Интервью в пергаментной рамке",
+      "description": "Пергаментный мастер с центральным прямоугольным видео, тёмными краями и сургучной печатью встречается дважды: с говорящим мужчиной и с женщиной за столом. Вложенное видео, фон, рамка и печать связаны в один шаблон. Доказательство: bursts/0107/in-sheet.jpg, bursts/0107/out-sheet.jpg, bursts/0126/in-sheet.jpg и bursts/0126/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Рамка хорошо сохраняет исторический визуальный язык при переходе к современному интервью и не даёт говорящей голове выглядеть чужеродно.",
+      "application": "Короткие экспертные реплики внутри исторического эссе, где интервью должно остаться частью общей графической системы.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. В первом появлении in-sheet показывает вход единого мастера, out-sheet — тот же мастер и склейку на реестр; непокрытый интервал примерно 2,317 с. Во втором появлении in-sheet показывает вход рамки с женщиной, out-sheet — тот же мастер и выход к крупному плану документа; непокрытый интервал примерно 0,317 с. Точные hold не утверждаются. предположение: геометрия рамки сохраняется внутри обоих разрывов, потому что последние и первые наблюдаемые состояния совпадают и повторного входа в out-sheet нет.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Работа с футажем",
+      "timecodes": [
+        "6:59.5–7:03.5",
+        "8:04.5–8:06.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "f7fd5742-1b2d-489f-af93-8a6c442e5dae",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/f7fd5742-1b2d-489f-af93-8a6c442e5dae.jpg",
+      "repeatCount": 1,
+      "name": "Карта суффикса -KE с подсветкой региона",
+      "description": "Полноэкранная состаренная карта Европы показывает тёплое свечение в восточной части и крупную подпись «-KE». Масштаб карты на наблюдаемых кадрах постоянный; черновой кандидат зума объединён с картой без утверждения о наезде. Доказательство: bursts/0109/in-sheet.jpg, bursts/0109/out-sheet.jpg, bursts/0110/in-sheet.jpg и bursts/0110/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Минимальная карта быстро связывает языковой суффикс с регионом и не перегружает объяснение лишними маркерами.",
+      "application": "Географическое объяснение происхождения слова, фамилии или диалекта, когда нужен один регион и одна короткая подпись.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. In-sheet фиксирует прямую склейку на готовую карту «-KE»; out-sheet фиксирует ту же композицию и прямую склейку на архивный коллаж. Между листами нет сетки примерно 3,317 с; точный hold не утверждается. предположение: карта остаётся статичной в разрыве, потому что масштаб, свечение и подпись совпадают до и после него; на наблюдаемых кадрах зума нет.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "7:05.5–7:10.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "51e9648a-374c-424c-a928-c483ea89cedb",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/51e9648a-374c-424c-a928-c483ea89cedb.jpg",
+      "repeatCount": 1,
+      "name": "Архивный коллаж фамилий со связующими стрелками",
+      "description": "На одном поле собраны четыре архивных изображения; поверх них стоят фамильные подписи, а белые изогнутые стрелки связывают карточки в одну схему. Все изображения, подписи и стрелки образуют единый мастер, а не отдельные приёмы. Доказательство: bursts/0111/in-sheet.jpg и bursts/0111/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Коллаж полезен тем, что показывает несколько источников как одну аргументированную цепочку, а стрелки задают порядок чтения.",
+      "application": "Сравнение родственных фамилий, документов или исторических персонажей, когда связь важнее подробного просмотра каждого источника.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. In-sheet показывает прямую склейку на полностью собранный коллаж; out-sheet — тот же коллаж и прямую склейку на документ. Между листами нет сетки примерно 2,317 с; точный hold не утверждается. предположение: четыре изображения, подписи и стрелки сохраняются без повторного раскрытия в разрыве, потому что их положение одинаково в соседних наблюдаемых состояниях.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "7:10.5–7:14.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "00d88709-1c2e-4221-bea0-600d5db34d4b",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/00d88709-1c2e-4221-bea0-600d5db34d4b.jpg",
+      "repeatCount": 1,
+      "name": "Белая засветка между картой и рабочим столом",
+      "description": "Маршрутная карта уходит в яркое размытое белое поле с вертикальными и горизонтальными полосами, после чего из него проявляется расфокусированный рабочий стол. Засветка наблюдается как переход между двумя разными планами, а не как снятый объект. Доказательство: bursts/0116/in-sheet.jpg и bursts/0116/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Переход хорошо маскирует резкую смену фактуры от плоской карты к живому видео и сохраняет светлую тональность сцены.",
+      "application": "Смена инфографики на макросъёмку документов, экран или светлый интерьер без жёсткой визуальной ступени.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. Диапазон 1,500 с полностью покрыт перекрывающимися in-sheet и out-sheet: наблюдаются уход маршрутной карты, меняющееся полосатое белое поле и проявление расфокусированного рабочего стола. Сквозной непокрытый интервал отсутствует; точное easing между шагами сетки не утверждается.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "7:28.0–7:29.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "5eb79f01-c109-4341-8f2d-d0ab2512deab",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/5eb79f01-c109-4341-8f2d-d0ab2512deab.jpg",
+      "repeatCount": 1,
+      "name": "Парные портретные карточки на гравюре",
+      "description": "На тёмной гравюре сначала поднимается портрет мужчины с подписью «POMERANIAN MERCHANT», затем сверху справа входит портрет женщины с подписью «POLISH FISHERWOMAN». Фон, оба портрета и обе подписи — одно причинно связанное построение. Доказательство: bursts/0118/in-sheet.jpg и bursts/0118/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Последовательный вход превращает два портрета в читаемое сравнение ролей и не заставляет зрителя одновременно разбирать обе карточки.",
+      "application": "Сопоставление двух социальных групп, персонажей или источников на общем историческом фоне.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. In-sheet показывает склейку на гравюру и последовательный вход мужской и женской карточек; out-sheet показывает уже собранную пару и склейку на реестр. Между листами нет сетки примерно 2,817 с; точный hold 44 кадра снят и не утверждается. предположение: обе карточки остаются собранными в разрыве, потому что их финальное положение в конце in-sheet совпадает с началом out-sheet и повторного входа нет.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "7:33.5–7:38.0"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "11be0439-f87e-4470-ab21-bfc8eb2ea0af",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/11be0439-f87e-4470-ab21-bfc8eb2ea0af.jpg",
+      "repeatCount": 1,
+      "name": "Карта суффикса -MANN с южной подсветкой",
+      "description": "Состаренная карта Европы содержит крупную подпись «-MANN» и тёплую подсветку центрально-южного региона. Масштаб остаётся постоянным; кандидат зума объединён без утверждения о наезде. Доказательство: bursts/0120/in-sheet.jpg, bursts/0120/out-sheet.jpg, bursts/0121/in-sheet.jpg и bursts/0121/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Один суффикс и одно световое пятно дают мгновенную географическую привязку без лишней легенды.",
+      "application": "Карты происхождения фамилий и терминов, где важна одна морфема и один основной ареал.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. In-sheet показывает прямую склейку на готовую карту «-MANN»; out-sheet — ту же карту и прямую склейку на составной архивный план. Между листами нет сетки примерно 4,317 с; точный hold не утверждается. предположение: карта, подсветка и подпись сохраняются в разрыве, потому что их масштаб и положение совпадают по обе стороны; на наблюдаемых кадрах зума нет.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "7:44.5–7:50.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "95e499c2-692f-46cc-a7f6-9362254a6476",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/95e499c2-692f-46cc-a7f6-9362254a6476.jpg",
+      "repeatCount": 1,
+      "name": "Рисующаяся маршрутная петля с меткой ...MANN",
+      "description": "На светлой карте коричневая линия рисуется по сложной петле; когда маршрут почти собран, у его левой части появляется белая округлая метка «...MANN». Два смежных кандидата объединены, потому что построение и короткий hold — один мастер. Доказательство: bursts/0123/in-sheet.jpg, bursts/0123/out-sheet.jpg, bursts/0124/in-sheet.jpg и bursts/0124/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Рисующаяся линия превращает географию в процесс перемещения, а финальная метка объясняет смысл маршрута только после его построения.",
+      "application": "Миграционные маршруты, торговые пути и распространение фамилии, когда итоговую подпись нужно причинно привязать к завершению линии.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. В 0123/in-sheet наблюдается начало прорисовки коричневой петли; листы 0124 показывают завершённый маршрут, появление белой метки «...MANN» и выход на физическую карту. Внутри 0123 нет сетки примерно 0,817 с; точные границы завершения линии и hold не утверждаются. предположение: линия монотонно достраивается в разрыве, потому что до него виден частичный путь, а после — тот же путь полностью без смены основы.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "7:57.5–8:00.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "baae57f8-2ae3-4d8a-9b10-038027241264",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/baae57f8-2ae3-4d8a-9b10-038027241264.jpg",
+      "repeatCount": 1,
+      "name": "Переход от строки NAME PREFIX к объекту Manor Farm",
+      "description": "Красная рамка выделяет строку реестра, рядом стоит чёрная плашка «NAME PREFIX». Оранжево-белая засветка переносит ту же смысловую точку на фотографию дома; плашка меняется на «Manor Farm», после чего белая дуга указывает на вход. Подсветка, переход, подпись и указатель — один мастер. Доказательство: bursts/0127/out-sheet.jpg, bursts/0128/in-sheet.jpg и bursts/0128/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Сильная визуальная дедукция: абстрактная строка документа превращается в конкретный объект, а указатель закрепляет соответствие.",
+      "application": "Расшифровка архивных записей, когда термин, префикс или поле документа нужно связать с реальным местом или предметом.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. 0127/out-sheet фиксирует реестр с красной рамкой и «NAME PREFIX»; 0128/in-sheet показывает оранжево-белый переход к дому, замену подписи на «Manor Farm» и построение белого указателя; 0128/out-sheet фиксирует собранное состояние. Внутри 0128 нет сетки примерно 1,317 с; точный hold не утверждается. предположение: дом, подпись и указатель сохраняются в разрыве, потому что их финальная компоновка одинакова по обе стороны и повторного входа нет.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "8:16.5–8:19.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "6224c837-a01a-43e6-846a-2517eab444db",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/6224c837-a01a-43e6-846a-2517eab444db.jpg",
+      "repeatCount": 1,
+      "name": "Карусель архивных документов со сдвигом",
+      "description": "Полноэкранный реестр уменьшается и уходит влево, пока новый документ входит справа и занимает центр; затем на правом краю запускается следующий такой же цикл. Наблюдаемые нижние строки автосубтитров: «The -mann Trap: common but unreliable», «Prefixes as clues: hof, kauf, neu, zimmer» и «Read the prefix. Cross-check with place and spelling.». Доказательство: bursts/0130/in-sheet.jpg, bursts/0130/out-sheet.jpg, bursts/0131/in-sheet.jpg и bursts/0131/out-sheet.jpg.",
+      "opinion": "Карусель позволяет показать несколько доказательств без серии жёстких склеек и сохраняет ощущение единой подборки.",
+      "application": "Последовательный просмотр реестров, таблиц или сканов, когда каждый новый источник должен заменить предыдущий, но остаться частью общего ряда.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. В листах 0130 наблюдаются уменьшение текущего документа, его сдвиг влево, вход следующего справа и запуск очередного цикла; 0131 подтверждает повтор той же механики. Внутри 0130 нет сетки примерно 0,317 с, а 0131 используется только как подтверждение повтора; точная формула цикла и hold не утверждаются. предположение: направленный сдвиг непрерывно проходит короткий разрыв, потому что позиции по его сторонам меняются в одном направлении без скачка или повторного входа.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "8:23.5–8:25.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "cc73825d-478c-4434-ba7c-3f36042d3c9a",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/cc73825d-478c-4434-ba7c-3f36042d3c9a.jpg",
+      "repeatCount": 3,
+      "name": "Карта профессий BÖTTCHER, BÜTTNER, KÜFER и BINDER",
+      "description": "Один и тот же пергаментный мастер повторяется трижды: на карте Европы четыре тёплых световых пятна подписаны «BÖTTCHER», «BÜTTNER», «KÜFER» и «BINDER». Во всех повторах масштаб постоянный; три кандидата зума объединены без утверждения о наезде. Доказательство: bursts/0132, bursts/0133, bursts/0137, bursts/0138, bursts/0143 и bursts/0144, только in-sheet.jpg и out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Повтор одного шаблона закрепляет четыре региональных варианта и создаёт узнаваемую карту-рефрен без новой визуальной грамматики.",
+      "application": "Повторные смысловые возвраты к одному набору регионов или терминов; менять окружение можно, сам мастер карты должен оставаться идентичным.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. Во всех трёх появлениях in-sheet фиксирует прямую склейку на готовую карту, out-sheet — ту же карту и прямой выход; на наблюдаемых кадрах зума и повторного раскрытия пятен нет. Непокрытые интервалы составляют примерно 2,317 с, 3,317 с и 4,317 с; точные hold не утверждаются. предположение: в каждом разрыве сохраняется готовая карта с четырьмя пятнами и подписями, потому что компоновка совпадает в соседних наблюдаемых состояниях.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "8:37.5–8:41.5",
+        "8:53.5–8:58.5",
+        "9:17.0–9:23.0"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "064d8dc9-5239-402c-8cfa-d761ac05f3fd",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/064d8dc9-5239-402c-8cfa-d761ac05f3fd.jpg",
+      "repeatCount": 1,
+      "name": "3D-переворот от бондаря к схеме бочки",
+      "description": "Изображение бондаря на деревянном фоне поворачивается вокруг вертикальной оси и раскрывает белую техническую схему бочки. Затем прямая склейка ведёт к мастерской с тёмно-синей подписью «Böttcher». Переворот, схема и итоговая подпись составляют одну объясняющую последовательность. Доказательство: bursts/0135/in-sheet.jpg и bursts/0135/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Переворот даёт содержательную пару «профессия — устройство предмета», а финальная подпись закрепляет термин.",
+      "application": "Объяснение ремесла, объекта или механизма через переход от исторической иллюстрации к чертежу и названию.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. In-sheet полностью показывает Y-поворот фотографии бондаря до белой схемы бочки; out-sheet показывает более позднюю мастерскую с подписью «Böttcher» и выход на следующий архив. Между листами нет сетки примерно 2,317 с; граница между схемой и мастерской и оба hold точно не утверждаются. предположение: схема и мастерская образуют одну последовательность с переходом внутри разрыва, потому что обе наблюдаемые части относятся к одному объекту и после разрыва не повторяется Y-поворот.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "8:44.5–8:48.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "5a318b6b-2d78-4687-aa33-342718a13d63",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/5a318b6b-2d78-4687-aa33-342718a13d63.jpg",
+      "repeatCount": 1,
+      "name": "Поэтапная заливка регионов на контурном атласе",
+      "description": "После гравюры появляется белая контурная карта Европы. Цветные регионы добавляются последовательно: сначала северные и западные, затем небольшие центральные области, после них тёмный восточный регион. Это оверлейные заливки поверх контурной основы, не цвета снятого футажа. Доказательство: bursts/0140/in-sheet.jpg и bursts/0140/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Поэтапная заливка управляет порядком чтения сложной карты и показывает накопление географии, а не готовый результат одним кадром.",
+      "application": "Исторические границы, языковые зоны и этапы расширения, когда регионы должны появляться причинной последовательностью.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. In-sheet показывает склейку на контурную карту и последовательное добавление цветных регионов; out-sheet фиксирует собранный атлас и последующий выход на улицу. Между листами нет сетки примерно 0,317 с; точный hold не утверждается. предположение: финальные заливки сохраняются в коротком разрыве, потому что их границы и цвета совпадают в соседних наблюдаемых состояниях. Точные проценты заливок и easing между шагами сетки не различимы.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "9:02.5–9:04.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "0ddee9df-0bfa-481a-9c61-e4256932b3fb",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/0ddee9df-0bfa-481a-9c61-e4256932b3fb.jpg",
+      "repeatCount": 1,
+      "name": "Мягкий наплыв современной улицы в архивную",
+      "description": "Современный фасад сменяется видом улицы, где историческая фотография постепенно усиливается поверх современного изображения, пока кадр не становится полностью архивным. Затем следует прямая склейка на цветную иллюстрацию мастерской. Доказательство: bursts/0141/in-sheet.jpg, bursts/0141/out-sheet.jpg, bursts/0142/in-sheet.jpg и bursts/0142/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Наплыв делает сопоставление «сейчас — тогда» очевидным без отдельной подписи и сохраняет пространственную связь улицы.",
+      "application": "Исторические реконструкции мест, фасадов и городских видов, когда современное изображение нужно превратить в архивное на той же смысловой точке.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. In-sheet показывает современный вид улицы и рост непрозрачности совмещённой архивной фотографии; out-sheet фиксирует полностью архивный вид и прямую склейку на цветную мастерскую. Между листами нет сетки примерно 0,817 с; точный hold не утверждается. предположение: полностью архивное состояние сохраняется в разрыве, потому что совмещение уже завершено перед ним и тот же ракурс виден после него.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "9:10.5–9:13.0"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "4898a6ea-106c-4675-bd96-a50ee33033ae",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/4898a6ea-106c-4675-bd96-a50ee33033ae.jpg",
+      "repeatCount": 1,
+      "name": "Архивная карточка Trade Names, Regional Variants",
+      "description": "На чёрном фоне фотография цветной улицы входит маленькой справа, смещается к центру и увеличивается. Под ней по мере движения собирается белая строка «Trade Names, Regional Variants». Изображение и подпись — один мастер. Доказательство: bursts/0145/in-sheet.jpg, bursts/0145/out-sheet.jpg, bursts/0146/in-sheet.jpg и bursts/0146/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Чёрное поле и короткая подпись превращают обычную фотографию в тезисную карточку и дают зрителю понятную причину её показа.",
+      "application": "Архивные фотографии, которые должны выступать не фоном, а отдельным доказательством с коротким смысловым заголовком.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. In-sheet показывает склейку на чёрный фон, вход и увеличение фотографии справа и поэтапную сборку строки «Trade Names, Regional Variants»; out-sheet показывает готовую карточку и выход на мастерскую. Между листами нет сетки примерно 2,817 с; точные границы завершения и hold не утверждаются. предположение: фотография и строка завершают движение в разрыве и затем сохраняются, потому что перед ним видны промежуточные состояния, а после — тот же мастер в конечной компоновке.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Типографика",
+      "timecodes": [
+        "9:23.0–9:27.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "f53873d9-a15f-4ffc-85fb-c08879d4f796",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/f53873d9-a15f-4ffc-85fb-c08879d4f796.jpg",
+      "repeatCount": 1,
+      "name": "Карта суффиксов -HUBER и -GRUBER",
+      "description": "На состаренной карте Европы тёплым свечением выделен альпийский юг; поверх стоят две строки «-HUBER» и «-GRUBER». Масштаб постоянный, поэтому кандидат зума объединён без утверждения о наезде. Доказательство: bursts/0149/in-sheet.jpg, bursts/0149/out-sheet.jpg, bursts/0150/in-sheet.jpg и bursts/0150/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Парная подпись на одном ареале быстро показывает родство двух вариантов и готовит зрителя к последующему сравнению значений.",
+      "application": "Сопоставление двух родственных фамильных форм, терминов или диалектных вариантов, привязанных к одному региону.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. In-sheet показывает прямую склейку со старого атласа на готовую карту «-HUBER»/«-GRUBER»; out-sheet — ту же карту и прямую склейку на земельный план. Между листами нет сетки примерно 2,317 с; точный hold не утверждается. предположение: карта остаётся статичной в разрыве, потому что свечение, подписи и масштаб совпадают по обе стороны; на наблюдаемых кадрах зума нет.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "9:42.0–9:46.0"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "2dac9f19-9636-4897-8a4a-7fc5550b0154",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/2dac9f19-9636-4897-8a4a-7fc5550b0154.jpg",
+      "repeatCount": 1,
+      "name": "Сравнение HUBER и GRUBER на деформированной сетке",
+      "description": "Земельный план сменяется чёрной перспективно-деформированной сеткой. По сетке проходит оранжево-белая засветка; затем вырастают две карточки с подписями «HUBER: LAND-HOLDER» и «GRUBER: THE HOLLOW». Переход и сравнение объединены в один мастер. Доказательство: bursts/0152/in-sheet.jpg, bursts/0152/out-sheet.jpg, bursts/0153/in-sheet.jpg и bursts/0153/out-sheet.jpg. Речевой якорь: нижняя строка автосубтитров на кадрах отсутствует.",
+      "opinion": "Симметричная пара сразу превращает этимологию в сравнение, а световой проход направляет внимание от перехода к двум равноправным выводам.",
+      "application": "Сопоставление двух фамилий, понятий или версий с одной фотографией и одной короткой расшифровкой на сторону.",
+      "technique": "Сетка 12 fps, шаг 0,083 с. Перекрывающиеся листы 0152 полностью показывают переход земельного плана в чёрную сетку и меняющийся оранжево-белый световой проход; 0153/in-sheet показывает рост двух карточек, а 0153/out-sheet — готовую пару и выход к следующей карточке «Hofer». Внутри 0153 нет сетки примерно 2,317 с; точный hold не утверждается. предположение: симметричная пара сохраняется в разрыве, потому что размеры и позиции совпадают до и после него и повторного входа нет.\nаудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Инфографика",
+      "timecodes": [
+        "9:47.5–9:52.5"
+      ],
+      "createdAt": "2026-08-11T14:30:00Z",
+      "updatedAt": "2026-08-11T14:30:00Z"
+    },
+    {
+      "id": "8B11D43A-46C2-4CB5-9A58-17B2E3150158",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/8B11D43A-46C2-4CB5-9A58-17B2E3150158.jpg",
+      "repeatCount": 1,
+      "name": "RGB-glitch: долина → архивная карточка",
+      "description": "Доказательство: bursts/0158/in-sheet.jpg, сетка 12 fps. Чистый план долины виден до 9:56.717; в 9:56.800 появляется первая однозначная цифровая полоса, затем планы смешиваются через горизонтальные RGB-сдвиги и светлую вспышку. В 9:57.300 впервые видна чистая архивная карточка. Наблюдаемое окно перехода 9:56.800–9:57.300: 6 шагов сетки, 0.500 с; hold внутри карточки 0.000 с. Речевой якорь: нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.",
+      "opinion": "Полезный короткий маркер смены режима от натурного плана к архивному доказательству; применять на смене смыслового слоя и не повторять часто.",
+      "application": "Переход от пейзажа или B-roll к одной архивной фотографии, документу либо карточке источника.",
+      "technique": "Слои: outgoing valley footage; incoming archive card; full-frame horizontal glitch/RGB overlay. 9:56.800 — первая полоса; 9:56.883–9:57.217 — смешение планов, RGB-разъезд и светлый пик; 9:57.300 — первый чистый incoming. Порядок: clean outgoing → glitch overlap → clean incoming. Направленного движения нет; точные opacity/easing по листу не определяются. SFX: аудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "9:56.800–9:57.300"
+      ],
+      "createdAt": "2026-08-11T16:20:32Z",
+      "updatedAt": "2026-08-11T16:20:32Z"
+    },
+    {
+      "id": "5D7A2CF0-8E14-4A37-B172-0C6D1A4F0172",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/5D7A2CF0-8E14-4A37-B172-0C6D1A4F0172.jpg",
+      "repeatCount": 1,
+      "name": "Тёплая плёночная засветка: коллаж → портрет",
+      "description": "Доказательство: bursts/0172/in-sheet.jpg, сетка 12 fps. Чистый коллаж удерживается до 10:58.550; в 10:58.633 начинается однозначное затемнённое смешение, затем кадр проходит через жёлтую и красно-оранжевую засветку. В 10:59.050 впервые виден чистый сепийный портрет. Наблюдаемое окно 10:58.633–10:59.050: 5 шагов сетки, ≈0.417 с; hold 0.000 с. Следующий набор подписи начинается позже и в карточку не входит. Речевой якорь: нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.",
+      "opinion": "Мягко связывает современный фотоколлаж с историческим персонажем и сохраняет документальный тон; особенно уместна на переходе к биографическому фрагменту.",
+      "application": "Переход от нескольких фотографий места или события к одному архивному портрету, документу либо герою следующего блока.",
+      "technique": "Слои: outgoing photo collage; incoming sepia portrait; warm film-burn/light-leak overlay. 10:58.633–10:58.717 — затемнённый overlap; 10:58.800 — жёлтый пик; 10:58.883–10:58.967 — красно-оранжевое проявление портрета; 10:59.050 — первый чистый incoming. Порядок: collage → dark overlap → warm flare → portrait. Точные opacity/easing по листу не определяются. SFX: аудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "10:58.633–10:59.050"
+      ],
+      "createdAt": "2026-08-11T16:20:32Z",
+      "updatedAt": "2026-08-11T16:20:32Z"
+    },
+    {
+      "id": "427E83EF-0D53-4293-812C-4096458967A7",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/427E83EF-0D53-4293-812C-4096458967A7.jpg",
+      "repeatCount": 1,
+      "name": "Мягкий наплыв между двумя планами дома",
+      "description": "Доказательство: bursts/0174/in-sheet.jpg и bursts/0174/out-sheet.jpg, сетка 12 fps. В 11:06.550 виден чистый исходный ракурс дома; в 11:06.700 впервые однозначно наблюдается overlap двух ракурсов. Смешение развивается непрерывно; в 11:07.450 ещё видна структура outgoing, а 11:07.533 — первый однозначно чистый incoming. Наблюдаемое окно 11:06.700–11:07.533: 10 шагов сетки, ≈0.833 с; hold 0.000 с. Последующая склейка на книги в 11:07.867 не входит. предположение: фактический старт overlap находится после 11:06.550 и не позже 11:06.700; 11:06.700 — первая доказанная видимая фаза, не субкадровая граница. Речевой якорь: нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.",
+      "opinion": "Спокойный наплыв сохраняет географическую и смысловую связь между двумя ракурсами одного объекта; полезен там, где жёсткая склейка была бы слишком заметна.",
+      "application": "Смена общего и соседнего ракурса здания, локации или исторического объекта внутри одного смыслового эпизода.",
+      "technique": "Слои: outgoing farmhouse angle A; incoming farmhouse angle B. На интервале 11:06.700–11:07.533 применить ненаправленный cross-dissolve; outgoing уходит, incoming проявляется, первый чистый incoming — 11:07.533. Порядок: clean angle A → continuous overlap → clean angle B. предположение: точная кривая opacity между наблюдаемыми узлами не извлекается; использовать стандартный плавный cross-dissolve без дополнительного движения. SFX: аудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "11:06.700–11:07.533"
+      ],
+      "createdAt": "2026-08-11T16:20:32Z",
+      "updatedAt": "2026-08-11T16:20:32Z"
+    },
+    {
+      "id": "C2825D72-7046-418A-BA32-684D961A1D2E",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/C2825D72-7046-418A-BA32-684D961A1D2E.jpg",
+      "repeatCount": 1,
+      "name": "RGB-glitch: книги → карта Европы",
+      "description": "Доказательство: bursts/0175/in-sheet.jpg и bursts/0175/out-sheet.jpg, сетка 12 fps. Книги чисто видны до 11:09.117; в 11:09.200 начинается однозначный цифровой сбой. Горизонтальные полосы и RGB-разъезд смешивают книги с картой, затем проходит светлый циановый пик; 11:09.617 — первый чистый кадр карты Европы. Наблюдаемое окно 11:09.200–11:09.617: 5 шагов сетки, ≈0.417 с; hold 0.000 с. Последующая сборка границ на карте относится к 0176 и не входит. Речевой якорь: нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.",
+      "opinion": "Жёстко и понятно отделяет архивный источник от географического объяснения; использовать как редкий акцент на смене типа аргумента.",
+      "application": "Переход от книг, документов или архивного предметного плана к карте, схеме территории либо цифровой инфографике.",
+      "technique": "Слои: outgoing books footage; incoming Europe map; horizontal digital-glitch/RGB overlay. 11:09.200 — первый тёмный полосовой сбой; 11:09.283–11:09.367 — смешение книг и карты; 11:09.450 — циановый пик; 11:09.533 — остаточные полосы на карте; 11:09.617 — первый чистый incoming. Порядок: books → RGB glitch overlap → clean map. Точные opacity и ширина полос по листу не определяются. SFX: аудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "11:09.200–11:09.617"
+      ],
+      "createdAt": "2026-08-11T16:20:32Z",
+      "updatedAt": "2026-08-11T16:20:32Z"
+    },
+    {
+      "id": "B4C912ED-7A20-4F31-9182-5D0E8A3C0182",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/B4C912ED-7A20-4F31-9182-5D0E8A3C0182.jpg",
+      "repeatCount": 1,
+      "name": "Оранжевая засветка раскрывает две карточки",
+      "description": "Доказательство: bursts/0182/out-sheet.jpg, сетка 12 fps. Чёрная деформированная сетка чисто видна до 11:37.783; с 11:37.867 красно-оранжевая засветка нарастает до почти белого пика. На спаде проявляются две подписи и две карточки, увеличиваясь до финальной композиции; 11:38.867 — первый чистый итоговый кадр. Наблюдаемое окно 11:37.867–11:38.867: 12 шагов сетки, 1.000 с; hold 0.000 с. Это самостоятельный вход; непокрытый master comparison 0182–0183 в карточку не включён. Речевой якорь: нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.",
+      "opinion": "Засветка одновременно маскирует появление элементов и создаёт сильный тезисный акцент; подходит для краткого сравнения из двух пунктов.",
+      "application": "Появление пары сравнительных карточек, двух вариантов или двух географических примеров на тёмном фоне.",
+      "technique": "Слои снизу вверх: black warped-grid background; two labels; two image cards; full-frame red/orange light-leak. 11:37.867 — первый красный кадр; 11:38.033–11:38.200 — наблюдаемый светлый пик; с 11:38.367 проявить подписи, затем карточки и увеличить их до финального размера; 11:38.867 — чистая композиция. Точные стартовые Scale/Opacity и easing по листу не определяются. Порядок: grid → flare peak → labels/cards reveal → clean comparison. SFX: аудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "11:37.867–11:38.867"
+      ],
+      "createdAt": "2026-08-11T16:20:32Z",
+      "updatedAt": "2026-08-11T16:20:32Z"
+    },
+    {
+      "id": "6E2A7B91-C4D8-4A35-8183-2F7C0D5E0183",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/6E2A7B91-C4D8-4A35-8183-2F7C0D5E0183.jpg",
+      "repeatCount": 1,
+      "name": "RGB-glitch: сравнение → маршрутная карта",
+      "description": "Доказательство: bursts/0183/out-sheet.jpg, сетка 12 fps. Композиция из двух карточек чисто видна до 11:42.283; 11:42.367 — первый однозначный цифровой сбой. Карточки смешиваются с картой через горизонтальные полосы, тёмный RGB-разъезд и циановый пик; 11:42.867 — первый чистый кадр карты. Наблюдаемое окно 11:42.367–11:42.867: 6 шагов сетки, 0.500 с; hold 0.000 с. Дальнейшая сборка маршрутов 0184 не входит. Речевой якорь: нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.",
+      "opinion": "Быстро переводит зрителя от сравнения к пространственному объяснению и визуально завершает двухкарточный блок; годится как редкий разделитель режимов.",
+      "application": "Переход от пары карточек, тезисов или вариантов к карте маршрутов, общей схеме либо следующему аналитическому экрану.",
+      "technique": "Слои: outgoing two-card comparison; incoming route-map background; full-frame horizontal glitch/RGB overlay. 11:42.367 — первый полосовой сбой; 11:42.450–11:42.533 — карта входит под карточки; 11:42.617 — циановый пик; 11:42.700–11:42.783 — остаточные призраки карточек; 11:42.867 — чистая карта. Порядок: comparison → glitch overlap → clean map. Точные opacity/easing по листу не определяются. SFX: аудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "11:42.367–11:42.867"
+      ],
+      "createdAt": "2026-08-11T16:20:32Z",
+      "updatedAt": "2026-08-11T16:20:32Z"
+    },
+    {
+      "id": "9F5D1A83-6C42-4B70-A202-3E8D1C5F0202",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/9F5D1A83-6C42-4B70-A202-3E8D1C5F0202.jpg",
+      "repeatCount": 1,
+      "name": "Тёплая засветка: две карточки → городская карта",
+      "description": "Доказательство: bursts/0202/out-sheet.jpg, сетка 12 fps. Две чёрные карточки поверх хроники чисто видны до 12:48.950; 12:49.033 — первый кадр тёплой вертикальной засветки и overlap. Карта проявляется через оранжевый и жёлтый свет; 12:49.367 — первый чистый кадр городской карты. Наблюдаемое окно 12:49.033–12:49.367: 4 шага сетки, ≈0.333 с; hold 0.000 с. Непокрытый вход самих карточек и дальнейшая работа карты не включены. Речевой якорь: нижняя строка автосубтитров в наблюдаемых кадрах отсутствует.",
+      "opinion": "Короткая тёплая вспышка аккуратно закрывает сравнительный оверлей и возвращает повествование к географии; эффект заметен, но не задерживает темп.",
+      "application": "Выход из двух карточек, цитат или сравнительных тезисов к исторической карте города, плану местности либо документу.",
+      "technique": "Слои: outgoing chronicle with two black cards; incoming city map; vertical warm film-burn/light-leak overlay. 12:49.033 — первый оранжевый overlap; 12:49.117 — карта входит под карточки; 12:49.200–12:49.283 — тёплый спад на карте; 12:49.367 — первый чистый incoming. Порядок: cards/chronicle → warm overlap → clean map. Точные opacity/easing по листу не определяются. SFX: аудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "12:49.033–12:49.367"
+      ],
+      "createdAt": "2026-08-11T16:20:32Z",
+      "updatedAt": "2026-08-11T16:20:32Z"
+    },
+    {
+      "id": "6f32d4bc-2124-4937-a3e4-c99b4e7a1e18",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/6f32d4bc-2124-4937-a3e4-c99b4e7a1e18.jpg",
+      "repeatCount": 1,
+      "name": "Скомканная бумага раскрывает карту",
+      "description": "Доказательство: bursts/0205/in-sheet.jpg, bursts/0205/out-sheet.jpg и перекрывающиеся кадры bursts/0206/in-sheet.jpg, bursts/0206/out-sheet.jpg; сетка 12 fps. В 13:05.050 впервые виден белый бумажный ком. Через 7 шагов сетки, в t+0.583, белый контур полностью уходит за границы и остаётся чистая полноэкранная карта. Через следующие 11 шагов, в t+1.500, наблюдается первый кадр следующего архивного плана. Совпадающие JPG на стыках листов задают единую последовательность из 18 шагов: вход 7/12 с ≈0.583 с, hold 11/12 с ≈0.917 с, выход hard cut 0 кадров. Диапазон 13:05.050–13:06.550 получен от первого наблюдаемого кадра и 18 последовательных шагов, без подстановки границы TSV. Речевой якорь: нижняя строка автосубтитров на наблюдаемых JPG отсутствует.",
+      "opinion": "Сильный тематический переход к историческому доказательству: бумажная метафора мотивирует смену эпохи и носителя. Использовать редко, максимум один-два раза за ролик.",
+      "application": "Переход от реконструкции или современного футажа к карте, документу, письму либо архивной схеме в момент смены рассказа на вещественное доказательство.",
+      "technique": "Слои снизу вверх: outgoing historical footage; full-frame antique map; white crumpled-paper mask with opening tear. t+0.000 — бумажный ком впервые виден в центре. t+0.000–0.583 — контур расширяется без направленного пролёта, складки расправляются, отверстие синхронно раскрывает карту; маску и карту вести одним master controller. t+0.583 — первый чистый полноэкранный кадр карты. t+0.583–1.500 — статичный hold карты, 11 шагов сетки ≈0.917 с. t+1.500 — hard cut 0 кадров на архивный план. Точные easing и значения Scale не различимы по JPG. SFX: аудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "13:05.050–13:06.550"
+      ],
+      "createdAt": "2026-08-11T12:00:00Z",
+      "updatedAt": "2026-08-11T18:00:00Z"
+    },
+    {
+      "id": "01e5d96b-1f93-4643-8ac9-9c66e029d6e4",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/01e5d96b-1f93-4643-8ac9-9c66e029d6e4.jpg",
+      "repeatCount": 1,
+      "name": "Тёплая засветка маскирует кроссфейд",
+      "description": "Доказательство: bursts/0244/out-sheet.jpg, bursts/0245/in-sheet.jpg и bursts/0245/out-sheet.jpg; сетка 12 fps. В 15:22.033 аэрофотография начинает смешиваться с зелёным видом сверху, одновременно нарастает полноэкранная жёлто-красная плёночная засветка. Через 2 шага сетки достигается светлый пик; он удерживается 1 шаг, затем за 2 шага засветка гаснет и оставляет чистый входящий план в 15:22.450. Полностью наблюдаемая последовательность: вход 2/12 с ≈0.167 с, hold пика 1/12 с ≈0.083 с, выход 2/12 с ≈0.167 с; всего 5 шагов ≈0.417 с. Речевой якорь: нижняя строка автосубтитров на наблюдаемых JPG отсутствует.",
+      "opinion": "Полезный короткий рубеж для смены времени или источника: яркий пик скрывает подмену и связывает разные палитры. Дозировать до одного раза на главу.",
+      "application": "Переход от фотографии или обычного видео к карте, архиву либо стилизованной фактуре, когда нужен заметный короткий смысловой рубеж.",
+      "technique": "Слои снизу вверх: outgoing aerial footage; incoming green overhead footage; full-frame warm light-leak with vertical yellow/red bands. t+0.000–0.167 — одновременно начать ненаправленный cross-dissolve и поднять Opacity засветки до пика. t+0.167–0.250 — удержать пик 1 шаг сетки; на светлом кадре incoming становится доминирующим. t+0.250–0.417 — завершить cross-dissolve и убрать засветку по Opacity. t+0.417 — чистый incoming. Точные easing, blend mode и значения Opacity не различимы по JPG. SFX: аудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Переход",
+      "timecodes": [
+        "15:22.033–15:22.450"
+      ],
+      "createdAt": "2026-08-11T12:00:00Z",
+      "updatedAt": "2026-08-11T18:00:00Z"
+    },
+    {
+      "id": "913e1bdb-c67f-457d-9c9a-98c7cd4963b6",
+      "projectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
+      "image": "assets/elements/913e1bdb-c67f-457d-9c9a-98c7cd4963b6.jpg",
+      "repeatCount": 1,
+      "name": "Финальный титр NAMED BY HISTORY",
+      "description": "Доказательство: bursts/0250/in-sheet.jpg и bursts/0250/out-sheet.jpg; сетка 12 fps. В 15:39.133 ещё виден смартфон с CTA, а в 15:39.217 после hard cut впервые полностью видна самостоятельная графическая композиция: пергаментная карта, заголовок «NAMED BY HISTORY», подзаголовок «The Stories hidden in your surname» и сургучная печать. В 15:42.033 титр ещё виден полностью; в 15:42.117 после hard cut начинается компьютерный план. Вход и выход наблюдаются непосредственно, оба по 0 кадров. предположение: титр непрерывно удерживается в непокрытом промежутке 15:39.800–15:40.700; причина — по обе стороны разрыва наблюдается одна и та же полная композиция, а все доступные кадры её hold сохраняют раскладку. Точная сквозная длительность hold не утверждается. Речевой якорь: нижняя строка автосубтитров на наблюдаемых JPG отсутствует.",
+      "opinion": "Полноэкранный брендовый титр ясно завершает смысловой блок и закрепляет название серии; его ценность — в воспроизводимой композиции, а не в способе склейки.",
+      "application": "Финальный или межглавный экран серии: название, короткий подзаголовок и брендовый знак на тематическом историческом фоне.",
+      "technique": "Слои снизу вверх: full-frame parchment world map; centered serif title NAMED BY HISTORY; smaller centered subtitle The Stories hidden in your surname; dark-red wax seal at lower right; small map labels and ship as background details. 15:39.217 — hard cut 0 кадров со смартфона на полностью собранный master. Hold: сохранять полноэкранную композицию без перестройки; предположение: продолжить тот же hold через непокрытый промежуток 15:39.800–15:40.700, поскольку соседние наблюдаемые кадры совпадают по составу и раскладке. 15:42.117 — hard cut 0 кадров на компьютерный план. Порядок: smartphone footage → title master → computer footage. Точные параметры фоновой фактуры по JPG не различимы. SFX: аудио не предоставлено; SFX по кадрам не проверяется",
+      "legacyTagsMigrated": false,
+      "category": "Типографика",
+      "timecodes": [
+        "15:39.217–15:42.117"
+      ],
+      "createdAt": "2026-08-11T18:00:00Z",
+      "updatedAt": "2026-08-11T18:00:00Z"
     }
   ],
   "categories": [
