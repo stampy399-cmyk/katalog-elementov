@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "exportedAt": "2026-08-11T11:12:32.128Z",
+  "exportedAt": "2026-08-11T11:15:41.287Z",
   "projects": [
     {
       "channel": "Verlorenes Bauwissen",
@@ -6106,7 +6106,7 @@
       "h": 0.5992772
     },
     "cropCalibrated": true,
-    "activeProjectId": "195BF0E6-9E46-4A87-8436-823EFF05F63E",
+    "activeProjectId": "21e38680-1f6b-47c4-9964-7a4e24d55bdb",
     "lastCropSource": "assets/crop/last-source.jpg?v=f6b4b6aeb45e",
     "backupDirectoryHandle": null,
     "backupLastWrittenAt": null
