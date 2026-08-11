@@ -94,6 +94,9 @@
     .save-state[data-state="saving"]::before { background: var(--accent); transform: scale(1.2); }
     .save-state[data-state="saved"]::before { border-radius: 1px; width: 8px; height: 5px; background: transparent; border-left: 1.5px solid var(--accent); border-bottom: 1.5px solid var(--accent); transform: rotate(-45deg) translateY(-1px); }
     .save-state[data-state="error"]::before { background: var(--danger); }
+    .server-refresh { flex: 0 0 auto; min-height: 30px; padding: 0 9px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-raised); color: var(--muted); cursor: pointer; white-space: nowrap; }
+    .server-refresh:hover, .server-refresh:focus-visible { border-color: var(--accent); color: var(--text); }
+    .server-refresh:disabled { cursor: wait; opacity: .55; }
     .icon-button, .quiet-button, .menu-item, .add-element, .project-toggle, .repeat-badge, .undo-button, .auto-progress {
       border: 0;
       cursor: pointer;
@@ -567,6 +570,7 @@
     .modal-help { margin-top: 9px !important; font-size: 11px; }
     @media (max-width: 680px) { .stat-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 760px) { .player-dock { grid-template-columns: 1fr; padding: 20px 18px 0; } .player-copy { padding: 0 2px; } }
+    @media (max-width: 620px) { .server-refresh { width: 32px; padding: 0; overflow: hidden; font-size: 0; } .server-refresh::before { content: "↻"; font-size: 17px; } }
     @media (max-width: 500px) { .brand { font-size: 12px; } .brand::after { content: none; } }
   </style>
 </head>
@@ -576,6 +580,7 @@
       <div class="brand">РУЧНОЙ каталог отбора</div>
       <div class="search-wrap"><input id="search" class="search" type="search" autocomplete="off" placeholder="Поиск по каталогу" aria-label="Поиск по каталогу"></div>
       <button id="categoryFilter" class="category-filter-active" type="button" hidden></button>
+      <button id="serverRefresh" class="server-refresh" type="button" title="Перечитать data.json с сервера">Обновить с сервера</button>
       <div id="onlinePresence" class="online-presence" aria-live="polite">0 онлайн</div>
       <div id="saveState" class="save-state" data-state="saved" aria-live="polite">Сохранено</div>
       <button id="menuButton" class="icon-button" type="button" aria-label="Меню" aria-expanded="false">⋯</button>
@@ -631,6 +636,7 @@
       const CLOUD_POLL_INTERVAL = 3000;
       const CLOUD_WRITE_RACE_RETRIES = 3;
       const DELETE_CONFIRMATION = 'УДАЛИТЬ';
+      const PUBLISHED_DATA_URL = 'data.json';
       const GITHUB_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/data.json';
       const GITHUB_GIT_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/git';
       const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/stampy399-cmyk/katalog-elementov/main/';
@@ -677,6 +683,7 @@
         addVideo: byId('addVideo'),
         search: byId('search'),
         categoryFilter: byId('categoryFilter'),
+        serverRefresh: byId('serverRefresh'),
         onlinePresence: byId('onlinePresence'),
         saveState: byId('saveState'),
         menuButton: byId('menuButton'),
@@ -3343,6 +3350,25 @@
         return Boolean(raw && typeof raw === 'object' && Array.isArray(raw.projects) && Array.isArray(raw.elements));
       }
 
+      function snapshotVersion(snapshot) {
+        const version = Number(snapshot?.version);
+        return Number.isFinite(version) ? version : 0;
+      }
+
+      function snapshotExportedAt(snapshot) {
+        const timestamp = Date.parse(asText(snapshot?.exportedAt));
+        return Number.isFinite(timestamp) ? timestamp : 0;
+      }
+
+      function isPublishedSnapshotNewer(server, local) {
+        if (!isCloudSnapshot(server)) return false;
+        if (!isCloudSnapshot(local)) return true;
+        const serverVersion = snapshotVersion(server);
+        const localVersion = snapshotVersion(local);
+        if (serverVersion !== localVersion) return serverVersion > localVersion;
+        return snapshotExportedAt(server) > snapshotExportedAt(local);
+      }
+
       function cloneSnapshot(snapshot) {
         if (snapshot === undefined) return undefined;
         return JSON.parse(JSON.stringify(snapshot));
@@ -4211,9 +4237,79 @@
         return remote;
       }
 
-      async function archiveGuardedOutbox(record) {
+      async function getPublishedSnapshot() {
+        const separator = PUBLISHED_DATA_URL.includes('?') ? '&' : '?';
+        const response = await fetch(`${PUBLISHED_DATA_URL}${separator}v=${Date.now()}`, {
+          method: 'GET',
+          headers: { Accept: 'application/json' },
+          cache: 'no-store'
+        });
+        if (!response.ok) throw new Error(`data.json GET: ${response.status}`);
+        return prepareRemoteSnapshot(await response.json(), {
+          etag: response.headers.get('ETag') || ''
+        });
+      }
+
+      async function refreshFromPublishedData({ force = false, notify = false } = {}) {
+        if (dom.serverRefresh.disabled) return false;
+        if (notify && (isTextEditing() || isTypingPause())) {
+          showToast('Закончите редактирование: ваш текст не будет потерян.');
+          return false;
+        }
+        dom.serverRefresh.disabled = true;
+        dom.serverRefresh.textContent = 'Обновление…';
+        try {
+          const remote = await getPublishedSnapshot();
+          const localReference = state.cloud.baseSnapshot;
+          if (!force && !isPublishedSnapshotNewer(remote.raw, localReference)) return false;
+
+          const unbasedLocalCatalog = !localReference && (state.projects.length > 0 || state.elements.length > 0);
+          if ((state.cloud.dirty || unbasedLocalCatalog) && !validOutboxRecord(state.cloud.outbox)) {
+            persistCloudOutbox(catalogSnapshot());
+            await state.cloud.syncQueue;
+          }
+
+          const outbox = validOutboxRecord(state.cloud.outbox) ? state.cloud.outbox : null;
+          if (outbox) {
+            const rebased = await rebaseOutboxRecord(outbox, remote);
+            if (rebased.ok) {
+              await rehydrateOutboxCatalog(rebased.record);
+              renderFeed();
+              setSaveState('saving', 'В очереди');
+              if (state.cloud.ready) scheduleCloudSave();
+              if (notify) showToast('Сервер обновлён; локальные правки смёржены и сохранены.');
+              return true;
+            }
+
+            const conflicts = rebased.conflicts.slice(0, 3).join(', ');
+            const replace = globalThis.confirm(
+              `На сервере новые данные, но автослияние не удалось${conflicts ? `: ${conflicts}` : '.'}\n\n` +
+              'ОК — показать серверные данные. Локальные правки будут сохранены в резервной очереди, но не применятся автоматически.\n' +
+              'Отмена — оставить локальные данные на экране.'
+            );
+            if (!replace) return false;
+            if (!await archiveGuardedOutbox(outbox, 'published-refresh-merge-conflict')) {
+              throw new Error('Не удалось сохранить резервную очередь.');
+            }
+            state.cloud.knownProjectIds = new Set(state.projects.map((project) => String(project.id)));
+            state.cloud.knownElementIds = new Set(state.elements.map((element) => String(element.id)));
+            await applyRemoteSnapshot(remote, { allowDirty: true, suppressCloudMark: true });
+            if (notify) showToast('Серверные данные загружены; локальные правки в резервной очереди.');
+            return true;
+          }
+
+          const changed = await applyRemoteSnapshot(remote, { allowDirty: true, suppressCloudMark: true });
+          if (notify) showToast(changed ? 'Данные обновлены с сервера.' : 'На сервере нет изменений.');
+          return changed;
+        } finally {
+          dom.serverRefresh.disabled = false;
+          dom.serverRefresh.textContent = 'Обновить с сервера';
+        }
+      }
+
+      async function archiveGuardedOutbox(record, reason = 'empty-local-remote-nonempty') {
         if (!validOutboxRecord(record) || state.cloud.outbox?.revision !== record.revision) return false;
-        const archived = { ...record, blocked: true, blockedAt: Date.now(), reason: 'empty-local-remote-nonempty' };
+        const archived = { ...record, blocked: true, blockedAt: Date.now(), reason };
         await enqueueCloudSync(() => writeCloudSyncBatch([['guardedOutbox', archived]], ['outbox']));
         saveLocalValue(CLOUD_GUARDED_OUTBOX_KEY, JSON.stringify({ version: 2, storage: 'indexedDB', key: 'guardedOutbox', revision: record.revision }));
         removeLocalValue(CLOUD_OUTBOX_KEY);
@@ -5481,6 +5577,11 @@
 
         expect(CLOUD_PUSH_MIN_INTERVAL >= 30000 && CLOUD_PUSH_DELAY >= 30000, 'cloud pushes are batched');
         expect(presenceCount().total >= 1, 'presence counts at least this tab');
+        const publishedBase = { version: 5, exportedAt: '2026-08-11T09:00:00Z', projects: [], elements: [] };
+        expect(isPublishedSnapshotNewer({ ...publishedBase, exportedAt: '2026-08-11T10:00:00Z' }, publishedBase), 'newer exportedAt wins');
+        expect(isPublishedSnapshotNewer({ ...publishedBase, version: 6, exportedAt: '2020-01-01T00:00:00Z' }, publishedBase), 'newer version wins');
+        expect(!isPublishedSnapshotNewer({ ...publishedBase }, publishedBase), 'equal published snapshot is not newer');
+        expect(!isPublishedSnapshotNewer({ ...publishedBase, version: 4, exportedAt: '2030-01-01T00:00:00Z' }, publishedBase), 'older version does not replace newer schema');
 
         const base = { version: 5, projects: [], elements: [{ id: 'element', description: 'base', technique: 'base', updatedAt: 1 }], categories: [], settings: {} };
         const remote = cloneSnapshot(base);
@@ -5508,6 +5609,13 @@
         }
       });
 
+      dom.serverRefresh.addEventListener('click', () => {
+        refreshFromPublishedData({ force: true, notify: true }).catch((error) => {
+          setCloudError('Ошибка: сети');
+          showToast(error.message || 'Не удалось обновить data.json.');
+        });
+      });
+
       globalThis.addEventListener('beforeunload', (event) => {
         if (!state.cloud.dirty) return;
         event.preventDefault();
@@ -5529,6 +5637,11 @@
           await loadCloudSyncState();
           state.cloud.ready = true;
           applyReadOnlyState();
+          try {
+            await refreshFromPublishedData();
+          } catch (error) {
+            // The GitHub API fallback below still gets a chance when Pages is unavailable.
+          }
           renderFeed();
           setSaveState(state.cloud.dirty ? 'saving' : 'saved');
           initializePresence();
