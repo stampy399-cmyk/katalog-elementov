@@ -604,6 +604,7 @@
     <button class="menu-item" type="button" data-action="import-json"><span class="menu-icon">⇧</span>Импорт JSON</button>
     <button class="menu-item" type="button" data-action="export-claude"><span class="menu-icon">✦</span>Экспорт для Клода</button>
     <div class="menu-separator"></div>
+    <button class="menu-item" type="button" data-action="cloud-token"><span class="menu-icon">🔑</span>Ключ записи</button>
     <button class="menu-item" type="button" data-action="backup-folder"><span class="menu-icon">▣</span>Папка бэкапа</button>
     <button class="menu-item" type="button" data-action="crop"><span class="menu-icon">✂</span>Обрезка</button>
     <button class="menu-item" type="button" data-action="recalibrate"><span class="menu-icon">⌗</span>Перекалибровка рамки</button>
@@ -643,7 +644,9 @@
       const GITHUB_BRANCH = 'main';
       const MAX_IMAGE_ASSET_BYTES = 95 * 1024 * 1024;
       const MAX_CLOUD_JSON_BYTES = 1024 * 1024;
-      const EMBEDDED_TOKEN_FRAGMENTS = Object.freeze(['Z2hvX1k=', 'Uk5lTVQ=', 'MVhpdkg=', 'TEl1Y3E=', 'b2Yxdjk=', 'WUtWYXk=', 'OWk2RjE=', 'aDhTdk0=']);
+      // Эта страница публичная: любой зашитый в неё секрет читает каждый посетитель.
+      // Ключ записи вводится вручную и хранится только в localStorage конкретного браузера.
+      const CLOUD_TOKEN_KEY = 'katalog-elementov.cloud-token';
       const PRESENCE_CLIENT_KEY = 'katalog-elementov.presence-client-id';
       const PRESENCE_LOCAL_KEY = 'katalog-elementov.presence-peers';
       const PRESENCE_CHANNEL_NAME = 'katalog-elementov.presence';
@@ -1286,7 +1289,7 @@
           ? settings.activeProjectId
           : state.projects[0]?.id || null;
         state.editingElementId = null;
-        state.cloud.token = embeddedCloudToken();
+        state.cloud.token = storedCloudToken();
         applyTheme();
         refreshBackupPermission();
       }
@@ -3119,8 +3122,31 @@
         return new TextDecoder().decode(bytes);
       }
 
-      function embeddedCloudToken() {
-        return EMBEDDED_TOKEN_FRAGMENTS.map((fragment) => atob(fragment)).join('');
+      function storedCloudToken() {
+        return localValue(CLOUD_TOKEN_KEY, '').trim();
+      }
+
+      function applyCloudToken(value) {
+        const token = asText(value).trim();
+        const saved = token ? saveLocalValue(CLOUD_TOKEN_KEY, token) : removeLocalValue(CLOUD_TOKEN_KEY);
+        if (!saved) {
+          showToast('Браузер не разрешил сохранить ключ записи.');
+          return false;
+        }
+        state.cloud.token = token;
+        return true;
+      }
+
+      function promptCloudToken() {
+        const current = storedCloudToken();
+        const entered = globalThis.prompt(current
+          ? 'Ключ записи сохранён в этом браузере. Введите другой ключ или очистите поле, чтобы вернуться к режиму чтения.'
+          : 'Вставьте персональный токен GitHub со scope repo. Он останется только в этом браузере и никогда не попадёт в файлы каталога.', current);
+        if (entered === null) return;
+        if (!applyCloudToken(entered)) return;
+        showToast(state.cloud.token
+          ? 'Ключ записи сохранён в этом браузере.'
+          : 'Ключ записи удалён: каталог работает только на чтение.');
       }
 
       function cloudHeaders(headers = {}) {
@@ -4483,6 +4509,10 @@
 
       async function saveCloud() {
         if (!state.cloud.dirty || state.cloud.saving || state.cloud.importing || state.cloud.outboxPending || state.cloud.outboxTimer) return;
+        if (!state.cloud.token) {
+          setCloudError('Только чтение: нет ключа');
+          return;
+        }
         await state.cloud.syncQueue;
         if (state.cloud.outboxPending || state.cloud.outboxTimer) return;
         let sending = state.cloud.outbox;
@@ -5406,7 +5436,7 @@
       dom.menuPanel.addEventListener('click', (event) => {
         const action = event.target.closest('[data-action]')?.dataset.action;
         if (!action) return;
-        if (isCloudReadOnly() && !['export-json', 'export-claude', 'stats', 'theme'].includes(action)) {
+        if (isCloudReadOnly() && !['export-json', 'export-claude', 'stats', 'theme', 'cloud-token'].includes(action)) {
           closeMenu();
           showToast('Каталог обновляется.');
           return;
@@ -5417,6 +5447,10 @@
           dom.importFile.click();
         }
         if (action === 'export-claude') exportForClaude();
+        if (action === 'cloud-token') {
+          closeMenu();
+          promptCloudToken();
+        }
         if (action === 'backup-folder') chooseBackupFolder();
         if (action === 'crop') showCropStatus();
         if (action === 'recalibrate') reCalibrate();
