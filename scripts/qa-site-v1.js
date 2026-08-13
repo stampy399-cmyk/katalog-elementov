@@ -334,6 +334,9 @@ function validateComparison(comparison, indexPage) {
   check(html.includes('Нашего образца пока нет'), 'integrated comparison does not render null-media placeholder');
   check((html.match(/<video controls preload="none"/g) || []).length === 13, 'integrated comparison did not render 13 clips');
   check((html.match(/class="competitor-card"/g) || []).length === 52, 'integrated comparison competitor reference count mismatch');
+  check((html.match(/class="tech-passport"/g) || []).length === EXPECTED.families, 'integrated comparison did not render 18 tech passports');
+  check((html.match(/data-lightbox-media/g) || []).length === 69, 'integrated comparison media are not all lightbox-enabled');
+  check((html.match(/data-lightbox-pair=/g) || []).length === 17, 'integrated comparison did not render 17 side-by-side buttons');
   check(!html.includes('undefined') && !html.includes('null'), 'integrated comparison renders null/undefined text');
 
   qa.state.familyFilter = comparison.families[0].family;
@@ -344,6 +347,7 @@ function validateComparison(comparison, indexPage) {
 async function main() {
   const catalog = readJson('data.json');
   const comparison = readJson('sravnenie.json');
+  const oursTech = readJson('ours_tech.json');
   const indexPage = inlineScript('index.html');
   const dataSummary = validateData(catalog);
   validateIndex(catalog, indexPage, dataSummary);
@@ -353,6 +357,15 @@ async function main() {
   check(comparison.families.every((record) => FAMILY_ORDER.includes(record.family)), 'sravnenie.json: unknown family');
   check(comparison.families.filter((record) => record.our_media).length === 17, 'sravnenie.json: expected 17 local samples');
   check(comparison.families.filter((record) => String(record.our_media).endsWith('.mp4')).length === 13, 'sravnenie.json: expected 13 clips');
+  check(Object.keys(oursTech).length === EXPECTED.families, `ours_tech.json: expected 18 families, got ${Object.keys(oursTech).length}`);
+  check(FAMILY_ORDER.every((family) => Object.hasOwn(oursTech, family)), 'ours_tech.json: family coverage mismatch');
+  check(Object.values(oursTech).every((record) => ['умеем', 'не умеем'].includes(record.status)), 'ours_tech.json: invalid status');
+  check(Object.values(oursTech).every((record) => ['tech_path', 'tool', 'how_to', 'sample'].every((field) => typeof record[field] === 'string' && record[field].trim())), 'ours_tech.json: empty tech fields');
+  check(Object.values(oursTech).filter((record) => record.status === 'умеем').length === 16, 'ours_tech.json: expected 16 available families');
+  check(Object.values(oursTech).filter((record) => record.status === 'не умеем').length === 2, 'ours_tech.json: expected 2 unavailable families');
+  for (const [family, record] of Object.entries(oursTech)) {
+    if (record.sample.startsWith('assets/')) check(fs.existsSync(localAsset(record.sample)), `${family}: sample missing`);
+  }
   for (const record of comparison.families) {
     if (record.our_media) check(fs.existsSync(localAsset(record.our_media)), `${record.family}: our_media missing`);
     if (record.our_poster) check(fs.existsSync(localAsset(record.our_poster)), `${record.family}: our_poster missing`);

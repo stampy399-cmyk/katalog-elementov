@@ -176,6 +176,7 @@ async function validateCatalog(cdp, page, label) {
   await waitFor(cdp, page.sessionId, `[...document.images].filter(image=>{const box=image.getBoundingClientRect();return box.bottom>=0&&box.top<=innerHeight}).every(image=>image.complete)`, 45000);
   const summary = await evaluate(cdp, page.sessionId, `({
     title:document.title,
+    nav:[...document.querySelectorAll('#viewSwitch [data-view]')].map(button=>({text:button.textContent.trim(),height:button.getBoundingClientRect().height,fontSize:parseFloat(getComputedStyle(button).fontSize),fontWeight:parseInt(getComputedStyle(button).fontWeight),active:button.classList.contains('is-active')})),
     videos:document.querySelectorAll('#videoList .video-row').length,
     videoCounter:document.getElementById('videoListCount').textContent,
     cards:document.querySelectorAll('.element-card').length,
@@ -186,6 +187,9 @@ async function validateCatalog(cdp, page, label) {
     selfTest:globalThis.__catalogSelfTest()
   })`);
   check(summary.title === 'РУЧНОЙ каталог отбора', `${label}: title mismatch`);
+  check(summary.nav.length === 2 && summary.nav.map(item=>item.text).join('|') === 'КАТАЛОГ КОНКУРЕНТОВ|МЫ УМЕЕМ', `${label}: primary navigation labels mismatch`);
+  check(summary.nav.every(item=>item.height >= 55 && item.fontSize >= 20 && item.fontWeight >= 700), `${label}: primary navigation is not large and bold`);
+  check(summary.nav[0].active && !summary.nav[1].active, `${label}: catalog navigation active state mismatch`);
   check(summary.videos === 9 && summary.videoCounter === '9/9', `${label}: video list mismatch`);
   check(summary.cards > 0 && summary.badges === summary.cards, `${label}: card badges mismatch`);
   check(summary.familyOptions === 19, `${label}: family filter options mismatch`);
@@ -195,9 +199,43 @@ async function validateCatalog(cdp, page, label) {
   await evaluate(cdp, page.sessionId, `document.querySelector('[data-view="comparison"]').click()`);
   await waitFor(cdp, page.sessionId, `document.querySelectorAll('.comparison-card').length === 18`);
   await waitFor(cdp, page.sessionId, `[...document.images].filter(image=>{const box=image.getBoundingClientRect();return box.bottom>=0&&box.top<=innerHeight}).every(image=>image.complete)`, 45000);
-  const comparison = await evaluate(cdp, page.sessionId, `({cards:document.querySelectorAll('.comparison-card').length,videos:document.querySelectorAll('.comparison-media video').length,refs:document.querySelectorAll('.competitor-card').length,hash:location.hash})`);
+  const comparison = await evaluate(cdp, page.sessionId, `({cards:document.querySelectorAll('.comparison-card').length,videos:document.querySelectorAll('.comparison-media video').length,refs:document.querySelectorAll('.competitor-card').length,refMinWidth:Math.min(...[...document.querySelectorAll('.competitor-card')].map(card=>card.getBoundingClientRect().width)),tech:document.querySelectorAll('.tech-passport').length,todo:document.querySelectorAll('.tech-field.is-todo').length,media:document.querySelectorAll('[data-lightbox-media]').length,pairs:document.querySelectorAll('[data-lightbox-pair]').length,hash:location.hash,navActive:document.querySelector('#viewSwitch [data-view="comparison"]')?.classList.contains('is-active')})`);
   check(comparison.cards === 18 && comparison.videos === 13 && comparison.refs === 52, `${label}: comparison counters mismatch`);
+  check(comparison.refMinWidth >= 300, `${label}: competitor reference width ${comparison.refMinWidth}px, expected >=300px`);
+  check(comparison.tech === 18 && comparison.todo > 0, `${label}: tech passports or TODO fields missing`);
+  check(comparison.media === 69 && comparison.pairs === 17, `${label}: lightbox media/pair controls mismatch`);
   check(comparison.hash === '#comparison', `${label}: comparison hash mismatch`);
+  check(comparison.navActive, `${label}: comparison navigation active state mismatch`);
+
+  await evaluate(cdp, page.sessionId, `document.querySelector('.competitor-card img').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open .lightbox-media')`);
+  check(await evaluate(cdp, page.sessionId, `document.querySelector('#lightbox.is-open .lightbox-media')?.tagName === 'IMG'`), `${label}: image lightbox did not open`);
+  await evaluate(cdp, page.sessionId, `document.getElementById('lightboxContent').click()`);
+  await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
+
+  await evaluate(cdp, page.sessionId, `document.querySelector('.comparison-media video').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open video[controls]')`);
+  check(await evaluate(cdp, page.sessionId, `document.querySelector('#lightbox.is-open video')?.controls === true`), `${label}: video lightbox controls missing`);
+  await evaluate(cdp, page.sessionId, `document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}))`);
+  await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
+
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-lightbox-pair]').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open .lightbox-pair')`);
+  const pairStart = await evaluate(cdp, page.sessionId, `({media:document.querySelectorAll('.lightbox-pair .lightbox-media').length,counter:document.getElementById('lightboxCounter').textContent,ref:document.querySelector('.lightbox-pane:last-child img')?.src})`);
+  check(pairStart.media === 2 && pairStart.counter === '1 / 3', `${label}: side-by-side lightbox mismatch`);
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-lightbox-next]').click()`);
+  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '2 / 3'`);
+  const pairNext = await evaluate(cdp, page.sessionId, `({counter:document.getElementById('lightboxCounter').textContent,ref:document.querySelector('.lightbox-pane:last-child img')?.src})`);
+  check(pairNext.counter === '2 / 3' && pairNext.ref !== pairStart.ref, `${label}: side-by-side next button mismatch`);
+  await evaluate(cdp, page.sessionId, `document.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}))`);
+  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '3 / 3'`);
+  if (label === 'HTTP') {
+    const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }, page.sessionId);
+    fs.writeFileSync('/tmp/katalog-lightbox-pair-qa.png', Buffer.from(screenshot.data, 'base64'));
+  }
+  await evaluate(cdp, page.sessionId, `document.getElementById('lightbox').click()`);
+  await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
+
   if (label === 'HTTP') {
     const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }, page.sessionId);
     fs.writeFileSync('/tmp/katalog-comparison-qa.png', Buffer.from(screenshot.data, 'base64'));
