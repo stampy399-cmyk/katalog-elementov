@@ -1,0 +1,375 @@
+#!/usr/bin/env node
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const vm = require('vm');
+
+const ROOT = path.resolve(__dirname, '..');
+const FAMILY_ORDER = [
+  'KEYFRAMES-MOTION', 'PHOTO-IMAGE', 'HARD-CUT', 'OPACITY-FADE', 'INSET-WINDOW', 'SCALE-ZOOM',
+  'TEXT-TYPOGRAPHY', 'POSITION-SLIDE', 'GRID-LINES', 'LIGHT-GLOW', 'SATURATION-COLOR', 'OTHER',
+  'CROSSFADE', 'BLEND-MODE', 'GEOMETRY-SHAPE', 'EMPTY', 'CAMERA-MOTION', 'BLUR-EFFECT'
+];
+const EXPECTED = Object.freeze({ projects: 9, elements: 2852, base: 2780, unique: 72, families: 18, imported: 624 });
+const failures = [];
+let assertions = 0;
+
+function check(condition, message) {
+  assertions += 1;
+  if (!condition) failures.push(message);
+}
+
+function readJson(file) {
+  return JSON.parse(fs.readFileSync(path.join(ROOT, file), 'utf8'));
+}
+
+function inlineScript(file) {
+  const html = fs.readFileSync(path.join(ROOT, file), 'utf8');
+  const scripts = [...html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/gi)]
+    .filter((match) => !/\bsrc\s*=/.test(match[1]))
+    .map((match) => match[2]);
+  check(scripts.length === 1, `${file}: expected one inline script, got ${scripts.length}`);
+  return { html, script: scripts[0] || '' };
+}
+
+class FakeElement {
+  constructor(id = '') {
+    this.id = id;
+    this.dataset = {};
+    this.style = {};
+    this.hidden = false;
+    this.disabled = false;
+    this.value = '';
+    this.checked = false;
+    this.innerHTML = '';
+    this.textContent = '';
+    this.listeners = new Map();
+    this.attributes = new Map();
+    this.classNames = new Set();
+    this.classList = {
+      add: (...names) => names.forEach((name) => this.classNames.add(name)),
+      remove: (...names) => names.forEach((name) => this.classNames.delete(name)),
+      contains: (name) => this.classNames.has(name),
+      toggle: (name, force) => {
+        const enabled = force === undefined ? !this.classNames.has(name) : Boolean(force);
+        if (enabled) this.classNames.add(name);
+        else this.classNames.delete(name);
+        return enabled;
+      }
+    };
+  }
+
+  addEventListener(type, listener) {
+    if (!this.listeners.has(type)) this.listeners.set(type, []);
+    this.listeners.get(type).push(listener);
+  }
+
+  removeEventListener() {}
+  append() {}
+  appendChild() {}
+  remove() {}
+  replaceWith() {}
+  focus() {}
+  click() {}
+  closest() { return null; }
+  matches() { return false; }
+  querySelector() { return null; }
+  querySelectorAll() { return []; }
+  getContext() { return null; }
+  getBoundingClientRect() { return { left: 0, top: 0, width: 1280, height: 720 }; }
+  setAttribute(name, value) { this.attributes.set(name, String(value)); }
+  getAttribute(name) { return this.attributes.get(name) || null; }
+}
+
+function storageStub() {
+  const values = new Map();
+  return {
+    getItem: (key) => values.has(key) ? values.get(key) : null,
+    setItem: (key, value) => values.set(key, String(value)),
+    removeItem: (key) => values.delete(key),
+    clear: () => values.clear()
+  };
+}
+
+function domContext({ tierButtons = false, fetchImpl = null } = {}) {
+  const nodes = new Map();
+  const document = new FakeElement('document');
+  document.getElementById = (id) => {
+    if (!nodes.has(id)) nodes.set(id, new FakeElement(id));
+    return nodes.get(id);
+  };
+  document.createElement = (tag) => new FakeElement(tag);
+  document.documentElement = new FakeElement('html');
+  document.body = new FakeElement('body');
+  document.activeElement = null;
+  document.visibilityState = 'visible';
+  document.hidden = false;
+
+  if (tierButtons) {
+    const buttons = ['all', 'base', 'unique'].map((tier) => {
+      const button = new FakeElement(`tier-${tier}`);
+      button.dataset.tierFilter = tier;
+      return button;
+    });
+    document.getElementById('tierFilter').querySelectorAll = (selector) => selector === '[data-tier-filter]' ? buttons : [];
+    nodes.set('__tierButtons', buttons);
+  }
+
+  const errors = [];
+  const context = {
+    console: {
+      log() {}, warn() {}, info() {}, debug() {},
+      error: (...args) => errors.push(args.map(String).join(' '))
+    },
+    document,
+    location: new URL('http://127.0.0.1:8765/index.html'),
+    navigator: { clipboard: { writeText: async () => {} }, onLine: true },
+    localStorage: storageStub(),
+    sessionStorage: storageStub(),
+    Element: FakeElement,
+    HTMLElement: FakeElement,
+    HTMLImageElement: class HTMLImageElement extends FakeElement {},
+    HTMLVideoElement: class HTMLVideoElement extends FakeElement {},
+    Image: class Image extends FakeElement { set src(value) { this._src = value; } get src() { return this._src || ''; } },
+    URL,
+    URLSearchParams,
+    Blob,
+    AbortController,
+    TextEncoder,
+    TextDecoder,
+    setTimeout,
+    clearTimeout,
+    setInterval,
+    clearInterval,
+    queueMicrotask,
+    requestAnimationFrame: (callback) => { callback(0); return 1; },
+    cancelAnimationFrame() {},
+    addEventListener() {},
+    removeEventListener() {},
+    matchMedia: () => ({ matches: false, addEventListener() {}, removeEventListener() {} }),
+    crypto: { randomUUID: () => '00000000-0000-4000-8000-000000000000' },
+    CSS: { escape: (value) => String(value).replace(/[^a-zA-Z0-9_-]/g, '\\$&') },
+    fetch: fetchImpl || (async () => { throw new Error('unexpected fetch'); })
+  };
+  context.window = context;
+  context.self = context;
+  context.globalThis = context;
+  return { context: vm.createContext(context), nodes, errors };
+}
+
+function exportIndexScript(script) {
+  const marker = '\n      initialize();\n    })();';
+  const index = script.lastIndexOf(marker);
+  check(index !== -1, 'index.html: initialize marker not found');
+  if (index === -1) return script;
+  const injected = `\n      globalThis.__qaIndex = {\n        BASE_VIDEO_THRESHOLD, FAMILY_ORDER, state, dom, normalizeProject, normalizeElement,\n        tierMatches, familyMatches, renderTierFilter, familyStatisticsMarkup, previewSourceList, previewImageMarkup,\n        familyMeta, prepareImport, catalogAssetUrl, previewFallbackUrl, rawAssetUrl,\n        renderComparison, comparisonCard, comparisonLevelPercent\n      };\n    })();`;
+  return `${script.slice(0, index)}${injected}${script.slice(index + marker.length)}`;
+}
+
+function localAsset(image) {
+  const clean = String(image || '').split(/[?#]/, 1)[0].replace(/^\/+/, '');
+  return clean.startsWith('assets/') ? path.join(ROOT, clean) : '';
+}
+
+function validateData(catalog) {
+  const ownerSnapshot = readJson('data.backup-20260813.json');
+  check(Array.isArray(catalog.projects), 'data.json: projects is not an array');
+  check(Array.isArray(catalog.elements), 'data.json: elements is not an array');
+  check(catalog.projects.length === EXPECTED.projects, `data.json: expected ${EXPECTED.projects} projects, got ${catalog.projects.length}`);
+  check(catalog.elements.length === EXPECTED.elements, `data.json: expected ${EXPECTED.elements} elements, got ${catalog.elements.length}`);
+  check(new Set(catalog.projects.map((project) => String(project.id))).size === catalog.projects.length, 'data.json: duplicate project ids');
+  check(new Set(catalog.elements.map((element) => String(element.id))).size === catalog.elements.length, 'data.json: duplicate element ids');
+
+  const finalById = new Map(catalog.elements.map((element) => [String(element.id), element]));
+  const protectedFields = ['name', 'description', 'opinion', 'application', 'technique', 'category', 'timecodes', 'repeatCount', 'createdAt', 'updatedAt'];
+  check(ownerSnapshot.elements.every((element) => finalById.has(String(element.id))), 'owner snapshot cards were lost');
+  for (const owner of ownerSnapshot.elements) {
+    const final = finalById.get(String(owner.id));
+    if (!final) continue;
+    for (const field of protectedFields) {
+      check(JSON.stringify(final[field]) === JSON.stringify(owner[field]), `${owner.id}: owner field changed: ${field}`);
+    }
+  }
+
+  const projectIds = new Set(catalog.projects.map((project) => String(project.id)));
+  const familyStats = new Map(FAMILY_ORDER.map((family) => [family, { elements: [], projects: new Set() }]));
+  for (const element of catalog.elements) {
+    check(projectIds.has(String(element.projectId)), `element ${element.id}: unknown projectId ${element.projectId}`);
+    check(FAMILY_ORDER.includes(element.family), `element ${element.id}: invalid family ${element.family}`);
+    check(Number.isInteger(element.freq_videos), `element ${element.id}: invalid freq_videos`);
+    check(Number.isInteger(element.freq_total), `element ${element.id}: invalid freq_total`);
+    check(element.tier === 'base' || element.tier === 'unique', `element ${element.id}: invalid tier ${element.tier}`);
+    check(typeof element.image === 'string' && element.image.trim(), `element ${element.id}: empty image`);
+    const stat = familyStats.get(element.family);
+    if (stat) {
+      stat.elements.push(element);
+      stat.projects.add(String(element.projectId));
+    }
+  }
+
+  for (const [family, stat] of familyStats) {
+    check(stat.elements.length > 0, `${family}: family has no elements`);
+    const expectedTier = stat.projects.size / catalog.projects.length >= 0.5 ? 'base' : 'unique';
+    for (const element of stat.elements) {
+      check(element.freq_videos === stat.projects.size, `${element.id}: freq_videos ${element.freq_videos}, expected ${stat.projects.size}`);
+      check(element.freq_total === stat.elements.length, `${element.id}: freq_total ${element.freq_total}, expected ${stat.elements.length}`);
+      check(element.tier === expectedTier, `${element.id}: tier ${element.tier}, expected ${expectedTier}`);
+      check(element.freq_videos !== 1 || element.tier === 'unique', `${element.id}: freq_videos=1 must be unique`);
+    }
+  }
+
+  const base = catalog.elements.filter((element) => element.tier === 'base').length;
+  const unique = catalog.elements.filter((element) => element.tier === 'unique').length;
+  check(base === EXPECTED.base, `base count ${base}, expected ${EXPECTED.base}`);
+  check(unique === EXPECTED.unique, `unique count ${unique}, expected ${EXPECTED.unique}`);
+  check(familyStats.size === EXPECTED.families, `family count ${familyStats.size}, expected ${EXPECTED.families}`);
+
+  const broken = [];
+  for (const element of catalog.elements) {
+    const asset = localAsset(element.image);
+    if (!asset || !fs.existsSync(asset)) broken.push(`${element.id}: ${element.image}`);
+  }
+  check(broken.length === 0, `broken image paths: ${broken.slice(0, 5).join(', ')}`);
+
+  const importedProject = catalog.projects.find((project) => /(?:v=|youtu\.be\/|\/)(4yavUTCeCp0)(?:[?&#/]|$)/.test(String(project.url)));
+  check(Boolean(importedProject), '4yavUTCeCp0 project not found');
+  const imported = importedProject ? catalog.elements.filter((element) => String(element.projectId) === String(importedProject.id)) : [];
+  check(imported.length === EXPECTED.imported, `4yavUTCeCp0 count ${imported.length}, expected ${EXPECTED.imported}`);
+  for (const element of imported) {
+    const asset = localAsset(element.image);
+    check(Boolean(asset && fs.existsSync(asset)), `4yavUTCeCp0 ${element.id}: image missing`);
+    if (asset && fs.existsSync(asset)) check(fs.statSync(asset).size > 5 * 1024, `4yavUTCeCp0 ${element.id}: image <=5 KiB`);
+  }
+  return { familyStats, base, unique, imported };
+}
+
+function validateIndex(catalog, indexPage, dataSummary) {
+  new vm.Script(indexPage.script, { filename: 'index.html' });
+  const { context, nodes, errors } = domContext({ tierButtons: true });
+  new vm.Script(exportIndexScript(indexPage.script), { filename: 'index.html#mini-dom' }).runInContext(context);
+  const qa = context.__qaIndex || context.globalThis?.__qaIndex;
+  check(Boolean(qa), 'index.html: QA exports unavailable');
+  if (!qa) return;
+
+  qa.state.projects = catalog.projects.map((project) => qa.normalizeProject(project));
+  qa.state.elements = catalog.elements.map((element) => qa.normalizeElement(element));
+  qa.state.categories = catalog.categories;
+  check(qa.BASE_VIDEO_THRESHOLD === 0.5, `base threshold ${qa.BASE_VIDEO_THRESHOLD}, expected 0.5`);
+  check(Array.from(qa.FAMILY_ORDER).join('|') === FAMILY_ORDER.join('|'), 'index family order differs from data QA order');
+
+  const normalizedNull = qa.normalizeElement({ id: 'null-test', image: null, family: null, freq_videos: null, freq_total: null, tier: null });
+  check(normalizedNull.image === '', 'normalizeElement does not tolerate image=null');
+  check(normalizedNull.family === 'OTHER', 'normalizeElement invalid family fallback failed');
+  check(normalizedNull.freq_videos === 0 && normalizedNull.freq_total === 0, 'normalizeElement null frequency fallback failed');
+  check(normalizedNull.tier === 'unique', 'normalizeElement null tier fallback failed');
+
+  for (const [tier, expected] of [['all', EXPECTED.elements], ['base', EXPECTED.base], ['unique', EXPECTED.unique]]) {
+    qa.state.tierFilter = tier;
+    const actual = qa.state.elements.filter((element) => qa.tierMatches(element)).length;
+    check(actual === expected, `tier filter ${tier}: ${actual}, expected ${expected}`);
+    qa.renderTierFilter();
+    const buttons = nodes.get('__tierButtons');
+    for (const button of buttons) {
+      const active = button.dataset.tierFilter === tier;
+      check(button.classList.contains('is-active') === active, `tier button ${button.dataset.tierFilter}: class mismatch for ${tier}`);
+      check(button.getAttribute('aria-pressed') === String(active), `tier button ${button.dataset.tierFilter}: aria mismatch for ${tier}`);
+    }
+  }
+
+  const statistics = qa.familyStatisticsMarkup();
+  check(statistics.includes(`<div class="kpi-value">${EXPECTED.base}</div><div class="kpi-label">База</div>`), 'stats panel base KPI mismatch');
+  check(statistics.includes(`<div class="kpi-value">${EXPECTED.unique}</div><div class="kpi-label">Уникальные</div>`), 'stats panel unique KPI mismatch');
+  check(statistics.includes(`<div class="kpi-value">${EXPECTED.families}</div><div class="kpi-label">Семейств</div>`), 'stats panel family KPI mismatch');
+  check(statistics.includes(`<div class="kpi-value">${EXPECTED.projects}</div><div class="kpi-label">Видео</div>`), 'stats panel project KPI mismatch');
+  check((statistics.match(/class="stat-entry"/g) || []).length === EXPECTED.families, 'stats panel does not render 18 family rows');
+  for (const [family, stat] of dataSummary.familyStats) {
+    const base = stat.elements.filter((element) => element.tier === 'base').length;
+    const unique = stat.elements.length - base;
+    check(statistics.includes(`${family}</span><span class="stat-entry-value">${stat.projects.size}/${EXPECTED.projects} видео · база ${base} · уник. ${unique}`), `stats panel mismatch for ${family}`);
+  }
+
+  const queryElements = qa.state.elements.filter((element) => element.image.includes('?'));
+  check(queryElements.length > 0, 'no versioned image paths available for query-tail test');
+  for (const element of qa.state.elements) {
+    const sources = qa.previewSourceList(element);
+    check(sources.length > 0, `${element.id}: previewSourceList returned no source`);
+    check(qa.previewImageMarkup(element).includes('<img '), `${element.id}: previewImageMarkup did not render image`);
+    check(qa.familyMeta(element).includes(`в ${element.freq_videos} из ${EXPECTED.projects} видео · ${element.freq_total} карточек`), `${element.id}: family metadata mismatch`);
+  }
+  for (const element of queryElements) {
+    const sources = qa.previewSourceList(element);
+    check(sources[0].includes('?'), `${element.id}: first preview source lost query tail`);
+    check(sources.some((source) => !source.includes('?')), `${element.id}: versionless preview fallback absent`);
+  }
+  for (const element of dataSummary.imported) {
+    check(qa.previewImageMarkup(element).includes('<img '), `4yavUTCeCp0 ${element.id}: screenshot not rendered`);
+  }
+
+  const imported = qa.prepareImport(catalog);
+  check(imported.projects.length === catalog.projects.length && imported.elements.length === catalog.elements.length, 'catalog import changes record counts');
+  check(imported.elements.every((element) => FAMILY_ORDER.includes(element.family)), 'catalog import loses family');
+  check(imported.elements.every((element) => Number.isInteger(element.freq_videos) && Number.isInteger(element.freq_total)), 'catalog import loses frequency fields');
+  check(imported.elements.every((element) => element.tier === 'base' || element.tier === 'unique'), 'catalog import loses tier');
+  check(imported.elements.every((element) => typeof element.image === 'string'), 'catalog import does not normalize image');
+  check(errors.length === 0, `index.html mini-DOM console errors: ${errors.join(' | ')}`);
+}
+
+function validateComparison(comparison, indexPage) {
+  const { context, nodes, errors } = domContext({ tierButtons: true });
+  context.SRAVNENIE = comparison;
+  new vm.Script(exportIndexScript(indexPage.script), { filename: 'index.html#comparison-mini-dom' }).runInContext(context);
+  const qa = context.__qaIndex || context.globalThis?.__qaIndex;
+  check(Boolean(qa), 'comparison QA exports unavailable');
+  if (!qa) return;
+  qa.state.view = 'comparison';
+  qa.state.search = '';
+  qa.state.familyFilter = 'all';
+  qa.renderComparison();
+
+  const html = nodes.get('workspaceInner').innerHTML;
+  check(errors.length === 0, `comparison mini-DOM console errors: ${errors.join(' | ')}`);
+  check((html.match(/class="comparison-card"/g) || []).length === EXPECTED.families, 'integrated comparison did not render 18 cards');
+  check(html.includes(`${EXPECTED.families}/${EXPECTED.families} семейств`), 'integrated comparison count mismatch');
+  check(html.includes('Нашего образца пока нет'), 'integrated comparison does not render null-media placeholder');
+  check((html.match(/<video controls preload="none"/g) || []).length === 13, 'integrated comparison did not render 13 clips');
+  check((html.match(/class="competitor-card"/g) || []).length === 52, 'integrated comparison competitor reference count mismatch');
+  check(!html.includes('undefined') && !html.includes('null'), 'integrated comparison renders null/undefined text');
+
+  qa.state.familyFilter = comparison.families[0].family;
+  qa.renderComparison();
+  check((nodes.get('workspaceInner').innerHTML.match(/class="comparison-card"/g) || []).length === 1, 'comparison family filter mismatch');
+}
+
+async function main() {
+  const catalog = readJson('data.json');
+  const comparison = readJson('sravnenie.json');
+  const indexPage = inlineScript('index.html');
+  const dataSummary = validateData(catalog);
+  validateIndex(catalog, indexPage, dataSummary);
+  check(Array.isArray(comparison.families), 'sravnenie.json: families is not an array');
+  check(comparison.families.length === EXPECTED.families, `sravnenie.json: expected 18 families, got ${comparison.families.length}`);
+  check(new Set(comparison.families.map((record) => record.family)).size === EXPECTED.families, 'sravnenie.json: duplicate family records');
+  check(comparison.families.every((record) => FAMILY_ORDER.includes(record.family)), 'sravnenie.json: unknown family');
+  check(comparison.families.filter((record) => record.our_media).length === 17, 'sravnenie.json: expected 17 local samples');
+  check(comparison.families.filter((record) => String(record.our_media).endsWith('.mp4')).length === 13, 'sravnenie.json: expected 13 clips');
+  for (const record of comparison.families) {
+    if (record.our_media) check(fs.existsSync(localAsset(record.our_media)), `${record.family}: our_media missing`);
+    if (record.our_poster) check(fs.existsSync(localAsset(record.our_poster)), `${record.family}: our_poster missing`);
+    for (const reference of record.competitor_refs || []) check(fs.existsSync(localAsset(reference)), `${record.family}: competitor ref missing`);
+  }
+  validateComparison(comparison, indexPage);
+
+  if (failures.length) {
+    console.error(`FAIL ${failures.length}/${assertions}`);
+    failures.forEach((failure) => console.error(`- ${failure}`));
+    process.exitCode = 1;
+    return;
+  }
+  console.log(`PASS ${assertions} assertions; projects=${catalog.projects.length}; elements=${catalog.elements.length}; base=${dataSummary.base}; unique=${dataSummary.unique}; families=${dataSummary.familyStats.size}; imported=${dataSummary.imported.length}`);
+}
+
+main().catch((error) => {
+  console.error(error.stack || error);
+  process.exitCode = 1;
+});

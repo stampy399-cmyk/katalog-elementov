@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="data:,">
   <title>РУЧНОЙ каталог отбора</title>
   <style>
     :root {
@@ -46,7 +47,7 @@
       transition: background 200ms ease-out, color 200ms ease-out;
     }
 
-    button, input, textarea { font: inherit; }
+    button, input, select, textarea { font: inherit; }
     button { color: inherit; }
     button, [role="button"] { -webkit-tap-highlight-color: transparent; }
     button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible {
@@ -555,6 +556,51 @@
     .stat-bar > span { display: block; width: var(--progress, 0%); height: 100%; background: var(--accent); transition: width 210ms ease-out; }
     .stat-bar.is-complete > span { background: var(--success); }
     .stat-note { color: var(--muted); font-size: 12px; }
+    .catalog-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: min(1260px, 100%); margin: 0 auto; padding: 18px 32px 0; }
+    .catalog-controls { display: flex; align-items: center; gap: 8px; min-width: 0; }
+    .tier-filter { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); }
+    .tier-filter button { min-height: 28px; padding: 0 10px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); cursor: pointer; font-size: 11px; }
+    .tier-filter button:hover, .tier-filter button:focus-visible { color: var(--text); }
+    .tier-filter button.is-active { background: var(--accent); color: #fff; }
+    .family-filter-select { width: min(220px, 34vw); height: 36px; padding: 0 30px 0 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--text); font-size: 11px; }
+    .view-switch { display: inline-flex; flex: 0 0 auto; padding: 3px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); }
+    .view-switch button { min-height: 28px; padding: 0 10px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); cursor: pointer; font-size: 11px; }
+    .view-switch button:hover, .view-switch button:focus-visible { color: var(--text); }
+    .view-switch button.is-active { background: var(--accent-soft); color: var(--accent); }
+    .catalog-toolbar[data-view="comparison"] .tier-filter { display: none; }
+    .family-section { margin: 0 0 26px; }
+    .family-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+    .family-heading h2 { margin: 0; font-size: 13px; letter-spacing: .045em; }
+    .family-heading-meta { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; text-align: right; }
+    .element-family-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; color: var(--muted); font-size: 10px; line-height: 1.3; }
+    .element-editor > .element-family-meta { margin-bottom: 10px; }
+    .tier-badge { padding: 2px 5px; border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line)); border-radius: 99px; color: var(--accent); font-size: 9px; font-weight: 750; letter-spacing: .05em; }
+    .tier-badge.is-unique { border-color: color-mix(in srgb, #d97706 62%, var(--line)); color: #f59e0b; }
+    .family-empty { margin: 12px 0 28px; padding: 22px; border: 1px dashed var(--line); border-radius: 10px; color: var(--muted); text-align: center; }
+    .family-stat-tier { font-weight: 700; letter-spacing: .025em; }
+    .family-stat-tier.is-base { color: var(--accent); }
+    .family-stat-tier.is-unique { color: #f59e0b; }
+    .comparison-page { display: grid; gap: 14px; }
+    .comparison-intro { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+    .comparison-intro h1 { margin: 0; font-size: 20px; letter-spacing: -.025em; }
+    .comparison-intro p { max-width: 720px; margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+    .comparison-count { flex: 0 0 auto; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+    .comparison-card { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: 0 5px 16px rgba(0, 0, 0, .06); }
+    .comparison-card-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+    .comparison-family { margin: 0; font-size: 14px; letter-spacing: .035em; }
+    .comparison-level { min-width: 92px; color: var(--accent); font-size: 13px; font-weight: 700; text-align: right; }
+    .comparison-level-bar { grid-column: 1 / -1; height: 3px; overflow: hidden; border-radius: 3px; background: var(--line); }
+    .comparison-level-bar span { display: block; width: var(--level, 0%); height: 100%; background: var(--accent); }
+    .comparison-columns { display: grid; grid-template-columns: minmax(240px, .8fr) minmax(0, 1.2fr); gap: 16px; padding: 16px; }
+    .comparison-side h3 { margin: 0 0 8px; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+    .comparison-media { display: grid; aspect-ratio: 16 / 9; place-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); }
+    .comparison-media img, .comparison-media video { display: block; width: 100%; height: 100%; object-fit: contain; background: #090a0c; }
+    .comparison-media-placeholder { padding: 18px; color: var(--muted); text-align: center; }
+    .competitor-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .competitor-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); }
+    .competitor-card img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #090a0c; }
+    .competitor-card span { display: block; padding: 6px 8px; overflow: hidden; color: var(--muted); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+    .comparison-notes { margin: 0; padding: 0 16px 16px; color: var(--muted); font-size: 12px; }
     .modal-surface { position: fixed; z-index: 80; inset: 0; display: grid; place-items: center; padding: 20px; background: color-mix(in srgb, var(--bg) 72%, transparent); opacity: 0; pointer-events: none; transition: opacity 180ms ease-out; }
     .modal-surface.is-open { opacity: 1; pointer-events: auto; }
     .modal-card { width: min(420px, 100%); padding: 20px; border: 1px solid var(--line); border-radius: 13px; background: var(--surface); box-shadow: var(--shadow); transform: translateY(8px) scale(.985); transition: transform 180ms ease-out; }
@@ -569,7 +615,9 @@
     .modal-button:disabled { cursor: not-allowed; opacity: .45; }
     .modal-help { margin-top: 9px !important; font-size: 11px; }
     @media (max-width: 680px) { .stat-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 760px) { .player-dock { grid-template-columns: 1fr; padding: 20px 18px 0; } .player-copy { padding: 0 2px; } }
+    @media (max-width: 900px) { .comparison-columns { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) { .player-dock { grid-template-columns: 1fr; padding: 20px 18px 0; } .player-copy { padding: 0 2px; } .catalog-toolbar { padding: 14px 12px 0; } .competitor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 620px) { .catalog-toolbar { align-items: stretch; flex-direction: column; } .catalog-controls { align-items: stretch; } .tier-filter { display: grid; grid-template-columns: repeat(3, 1fr); } .family-filter-select { flex: 1; width: auto; } .view-switch { display: grid; grid-template-columns: repeat(2, 1fr); } .comparison-intro { align-items: start; flex-direction: column; } }
     @media (max-width: 620px) { .server-refresh { width: 32px; padding: 0; overflow: hidden; font-size: 0; } .server-refresh::before { content: "↻"; font-size: 17px; } }
     @media (max-width: 500px) { .brand { font-size: 12px; } .brand::after { content: none; } }
   </style>
@@ -580,7 +628,7 @@
       <div class="brand">РУЧНОЙ каталог отбора</div>
       <div class="search-wrap"><input id="search" class="search" type="search" autocomplete="off" placeholder="Поиск по каталогу" aria-label="Поиск по каталогу"></div>
       <button id="categoryFilter" class="category-filter-active" type="button" hidden></button>
-      <button id="serverRefresh" class="server-refresh" type="button" title="Перечитать data.json с сервера">Обновить с сервера</button>
+      <button id="serverRefresh" class="server-refresh" type="button" title="Безопасно объединить локальные правки с data.json">Обновить с сервера</button>
       <div id="onlinePresence" class="online-presence" aria-live="polite">0 онлайн</div>
       <div id="saveState" class="save-state" data-state="saved" aria-live="polite">Сохранено</div>
       <button id="menuButton" class="icon-button" type="button" aria-label="Меню" aria-expanded="false">⋯</button>
@@ -595,6 +643,20 @@
         <div id="playerFrame" class="player-frame"></div>
         <div class="player-copy"><strong>Источник точного таймкода</strong><span id="playerClock" class="player-clock">—</span><span id="playerStatus" class="player-status">Запустите ролик и остановите его на нужном кадре перед добавлением элемента.</span><a id="playerLink" class="player-link" target="_blank" rel="noopener noreferrer">Открыть на YouTube ↗</a></div>
       </section>
+      <div id="catalogToolbar" class="catalog-toolbar" data-view="catalog">
+        <div class="catalog-controls">
+          <div id="tierFilter" class="tier-filter" role="group" aria-label="Фильтр база или уникальные">
+            <button type="button" data-tier-filter="base" aria-pressed="false">База</button>
+            <button type="button" data-tier-filter="unique" aria-pressed="false">Уникальные</button>
+            <button class="is-active" type="button" data-tier-filter="all" aria-pressed="true">Все</button>
+          </div>
+          <select id="familyFilter" class="family-filter-select" aria-label="Фильтр по семейству"></select>
+        </div>
+        <div id="viewSwitch" class="view-switch" role="group" aria-label="Раздел приложения">
+          <button class="is-active" type="button" data-view="catalog" aria-pressed="true">Каталог</button>
+          <button type="button" data-view="comparison" aria-pressed="false">Мы vs конкурент</button>
+        </div>
+      </div>
       <div id="workspaceInner" class="workspace-inner"></div>
     </main>
   </div>
@@ -617,6 +679,9 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <input id="importFile" type="file" accept="application/json,.json" hidden>
 
+  <script src="owner-baseline-data.js"></script>
+  <script src="catalog-data.js"></script>
+  <script src="sravnenie-data.js"></script>
   <script>
     (() => {
       'use strict';
@@ -625,6 +690,12 @@
       const DB_VERSION = 7;
       const CATALOG_VERSION = 5;
       const SAVE_DELAY = 240;
+      const BASE_VIDEO_THRESHOLD = 0.5;
+      const FAMILY_ORDER = Object.freeze([
+        'KEYFRAMES-MOTION', 'PHOTO-IMAGE', 'HARD-CUT', 'OPACITY-FADE', 'INSET-WINDOW', 'SCALE-ZOOM',
+        'TEXT-TYPOGRAPHY', 'POSITION-SLIDE', 'GRID-LINES', 'LIGHT-GLOW', 'SATURATION-COLOR', 'OTHER',
+        'CROSSFADE', 'BLEND-MODE', 'GEOMETRY-SHAPE', 'EMPTY', 'CAMERA-MOTION', 'BLUR-EFFECT'
+      ]);
       const TYPING_QUIET_PERIOD = 1200;
       const DELETE_CONFIRMATION = 'УДАЛИТЬ';
       const PUBLISHED_DATA_URL = 'data.json';
@@ -645,7 +716,8 @@
         activeProjectId: null,
         lastCropSource: '',
         backupDirectoryHandle: null,
-        backupLastWrittenAt: null
+        backupLastWrittenAt: null,
+        serverBaseline: null
       });
 
       const byId = (id) => document.getElementById(id);
@@ -662,6 +734,10 @@
         workspaceInner: byId('workspaceInner'),
         addVideo: byId('addVideo'),
         search: byId('search'),
+        catalogToolbar: byId('catalogToolbar'),
+        tierFilter: byId('tierFilter'),
+        familyFilter: byId('familyFilter'),
+        viewSwitch: byId('viewSwitch'),
         categoryFilter: byId('categoryFilter'),
         serverRefresh: byId('serverRefresh'),
         onlinePresence: byId('onlinePresence'),
@@ -682,6 +758,9 @@
         categories: [],
         settings: { ...DEFAULT_SETTINGS },
         search: '',
+        view: globalThis.location?.hash === '#comparison' ? 'comparison' : 'catalog',
+        tierFilter: 'all',
+        familyFilter: 'all',
         categoryFilter: '',
         activeProjectId: null,
         editingElementId: null,
@@ -1027,6 +1106,10 @@
         record.repeatCount = Number.isFinite(explicitRepeat) && explicitRepeat >= 1
           ? Math.max(1, Math.round(explicitRepeat))
           : 1;
+        record.family = FAMILY_ORDER.includes(asText(record.family).trim()) ? asText(record.family).trim() : 'OTHER';
+        record.freq_videos = Math.max(0, Math.round(Number(record.freq_videos) || 0));
+        record.freq_total = Math.max(0, Math.round(Number(record.freq_total) || 0));
+        record.tier = record.tier === 'base' ? 'base' : 'unique';
         if (!hasOwn(record, 'createdAt')) record.createdAt = now;
         if (!hasOwn(record, 'updatedAt')) record.updatedAt = now;
         return record;
@@ -1565,7 +1648,7 @@
 
       function elementSearchText(project, element) {
         const number = String(elementNumber(element)).padStart(2, '0');
-        return [projectHaystack(project), elementHaystack(element), `#${number}`, elementAnchor(project, element), projectSlug(project)]
+        return [projectHaystack(project), elementHaystack(element), element.family, element.tier === 'base' ? 'база' : 'уникальное', `#${number}`, elementAnchor(project, element), projectSlug(project)]
           .map(asText).join(' ').toLocaleLowerCase();
       }
 
@@ -1767,6 +1850,28 @@
         image.replaceWith(hint);
       }
 
+      function familyOf(element) {
+        return FAMILY_ORDER.includes(element?.family) ? element.family : 'OTHER';
+      }
+
+      function tierLabel(tier) {
+        return tier === 'base' ? 'БАЗА' : 'УНИКАЛЬНЫЙ';
+      }
+
+      function tierMatches(element) {
+        return state.tierFilter === 'all' || element.tier === state.tierFilter;
+      }
+
+      function familyMatches(element) {
+        return state.familyFilter === 'all' || familyOf(element) === state.familyFilter;
+      }
+
+      function familyMeta(element) {
+        const family = familyOf(element);
+        const tier = element.tier === 'base' ? 'base' : 'unique';
+        return `<div class="element-family-meta"><span class="tier-badge ${tier === 'unique' ? 'is-unique' : ''}">${tierLabel(tier)}</span><span>${escapeHtml(family)} · в ${element.freq_videos} из ${state.projects.length} видео · ${element.freq_total} карточек</span></div>`;
+      }
+
       function elementCard(project, element) {
         const image = previewImageMarkup(element);
         const isNew = String(element.id) === String(state.newElementId);
@@ -1782,7 +1887,7 @@
           .map((field) => asText(element[field]).trim())
           .filter(Boolean)
           .map((value) => linkifyReferences(value, total));
-        const editor = `<div class="element-editor">
+        const editor = `<div class="element-editor">${familyMeta(element)}
           <textarea class="element-description" data-element-field="description" placeholder="Что это и как работает" aria-label="Описание">${escapeHtml(element.description)}</textarea>
           <input class="element-technique" data-element-field="technique" value="${escapeAttribute(element.technique)}" placeholder="Техника" aria-label="Техника" autocomplete="off">
           <div class="element-bottom"><div class="category-combo">
@@ -1798,7 +1903,7 @@
           <div class="card-frame"><div class="image-slot">${image}</div><div class="card-overlay">
             <button class="element-number" type="button" data-copy-anchor="${escapeAttribute(anchor)}" title="Копировать якорь ${escapeAttribute(anchor)}" aria-label="Копировать якорь ${escapeAttribute(anchor)}">#${number}</button>
             <span class="card-timecode">${escapeHtml(timecode)}</span></div></div>
-          ${isExpanded ? editor : `<div class="element-compact">${element.category ? `<span class="element-category-chip"><span class="category-icon">${categoryIcon(element.category)}</span>${escapeHtml(element.category)}</span>` : ''}<div class="element-description-preview ${preview ? '' : 'is-empty'}">${preview ? linkifyReferences(preview, total) : 'Что это и как работает'}</div>${extras.length ? `<div class="element-extra-preview">${extras.join(' · ')}</div>` : ''}${backlinkNumbers.length ? `<div class="element-backlinks">упоминается в: ${backlinkNumbers.map((from) => `<button class="ref-link" type="button" data-ref-number="${from}" title="Перейти к элементу #${String(from).padStart(2, '0')}">#${String(from).padStart(2, '0')}</button>`).join(' ')}</div>` : ''}</div>`}
+          ${isExpanded ? editor : `<div class="element-compact">${familyMeta(element)}${element.category ? `<span class="element-category-chip"><span class="category-icon">${categoryIcon(element.category)}</span>${escapeHtml(element.category)}</span>` : ''}<div class="element-description-preview ${preview ? '' : 'is-empty'}">${preview ? linkifyReferences(preview, total) : 'Что это и как работает'}</div>${extras.length ? `<div class="element-extra-preview">${extras.join(' · ')}</div>` : ''}${backlinkNumbers.length ? `<div class="element-backlinks">упоминается в: ${backlinkNumbers.map((from) => `<button class="ref-link" type="button" data-ref-number="${from}" title="Перейти к элементу #${String(from).padStart(2, '0')}">#${String(from).padStart(2, '0')}</button>`).join(' ')}</div>` : ''}</div>`}
           <button class="repeat-badge" type="button" data-heat="${repeatHeatLevel(weight)}" data-repeat-count="${element.repeatCount}" style="--heat:${(repeatHeatLevel(weight) / 6).toFixed(3)}" title="Клик: +1, Alt+клик: −1. Вес повторяемости ${weight} (×${element.repeatCount}${backlinkNumbers.length ? ` и ${backlinkNumbers.length} ссылок #NN` : ''})." aria-label="Повторы ${element.repeatCount}">×${element.repeatCount}</button>
           <div class="element-top-actions" aria-label="Действия элемента">${isExpanded ? '<button class="element-top-action element-collapse" type="button" data-collapse-element title="Свернуть" aria-label="Свернуть">−</button>' : ''}<button class="element-top-action delete" type="button" data-delete-element title="Удалить" aria-label="Удалить"><svg class="action-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 4.5h9M6 4.5V3h4v1.5M5 6.5l.5 6h5l.5-6"></path></svg></button></div>
           <div class="card-actions" aria-label="Действия элемента"><button class="card-action" type="button" data-copy-element title="Копировать" aria-label="Копировать"><svg class="action-icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="5.25" y="5.25" width="8" height="8" rx="1.5"></rect><path d="M10.75 5.25V3.5A1.5 1.5 0 0 0 9.25 2h-5.5A1.75 1.75 0 0 0 2 3.75v5.5a1.5 1.5 0 0 0 1.5 1.5h1.75"></path></svg></button></div>
@@ -1855,7 +1960,52 @@
         if (dom.videoListCount.textContent !== counter) dom.videoListCount.textContent = counter;
       }
 
+      function comparisonLevelPercent(value) {
+        if (value === '1:1') return 100;
+        const match = String(value || '').match(/(\d{1,3})\s*%/);
+        return match ? clamp(Number(match[1]), 0, 100) : 0;
+      }
+
+      function comparisonMediaMarkup(entry) {
+        if (!entry.our_media) return '<div class="comparison-media-placeholder">Нашего образца пока нет</div>';
+        const media = escapeAttribute(entry.our_media);
+        const poster = entry.our_poster ? ` poster="${escapeAttribute(entry.our_poster)}"` : '';
+        if (/\.mp4(?:[?#]|$)/i.test(entry.our_media)) {
+          return `<video controls preload="none"${poster} data-comparison-video="${media}" aria-label="Наш образец ${escapeAttribute(entry.family)}"></video>`;
+        }
+        return `<img src="${media}" alt="Наш образец ${escapeAttribute(entry.family)}" loading="lazy">`;
+      }
+
+      function comparisonCard(entry) {
+        const references = Array.isArray(entry.competitor_refs) ? entry.competitor_refs.filter(Boolean).slice(0, 3) : [];
+        const competitors = references.length
+          ? references.map((source, index) => `<figure class="competitor-card"><img src="${escapeAttribute(source)}" alt="Референс конкурента ${escapeAttribute(entry.family)} ${index + 1}" loading="lazy"><span>Референс ${index + 1}</span></figure>`).join('')
+          : '<div class="comparison-media-placeholder">Референсов нет</div>';
+        return `<article class="comparison-card" data-comparison-family="${escapeAttribute(entry.family)}">
+          <header class="comparison-card-header"><h2 class="comparison-family">${escapeHtml(entry.family)}</h2><span class="comparison-level">${escapeHtml(entry.level || 'нет')}</span><div class="comparison-level-bar" style="--level:${comparisonLevelPercent(entry.level)}%"><span></span></div></header>
+          <div class="comparison-columns"><section class="comparison-side"><h3>Наш образец</h3><div class="comparison-media">${comparisonMediaMarkup(entry)}</div></section><section class="comparison-side"><h3>Конкурент</h3><div class="competitor-grid">${competitors}</div></section></div>
+          <p class="comparison-notes">${escapeHtml(entry.notes || 'Комментарий не добавлен.')}</p>
+        </article>`;
+      }
+
+      function renderComparison() {
+        dom.playerDock.hidden = true;
+        const source = Array.isArray(globalThis.SRAVNENIE?.families) ? globalThis.SRAVNENIE.families : [];
+        const query = state.search.trim().toLocaleLowerCase();
+        const shown = source.filter((entry) => {
+          if (state.familyFilter !== 'all' && entry.family !== state.familyFilter) return false;
+          if (!query) return true;
+          return [entry.family, entry.level, entry.notes].map(asText).join(' ').toLocaleLowerCase().includes(query);
+        });
+        const cards = shown.map(comparisonCard).join('');
+        dom.workspaceInner.innerHTML = `<section class="comparison-page"><header class="comparison-intro"><div><h1>Сравнение: мы vs конкурент</h1><p>18 семейств: слева наш воспроизводимый образец, справа репрезентативные карточки каталога конкурента.</p></div><span class="comparison-count">${shown.length}/${source.length} семейств</span></header>${cards || '<div class="family-empty">По выбранному фильтру сравнений нет</div>'}</section>`;
+      }
+
       function renderWorkspace() {
+        if (state.view === 'comparison') {
+          renderComparison();
+          return;
+        }
         const project = findProject(state.activeProjectId);
         if (state.videoComposer) {
           dom.workspaceInner.innerHTML = videoComposer();
@@ -1863,11 +2013,19 @@
           dom.workspaceInner.innerHTML = '<div class="workspace-empty"><div><strong>Пока здесь пусто</strong>Добавьте ролик, затем вставляйте скрины через Cmd+V.</div></div>';
         } else {
           const query = state.search.trim();
-          const shown = elementsForProject(project.id).filter((element) => matchesElement(project, element, query, state.categoryFilter));
+          const shown = elementsForProject(project.id).filter((element) => matchesElement(project, element, query, state.categoryFilter) && tierMatches(element) && familyMatches(element));
           const editing = shown.filter((element) => String(element.id) === String(state.editingElementId));
-          const cards = shown.filter((element) => String(element.id) !== String(state.editingElementId)).map((element) => elementCard(project, element)).join('');
+          const collapsed = shown.filter((element) => String(element.id) !== String(state.editingElementId));
+          const familySections = FAMILY_ORDER.map((family) => {
+            const elements = collapsed.filter((element) => familyOf(element) === family);
+            if (!elements.length) return '';
+            const example = elements[0];
+            const tier = example.tier === 'base' ? 'base' : 'unique';
+            return `<section class="family-section" data-family="${escapeAttribute(family)}"><header class="family-heading"><h2>${escapeHtml(family)}</h2><span class="family-heading-meta">${elements.length} в ролике · ${example.freq_videos}/${state.projects.length} видео · ${example.freq_total} всего · ${tierLabel(tier)}</span></header><div class="element-grid" aria-label="${escapeAttribute(family)}">${elements.map((element) => elementCard(project, element)).join('')}</div></section>`;
+          }).join('');
           const editingMarkup = editing.length ? `<section class="editing-element" aria-label="Редактируемый элемент">${editing.map((element) => elementCard(project, element)).join('')}</section>` : '';
-          dom.workspaceInner.innerHTML = `${projectHeader(project)}${editingMarkup}<section id="elementGrid" class="element-grid" aria-label="Кадры элементов">${cards}<button class="grid-add" type="button" data-add-element="${escapeAttribute(project.id)}">+ элемент</button></section>`;
+          const emptyMarkup = !familySections && !editingMarkup ? '<div class="family-empty">По выбранному фильтру элементов нет</div>' : '';
+          dom.workspaceInner.innerHTML = `${projectHeader(project)}${editingMarkup}<div id="elementGrid" aria-label="Кадры элементов">${familySections}${emptyMarkup}<button class="grid-add" type="button" data-add-element="${escapeAttribute(project.id)}">+ элемент</button></div>`;
         }
         renderPlayerDock();
         requestAnimationFrame(() => resizeDescriptions());
@@ -1884,10 +2042,52 @@
 
       function renderFeed() {
         if (!findProject(state.activeProjectId)) state.activeProjectId = state.projects[0]?.id || null;
+        renderTierFilter();
+        renderFamilyFilter();
+        renderViewSwitch();
         renderCategoryFilter();
         renderSidebar();
         renderWorkspace();
         if (state.statsOpen) renderStats();
+      }
+
+      function renderTierFilter() {
+        for (const button of dom.tierFilter.querySelectorAll('[data-tier-filter]')) {
+          const active = button.dataset.tierFilter === state.tierFilter;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-pressed', String(active));
+        }
+      }
+
+      function renderFamilyFilter() {
+        const options = ['<option value="all">Все семейства</option>', ...FAMILY_ORDER.map((family) => `<option value="${escapeAttribute(family)}">${escapeHtml(family)}</option>`)].join('');
+        if (dom.familyFilter.innerHTML !== options) dom.familyFilter.innerHTML = options;
+        dom.familyFilter.value = FAMILY_ORDER.includes(state.familyFilter) ? state.familyFilter : 'all';
+      }
+
+      function renderViewSwitch() {
+        dom.catalogToolbar.dataset.view = state.view;
+        for (const button of dom.viewSwitch.querySelectorAll('[data-view]')) {
+          const active = button.dataset.view === state.view;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-pressed', String(active));
+        }
+      }
+
+      function setView(view, updateHash = true) {
+        if (!['catalog', 'comparison'].includes(view)) return;
+        state.view = view;
+        state.editingElementId = null;
+        if (updateHash) {
+          const target = view === 'comparison' ? '#comparison' : `${globalThis.location?.pathname || 'index.html'}${globalThis.location?.search || ''}`;
+          try {
+            if (globalThis.history?.replaceState) globalThis.history.replaceState(null, '', target);
+            else globalThis.location.hash = view === 'comparison' ? 'comparison' : '';
+          } catch (error) {
+            globalThis.location.hash = view === 'comparison' ? 'comparison' : '';
+          }
+        }
+        renderFeed();
       }
 
       function categoryByKey(key) {
@@ -2884,6 +3084,20 @@
         return `<h4>Чаще всего упоминают (#NN в текстах)</h4>${mentions.length ? `<div class="stat-list">${mentions.join('')}</div>` : '<div class="stat-note">Ссылок #NN пока нет</div>'}<h4>Повторы приёма (×N)</h4>${repeated.length ? `<div class="stat-list">${repeated.join('')}</div>` : '<div class="stat-note">Повторов пока нет</div>'}`;
       }
 
+      function familyStatisticsMarkup() {
+        const baseTotal = state.elements.filter((element) => element.tier === 'base').length;
+        const uniqueTotal = state.elements.length - baseTotal;
+        const rows = FAMILY_ORDER.map((family) => {
+          const elements = state.elements.filter((element) => familyOf(element) === family);
+          const videos = new Set(elements.map((element) => String(element.projectId))).size;
+          const base = elements.filter((element) => element.tier === 'base').length;
+          const unique = elements.length - base;
+          const tier = base >= unique ? 'base' : 'unique';
+          return `<div class="stat-entry"><span class="stat-entry-name">${escapeHtml(family)}</span><span class="stat-entry-value">${videos}/${state.projects.length} видео · база ${base} · уник. ${unique} · <span class="family-stat-tier is-${tier}">${tierLabel(tier)}</span></span></div>`;
+        });
+        return `<div class="stat-summary"><div class="kpi"><div class="kpi-value">${baseTotal}</div><div class="kpi-label">База</div></div><div class="kpi"><div class="kpi-value">${uniqueTotal}</div><div class="kpi-label">Уникальные</div></div><div class="kpi"><div class="kpi-value">${FAMILY_ORDER.length}</div><div class="kpi-label">Семейств</div></div><div class="kpi"><div class="kpi-value">${state.projects.length}</div><div class="kpi-label">Видео</div></div></div><div class="stat-note">Порог базы: ≥${Math.round(BASE_VIDEO_THRESHOLD * 100)}% project-записей</div><div class="stat-list">${rows.join('')}</div>`;
+      }
+
       function updateStatsPanel() {
         if (!state.statsOpen || !byId('statsCurrent')) return;
         const active = findProject(state.activeProjectId);
@@ -2899,6 +3113,7 @@
           : `${formatSeconds(stats.coveredSeconds)} · длительность не указана`;
         byId('statsCoverage').innerHTML = `<div class="stat-list"><div class="stat-entry"><span class="stat-entry-name">Текущий: картинки / без</span><span class="stat-entry-value">${current.withImage} / ${current.elements.length - current.withImage}</span></div><div class="stat-entry"><span class="stat-entry-name">Текущий: таймкод / без</span><span class="stat-entry-value">${current.withTimecode} / ${current.elements.length - current.withTimecode}</span></div><div class="stat-entry"><span class="stat-entry-name">Покрытие таймлайна</span><span class="stat-entry-value">${coverage(current)}</span></div><div class="stat-entry"><span class="stat-entry-name">Все: картинки / без</span><span class="stat-entry-value">${all.withImage} / ${all.elements.length - all.withImage}</span></div><div class="stat-entry"><span class="stat-entry-name">Все: таймкод / без</span><span class="stat-entry-value">${all.withTimecode} / ${all.elements.length - all.withTimecode}</span></div><div class="stat-entry"><span class="stat-entry-name">Все: покрытие</span><span class="stat-entry-value">${coverage(all)}</span></div></div>`;
         byId('statsRepetitions').innerHTML = repetitionsMarkup(current);
+        byId('statsFamilies').innerHTML = familyStatisticsMarkup();
         byId('statsTimeline').innerHTML = state.projects.map(timelineMarkup).join('') || '<div class="stat-note">Пока нет роликов</div>';
         if (!state.statsBarsDrawn) {
           state.statsBarsDrawn = true;
@@ -2919,6 +3134,7 @@
             <section class="stats-block"><h3>Все ролики</h3><div id="statsAll"></div></section>
             <section class="stats-block"><h3>Ролики: элементы + повторы</h3><canvas id="statsBars" class="bar-chart" aria-label="График роликов"></canvas></section>
             <section class="stats-block"><h3>Категории</h3><div id="statsCategories"></div></section>
+            <section class="stats-block"><h3>Семейства: база / уникальное</h3><div id="statsFamilies"></div></section>
             <section class="stats-block"><h3>Повторения приёмов</h3><div id="statsRepetitions"></div></section>
             <section class="stats-block"><h3>Топ техник</h3><div id="statsTechniques"></div></section>
             <section class="stats-block"><h3>Топ ключевых слов</h3><div id="statsKeywords"></div></section>
@@ -2982,6 +3198,7 @@
       function exportSettings() {
         const copy = { ...state.settings };
         if (copy.backupDirectoryHandle) copy.backupDirectoryHandle = '[Локальная папка бэкапа сохраняется только в браузере]';
+        delete copy.serverBaseline;
         return copy;
       }
 
@@ -3011,6 +3228,9 @@
       }
 
       async function getPublishedSnapshot() {
+        if (globalThis.location?.protocol === 'file:' && isCatalogSnapshot(globalThis.PUBLISHED_CATALOG)) {
+          return prepareRemoteSnapshot(globalThis.PUBLISHED_CATALOG, { etag: 'embedded-file-snapshot' });
+        }
         const separator = PUBLISHED_DATA_URL.includes('?') ? '&' : '?';
         const response = await fetch(`${PUBLISHED_DATA_URL}${separator}v=${Date.now()}`, {
           method: 'GET',
@@ -3021,6 +3241,107 @@
         return prepareRemoteSnapshot(await response.json(), {
           etag: response.headers.get('ETag') || ''
         });
+      }
+
+      function recordsById(records) {
+        return new Map((Array.isArray(records) ? records : []).map((record) => [String(record.id), record]));
+      }
+
+      function sameValue(left, right) {
+        return JSON.stringify(left) === JSON.stringify(right);
+      }
+
+      function mergeServerRecord(local, remote, baseline, remoteOwnedFields = []) {
+        if (!local) return { ...remote };
+        const result = { ...remote };
+        const remoteOwned = new Set(remoteOwnedFields);
+        const keys = new Set([...Object.keys(local), ...Object.keys(remote), ...Object.keys(baseline || {})]);
+        for (const key of keys) {
+          if (remoteOwned.has(key)) {
+            if (hasOwn(remote, key)) result[key] = remote[key];
+            continue;
+          }
+          if (!baseline) {
+            if (hasOwn(local, key)) result[key] = local[key];
+            continue;
+          }
+          const ownerChanged = hasOwn(local, key) && !sameValue(local[key], baseline[key]);
+          if (ownerChanged) result[key] = local[key];
+          else if (!hasOwn(remote, key)) delete result[key];
+        }
+        return result;
+      }
+
+      function mergePublishedCatalog(remoteRaw) {
+        const baseline = isCatalogSnapshot(state.settings.serverBaseline)
+          ? state.settings.serverBaseline
+          : (isCatalogSnapshot(globalThis.OWNER_BASELINE) ? globalThis.OWNER_BASELINE : { projects: [], elements: [] });
+        const localProjects = recordsById(state.projects);
+        const remoteProjects = recordsById(remoteRaw.projects);
+        const baselineProjects = recordsById(baseline.projects);
+        const aliases = new Map();
+        const remoteByVideo = new Map(remoteRaw.projects.map((project) => [youtubeVideoId(project.url), project]).filter(([videoId]) => videoId));
+        const projects = [];
+
+        for (const remote of remoteRaw.projects) {
+          const id = String(remote.id);
+          if (baselineProjects.has(id) && !localProjects.has(id)) continue;
+          projects.push(mergeServerRecord(localProjects.get(id), remote, baselineProjects.get(id), ['id']));
+        }
+        for (const local of state.projects) {
+          const id = String(local.id);
+          if (remoteProjects.has(id)) continue;
+          const canonical = remoteByVideo.get(youtubeVideoId(local.url));
+          if (canonical) {
+            aliases.set(id, String(canonical.id));
+            continue;
+          }
+          projects.push({ ...local });
+        }
+
+        const projectIds = new Set(projects.map((project) => String(project.id)));
+        const localElements = recordsById(state.elements);
+        const remoteElements = recordsById(remoteRaw.elements);
+        const baselineElements = recordsById(baseline.elements);
+        const elements = [];
+
+        for (const remote of remoteRaw.elements) {
+          const id = String(remote.id);
+          if (baselineElements.has(id) && !localElements.has(id)) continue;
+          const projectId = aliases.get(String(remote.projectId)) || String(remote.projectId);
+          if (!projectIds.has(projectId)) continue;
+          const merged = mergeServerRecord(localElements.get(id), remote, baselineElements.get(id), ['id', 'projectId', 'family', 'freq_videos', 'freq_total', 'tier']);
+          merged.projectId = projectId;
+          elements.push(merged);
+        }
+        for (const local of state.elements) {
+          const id = String(local.id);
+          if (remoteElements.has(id)) continue;
+          const projectId = aliases.get(String(local.projectId)) || String(local.projectId);
+          if (!projectIds.has(projectId)) continue;
+          elements.push({ ...local, projectId });
+        }
+
+        const familyStats = new Map(FAMILY_ORDER.map((family) => [family, { total: 0, projects: new Set() }]));
+        for (const element of elements) {
+          if (!familyStats.has(element.family)) element.family = 'OTHER';
+          const stats = familyStats.get(element.family);
+          stats.total += 1;
+          stats.projects.add(String(element.projectId));
+        }
+        for (const element of elements) {
+          const stats = familyStats.get(element.family);
+          element.freq_videos = stats.projects.size;
+          element.freq_total = stats.total;
+          element.tier = projects.length > 0 && stats.projects.size / projects.length >= BASE_VIDEO_THRESHOLD ? 'base' : 'unique';
+        }
+
+        return {
+          ...remoteRaw,
+          projects,
+          elements,
+          settings: { ...state.settings, serverBaseline: remoteRaw }
+        };
       }
 
       async function refreshFromPublishedData({ force = false, notify = false } = {}) {
@@ -3034,12 +3355,16 @@
         try {
           const remote = await getPublishedSnapshot();
           const hasLocalCatalog = state.projects.length > 0 || state.elements.length > 0;
-          if (hasLocalCatalog && !force) return false;
-          if (hasLocalCatalog && notify && !globalThis.confirm('Заменить локальный каталог данными с сервера? Перед заменой при необходимости экспортируйте JSON.')) {
+          if (hasLocalCatalog && isCatalogSnapshot(state.settings.serverBaseline) && sameValue(state.settings.serverBaseline, remote.raw)) {
+            if (notify) showToast('Сервер уже объединён. Локальные правки сохранены.');
             return false;
           }
-          await importCatalog(remote.raw, { notify: false });
-          if (notify) showToast('Данные обновлены с сервера.');
+          const merged = hasLocalCatalog ? mergePublishedCatalog(remote.raw) : {
+            ...remote.raw,
+            settings: { ...state.settings, ...remote.raw.settings, serverBaseline: remote.raw }
+          };
+          await importCatalog(merged, { notify: false });
+          if (notify) showToast('Сервер объединён. Локальные правки сохранены.');
           return true;
         } finally {
           dom.serverRefresh.disabled = false;
@@ -3516,7 +3841,7 @@
         state.settings.activeProjectId = project.id;
         state.editingElementId = null;
         saveSettings(['activeProjectId']);
-        renderFeed();
+        setView('catalog');
       }
 
       dom.workspaceInner.addEventListener('load', (event) => {
@@ -3526,6 +3851,14 @@
         if (!card) return;
         const key = `${card.dataset.elementId}\n${image.dataset.previewSource || ''}`;
         state.previewResolved.set(key, image.currentSrc || image.src);
+      }, true);
+
+      dom.workspaceInner.addEventListener('pointerdown', (event) => {
+        const video = event.target.closest('video[data-comparison-video]');
+        if (!video) return;
+        video.src = video.dataset.comparisonVideo;
+        delete video.dataset.comparisonVideo;
+        video.load();
       }, true);
 
       dom.workspaceInner.addEventListener('error', (event) => {
@@ -3748,6 +4081,30 @@
       dom.categoryFilter.addEventListener('click', () => {
         state.categoryFilter = '';
         renderFeed();
+      });
+
+      dom.tierFilter.addEventListener('click', (event) => {
+        const value = event.target.closest('[data-tier-filter]')?.dataset.tierFilter;
+        if (!['all', 'base', 'unique'].includes(value)) return;
+        state.tierFilter = value;
+        state.editingElementId = null;
+        renderFeed();
+      });
+
+      dom.familyFilter.addEventListener('change', () => {
+        state.familyFilter = FAMILY_ORDER.includes(dom.familyFilter.value) ? dom.familyFilter.value : 'all';
+        state.editingElementId = null;
+        renderFeed();
+      });
+
+      dom.viewSwitch.addEventListener('click', (event) => {
+        const view = event.target.closest('[data-view]')?.dataset.view;
+        if (view) setView(view);
+      });
+
+      globalThis.addEventListener('hashchange', () => {
+        const view = globalThis.location.hash === '#comparison' ? 'comparison' : 'catalog';
+        if (view !== state.view) setView(view, false);
       });
 
       dom.menuButton.addEventListener('click', (event) => {

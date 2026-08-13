@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "families": [
+    {
+      "family": "KEYFRAMES-MOTION",
+      "our_media": "assets/ours/keyframes-motion.mp4",
+      "level": "~67%",
+      "notes": "Многофазное появление объекта, контура и подписи по ключам есть, но у конкурента чаще карты, карточки и композиты на архивной подложке. У нас холодная 3D-океаническая палитра и более медленный 8-секундный reveal.",
+      "competitor_refs": [
+        "assets/elements/76CD4F13-4125-43D7-9A13-75D3C926A639.jpg",
+        "assets/elements/27608caa-b086-40ce-8799-029b26e14cf6.jpg",
+        "assets/elements/6E2A7B91-C4D8-4A35-8183-2F7C0D5E0183.jpg"
+      ],
+      "our_poster": "assets/ours/keyframes-motion.jpg"
+    },
+    {
+      "family": "PHOTO-IMAGE",
+      "our_media": "assets/ours/photo-image.png",
+      "level": "~67%",
+      "notes": "Архивный портрет и крупная типографика близки к одной портретной карточке, но у конкурента чаще фотоколлажи, наложения и полноэкранный футаж. Наш образец статичен: нет reveal, scale или opacity-движения.",
+      "competitor_refs": [
+        "assets/elements/4BBD0AB9-A15B-49F2-85EA-2D1B68A33C8E.jpg",
+        "assets/elements/51e9648a-374c-424c-a928-c483ea89cedb.jpg",
+        "assets/elements/7B6581EF-D22E-4922-BBE9-611C3DEF3652.jpg"
+      ],
+      "our_poster": "assets/ours/photo-image.png"
+    },
+    {
+      "family": "HARD-CUT",
+      "our_media": "assets/ours/hard-cut.mp4",
+      "level": "1:1",
+      "notes": "Мгновенная смена двух полноэкранных планов без промежуточного кадра совпадает. Различаются только контент и разрешение; скорость склейки — 0 кадров.",
+      "competitor_refs": [
+        "assets/elements/3d5f8e43-e1ba-54c5-8056-a0279e0ee6f7.jpg",
+        "assets/elements/9B939C1B-A9D7-40C9-8AAB-705EA43050CD.jpg",
+        "assets/elements/393CB4B8-3990-4B89-8627-C0084048332E.jpg"
+      ],
+      "our_poster": "assets/ours/hard-cut.jpg"
+    },
+    {
+      "family": "OPACITY-FADE",
+      "our_media": "assets/ours/opacity-fade.mp4",
+      "level": "~50%",
+      "notes": "У нас весь кадр уходит через чёрный, а у конкурента локально проявляются текст, inset или изображение поверх сохраняемого фона. Переход темнее и длиннее, отдельной alpha-анимации слоя нет.",
+      "competitor_refs": [
+        "assets/elements/B0200083-83A1-4C02-8E83-000000000083.jpg",
+        "assets/elements/B5F31C2A-0F2E-4DBA-9D19-31B75E108000.jpg",
+        "assets/elements/89570B44-B98E-4227-8190-1AF7FD177487.jpg"
+      ],
+      "our_poster": "assets/ours/opacity-fade.jpg"
+    },
+    {
+      "family": "INSET-WINDOW",
+      "our_media": "assets/ours/inset-window.mp4",
+      "level": "~80%",
+      "notes": "Окна на тёмном фоне, подписи и поэтапное добавление второго inset близки. У конкурента чаще сохраняется полноэкранный фон или документ и белая рамка; у нас холодная синяя карусель.",
+      "competitor_refs": [
+        "assets/elements/8CDB3F84-6895-4DBF-9687-0EB194C3D83B.jpg",
+        "assets/elements/6b08d4b0-1fc0-4cd1-9020-a1ad89ab8f0d.jpg",
+        "assets/elements/9e427776-958e-4f33-9908-5a3c86abdc00.jpg"
+      ],
+      "our_poster": "assets/ours/inset-window.jpg"
+    },
+    {
+      "family": "SCALE-ZOOM",
+      "our_media": "assets/ours/scale-zoom.mp4",
+      "level": "~50%",
+      "notes": "У конкурента плавный непрерывный push-in или zoom-out длится 3–7 секунд на одном плане. У нас короткий 2,4-секундный zoom-punch со сменой источника; отличаются anchor, длительность и плавность.",
+      "competitor_refs": [
+        "assets/elements/B0200077-77A1-4C02-8E77-000000000077.jpg",
+        "assets/elements/b5050247-5a05-4247-8247-000000000247.jpg",
+        "assets/elements/ed69fa1c-562d-4c40-a968-913d544e3c35.jpg"
+      ],
+      "our_poster": "assets/ours/scale-zoom.jpg"
+    },
+    {
+      "family": "TEXT-TYPOGRAPHY",
+      "our_media": "assets/ours/text-typography.png",
+      "level": "~67%",
+      "notes": "Крупная белая warning-типографика и акцентный знак совпадают по функции. У конкурента текст обычно лежит поверх фото или портрета, а у нас статичный чёрный grid-card с жёлтой рамкой и без построчного reveal.",
+      "competitor_refs": [
+        "assets/elements/8136e644-18f8-4083-b617-6c2767215217.jpg",
+        "assets/elements/d2a46a3b-f827-48fb-9505-df304b4a5f52.jpg",
+        "assets/elements/90A56A84-9397-43DF-9D2E-6E71492E5DF5.jpg"
+      ],
+      "our_poster": "assets/ours/text-typography.png"
+    },
+    {
+      "family": "POSITION-SLIDE",
+      "our_media": "assets/ours/position-slide.mp4",
+      "level": "~67%",
+      "notes": "Объекты действительно въезжают и уходят, но у нас один анатомический cutout с длинным hold. У конкурента горизонтальная карусель нескольких рамочных карточек или документов проходит примерно за 0,75 секунды.",
+      "competitor_refs": [
+        "assets/elements/b5010021-1a11-4b21-8c21-000000000021.jpg",
+        "assets/elements/6224c837-a01a-43e6-846a-2517eab444db.jpg"
+      ],
+      "our_poster": "assets/ours/position-slide.jpg"
+    },
+    {
+      "family": "GRID-LINES",
+      "our_media": "assets/ours/grid-lines.png",
+      "level": "~80%",
+      "notes": "Чёрная technical grid, белая рамка, крупный белый текст и оранжевый маркер очень близки к двум карточкам конкурента. Наш PNG статичен и проще: нет пары карточек, прорисовки линии или движущегося текста.",
+      "competitor_refs": [
+        "assets/elements/656137C9-B143-4572-BA89-C3EFF049DEF4.jpg",
+        "assets/elements/9687f44b-a3c4-4b48-9ec2-bf7f95462ae4.jpg",
+        "assets/elements/7BD833F5-0FF3-4DDA-9890-5C3690D248C4.jpg"
+      ],
+      "our_poster": "assets/ours/grid-lines.png"
+    },
+    {
+      "family": "LIGHT-GLOW",
+      "our_media": "assets/ours/light-glow.mp4",
+      "level": "~50%",
+      "notes": "Наш образец — короткая полноэкранная белая вспышка. У конкурента преобладают локальное тёплое свечение, подсветка объекта, цветной tint или light-leak; отличаются площадь, фактура и пик экспозиции.",
+      "competitor_refs": [
+        "assets/elements/B0200084-84A1-4C02-8E84-000000000084.jpg",
+        "assets/elements/6527480E-3BFB-4823-870E-EFED546835AF.jpg",
+        "assets/elements/94a8e658-48bb-4303-9a0d-994691c361b0.jpg"
+      ],
+      "our_poster": "assets/ours/light-glow.jpg"
+    },
+    {
+      "family": "SATURATION-COLOR",
+      "our_media": "assets/ours/saturation-color.mp4",
+      "level": "~67%",
+      "notes": "Приглушённая насыщенность соответствует монохромному направлению семейства, но у нас цветность фиксирована примерно на 70% и есть размытые боковые поля. У конкурента весь кадр анимированно уходит к нулевой насыщенности за 0,42–0,50 секунды.",
+      "competitor_refs": [
+        "assets/elements/B0400181-81A1-4C04-8E81-000000000181.jpg",
+        "assets/elements/b0030129-5a5a-4b03-8a01-000000000129.jpg",
+        "assets/elements/C1E2C66C-8569-4E22-999A-FE34E8C1E3F5.jpg"
+      ],
+      "our_poster": "assets/ours/saturation-color.jpg"
+    },
+    {
+      "family": "OTHER",
+      "our_media": "assets/ours/other.mp4",
+      "level": "НЕ ПОХОЖЕ, образца нет",
+      "notes": "RGB-glitch между спикером и картой не похож на timeline, CTA-overlay и красный типографический color-fill в репрезентативных карточках. Композиция, функция и характер движения различаются; образец отбракован.",
+      "competitor_refs": [
+        "assets/elements/E115A0F0-7F71-4E0F-8B9E-18911F02DA75.jpg",
+        "assets/elements/1969537e-6d0c-4cd2-9f9f-9ad8a1584162.jpg",
+        "assets/elements/05adae08-cadf-4b70-aae3-f1539b930d93.jpg"
+      ],
+      "our_poster": "assets/ours/other.jpg"
+    },
+    {
+      "family": "CROSSFADE",
+      "our_media": "assets/ours/crossfade.mp4",
+      "level": "1:1",
+      "notes": "Оба плана видны в середине плавного растворения, затем входящий план становится чистым; активная фаза около 0,45 секунды совпадает с референсами 0,42–0,50 секунды. Отличаются только исходники и tint.",
+      "competitor_refs": [
+        "assets/elements/4744033B-2EF3-48BB-9E7F-64C031998121.jpg",
+        "assets/elements/7D8651FC-E284-4E47-B469-E6F09F000B2E.jpg",
+        "assets/elements/AA639031-C43A-41A8-AAC1-B609BE3CB7AD.jpg"
+      ],
+      "our_poster": "assets/ours/crossfade.jpg"
+    },
+    {
+      "family": "BLEND-MODE",
+      "our_media": "assets/ours/blend-mode.mp4",
+      "level": "~80%",
+      "notes": "Тёплый light-leak поверх футажа близок к Screen/Color wash и цветным blend-наложениям конкурента. У нас единичный оранжево-белый burn, а в референсах также встречаются длительный красный или циановый grade и частицы.",
+      "competitor_refs": [
+        "assets/elements/5d138acc-47b4-4060-9a24-63101c171fe0.jpg",
+        "assets/elements/0066B297-53B9-5DF8-ADB4-213E319C2595.jpg",
+        "assets/elements/e4008f7a-88f5-49f7-a948-4c104b6a41e6.jpg"
+      ],
+      "our_poster": "assets/ours/blend-mode.jpg"
+    },
+    {
+      "family": "GEOMETRY-SHAPE",
+      "our_media": "assets/ours/geometry-shape.png",
+      "level": "~67%",
+      "notes": "Зелёный рисованный овал выполняет ту же функцию геометрического акцента, что контуры, рамки и кольцевая диаграмма конкурента. Наш вариант статичен, одноцветен и не содержит draw-on, процентного кольца или polygon-set.",
+      "competitor_refs": [
+        "assets/elements/9C8E8835-824A-4C22-A3D6-46D0A6DD9E23.jpg",
+        "assets/elements/a9c33a6e-2b02-4bbc-b056-c5d3fbc5c4d9.jpg",
+        "assets/elements/f6a0eeb0-7a08-49f2-92b6-67879d55472a.jpg"
+      ],
+      "our_poster": "assets/ours/geometry-shape.png"
+    },
+    {
+      "family": "EMPTY",
+      "our_media": null,
+      "level": "нет",
+      "notes": "Нашего образца нет; семейство не входило в визуальную сверку 17 пар.",
+      "competitor_refs": [
+        "assets/elements/06092cc6-1730-4af7-b409-48a19477029a.png",
+        "assets/elements/374cb1d8-215b-43b5-89c8-d78edcb8e723.png",
+        "assets/elements/721d63bf-85f1-4fcc-ad69-8c78b0af8ac5.png"
+      ],
+      "our_poster": null
+    },
+    {
+      "family": "CAMERA-MOTION",
+      "our_media": "assets/ours/camera-motion.mp4",
+      "level": "~80%",
+      "notes": "Плавный виртуальный camera move по статичному объекту близок к спокойным аэро- и establishing-планам конкурента. У нас движение тоньше, медленнее и привязано к скульптуре; у референсов шире ракурс и заметнее перемещение камеры.",
+      "competitor_refs": [
+        "assets/elements/2917A709-19B0-457E-8A11-71E6F47420D7.jpg",
+        "assets/elements/7f9a0374-c2d1-4e6f-8a31-d4b500000374.jpg"
+      ],
+      "our_poster": "assets/ours/camera-motion.jpg"
+    },
+    {
+      "family": "BLUR-EFFECT",
+      "our_media": "assets/ours/blur-effect.mp4",
+      "level": "~80%",
+      "notes": "Центральный резкий источник с размытым scale-to-fill фоном почти совпадает с вертикальным референсом. Но blur у нас фиксирован и тёмный только по краям, тогда как другие карточки используют shallow depth of field или полный анимированный defocus.",
+      "competitor_refs": [
+        "assets/elements/7B7F40AC-E496-450D-ACDE-70DDA8776762.jpg",
+        "assets/elements/67eab056-504a-44dc-a48e-4c92c055d37f.jpg",
+        "assets/elements/D6A01832-3822-4DCF-AFD4-587925409C75.jpg"
+      ],
+      "our_poster": "assets/ours/blur-effect.jpg"
+    }
+  ]
+}
