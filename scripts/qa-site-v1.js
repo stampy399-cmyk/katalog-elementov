@@ -4,6 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const crypto = require('crypto');
 
 const ROOT = path.resolve(__dirname, '..');
 const FAMILY_ORDER = [
@@ -194,6 +195,11 @@ function exportIndexScript(script) {
 function localAsset(image) {
   const clean = String(image || '').split(/[?#]/, 1)[0].replace(/^\/+/, '');
   return clean.startsWith('assets/') ? path.join(ROOT, clean) : '';
+}
+
+function assetSha256(source) {
+  const asset = localAsset(source);
+  return asset && fs.existsSync(asset) ? crypto.createHash('sha256').update(fs.readFileSync(asset)).digest('hex') : '';
 }
 
 function inventorySampleAsset(sample) {
@@ -447,6 +453,10 @@ async function main() {
   const competitorSources = allPairs.map((pair) => pair.competitor_media);
   check(new Set(ourSources).size === COMPARISON_EXPECTED.pairs, 'sravnenie.json: duplicate our pair sample');
   check(new Set(competitorSources).size === COMPARISON_EXPECTED.pairs, 'sravnenie.json: duplicate competitor pair clip');
+  const ourHashes = ourSources.map(assetSha256);
+  const competitorHashes = competitorSources.map(assetSha256);
+  check(ourHashes.every(Boolean) && new Set(ourHashes).size === COMPARISON_EXPECTED.pairs, 'sravnenie.json: duplicate our pair sample content');
+  check(competitorHashes.every(Boolean) && new Set(competitorHashes).size === COMPARISON_EXPECTED.pairs, 'sravnenie.json: duplicate competitor pair clip content');
   check([...ourSources, ...competitorSources].every((source) => /\.mp4$/.test(source) && !/\.(?:jpe?g|png|webp)$/i.test(source)), 'sravnenie.json: non-video primary pair media remains');
   const pairAssets = fs.readdirSync(path.join(ROOT, 'assets', 'ours', 'pairs')).filter((name) => name.endsWith('.mp4')).map((name) => `assets/ours/pairs/${name}`).sort();
   check(pairAssets.length === COMPARISON_EXPECTED.pairs && pairAssets.join('|') === [...ourSources].sort().join('|'), 'assets/ours/pairs: files and comparison references differ');

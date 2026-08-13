@@ -5,6 +5,7 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const crypto = require('crypto');
 const { spawn } = require('child_process');
 
 const root = path.resolve(__dirname, '..');
@@ -25,6 +26,11 @@ function check(condition, message) {
 
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function comparisonAssetSha256(source) {
+  const asset = path.join(root, String(source || '').replace(/^\/+/, ''));
+  return fs.existsSync(asset) ? crypto.createHash('sha256').update(fs.readFileSync(asset)).digest('hex') : '';
 }
 
 async function removeTemporaryProfile() {
@@ -324,6 +330,15 @@ async function validateHttpRefresh(cdp, page) {
 
 async function main() {
   if (!fs.existsSync(chromePath)) throw new Error(`Chrome not found: ${chromePath}`);
+  const comparison = JSON.parse(fs.readFileSync(path.join(root, 'sravnenie.json'), 'utf8'));
+  const pairs = comparison.families.flatMap((entry) => entry.pairs || []);
+  const ourSources = pairs.map((pair) => pair.our_media);
+  const competitorSources = pairs.map((pair) => pair.competitor_media);
+  const ourHashes = ourSources.map(comparisonAssetSha256);
+  const competitorHashes = competitorSources.map(comparisonAssetSha256);
+  check(pairs.length === 42 && new Set(ourSources).size === 42 && new Set(competitorSources).size === 42, 'comparison data contains duplicate media paths');
+  check(ourHashes.every(Boolean) && new Set(ourHashes).size === 42, 'comparison data contains duplicate our sample content');
+  check(competitorHashes.every(Boolean) && new Set(competitorHashes).size === 42, 'comparison data contains duplicate competitor clip content');
   const { child, websocketUrl } = await launchChrome();
   const cdp = new Cdp(websocketUrl);
   try {
