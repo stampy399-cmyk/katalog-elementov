@@ -197,12 +197,13 @@ async function validateCatalog(cdp, page, label) {
   check(summary.selfTest.failures.length === 0, `${label}: self-test failures: ${summary.selfTest.failures.join(', ')}`);
 
   await evaluate(cdp, page.sessionId, `document.querySelector('[data-view="comparison"]').click()`);
-  await waitFor(cdp, page.sessionId, `document.querySelectorAll('.ability-family-summary').length === 18 && document.querySelector('[data-ability-stat="total"]')?.textContent === '216' && document.querySelector('.ability-family-count')?.textContent.includes('3')`);
-  const collapsed = await evaluate(cdp, page.sessionId, `(()=>{const rows=[...document.querySelectorAll('.capability-family')];const first=rows[0]?.querySelector('.ability-family-summary');return {rows:rows.length,summaries:document.querySelectorAll('.ability-family-summary').length,open:document.querySelectorAll('.capability-family.is-open').length,cards:document.querySelectorAll('.comparison-card').length,abilities:document.querySelectorAll('.ability-card').length,media:document.querySelectorAll('[data-lightbox-media]').length,stats:[...document.querySelectorAll('[data-ability-stat]')].map(node=>Number(node.textContent)),name:first?.querySelector('.ability-family-name')?.textContent.trim(),counts:[...first.querySelectorAll('.ability-family-count')].map(node=>node.textContent.trim()),percent:first?.querySelector('.ability-family-percent')?.textContent.trim(),expanded:first?.getAttribute('aria-expanded'),hash:location.hash,navActive:document.querySelector('#viewSwitch [data-view="comparison"]')?.classList.contains('is-active')}})()`);
-  check(collapsed.rows === 18 && collapsed.summaries === 18 && collapsed.open === 0, `${label}: default family rows are not 18 collapsed summaries`);
+  await waitFor(cdp, page.sessionId, `document.querySelectorAll('.ability-family-summary').length === 16 && document.querySelector('[data-ability-stat="total"]')?.textContent === '167' && document.querySelector('.ability-family-count')?.textContent.includes('3')`);
+  const collapsed = await evaluate(cdp, page.sessionId, `(()=>{const rows=[...document.querySelectorAll('.capability-family')];const first=rows[0]?.querySelector('.ability-family-summary');const options=[...document.getElementById('familyFilter').options].map(option=>option.value);return {rows:rows.length,summaries:document.querySelectorAll('.ability-family-summary').length,open:document.querySelectorAll('.capability-family.is-open').length,cards:document.querySelectorAll('.comparison-card').length,abilities:document.querySelectorAll('.ability-card').length,media:document.querySelectorAll('[data-lightbox-media]').length,stats:[...document.querySelectorAll('[data-ability-stat]')].map(node=>Number(node.textContent)),options,name:first?.querySelector('.ability-family-name')?.textContent.trim(),counts:[...first.querySelectorAll('.ability-family-count')].map(node=>node.textContent.trim()),percent:first?.querySelector('.ability-family-percent')?.textContent.trim(),expanded:first?.getAttribute('aria-expanded'),hash:location.hash,navActive:document.querySelector('#viewSwitch [data-view="comparison"]')?.classList.contains('is-active')}})()`);
+  check(collapsed.rows === 16 && collapsed.summaries === 16 && collapsed.open === 0, `${label}: default family rows are not 16 collapsed summaries`);
   check(collapsed.cards === 0 && collapsed.abilities === 0 && collapsed.media === 0, `${label}: collapsed view eagerly rendered cards or media`);
   check(collapsed.name === 'KEYFRAMES-MOTION' && collapsed.counts.join('|') === 'Умеем 1:1 · 3|Частично · 1|Не умеем · 0' && collapsed.percent === '75% 1:1', `${label}: first family summary mismatch`);
-  check(collapsed.stats.join('|') === '216|154|60|2', `${label}: ability statistics mismatch`);
+  check(collapsed.stats.join('|') === '167|121|46|0', `${label}: ability statistics mismatch`);
+  check(collapsed.options.length === 17 && !collapsed.options.includes('OTHER') && !collapsed.options.includes('EMPTY'), `${label}: comparison family filter still contains OTHER or EMPTY`);
   check(collapsed.hash === '#comparison' && collapsed.navActive, `${label}: comparison navigation state mismatch`);
   if (label === 'HTTP') {
     const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }, page.sessionId);
@@ -218,7 +219,7 @@ async function validateCatalog(cdp, page, label) {
   check(comparison.abilities === 4 && comparison.groups === 1 && comparison.open === 1 && comparison.tech === 5, `${label}: expanded ability/group/passport counters mismatch`);
   check(comparison.exact === 3 && comparison.partial === 1 && comparison.unavailable === 0, `${label}: expanded ability status counters mismatch`);
   check(comparison.previews === 1 && comparison.todo === 0, `${label}: expanded ability previews or TODO fields mismatch`);
-  check(comparison.media === 5 && comparison.pairs === 1, `${label}: expanded lightbox media/pair controls mismatch`);
+  check(comparison.media === 6 && comparison.pairs === 1, `${label}: expanded lightbox media/pair controls mismatch`);
   check(comparison.gridDisplay === 'grid' && comparison.gridColumns >= 2 && comparison.equalRows, `${label}: ability cards are not an equal-row CSS grid`);
 
   await evaluate(cdp, page.sessionId, `document.querySelector('.ability-card .tech-passport summary').click()`);
@@ -238,7 +239,7 @@ async function validateCatalog(cdp, page, label) {
   await evaluate(cdp, page.sessionId, `document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}))`);
   await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
 
-  await evaluate(cdp, page.sessionId, `document.querySelector('.competitor-card img').click()`);
+  await evaluate(cdp, page.sessionId, `document.querySelector('.competitor-frame-button').click()`);
   await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open .lightbox-media')`);
   check(await evaluate(cdp, page.sessionId, `document.querySelector('#lightbox.is-open .lightbox-media')?.tagName === 'IMG'`), `${label}: image lightbox did not open`);
   await evaluate(cdp, page.sessionId, `document.getElementById('lightboxContent').click()`);
@@ -251,15 +252,15 @@ async function validateCatalog(cdp, page, label) {
   await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
 
   await evaluate(cdp, page.sessionId, `document.querySelector('[data-lightbox-pair]').click()`);
-  await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open .lightbox-pair')`);
-  const pairStart = await evaluate(cdp, page.sessionId, `({media:document.querySelectorAll('.lightbox-pair .lightbox-media').length,counter:document.getElementById('lightboxCounter').textContent,ref:document.querySelector('.lightbox-pane:last-child img')?.src})`);
-  check(pairStart.media === 2 && pairStart.counter === '1 / 3', `${label}: side-by-side lightbox mismatch`);
+  await waitFor(cdp, page.sessionId, `document.querySelectorAll('#lightbox.is-open .lightbox-pair video').length === 2 && [...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')].every(video=>video.readyState>=2)`, 45000);
+  const pairStart = await evaluate(cdp, page.sessionId, `(()=>{const videos=[...document.querySelectorAll('.lightbox-pair video')];return {media:document.querySelectorAll('.lightbox-pair .lightbox-media').length,counter:document.getElementById('lightboxCounter').textContent,ref:videos[1]?.src,playing:videos.every(video=>video.muted&&video.loop&&video.autoplay&&!video.paused)}})()`);
+  check(pairStart.media === 2 && pairStart.counter === '1 / 3' && pairStart.playing, `${label}: D-family video-vs-video lightbox mismatch`);
   await evaluate(cdp, page.sessionId, `document.querySelector('[data-lightbox-next]').click()`);
-  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '2 / 3'`);
-  const pairNext = await evaluate(cdp, page.sessionId, `({counter:document.getElementById('lightboxCounter').textContent,ref:document.querySelector('.lightbox-pane:last-child img')?.src})`);
+  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '2 / 3' && [...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')].every(video=>video.readyState>=2&&!video.paused)`, 45000);
+  const pairNext = await evaluate(cdp, page.sessionId, `({counter:document.getElementById('lightboxCounter').textContent,ref:document.querySelectorAll('.lightbox-pane:last-child video')[0]?.src})`);
   check(pairNext.counter === '2 / 3' && pairNext.ref !== pairStart.ref, `${label}: side-by-side next button mismatch`);
   await evaluate(cdp, page.sessionId, `document.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}))`);
-  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '3 / 3'`);
+  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '3 / 3' && [...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')].every(video=>video.readyState>=2&&!video.paused)`, 45000);
   if (label === 'HTTP') {
     const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }, page.sessionId);
     fs.writeFileSync('/tmp/katalog-lightbox-pair-qa.png', Buffer.from(screenshot.data, 'base64'));
@@ -285,7 +286,7 @@ async function validateCatalog(cdp, page, label) {
   const videoPair = await evaluate(cdp, page.sessionId, `(()=>{const videos=[...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')];return {count:videos.length,playing:videos.every(video=>video.muted&&video.loop&&video.autoplay&&!video.paused),counter:document.getElementById('lightboxCounter').textContent,competitor:videos[1]?.src}})()`);
   check(videoPair.count === 2 && videoPair.playing && videoPair.counter === '1 / 3', `${label}: video-vs-video lightbox did not play both clips`);
   await evaluate(cdp, page.sessionId, `document.querySelector('[data-lightbox-next]').click()`);
-  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '2 / 3' && document.querySelectorAll('#lightbox.is-open .lightbox-pair video').length === 2`);
+  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '2 / 3' && [...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')].every(video=>video.readyState>=2&&!video.paused)`, 45000);
   check(await evaluate(cdp, page.sessionId, `document.querySelectorAll('#lightbox.is-open .lightbox-pair video')[1]?.src !== ${JSON.stringify(videoPair.competitor)}`), `${label}: competitor video arrow did not change clip`);
   await evaluate(cdp, page.sessionId, `document.getElementById('lightbox').click()`);
   await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
@@ -302,6 +303,7 @@ async function validateCatalog(cdp, page, label) {
 
   await evaluate(cdp, page.sessionId, `(()=>{const select=document.getElementById('familyFilter');select.value='all';select.dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('[data-view="catalog"]').click()})()`);
   await waitFor(cdp, page.sessionId, `document.querySelectorAll('.element-card').length > 0 && !document.querySelector('.comparison-page')`);
+  check(await evaluate(cdp, page.sessionId, `document.getElementById('familyFilter').options.length === 19`), `${label}: catalog family filter did not restore 18 families`);
   await waitFor(cdp, page.sessionId, `[...document.images].filter(image=>{const box=image.getBoundingClientRect();return box.bottom>=0&&box.top<=innerHeight}).every(image=>image.complete)`, 45000);
 }
 

@@ -626,6 +626,10 @@
     .competitor-card { min-width: 0; margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); }
     .competitor-card img, .competitor-card video { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: #090a0c; cursor: zoom-in; }
     .competitor-card span { display: block; padding: 6px 8px; overflow: hidden; color: var(--muted); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+    .competitor-frames { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+    .competitor-frames strong { align-self: center; color: var(--muted); font-size: 10px; font-weight: 600; }
+    .competitor-frame-button { min-height: 28px; padding: 0 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface-raised); color: var(--muted); cursor: pointer; font-size: 10px; }
+    .competitor-frame-button:hover, .competitor-frame-button:focus-visible { border-color: var(--accent); color: var(--accent); }
     .comparison-notes { margin: 0; padding: 0 16px 16px; color: var(--muted); font-size: 12px; }
     .abilities-group { padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--surface) 78%, transparent); }
     .abilities-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
@@ -2098,6 +2102,7 @@
       function abilitySampleMarkup(entry) {
         const source = repoSamplePath(entry.sample);
         const label = `Образец умения ${entry.name}`;
+        if (source === 'assets/ours/other.mp4') return '';
         if (/\.(?:png|jpe?g|gif|webp|avif)(?:[?#]|$)/i.test(source)) {
           return `<div class="ability-sample"><img src="${escapeAttribute(source)}" alt="${escapeAttribute(label)}" data-lightbox-media data-lightbox-type="image" data-lightbox-label="${escapeAttribute(label)}" loading="lazy"></div>`;
         }
@@ -2108,7 +2113,8 @@
       }
 
       function abilityCardMarkup(entry) {
-        return `<article class="ability-card" data-ability-name="${escapeAttribute(entry.name)}" data-ability-status="${escapeAttribute(entry.status)}"><header class="ability-card-header"><h3 class="ability-name">${escapeHtml(entry.name)}</h3>${techStatusMarkup(entry.status)}</header>${abilitySampleMarkup(entry)}${techPassportRecordMarkup(entry, 'Техпаспорт', false, 'ability-passport')}</article>`;
+        const record = repoSamplePath(entry.sample) === 'assets/ours/other.mp4' ? { ...entry, sample: '' } : entry;
+        return `<article class="ability-card" data-ability-name="${escapeAttribute(record.name)}" data-ability-status="${escapeAttribute(record.status)}"><header class="ability-card-header"><h3 class="ability-name">${escapeHtml(record.name)}</h3>${techStatusMarkup(record.status)}</header>${abilitySampleMarkup(record)}${techPassportRecordMarkup(record, 'Техпаспорт', false, 'ability-passport')}</article>`;
       }
 
       function abilityMatches(entry, query) {
@@ -2165,6 +2171,7 @@
 
       function comparisonCard(entry) {
         const competitorsMedia = competitorMediaItems(entry);
+        const frames = Array.isArray(entry.competitor_frames) ? entry.competitor_frames.filter((frame) => frame?.media) : [];
         const competitors = competitorsMedia.length
           ? competitorsMedia.map((item, index) => {
             const label = `Конкурент ${entry.family} ${index + 1}: ${item.label}`;
@@ -2174,12 +2181,15 @@
             return `<figure class="competitor-card">${media}<span>${escapeHtml(item.label)}</span></figure>`;
           }).join('')
           : '<div class="comparison-media-placeholder">Референсов нет</div>';
+        const frameButtons = frames.length
+          ? `<div class="competitor-frames"><strong>Кадры-варианты:</strong>${frames.map((frame, index) => `<button class="competitor-frame-button" type="button" data-lightbox-media data-lightbox-source="${escapeAttribute(frame.media)}" data-lightbox-type="image" data-lightbox-label="${escapeAttribute(`Кадр-вариант ${entry.family}: ${frame.variant || index + 1}`)}">${escapeHtml(frame.variant || `Кадр ${index + 1}`)}</button>`).join('')}</div>`
+          : '';
         const pairButton = entry.our_media && competitorsMedia.length
           ? `<button class="comparison-pair-button" type="button" data-lightbox-pair="${escapeAttribute(entry.family)}">Сравнить бок о бок</button>`
           : '';
         return `<article class="comparison-card" data-comparison-family="${escapeAttribute(entry.family)}">
           <header class="comparison-card-header"><h2 class="comparison-family">${escapeHtml(entry.family)}</h2><span class="comparison-level">${escapeHtml(entry.level || 'нет')}</span><div class="comparison-level-bar" style="--level:${comparisonLevelPercent(entry.level)}%"><span></span></div></header>
-          <div class="comparison-columns"><section class="comparison-side"><h3>Наш образец</h3><div class="comparison-media">${comparisonMediaMarkup(entry)}</div>${pairButton}${techPassportMarkup(entry.family)}</section><section class="comparison-side"><h3>Конкурент</h3><div class="competitor-grid">${competitors}</div></section></div>
+          <div class="comparison-columns"><section class="comparison-side"><h3>Наш образец</h3><div class="comparison-media">${comparisonMediaMarkup(entry)}</div>${pairButton}${techPassportMarkup(entry.family)}</section><section class="comparison-side"><h3>Конкурент</h3><div class="competitor-grid">${competitors}</div>${frameButtons}</section></div>
           <p class="comparison-notes">${escapeHtml(entry.notes || 'Комментарий не добавлен.')}</p>
         </article>`;
       }
@@ -2246,7 +2256,7 @@
       }
 
       function openMediaLightbox(media) {
-        const source = media.dataset.comparisonVideo || media.currentSrc || media.src;
+        const source = media.dataset.lightboxSource || media.dataset.comparisonVideo || media.currentSrc || media.src;
         if (!source) return;
         showLightbox({
           mode: 'single',
@@ -2271,7 +2281,8 @@
       function renderComparison() {
         dom.playerDock.hidden = true;
         const source = Array.isArray(globalThis.SRAVNENIE?.families) ? globalThis.SRAVNENIE.families : [];
-        const abilities = oursTechEntries();
+        const comparisonFamilies = new Set(source.map((entry) => entry.family));
+        const abilities = oursTechEntries().filter((ability) => comparisonFamilies.has(ability.matches_competitor_family));
         const query = state.search.trim().toLocaleLowerCase();
         const families = source.filter((entry) => {
           if (state.familyFilter !== 'all' && entry.family !== state.familyFilter) return false;
@@ -2288,7 +2299,7 @@
           const body = expanded ? `<div class="capability-family-body">${comparisonCard(entry)}${abilitiesMarkup}</div>` : '';
           return `<section class="capability-family${expanded ? ' is-open' : ''}" data-capability-family="${escapeAttribute(entry.family)}">${abilityFamilySummaryMarkup(entry.family, matching, expanded)}${body}</section>`;
         }).join('');
-        dom.workspaceInner.innerHTML = `<section class="comparison-page"><header class="comparison-intro"><div><h1>Сравнение и наши умения</h1><p>Все ${abilities.length} умений сгруппированы по 18 семействам. Раскройте семейство, чтобы увидеть карточки, образцы и техпаспорта.</p></div><span class="comparison-count">${shownAbilities}/${abilities.length} умений</span></header>${abilityStatsMarkup(abilities)}<div class="capability-families">${groups || '<div class="family-empty">По выбранному фильтру умений нет</div>'}</div></section>`;
+        dom.workspaceInner.innerHTML = `<section class="comparison-page"><header class="comparison-intro"><div><h1>Сравнение и наши умения</h1><p>Все ${abilities.length} умений сгруппированы по ${source.length} семействам. Раскройте семейство, чтобы увидеть карточки, образцы и техпаспорта.</p></div><span class="comparison-count">${shownAbilities}/${abilities.length} умений</span></header>${abilityStatsMarkup(abilities)}<div class="capability-families">${groups || '<div class="family-empty">По выбранному фильтру умений нет</div>'}</div></section>`;
       }
 
       function renderWorkspace() {
@@ -2349,10 +2360,17 @@
         }
       }
 
+      function visibleFamilyOrder() {
+        if (state.view !== 'comparison') return FAMILY_ORDER;
+        return Array.isArray(globalThis.SRAVNENIE?.families) ? globalThis.SRAVNENIE.families.map((entry) => entry.family) : [];
+      }
+
       function renderFamilyFilter() {
-        const options = ['<option value="all">Все семейства</option>', ...FAMILY_ORDER.map((family) => `<option value="${escapeAttribute(family)}">${escapeHtml(family)}</option>`)].join('');
+        const families = visibleFamilyOrder();
+        const options = ['<option value="all">Все семейства</option>', ...families.map((family) => `<option value="${escapeAttribute(family)}">${escapeHtml(family)}</option>`)].join('');
         if (dom.familyFilter.innerHTML !== options) dom.familyFilter.innerHTML = options;
-        dom.familyFilter.value = FAMILY_ORDER.includes(state.familyFilter) ? state.familyFilter : 'all';
+        if (!families.includes(state.familyFilter)) state.familyFilter = 'all';
+        dom.familyFilter.value = state.familyFilter;
       }
 
       function renderViewSwitch() {
@@ -4402,7 +4420,7 @@
       });
 
       dom.familyFilter.addEventListener('change', () => {
-        state.familyFilter = FAMILY_ORDER.includes(dom.familyFilter.value) ? dom.familyFilter.value : 'all';
+        state.familyFilter = visibleFamilyOrder().includes(dom.familyFilter.value) ? dom.familyFilter.value : 'all';
         state.editingElementId = null;
         renderFeed();
       });
