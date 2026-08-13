@@ -11,7 +11,7 @@ const FAMILY_ORDER = [
   'TEXT-TYPOGRAPHY', 'POSITION-SLIDE', 'GRID-LINES', 'LIGHT-GLOW', 'SATURATION-COLOR', 'OTHER',
   'CROSSFADE', 'BLEND-MODE', 'GEOMETRY-SHAPE', 'EMPTY', 'CAMERA-MOTION', 'BLUR-EFFECT'
 ];
-const EXPECTED = Object.freeze({ projects: 9, elements: 2852, base: 2780, unique: 72, families: 18, imported: 624 });
+const EXPECTED = Object.freeze({ projects: 9, elements: 2852, base: 2780, unique: 72, families: 18, imported: 624, abilities: 216, exact: 154, partial: 60, unavailable: 2, repoSamples: 32 });
 const failures = [];
 let assertions = 0;
 
@@ -172,6 +172,13 @@ function localAsset(image) {
   return clean.startsWith('assets/') ? path.join(ROOT, clean) : '';
 }
 
+function inventorySampleAsset(sample) {
+  const normalized = String(sample || '').replaceAll('\\', '/');
+  if (normalized.startsWith('assets/')) return path.join(ROOT, normalized);
+  const prefix = `${ROOT.replaceAll('\\', '/')}/assets/`;
+  return normalized.startsWith(prefix) ? normalized : '';
+}
+
 function validateData(catalog) {
   const ownerSnapshot = readJson('data.backup-20260813.json');
   check(Array.isArray(catalog.projects), 'data.json: projects is not an array');
@@ -315,7 +322,7 @@ function validateIndex(catalog, indexPage, dataSummary) {
   check(errors.length === 0, `index.html mini-DOM console errors: ${errors.join(' | ')}`);
 }
 
-function validateComparison(comparison, indexPage) {
+function validateComparison(comparison, oursTech, indexPage) {
   const { context, nodes, errors } = domContext({ tierButtons: true });
   context.SRAVNENIE = comparison;
   new vm.Script(exportIndexScript(indexPage.script), { filename: 'index.html#comparison-mini-dom' }).runInContext(context);
@@ -325,29 +332,45 @@ function validateComparison(comparison, indexPage) {
   qa.state.view = 'comparison';
   qa.state.search = '';
   qa.state.familyFilter = 'all';
+  qa.state.oursTech = oursTech;
   qa.renderComparison();
 
   const html = nodes.get('workspaceInner').innerHTML;
   check(errors.length === 0, `comparison mini-DOM console errors: ${errors.join(' | ')}`);
   check((html.match(/class="comparison-card"/g) || []).length === EXPECTED.families, 'integrated comparison did not render 18 cards');
-  check(html.includes(`${EXPECTED.families}/${EXPECTED.families} семейств`), 'integrated comparison count mismatch');
+  check(html.includes(`${EXPECTED.abilities}/${EXPECTED.abilities} умений`), 'integrated comparison count mismatch');
   check(html.includes('Нашего образца пока нет'), 'integrated comparison does not render null-media placeholder');
   check((html.match(/<video controls preload="none"/g) || []).length === 13, 'integrated comparison did not render 13 clips');
   check((html.match(/class="competitor-card"/g) || []).length === 52, 'integrated comparison competitor reference count mismatch');
-  check((html.match(/class="tech-passport"/g) || []).length === EXPECTED.families, 'integrated comparison did not render 18 tech passports');
-  check((html.match(/data-lightbox-media/g) || []).length === 69, 'integrated comparison media are not all lightbox-enabled');
+  const techPassportCount = (html.match(/class="tech-passport(?: |")/g) || []).length;
+  check(techPassportCount === EXPECTED.families + EXPECTED.abilities, `integrated comparison tech passport count ${techPassportCount}, expected ${EXPECTED.families + EXPECTED.abilities}`);
+  check((html.match(/class="ability-card"/g) || []).length === EXPECTED.abilities, 'integrated comparison did not render 216 abilities');
+  check((html.match(/class="abilities-group"/g) || []).length === EXPECTED.families, 'integrated comparison did not render 18 ability groups');
+  check((html.match(/data-ability-status="умеем 1:1"/g) || []).length === EXPECTED.exact, 'integrated comparison exact status count mismatch');
+  check((html.match(/data-ability-status="умеем частично"/g) || []).length === EXPECTED.partial, 'integrated comparison partial status count mismatch');
+  check((html.match(/data-ability-status="не умеем"/g) || []).length === EXPECTED.unavailable, 'integrated comparison unavailable status count mismatch');
+  check((html.match(/data-lightbox-media/g) || []).length === 69 + EXPECTED.repoSamples, 'integrated comparison media are not all lightbox-enabled');
   check((html.match(/data-lightbox-pair=/g) || []).length === 17, 'integrated comparison did not render 17 side-by-side buttons');
+  check(html.includes('data-ability-stat="total">216') && html.includes('data-ability-stat="exact">154') && html.includes('data-ability-stat="partial">60') && html.includes('data-ability-stat="unavailable">2'), 'integrated ability statistics mismatch');
+  check(!html.includes('TODO: инвентарь'), 'integrated comparison still renders TODO inventory fields');
   check(!html.includes('undefined') && !html.includes('null'), 'integrated comparison renders null/undefined text');
 
   qa.state.familyFilter = comparison.families[0].family;
   qa.renderComparison();
   check((nodes.get('workspaceInner').innerHTML.match(/class="comparison-card"/g) || []).length === 1, 'comparison family filter mismatch');
+  check((nodes.get('workspaceInner').innerHTML.match(/class="ability-card"/g) || []).length === 4, 'comparison family ability count mismatch');
+
+  qa.state.familyFilter = 'all';
+  qa.state.search = 'Whisper word timestamps';
+  qa.renderComparison();
+  check((nodes.get('workspaceInner').innerHTML.match(/class="comparison-card"/g) || []).length === 1, 'comparison ability search family mismatch');
+  check((nodes.get('workspaceInner').innerHTML.match(/class="ability-card"/g) || []).length === 1, 'comparison ability search result mismatch');
 }
 
 async function main() {
   const catalog = readJson('data.json');
   const comparison = readJson('sravnenie.json');
-  const oursTech = readJson('ours_tech.json');
+  const oursTech = readJson('ours_tech_full.json');
   const indexPage = inlineScript('index.html');
   const dataSummary = validateData(catalog);
   validateIndex(catalog, indexPage, dataSummary);
@@ -357,21 +380,24 @@ async function main() {
   check(comparison.families.every((record) => FAMILY_ORDER.includes(record.family)), 'sravnenie.json: unknown family');
   check(comparison.families.filter((record) => record.our_media).length === 17, 'sravnenie.json: expected 17 local samples');
   check(comparison.families.filter((record) => String(record.our_media).endsWith('.mp4')).length === 13, 'sravnenie.json: expected 13 clips');
-  check(Object.keys(oursTech).length === EXPECTED.families, `ours_tech.json: expected 18 families, got ${Object.keys(oursTech).length}`);
-  check(FAMILY_ORDER.every((family) => Object.hasOwn(oursTech, family)), 'ours_tech.json: family coverage mismatch');
-  check(Object.values(oursTech).every((record) => ['умеем', 'не умеем'].includes(record.status)), 'ours_tech.json: invalid status');
-  check(Object.values(oursTech).every((record) => ['tech_path', 'tool', 'how_to', 'sample'].every((field) => typeof record[field] === 'string' && record[field].trim())), 'ours_tech.json: empty tech fields');
-  check(Object.values(oursTech).filter((record) => record.status === 'умеем').length === 16, 'ours_tech.json: expected 16 available families');
-  check(Object.values(oursTech).filter((record) => record.status === 'не умеем').length === 2, 'ours_tech.json: expected 2 unavailable families');
-  for (const [family, record] of Object.entries(oursTech)) {
-    if (record.sample.startsWith('assets/')) check(fs.existsSync(localAsset(record.sample)), `${family}: sample missing`);
+  check(Object.keys(oursTech).length === EXPECTED.abilities, `ours_tech_full.json: expected 216 abilities, got ${Object.keys(oursTech).length}`);
+  check(Object.values(oursTech).every((record) => ['умеем 1:1', 'умеем частично', 'не умеем'].includes(record.status)), 'ours_tech_full.json: invalid status');
+  check(Object.values(oursTech).every((record) => ['status', 'tech_path', 'tool', 'how_to', 'sample', 'matches_competitor_family'].every((field) => typeof record[field] === 'string')), 'ours_tech_full.json: invalid field type');
+  check(Object.values(oursTech).every((record) => FAMILY_ORDER.includes(record.matches_competitor_family)), 'ours_tech_full.json: invalid competitor family');
+  check(Object.values(oursTech).filter((record) => record.status === 'умеем 1:1').length === EXPECTED.exact, 'ours_tech_full.json: expected 154 exact abilities');
+  check(Object.values(oursTech).filter((record) => record.status === 'умеем частично').length === EXPECTED.partial, 'ours_tech_full.json: expected 60 partial abilities');
+  check(Object.values(oursTech).filter((record) => record.status === 'не умеем').length === EXPECTED.unavailable, 'ours_tech_full.json: expected 2 unavailable abilities');
+  const repoSamples = Object.entries(oursTech).filter(([, record]) => inventorySampleAsset(record.sample));
+  check(repoSamples.length === EXPECTED.repoSamples, `ours_tech_full.json: expected 32 repo samples, got ${repoSamples.length}`);
+  for (const [name, record] of repoSamples) {
+    check(fs.existsSync(inventorySampleAsset(record.sample)), `${name}: sample missing`);
   }
   for (const record of comparison.families) {
     if (record.our_media) check(fs.existsSync(localAsset(record.our_media)), `${record.family}: our_media missing`);
     if (record.our_poster) check(fs.existsSync(localAsset(record.our_poster)), `${record.family}: our_poster missing`);
     for (const reference of record.competitor_refs || []) check(fs.existsSync(localAsset(reference)), `${record.family}: competitor ref missing`);
   }
-  validateComparison(comparison, indexPage);
+  validateComparison(comparison, oursTech, indexPage);
 
   if (failures.length) {
     console.error(`FAIL ${failures.length}/${assertions}`);

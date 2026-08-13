@@ -1,0 +1,1730 @@
+{
+  "KEYFRAMES-MOTION": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion spring/interpolate",
+    "how_to": "Set absolute frame intervals and animate transform/opacity with spring/interpolate; family is broader than one preset.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/keyframes-motion.mp4",
+    "matches_competitor_family": "KEYFRAMES-MOTION"
+  },
+  "PHOTO-IMAGE": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/photo-tools/fastgen_gen.py",
+    "tool": "FastGen + NavyAI + FFmpeg",
+    "how_to": "Generate or select a still, then place it as a timed layer; family is broader than one still style.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/photo-image.png",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "HARD-CUT": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/transitions.json",
+    "tool": "FFmpeg/ready transition asset",
+    "how_to": "Place adjacent shots on the same frame boundary with no overlap; use 01_hard_cut.mp4 as the verified reference.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/hard-cut.mp4",
+    "matches_competitor_family": "HARD-CUT"
+  },
+  "OPACITY-FADE": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-esoteric-narration/production/build_all.py",
+    "tool": "FFmpeg opacity/fade",
+    "how_to": "Apply fade=t=in/out or animate layer opacity; exact ready sample covers one variant.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/opacity-fade.mp4",
+    "matches_competitor_family": "OPACITY-FADE"
+  },
+  "INSET-WINDOW": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-remotion-overlays/src/Montage.tsx",
+    "tool": "Remotion composite",
+    "how_to": "Scale a source into a bounded overlay window and composite over the base layer; family has multiple layouts.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/inset-window.mp4",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "SCALE-ZOOM": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/motion.py",
+    "tool": "Pillow/FFmpeg/Remotion",
+    "how_to": "Use ken_burns mode push/pull or animated scale around an anchor; family has multiple easing profiles.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/scale-zoom.mp4",
+    "matches_competitor_family": "SCALE-ZOOM"
+  },
+  "TEXT-TYPOGRAPHY": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-remotion-overlays/src/Graphics.tsx",
+    "tool": "Remotion",
+    "how_to": "Instantiate title/lower-third/callout components and animate entry; family breadth exceeds one typography system.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/text-typography.png",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "POSITION-SLIDE": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion interpolate",
+    "how_to": "Interpolate x/y from off-canvas to target over absolute frames.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/position-slide.mp4",
+    "matches_competitor_family": "POSITION-SLIDE"
+  },
+  "GRID-LINES": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow primitives",
+    "how_to": "Call black_grid_frame or use the grid helper; exact family includes other line grammars.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/grid-lines.png",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "LIGHT-GLOW": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/effects.py",
+    "tool": "Pillow/FFmpeg compositing",
+    "how_to": "Apply warm_film_burn or alpha glow layers; exact sample covers one glow treatment.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/light-glow.mp4",
+    "matches_competitor_family": "LIGHT-GLOW"
+  },
+  "SATURATION-COLOR": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/effects.py",
+    "tool": "Pillow color grade",
+    "how_to": "Call color_grade with bw, sepia, green or cool; family includes arbitrary LUT systems not inventoried.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/saturation-color.mp4",
+    "matches_competitor_family": "SATURATION-COLOR"
+  },
+  "OTHER": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Versioned construction library",
+    "how_to": "Extract .codex_work/konstrukcii and select a versioned template not covered by the 17 named families.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/other.mp4",
+    "matches_competitor_family": "OTHER"
+  },
+  "CROSSFADE": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "FFmpeg xfade",
+    "how_to": "Overlap adjacent shots for the configured duration and apply xfade at T-D.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/crossfade.mp4",
+    "matches_competitor_family": "CROSSFADE"
+  },
+  "BLEND-MODE": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-remotion-overlays/src/Montage.tsx",
+    "tool": "Remotion alpha/blend composite",
+    "how_to": "Stack overlay and base layers with opacity/blend mode; exact sample covers one composition.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/blend-mode.mp4",
+    "matches_competitor_family": "BLEND-MODE"
+  },
+  "GEOMETRY-SHAPE": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow vector primitives",
+    "how_to": "Draw parameterized rectangles, circles, arrows, frames and chips; family includes more shapes.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/geometry-shape.png",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "EMPTY": {
+    "status": "не умеем",
+    "tech_path": "/Users/alphabravo/Downloads/katalog-elementov/data.json",
+    "tool": "Catalog classification",
+    "how_to": "No montage capability corresponds to an intentionally empty competitor slot.",
+    "sample": "",
+    "matches_competitor_family": "EMPTY"
+  },
+  "CAMERA-MOTION": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "FFmpeg crop/scale + Remotion",
+    "how_to": "Use per-source zoom and crop or the Ken Burns engine; family has more camera models.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/camera-motion.mp4",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "BLUR-EFFECT": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/effects.py",
+    "tool": "Pillow/FFmpeg blur",
+    "how_to": "Use atmosphere blur/vignette, blur-fill, avgblur or ready blurpad variants.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/blur-effect.mp4",
+    "matches_competitor_family": "BLUR-EFFECT"
+  },
+  "Переход: dip-to-black 0.3 s": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/transitions.json",
+    "tool": "FFmpeg + ready asset",
+    "how_to": "Insert 02_dip_to_black.mp4 or reproduce the manifest timing.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/02_dip_to_black.mp4",
+    "matches_competitor_family": "OPACITY-FADE"
+  },
+  "Переход: glitch+dust+whoosh": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/transitions.json",
+    "tool": "FFmpeg + ready asset",
+    "how_to": "Insert 03_glitch_dust_whoosh.mp4 at the cut and align its whoosh.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/03_glitch_dust_whoosh.mp4",
+    "matches_competitor_family": "OTHER"
+  },
+  "Переход: zoom-punch soft": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/transitions.json",
+    "tool": "FFmpeg + ready asset",
+    "how_to": "Use 04_zoom_punch_soft.mp4 or reproduce its scale curve.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/04_zoom_punch_soft.mp4",
+    "matches_competitor_family": "SCALE-ZOOM"
+  },
+  "Переход: zoom-punch hard": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/transitions.json",
+    "tool": "FFmpeg + ready asset",
+    "how_to": "Use 05_zoom_punch_hard.mp4 or reproduce its stronger scale curve.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/05_zoom_punch_hard.mp4",
+    "matches_competitor_family": "SCALE-ZOOM"
+  },
+  "Переход: whip-pan": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/transitions.json",
+    "tool": "FFmpeg + ready asset",
+    "how_to": "Use 06_whip_pan.mp4 or animate directional motion blur across the cut.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/06_whip_pan.mp4",
+    "matches_competitor_family": "POSITION-SLIDE"
+  },
+  "Переход: flash-white": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/transitions.json",
+    "tool": "FFmpeg + ready asset",
+    "how_to": "Use 07_flash_white.mp4 or keyframe a short white flash on the cut.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/07_flash_white.mp4",
+    "matches_competitor_family": "LIGHT-GLOW"
+  },
+  "Переход: film-burn/light-leak": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/eisen_werk.py",
+    "tool": "FFmpeg/Python compositing",
+    "how_to": "Run the film-burn wipe constructor over adjacent shots; ready reference is 08_film_burn_light_leak.mp4.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/08_film_burn_light_leak.mp4",
+    "matches_competitor_family": "LIGHT-GLOW"
+  },
+  "Переход: pixel-glitch strong": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/transitions.json",
+    "tool": "FFmpeg + ready asset",
+    "how_to": "Use 09_pixel_glitch_strong.mp4 or reproduce the manifest-defined glitch burst.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/09_pixel_glitch_strong.mp4",
+    "matches_competitor_family": "OTHER"
+  },
+  "Переходы Draw: whip/blur/flash + whoosh": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "FFmpeg filtergraph",
+    "how_to": "Call apply_transitions: pick semantic cut beats, animate zoom, avgblur/flash/shake and add synchronized whoosh.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/06_whip_pan.mp4",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Переходы hblur/smooth*/distance/fadewhite/xfade": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "FFmpeg xfade canon",
+    "how_to": "The file retains the approved grammar and seam contract, but the active implementation currently uses whip/blur/flash; reactivate a versioned implementation before production.",
+    "sample": "",
+    "matches_competitor_family": "CROSSFADE"
+  },
+  "Переход: warm flash": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke template warm_flash_transition_v1 from infographic_template_library.",
+    "sample": "",
+    "matches_competitor_family": "LIGHT-GLOW"
+  },
+  "Переход: twist glitch": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke twist_glitch_transition_v1.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Переход: warm yellow/purple light-leak xfade": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke warm_yellow_purple_lightleak_xfade_v1.",
+    "sample": "",
+    "matches_competitor_family": "CROSSFADE"
+  },
+  "Переход: desaturation ramp": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke desaturation_ramp_v1 over the configured absolute frames.",
+    "sample": "",
+    "matches_competitor_family": "SATURATION-COLOR"
+  },
+  "Семантический hard-cut по паузе": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "FFmpeg + pause detector",
+    "how_to": "detect_pauses, snap edit boundaries, then build_plan/render without overlap.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/hard-cut.mp4",
+    "matches_competitor_family": "HARD-CUT"
+  },
+  "Камера: Ken Burns push": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/motion.py",
+    "tool": "Pillow motion engine",
+    "how_to": "Call ken_burns(..., mode='push') for each absolute frame.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/motion/kb_canon.mp4",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Камера: Ken Burns pull": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/motion.py",
+    "tool": "Pillow motion engine",
+    "how_to": "Call ken_burns(..., mode='pull') for each absolute frame.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/16_ken_burns_drift.png",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Камера: pan left/right": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/motion.py",
+    "tool": "Pillow motion engine",
+    "how_to": "Call ken_burns with pan_left or pan_right and fixed absolute frame progress.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/motion/pan_drift.mp4",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Камера: diagonal drift": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/motion.py",
+    "tool": "Pillow motion engine",
+    "how_to": "Call ken_burns(..., mode='drift') using normalized_progress.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/16_ken_burns_drift.png",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Камера: impact shake": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-remotion-shorts/fx.sh",
+    "tool": "FFmpeg",
+    "how_to": "Invoke fx_shake around an impact frame; keep the effect inside the shot.",
+    "sample": "",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Футаж: source zoom/crop": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "FFmpeg scale/crop",
+    "how_to": "Assign source zoom and render through _vf for centered/top-biased cover crop.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/camera-motion.mp4",
+    "matches_competitor_family": "SCALE-ZOOM"
+  },
+  "Футаж: whole-clip mode": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "FFmpeg montage",
+    "how_to": "Use plan_whole_clips and _render_whole_clips to retain complete clips without effect cuts.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Футаж: shuffle/slow-push narration bed": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-narration-over-footage/сборка.py",
+    "tool": "FFmpeg",
+    "how_to": "Build background playlist, scale/crop each clip, apply slow push and concatenate under narration.",
+    "sample": "",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Футаж: CapCut shuffle": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/montage-capcut-tools/shuffle_clips.py",
+    "tool": "Python/CapCut project",
+    "how_to": "Run shuffle_clips.py against a duplicated project and verify the generated project JSON.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Футаж: CapCut dedup": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/montage-capcut-tools/dedup_clips.py",
+    "tool": "Python/CapCut project",
+    "how_to": "Run dedup_clips.py to remove repeated clip references in a duplicated project.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Футаж: green-bar crop": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "OpenCV + FFmpeg",
+    "how_to": "Run detect_green_bars and apply the detected left/right crop before scale.",
+    "sample": "",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Футаж: junk/blur/blockiness filter": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "OpenCV/FFprobe",
+    "how_to": "Run scan_junk, refine_ranges_blur and blockiness checks; render only good_ranges.",
+    "sample": "",
+    "matches_competitor_family": "BLUR-EFFECT"
+  },
+  "Футаж: source fingerprint/dedup": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "Python hashing",
+    "how_to": "Call source_identity and unique_first_sources before planning the cut sequence.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Футаж: proxy transcoding": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "FFmpeg",
+    "how_to": "Run attach_proxies/build_proxies and render from render_path while retaining source identity.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Частицы: dust/bokeh alpha loop": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-narration-over-footage/particles.py",
+    "tool": "Python/Pillow + FFmpeg",
+    "how_to": "Run particles.py to produce the deterministic alpha loop, then overlay it with looped alpha.",
+    "sample": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-narration-over-footage/частицы_loop.mov",
+    "matches_competitor_family": "OTHER"
+  },
+  "Частицы: crater/debris burst": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke crater_particles_v1 at absolute impact frames.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Частицы: snow loop": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/NEW-BASE-REVIEW/data/prompts_particles_special.json",
+    "tool": "Particle-loop specification",
+    "how_to": "Use the registered snow-loop recipe with particles.py; no dedicated checked snow sample was found.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Глитч: restrained RGB scanline": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/effects.py",
+    "tool": "Pillow/numpy",
+    "how_to": "Call restrained_glitch with deterministic seed/amount on selected frames.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/11_rgb_scanline.png",
+    "matches_competitor_family": "OTHER"
+  },
+  "Глитч: grid glitch": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke grid_glitch_v1.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/grid-lines.png",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "ЧБ + помутнение + warm underglow": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "Python/FFmpeg compositor",
+    "how_to": "Apply monochrome contrast, warm leak, 92 dust particles, 11 bokeh particles and 8 fog clouds.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/12_bw.png",
+    "matches_competitor_family": "SATURATION-COLOR"
+  },
+  "Color grade: sepia": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/effects.py",
+    "tool": "Pillow color grade",
+    "how_to": "Call color_grade(..., mode='sepia').",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/13_sepia.png",
+    "matches_competitor_family": "SATURATION-COLOR"
+  },
+  "Color grade: green tint": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/effects.py",
+    "tool": "Pillow color grade",
+    "how_to": "Call color_grade(..., mode='green').",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/14_green_tint.png",
+    "matches_competitor_family": "SATURATION-COLOR"
+  },
+  "Blur + vignette atmosphere": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/effects.py",
+    "tool": "Pillow",
+    "how_to": "Call atmosphere with blur and vignette parameters on the selected frame range.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/15_blur_vignette.png",
+    "matches_competitor_family": "BLUR-EFFECT"
+  },
+  "Blur-fill backplate": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "FFmpeg",
+    "how_to": "Duplicate the source, cover-crop and blur/darken the back layer, contain the sharp front layer.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/blur-effect.mp4",
+    "matches_competitor_family": "BLUR-EFFECT"
+  },
+  "Dynamic photo hold v1/v2": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke photo_dynamic_hold_v1 or photo_dynamic_hold_v2.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/photo-image.png",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "Moving film leak": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke moving_film_leak_v1 as a timed alpha/light layer.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/08_film_burn_light_leak.mp4",
+    "matches_competitor_family": "LIGHT-GLOW"
+  },
+  "Alpha overlay composite": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-remotion-overlays/src/Montage.tsx",
+    "tool": "Remotion",
+    "how_to": "Place the alpha-capable overlay in an AbsoluteFill above the base footage and gate by frames.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/blend-mode.mp4",
+    "matches_competitor_family": "BLEND-MODE"
+  },
+  "Cutout portrait/mascot composite": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-narration-over-footage/cutout.py",
+    "tool": "Python image cutout + FFmpeg",
+    "how_to": "Create a transparent cutout, position it over the scene and animate its entrance.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Warm film-burn punctuation": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/effects.py",
+    "tool": "Pillow/numpy",
+    "how_to": "Call warm_film_burn over a short normalized frame window.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/10_warm_film_burn.png",
+    "matches_competitor_family": "LIGHT-GLOW"
+  },
+  "Инфографика: жёлтый ! в треугольнике + дуги + bullets": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii infographic compiler",
+    "how_to": "Extract .codex_work/konstrukcii; compile warning_list_v1 using warning_triangle, animated circular arcs and staggered bullet typography.",
+    "sample": "",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Инфографика: жёлтая warning-list card": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow template",
+    "how_to": "Call warning_list_card with heading and bullet list; materialize through the graphics manifest.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/17_warning_list.png",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Инфографика: зелёные галочки + красный крест": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/infographics.json",
+    "tool": "Versioned ready infographic",
+    "how_to": "Use checklist_card_v1 timing/spec: three #7C8A5A checks and one #C33A21 cross.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/checklist_card_v1.mp4",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Инфографика: зелёный marker oval/cross/pencil": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii chapter_handdrawn_v1",
+    "how_to": "Extract the archive; compile chapter_handdrawn_v1 with #68a828 multipass oval/crosses and marker/pencil SFX cues.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/18_marker_chapter_alpha.png",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Инфографика: criteria icon circles": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GunsInfo.tsx",
+    "tool": "Remotion/SVG",
+    "how_to": "Render CriteriaCircles: spring each icon, animate circular stroke and labels on absolute frames.",
+    "sample": "",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Инфографика: VS-card rows": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GunsInfo.tsx",
+    "tool": "Remotion/SVG",
+    "how_to": "Render VsCard with timed rows, icons and status marks.",
+    "sample": "",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Инфографика: Stamp X reject": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion/SVG",
+    "how_to": "Render StampX on a spring/rotation impact and align the stamp SFX.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/stamp_slam_v1.mp4",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Инфографика: black grid frame": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow template",
+    "how_to": "Call black_grid_frame with title, eyebrow and grid spacing.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/01_black_grid_frame.png",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "Инфографика: numeric claim card": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow template",
+    "how_to": "Call numeric_claim_card with metric, unit, claim and source.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/02_numeric_claim.png",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Инфографика: metric scramble": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke metric_scramble_v1.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/counter_rollup_v1.mp4",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Инфографика: metric growth/count-up": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke metric_growth_scramble_v1 with absolute numeric keyframes.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/price_chip_countup_v1.mp4",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Инфографика: product isolate": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow template",
+    "how_to": "Call product_isolate with product art or its synthetic fallback and caption fields.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/03_product_isolate.png",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Инфографика: two-path schematic": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow template",
+    "how_to": "Call two_path_schematic with two labeled branches and arrow parameters.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/04_two_path_schematic.png",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Инфографика: label leaders": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow alpha overlay",
+    "how_to": "Call label_leader_overlay with anchor points and LeaderLabel records.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/05_label_leaders_alpha.png",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "Инфографика: split material comparison": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow template",
+    "how_to": "Call split_material_comparison for two labeled panels and differences.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/06_split_pvc_clay.png",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Инфографика: chapter grid reset": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow template",
+    "how_to": "Call chapter_grid_reset with chapter number/title and timed overlay.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/07_chapter_reset.png",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "Инфографика: thermal proof panel": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow template",
+    "how_to": "Call thermal_proof_panel with measured fields and annotations.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/08_thermal_proof.png",
+    "matches_competitor_family": "SATURATION-COLOR"
+  },
+  "Инфографика: evidence document card": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/graphics/templates.py",
+    "tool": "Pillow template",
+    "how_to": "Call evidence_document_card with title, body, source label and status.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/09_evidence_document.png",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Инфографика: explainer label": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke explainer_label_v1 with leader/callout fields.",
+    "sample": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/05_label_leaders_alpha.png",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Инфографика: subtitle bar": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke subtitle_bar_v1 for timed lower-screen text.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/text-typography.png",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Инфографика: numbered evidence carousel": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Konstrukcii compiler",
+    "how_to": "Extract the archive and invoke numbered_carousel_evidence_v1 with independently timed numbered panels.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/.scratch-carousel/out/carousel-A.mp4",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Карусель: triptych three-up": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "Python/FFmpeg",
+    "how_to": "Build three image plates, position them in a triptych and animate the sequence.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/other.mp4",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Карусель: owner-approved PhotoCarousel A/B/C": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/src/SceneCarousel.tsx",
+    "tool": "Remotion",
+    "how_to": "Render the registered carousel composition with absolute panel intervals and exit synchronization.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/.scratch-carousel/out/carousel-C.mp4",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Инфографика: price chip count-up": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/infographics.json",
+    "tool": "Ready asset + manifest",
+    "how_to": "Use price_chip_countup_v1/v2 and bind the price fields from the manifest.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/price_chip_countup_v2.mp4",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Инфографика: price crash graph": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/infographics.json",
+    "tool": "Ready asset + manifest",
+    "how_to": "Use price_crash_graph_v1 or reproduce its registered graph timing.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/price_crash_graph_v1.mp4",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "Инфографика: red arrow callout": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/infographics.json",
+    "tool": "Ready asset + manifest",
+    "how_to": "Place red_arrow_callout_v1 over the target and align its cue.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/red_arrow_callout_v1.mp4",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Инфографика: scorecard ticks": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/infographics.json",
+    "tool": "Ready asset + manifest",
+    "how_to": "Use scorecard_ticks_v1/v2 with the manifest-defined row timing.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/scorecard_ticks_v2.mp4",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Инфографика: date stamp": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/infographics.json",
+    "tool": "Ready asset + manifest",
+    "how_to": "Use date_stamp_v1 and substitute the date label through the registered recipe.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/date_stamp_v1.mp4",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Инфографика: fake subscribe UI": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/infographics.json",
+    "tool": "Ready asset + manifest",
+    "how_to": "Use fake_subscribe_ui_v1/v2 with timed cursor/click cues.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/fake_subscribe_ui_v2.mp4",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Инфографика: nameplate": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/infographics.json",
+    "tool": "Ready asset + manifest",
+    "how_to": "Use nameplate_v1/v2 or the lower-third component with name/role fields.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/nameplate_v2.mp4",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "STYLE-FRAME: big-number pop": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "Python/FFmpeg",
+    "how_to": "Invoke the big-number plate constructor with pop scale/opacity timing; use the checked ready style frame as reference.",
+    "sample": "/Users/alphabravo/Documents/BASE/05-READY/STYLE-FRAMES-2/04-bignumber-pop.png",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "STYLE-FRAME: date/era banner": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "Python/FFmpeg",
+    "how_to": "Build the date banner plate and pair it with the era image on absolute frames.",
+    "sample": "/Users/alphabravo/Documents/BASE/05-READY/STYLE-FRAMES-2/05-date-banner-styleC.png",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "STYLE-FRAME: timeline strip": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "Python/FFmpeg",
+    "how_to": "Build the timeline strip with staged dates/labels and animate its marker across absolute frames.",
+    "sample": "/Users/alphabravo/Documents/BASE/05-READY/STYLE-FRAMES-2/07-timeline-preset.png",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "STYLE-FRAME: document olive marker": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "Python/FFmpeg",
+    "how_to": "Composite the document plate, olive marker highlight and source label using the checked style frame.",
+    "sample": "/Users/alphabravo/Documents/BASE/05-READY/STYLE-FRAMES-2/03-document-olive-marker.png",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "STYLE-FRAME: rotor schematic callout": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "Python/Pillow/FFmpeg",
+    "how_to": "Build the schematic plate with leader lines, labels and rotor geometry from the checked preset.",
+    "sample": "/Users/alphabravo/Documents/BASE/05-READY/STYLE-FRAMES-2/09-infographic-rotor.png",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "STYLE-FRAME: warm leak + BW": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "Python/FFmpeg",
+    "how_to": "Apply the monochrome grade and warm orange leak stack from the checked preset.",
+    "sample": "/Users/alphabravo/Documents/BASE/05-READY/STYLE-FRAMES-2/01-warm-orange-leak-bw.png",
+    "matches_competitor_family": "LIGHT-GLOW"
+  },
+  "STYLE-FRAME: fog/smoke/dust stack": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "Python/FFmpeg",
+    "how_to": "Composite deterministic fog, smoke and dust layers using the checked layer counts.",
+    "sample": "/Users/alphabravo/Documents/BASE/05-READY/STYLE-FRAMES-2/02-fog-smoke-plus-dust.png",
+    "matches_competitor_family": "OTHER"
+  },
+  "Музыкальный pool с energy-разметкой": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/03-ASSETS/music/pool-ru-mystery-fr/pool-energy.json",
+    "tool": "Versioned local audio pool",
+    "how_to": "Select a track by energy segment from pool-energy.json, then build the bed with the crossfade/ducking engine.",
+    "sample": "/Users/alphabravo/Documents/BASE/03-ASSETS/music/pool-ru-mystery-fr/scott-buckley-undertow.mp3",
+    "matches_competitor_family": "OTHER"
+  },
+  "Production gates from doctrine": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/06-DOCTRINE/VIDEO-PRODUCTION-GATES-TEMPLATE.json",
+    "tool": "Machine-readable QA gates",
+    "how_to": "Instantiate the gate template for an episode and require each declared machine check before delivery.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Reusable niche production scaffold": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/_TEMPLATE/production/README.md",
+    "tool": "BASE niche template",
+    "how_to": "Copy _TEMPLATE into a new niche, fill NICHE/STYLE-PASSPORT, and place versioned constructors under production.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "3D: orca scale reveal": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/src/SceneSize.tsx",
+    "tool": "Remotion + Three.js",
+    "how_to": "Render SceneSize with measured anchors and absolute reveal frames.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/.scratch-z/out/z10-natur.mp4",
+    "matches_competitor_family": "SCALE-ZOOM"
+  },
+  "3D: Gibraltar route/map scene": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/src/SceneGibraltar.tsx",
+    "tool": "Remotion + Three.js",
+    "how_to": "Render SceneGibraltar using its scene spec and anchor set.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/.scratch-grafik/out/scene-gibraltar.mp4",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "3D: anatomy/material cross-section": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/src/SceneMaterials.tsx",
+    "tool": "Remotion + Three.js",
+    "how_to": "Render SceneMaterials with section reveal and labeled material layers.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/.scratch-grafik/out/scene-materials.mp4",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "3D: echolocation/wave scene": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/src/SceneEcho.tsx",
+    "tool": "Remotion + Three.js",
+    "how_to": "Render SceneEcho/SceneWave using the registered absolute anchors.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/.scratch-grafik/out/scene-echo.mp4",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "3D: groove/reasons explainers": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/src/SceneGroove.tsx",
+    "tool": "Remotion + Three.js",
+    "how_to": "Render SceneGroove or SceneReasons from the checked scene modules.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/.scratch-grafik/out/scene-groove.mp4",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Типографика: lower-third name/role": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-remotion-overlays/src/Graphics.tsx",
+    "tool": "Remotion",
+    "how_to": "Instantiate the lower-third component with name/role and absolute entrance/exit frames.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/nameplate_v1.mp4",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Типографика: highlight callout": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-remotion-overlays/src/Graphics.tsx",
+    "tool": "Remotion",
+    "how_to": "Instantiate the highlight/callout component and bind target coordinates and frame range.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/red_arrow_callout_v1.mp4",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Типографика: slam title": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-factories-germany/ZAVODY-WANKEL/work/build_v2.py",
+    "tool": "Python/FFmpeg",
+    "how_to": "Create the title plate and apply the impact scale/opacity curve on absolute frames.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/hard-cut.mp4",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Типографика: thumbnail 3-line": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/image-thumbnail-typography/4/work/youtube_thumbnail_typography.py",
+    "tool": "Python/Pillow",
+    "how_to": "Run youtube_thumbnail_typography.py with three title lines and subject/background inputs.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/text-typography.png",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Субтитры: karaoke word timing": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-narration-over-footage/subtitles.py",
+    "tool": "ASS/FFmpeg",
+    "how_to": "Generate word-timed ASS and burn it after graphics; preserve absolute word timings.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Субтитры Draw: karaoke + burn verification": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "Whisper/ASS/FFmpeg",
+    "how_to": "transcribe_words, build_karaoke_ass, burn subtitles, then verify sampled frames with has_burned_subs.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Субтитры: calm serif/amber ASS": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-us-history/ТЕСТ-3МИН/build/subs.ass",
+    "tool": "ASS",
+    "how_to": "Reuse the checked style block and regenerate dialogue timing against word timestamps.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Главы: semantic chapter cards": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "FFmpeg drawtext/ASS",
+    "how_to": "build_chapters, snap to cut boundaries and prepend _chapters_vf before subtitles.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Endcard: subscribe + cursor": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-remotion-shorts/fx.sh",
+    "tool": "FFmpeg",
+    "how_to": "Invoke the subscribe endcard constructor with cursor/click cue at the configured final frames.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/infographics/fake_subscribe_ui_v1.mp4",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "FastGen: image generation": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/photo-tools/fastgen_gen.py",
+    "tool": "FastGen",
+    "how_to": "python3 fastgen_gen.py --shots 03 --model nano-banana-pro --seed 4242 --raw-dir <dir> --suffix <tag>",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "FastGen: video generation": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/photo-tools/fastgen_gen.py",
+    "tool": "FastGen",
+    "how_to": "The checked script implements image generation; a callable video endpoint was not present, so video remains unverified.",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "NavyAI: gpt-image-2 generation": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/photo-tools/navy_gen.py",
+    "tool": "NavyAI gpt-image-2",
+    "how_to": "Run navy_gen.py with prompt/output arguments and the configured NavyAI credentials.",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "Epidemic: music/SFX search and download": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/ЗВУКИ-выбор/_скрипты/es.py",
+    "tool": "Epidemic API script",
+    "how_to": "Use search_sfx/search_music, then dl_sfx <id> <out.wav> or dl_music <id> <out.mp3> [stem].",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Музыка: seamless crossfade bed": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-narration-over-footage/build_music_bed.py",
+    "tool": "FFmpeg acrossfade",
+    "how_to": "Build repeated music segments with acrossfade, trim to narration duration and apply level/fades.",
+    "sample": "",
+    "matches_competitor_family": "CROSSFADE"
+  },
+  "Музыка: loudness-relative structured bed": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/structured_video_builder.py",
+    "tool": "FFmpeg loudnorm/acrossfade",
+    "how_to": "Measure voice LUFS, loop music with acrossfade, target voice-minus configured dB, then mux.",
+    "sample": "",
+    "matches_competitor_family": "CROSSFADE"
+  },
+  "Голос: warm master": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-narration-over-footage/master_voice.py",
+    "tool": "FFmpeg audio filters",
+    "how_to": "Run master_voice.py for the configured warm voice chain and retain narration timing.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Голос: dual-mono TTS": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/voice-tts-dualmono/alte_tts.py",
+    "tool": "TTS + FFmpeg",
+    "how_to": "Run alte_tts.py, validate duration and export dual-mono delivery.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Голос: paragraph-cached VoiceGen": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/pipeline/tts_voicegen.py",
+    "tool": "VoiceGen",
+    "how_to": "Generate paragraph chunks with cache keys, then concatenate while retaining the chunk map.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Тайминг: TTS chunks to word map": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/pipeline/words_from_tts_chunks.py",
+    "tool": "Python timing pipeline",
+    "how_to": "Convert cached TTS chunks into absolute word intervals and feed subtitle/timeline compilation.",
+    "sample": "",
+    "matches_competitor_family": "KEYFRAMES-MOTION"
+  },
+  "Пайплайн: narration over footage": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-narration-over-footage/сборка.py",
+    "tool": "Python + FFmpeg",
+    "how_to": "Provide narration, media and configuration; build playlist/filtergraph, composite overlays/subtitles and mux final audio.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Пайплайн: photofilm Tier-1": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-photofilm-tier1/build_photofilm.py",
+    "tool": "Python + FFmpeg",
+    "how_to": "Run build_photofilm.py with selected stills, narration and music; it applies Ken Burns, shot crossfades and outro fade.",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "Пайплайн: rich montage": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/factory/montage_rich.py",
+    "tool": "Python + FFmpeg",
+    "how_to": "Run montage_rich.py with the episode manifest and checked media pool.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Пайплайн: structured video builder": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/structured_video_builder.py",
+    "tool": "Python + FFmpeg",
+    "how_to": "Run structured_video_builder.py with TSV sources, voice, voice-end, music, duration and output.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Пайплайн: Draw semantic montage": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "Python/OpenCV/Whisper/FFmpeg",
+    "how_to": "Run montage_engine.py with pool/audio/output; it validates media, plans cuts, renders, adds transitions/chapters/subtitles and verifies them.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Пайплайн: Tonrohr deterministic engine": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/engine/pipeline.py",
+    "tool": "Python/Pillow/FFmpeg",
+    "how_to": "From the conveyor root run python3 -m production.tonrohr_first3.engine with the production config/manifest.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Пайплайн: construction library 17 templates": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/codex_work-kod-arhiv-2026-08-12.tar.gz",
+    "tool": "Versioned Konstrukcii compiler",
+    "how_to": "Extract .codex_work/konstrukcii and use production/infographic_template_library; preserve frozen versions and absolute global frames.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Пайплайн: art-history evidence graphics": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Run build_visual_assets.py from an episode evidence manifest to build source/provenance/timeline/comparison cards.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Пайплайн: art-history visual preview": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/pipeline/render_visual_preview.py",
+    "tool": "Python/FFmpeg",
+    "how_to": "Compile the visual plan, then run render_visual_preview.py using checked evidence assets.",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "Пайплайн: Remotion 3D scenes": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/src/RootScenes.tsx",
+    "tool": "Remotion + Three.js",
+    "how_to": "Register a scene composition in RootScenes and render by composition id with its measured anchors/spec.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/.scratch-grafik/out/scene-wave.mp4",
+    "matches_competitor_family": "OTHER"
+  },
+  "Медиа: Commons photo selection": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/media-photo-commons/build_selection.py",
+    "tool": "Python",
+    "how_to": "Run build_selection.py against the query/shot manifest, then use its ranked selection output.",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "Медиа: YouTube POT provider": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/media-yt-pot-provider/server/src/main.ts",
+    "tool": "TypeScript service",
+    "how_to": "Start the provider service from its package and request media through the registered endpoint.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Анализ референса: video/audio breakdown": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/analyze-reference/video_analysis.py",
+    "tool": "Python/OpenCV/FFmpeg",
+    "how_to": "Run video_analysis.py on a local reference to extract shot, motion, color and audio metrics.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "QA: retention/montage checks": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/qa/qa_retention.py",
+    "tool": "Python/FFprobe",
+    "how_to": "Run qa_retention.py on the final master and inspect the generated gate metrics.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "QA: deterministic reproduction check": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/engine/repro_check.py",
+    "tool": "Python hashing",
+    "how_to": "Run repro_check.py for two builds and compare declared artifacts/hashes.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "QA: visual cadence audit": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/production/tonrohr_first3/timeline/visual_cadence_audit.py",
+    "tool": "Python",
+    "how_to": "Run visual_cadence_audit.py against the semantic timeline and inspect interval violations.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Academy registry: motion/transitions knowledge": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/NEW-BASE-REVIEW/data/motion_transitions.json",
+    "tool": "Curated academy data",
+    "how_to": "Select a registered owner-approved motion/transition record and follow its source_path/preview_path; records without executable source stay partial.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Academy registry: layouts/graphics/3D knowledge": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/NEW-BASE-REVIEW/data/layouts_graphics_3d.json",
+    "tool": "Curated academy data",
+    "how_to": "Select a registered layout/graphics/3D record and follow its checked source_path; spec-only records stay partial.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Legacy Desktop/video-builder root": {
+    "status": "не умеем",
+    "tech_path": "/Users/alphabravo/.video-builder/last_error.json",
+    "tool": "Missing legacy source root",
+    "how_to": "The requested /Users/alphabravo/Desktop/video-builder source tree does not exist; use Draw structured_video_builder.py or OpenMontage instead.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Draw: photo static hold": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/batch_draw.py",
+    "tool": "OpenCV",
+    "how_to": "Run batch_draw.py with image inputs and --style still.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/photo-image.png",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "Draw: photo micro-dissolve": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/batch_draw.py",
+    "tool": "OpenCV",
+    "how_to": "Run batch_draw.py with --style still and a cuts file to apply the micro-dissolve.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/opacity-fade.mp4",
+    "matches_competitor_family": "OPACITY-FADE"
+  },
+  "Draw: Ken Burns zoom/pan": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/batch_draw.py",
+    "tool": "OpenCV",
+    "how_to": "Run batch_draw.py with --style kenburns and the selected image sequence.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/camera-motion.mp4",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Draw-on: object reveal": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/draw_on.py",
+    "tool": "OpenCV",
+    "how_to": "python3 draw_on.py INPUT.png -o OUT.mp4 --style object",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "Draw-on: outline-to-fill reveal": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/draw_on.py",
+    "tool": "OpenCV",
+    "how_to": "python3 draw_on.py INPUT.png -o OUT.mp4 --style outline_fill",
+    "sample": "",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Video speed-up without pitch shift": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/batch_draw.py",
+    "tool": "FFmpeg",
+    "how_to": "Call speedup_video(INPUT, factor); video PTS and audio tempo are changed coherently.",
+    "sample": "",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Whisper word timestamps": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/sync_align.py",
+    "tool": "faster-whisper",
+    "how_to": "Call run_whisper(audio) and retain absolute word timestamps.",
+    "sample": "",
+    "matches_competitor_family": "KEYFRAMES-MOTION"
+  },
+  "Speech-pause cut snapping": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/sync_align.py",
+    "tool": "FFmpeg/Python",
+    "how_to": "Call snap_cuts_to_pauses on planned cuts and detected narration pauses.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/hard-cut.mp4",
+    "matches_competitor_family": "HARD-CUT"
+  },
+  "Speech/visual sync verification": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/sync_align.py",
+    "tool": "Python",
+    "how_to": "Call verify_sync on the word map and visual cut map; fail on configured drift.",
+    "sample": "",
+    "matches_competitor_family": "KEYFRAMES-MOTION"
+  },
+  "Thumbnail subject+typography composite": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/thumbnail.py",
+    "tool": "Pillow",
+    "how_to": "Call save_composite with subject, background and typography fields.",
+    "sample": "/Users/alphabravo/Downloads/katalog-elementov/assets/ours/text-typography.png",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Draw UFO: deterministic particle canvas": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/ufo_scene_pipeline.py",
+    "tool": "Pillow",
+    "how_to": "Call _precompose_scene_canvas with a fixed seed and particle configuration.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Draw UFO: contain + black bars + warm grade": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/ufo_scene_pipeline.py",
+    "tool": "Pillow",
+    "how_to": "Call _precompose_scene_canvas with contain layout, black backplate and warm grade.",
+    "sample": "",
+    "matches_competitor_family": "SATURATION-COLOR"
+  },
+  "Philippines purple word-capsule karaoke": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/montage_engine.py",
+    "tool": "ASS/FFmpeg",
+    "how_to": "Select subtitle preset philippines_joint; build and burn _build_joint_karaoke_ass output.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Draw provider: FastGen gpt-image-2": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/providers.py",
+    "tool": "FastGen provider",
+    "how_to": "Instantiate FastGenProvider with API credentials; provider code exists, live call was not executed.",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "FastGen reference-bank generation": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/photo-tools/fastgen_refbank.py",
+    "tool": "FastGen",
+    "how_to": "Run fastgen_refbank.py with the reference manifest and credentials; live call was not executed.",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "Draw provider: Veo image generation": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/providers.py",
+    "tool": "VeoImageProvider",
+    "how_to": "Instantiate VeoImageProvider with API credentials; live call was not executed.",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "Draw provider: VoiceGen TTS": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/providers.py",
+    "tool": "VoiceGenProvider",
+    "how_to": "Instantiate VoiceGenProvider with API credentials; live call was not executed.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Semantic SFX selection + audio mix": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/niche_sounds.py",
+    "tool": "Claude + FFmpeg",
+    "how_to": "Call apply_sounds with semantic cues and credentials, then mix selected SFX at the absolute events.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Draw pipeline: photos → voice → assembly": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/pipeline.py",
+    "tool": "FastGen + VoiceGen + FFmpeg",
+    "how_to": "Run pipeline.py with project/script; external providers require configured credentials.",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "Draw pipeline: UFO auto video": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/ufo_auto_pipeline.py",
+    "tool": "FastGen + FFmpeg",
+    "how_to": "Run ufo_auto_pipeline.py in preview or final mode; generation providers require credentials.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Draw pipeline: ocean production": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/ocean_production_pipeline.py",
+    "tool": "BASE montage_rich",
+    "how_to": "Run prepare, preview, approve and final stages against an ocean episode manifest.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Draw adapter: art-history mystery": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Downloads/Draw-Studio-src/src/de_art_history_mystery/worker.py",
+    "tool": "BASE script-only pipeline",
+    "how_to": "Run worker.py with a job JSON that points to the BASE art-history pipeline.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "OpenMontage: CompareBars infographic": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=compare after installing the checked Remotion project dependencies.",
+    "sample": "",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "OpenMontage: QuoteKaraoke typography": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=quote and word timing.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "OpenMontage: gauge disc/ring/bar/picto": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion/SVG",
+    "how_to": "Render a beat with kind=gauge and select disc, ring, bar or pictogram mode.",
+    "sample": "",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "OpenMontage: trend chart": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion/SVG",
+    "how_to": "Render a beat with kind=trend and provide the value series.",
+    "sample": "",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "OpenMontage: pictogram infographic": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion/SVG",
+    "how_to": "Render a beat with kind=picto and provide icon/count data.",
+    "sample": "",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "OpenMontage: animated timeline": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=timeline and absolute dated events.",
+    "sample": "",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "OpenMontage: editorial plates": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=plates and timed panel content.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "OpenMontage: decade chart": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion/SVG",
+    "how_to": "Render a beat with kind=decade and decade/value data.",
+    "sample": "",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "OpenMontage: graphic wipe overlay": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=wipe at an absolute cut.",
+    "sample": "",
+    "matches_competitor_family": "POSITION-SLIDE"
+  },
+  "OpenMontage: news/document cards": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render beat kind=news or doc with source/content fields.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "OpenMontage: split-screen": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=split and two timed media sources.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "OpenMontage: crime card": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=crime and the card data fields.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "OpenMontage: side cards": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=sidecards and side-panel timing.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "OpenMontage: yellow marker quote": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion/SVG",
+    "how_to": "Render a beat with kind=marker_quote and quote timing.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "OpenMontage: chapter scene": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=chapter and absolute start/end frames.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "OpenMontage: SVG map + route + pins": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion + D3",
+    "how_to": "Render a beat with kind=map and provide path/pin coordinates.",
+    "sample": "",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "OpenMontage: animated panels": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=panels and panel entry/exit frames.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "OpenMontage: photo entries": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render kind=photo with enter=whip, slide, strips, zoomBlur or fade.",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "OpenMontage: stats/title overlays": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Use CountUp, LowerThird, CenterStat or PhotoStat components on absolute frames.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "OpenMontage: triplet cards": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=triplet and three card payloads.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "OpenMontage: video scene": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/GeoIntro.tsx",
+    "tool": "Remotion",
+    "how_to": "Render a beat with kind=video and its source/trim interval.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "OpenMontage: 20-ID transition catalog": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/TransCatalog.tsx",
+    "tool": "Remotion",
+    "how_to": "Install project dependencies and render TransCatalog to inspect/apply its 20 transition IDs.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "OpenMontage: RGB-split+jitter+flash glitch": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/IfWarCopy.tsx",
+    "tool": "Remotion",
+    "how_to": "Register IfWarCopy and render the glitch interval after installing project dependencies.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Art-history: context crop": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build the context-crop asset from evidence coordinates and source metadata.",
+    "sample": "",
+    "matches_competitor_family": "PHOTO-IMAGE"
+  },
+  "Art-history: provenance chain": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build the provenance-chain card from ordered ownership/source events.",
+    "sample": "",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "Art-history: institutional group card": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build the institution/group evidence card from the episode manifest.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Art-history: bibliographic source page": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build the bibliographic source page with citation fields and highlighted excerpt.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Art-history: four evidence layers": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build the four-layer evidence stack and status labels from the evidence manifest.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Art-history: coordinate schematic": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build the coordinate schematic with measured callouts and labels.",
+    "sample": "",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Art-history: institutional chronology": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build the institutional chronology from dated events.",
+    "sample": "",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "Art-history: evidence status labels": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build status labels for confirmed, disputed and missing evidence.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Art-history: negative-evidence architecture": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build the negative-evidence architecture schematic from declared absent/present evidence.",
+    "sample": "",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Art-history: print comparison": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build the side-by-side print comparison with synchronized crops.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Art-history: date comparison": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build the date comparison card from two dated claims/sources.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Art-history: legal chronology": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-art-history-mystery/production/episode-001/graphics/build_visual_assets.py",
+    "tool": "Python/Pillow",
+    "how_to": "Build the legal chronology from ordered legal events and citations.",
+    "sample": "",
+    "matches_competitor_family": "GRID-LINES"
+  },
+  "3D: prey scale reveal": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/src/ScenePrey.tsx",
+    "tool": "Remotion + Three.js",
+    "how_to": "Render ScenePrey using its registered scene spec and measured anchors.",
+    "sample": "",
+    "matches_competitor_family": "SCALE-ZOOM"
+  },
+  "3D: blubber cross-section": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/src/SceneBlubber.tsx",
+    "tool": "Remotion + Three.js",
+    "how_to": "Render SceneBlubber with staged cross-section layers.",
+    "sample": "",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "3D: jaw/skull explainer": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-orca/src/SceneJaw.tsx",
+    "tool": "Remotion + Three.js",
+    "how_to": "Render SceneJaw with the checked skull paths and reveal timing.",
+    "sample": "",
+    "matches_competitor_family": "GEOMETRY-SHAPE"
+  },
+  "Map pan + animated pins": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/maps.json",
+    "tool": "Ready map asset + manifest",
+    "how_to": "Use map_pan_pins.mp4 or reproduce its pan/pin timing from the manifest.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/maps/map_pan_pins.mp4",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Blurpad motion backgrounds": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/manifests/motion.json",
+    "tool": "Ready motion assets + manifest",
+    "how_to": "Select a blurpad sigma/darken/desaturation variant from the manifest and loop/trim it under contained media.",
+    "sample": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/motion/blurpad_sigma27_desat070.mp4",
+    "matches_competitor_family": "BLUR-EFFECT"
+  },
+  "Before/after red-wipe transition": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/NEW-BASE-REVIEW/data/motion_transitions.json",
+    "tool": "Academy registered recipe",
+    "how_to": "Follow the before/after red-wipe source/preview record; dedicated executable constructor was not independently verified.",
+    "sample": "",
+    "matches_competitor_family": "POSITION-SLIDE"
+  },
+  "Pop-in bounce insert": {
+    "status": "умеем 1:1",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/video-remotion-shorts/fx.sh",
+    "tool": "FFmpeg overlay",
+    "how_to": "Invoke fx_popin with base, overlay and output; align its spring-like scale curve to the event.",
+    "sample": "",
+    "matches_competitor_family": "SCALE-ZOOM"
+  },
+  "Avatar reverse loop": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/core/tricks/avatar-reverse-loop/TRICK.md",
+    "tool": "Versioned TRICK recipe",
+    "how_to": "Follow the donor path and reverse-loop recipe in TRICK.md; the final donor executable was not separately verified here.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "Caption strap + kicker": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/core/tricks/caption-strap-kicker/TRICK.md",
+    "tool": "Versioned TRICK recipe",
+    "how_to": "Follow the versioned caption strap/kicker recipe and bind absolute text frames.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Chyron factoid plate": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/core/tricks/chyron-factoid-plate/TRICK.md",
+    "tool": "Versioned TRICK recipe",
+    "how_to": "Follow the versioned chyron/factoid layout and timing recipe.",
+    "sample": "",
+    "matches_competitor_family": "TEXT-TYPOGRAPHY"
+  },
+  "Cutout portrait red-glow card": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/core/tricks/cutout-portrait-red-glow-card/TRICK.md",
+    "tool": "Versioned TRICK recipe",
+    "how_to": "Follow the cutout, red glow and card-composite recipe in TRICK.md.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  },
+  "Footage station-bug crop": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/core/tricks/footage-station-bug-crop/TRICK.md",
+    "tool": "Versioned TRICK recipe",
+    "how_to": "Follow the station-bug detection/crop recipe before footage scaling.",
+    "sample": "",
+    "matches_competitor_family": "CAMERA-MOTION"
+  },
+  "Motivated-only SFX placement": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/core/tricks/sfx-motivated-only/TRICK.md",
+    "tool": "Versioned TRICK recipe",
+    "how_to": "Place SFX only at declared visual/semantic events using the recipe constraints.",
+    "sample": "",
+    "matches_competitor_family": "OTHER"
+  },
+  "White-frame print on black": {
+    "status": "умеем частично",
+    "tech_path": "/Users/alphabravo/Documents/BASE/02-ENGINES/core/tricks/white-frame-print-on-black/TRICK.md",
+    "tool": "Versioned TRICK recipe",
+    "how_to": "Follow the white print/frame on black layout recipe and its absolute entry/exit timing.",
+    "sample": "",
+    "matches_competitor_family": "INSET-WINDOW"
+  }
+}

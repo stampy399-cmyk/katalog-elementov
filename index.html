@@ -582,11 +582,19 @@
     .family-stat-tier { font-weight: 700; letter-spacing: .025em; }
     .family-stat-tier.is-base { color: var(--accent); }
     .family-stat-tier.is-unique { color: #f59e0b; }
-    .comparison-page { display: grid; gap: 14px; }
+    .comparison-page { display: grid; gap: 18px; }
     .comparison-intro { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
     .comparison-intro h1 { margin: 0; font-size: 20px; letter-spacing: -.025em; }
     .comparison-intro p { max-width: 720px; margin: 5px 0 0; color: var(--muted); font-size: 12px; }
     .comparison-count { flex: 0 0 auto; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+    .ability-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .ability-stat { padding: 14px 16px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface); }
+    .ability-stat-value { display: block; font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.035em; line-height: 1; }
+    .ability-stat-label { display: block; margin-top: 7px; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .ability-stat.is-exact .ability-stat-value { color: var(--success); }
+    .ability-stat.is-partial .ability-stat-value { color: #f59e0b; }
+    .ability-stat.is-unavailable .ability-stat-value { color: var(--danger); }
+    .capability-family { display: grid; gap: 12px; }
     .comparison-card { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: 0 5px 16px rgba(0, 0, 0, .06); }
     .comparison-card-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--line); }
     .comparison-family { margin: 0; font-size: 14px; letter-spacing: .035em; }
@@ -605,12 +613,26 @@
     .competitor-card img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: #090a0c; cursor: zoom-in; }
     .competitor-card span { display: block; padding: 6px 8px; overflow: hidden; color: var(--muted); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
     .comparison-notes { margin: 0; padding: 0 16px 16px; color: var(--muted); font-size: 12px; }
+    .abilities-group { padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--surface) 78%, transparent); }
+    .abilities-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+    .abilities-heading h2 { margin: 0; font-size: 15px; letter-spacing: .025em; }
+    .abilities-heading span { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+    .abilities-grid { columns: 280px; column-gap: 12px; }
+    .ability-card { display: inline-block; width: 100%; min-width: 0; margin: 0 0 12px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); break-inside: avoid; vertical-align: top; }
+    .ability-card-header { display: flex; align-items: start; justify-content: space-between; gap: 10px; min-height: 65px; padding: 12px; }
+    .ability-name { margin: 0; font-size: 13px; line-height: 1.35; }
+    .ability-sample { display: grid; aspect-ratio: 16 / 9; place-items: center; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #090a0c; }
+    .ability-sample img, .ability-sample video { display: block; width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
+    .ability-passport { margin: 0; border-width: 0; border-radius: 0; background: transparent; }
+    .ability-passport summary { border-top: 1px solid var(--line); }
     .tech-passport { margin: 10px 0 0; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); }
     .tech-passport summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 40px; padding: 0 11px; color: var(--text); cursor: pointer; font-weight: 700; list-style: none; }
     .tech-passport summary::-webkit-details-marker { display: none; }
     .tech-passport summary::after { content: "+"; color: var(--muted); font-size: 18px; }
     .tech-passport[open] summary::after { content: "−"; }
-    .tech-status { padding: 3px 7px; border-radius: 99px; background: color-mix(in srgb, var(--success) 18%, transparent); color: var(--success); font-size: 10px; letter-spacing: .04em; }
+    .tech-status { flex: 0 0 auto; padding: 3px 7px; border-radius: 99px; font-size: 10px; font-weight: 750; letter-spacing: .04em; white-space: nowrap; }
+    .tech-status.is-exact { background: color-mix(in srgb, var(--success) 18%, transparent); color: var(--success); }
+    .tech-status.is-partial { background: color-mix(in srgb, #f59e0b 18%, transparent); color: #f59e0b; }
     .tech-status.is-unavailable { background: color-mix(in srgb, var(--danger) 18%, transparent); color: var(--danger); }
     .tech-passport-body { display: grid; gap: 8px; padding: 0 11px 12px; border-top: 1px solid var(--line); }
     .tech-field { display: grid; gap: 2px; padding-top: 8px; }
@@ -649,7 +671,7 @@
     .modal-button-danger { border-color: color-mix(in srgb, var(--danger) 70%, var(--line)); background: var(--danger); color: #fff; }
     .modal-button:disabled { cursor: not-allowed; opacity: .45; }
     .modal-help { margin-top: 9px !important; font-size: 11px; }
-    @media (max-width: 680px) { .stat-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 680px) { .stat-summary, .ability-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 900px) { .comparison-columns { grid-template-columns: 1fr; } }
     @media (max-width: 760px) { .player-dock { grid-template-columns: 1fr; padding: 20px 18px 0; } .player-copy { padding: 0 2px; } .catalog-toolbar { padding: 14px 12px 0; } .primary-nav { gap: 8px; padding: 9px 10px; } .primary-nav-button { padding: 0 8px; font-size: 20px; } .lightbox { padding: 58px 12px 38px; } .lightbox-pair { grid-template-columns: 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 10px; } .lightbox-label { font-size: 12px; } }
     @media (max-width: 620px) { .catalog-toolbar { align-items: stretch; flex-direction: column; } .catalog-controls { align-items: stretch; } .tier-filter { display: grid; grid-template-columns: repeat(3, 1fr); } .family-filter-select { flex: 1; width: auto; } .comparison-intro { align-items: start; flex-direction: column; } }
@@ -741,7 +763,7 @@
       const TYPING_QUIET_PERIOD = 1200;
       const DELETE_CONFIRMATION = 'УДАЛИТЬ';
       const PUBLISHED_DATA_URL = 'data.json';
-      const OURS_TECH_URL = 'ours_tech.json';
+      const OURS_TECH_URL = 'ours_tech_full.json';
       const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/stampy399-cmyk/katalog-elementov/main/';
       const PRESENCE_CLIENT_KEY = 'katalog-elementov.presence-client-id';
       const PRESENCE_LOCAL_KEY = 'katalog-elementov.presence-peers';
@@ -2015,22 +2037,81 @@
       }
 
       function techFieldMarkup(label, value, code = false) {
-        const text = asText(value).trim() || 'TODO: инвентарь';
+        const text = asText(value).trim() || '—';
         const todo = text.startsWith('TODO:') ? ' is-todo' : '';
         const content = code ? `<code>${escapeHtml(text)}</code>` : escapeHtml(text);
         return `<div class="tech-field${todo}"><dt>${escapeHtml(label)}</dt><dd>${content}</dd></div>`;
       }
 
-      function techPassportMarkup(family) {
-        const record = state.oursTech?.[family] || {};
-        const available = record.status === 'умеем';
-        const status = available ? 'УМЕЕМ' : record.status === 'не умеем' ? 'НЕ УМЕЕМ' : 'TODO: СТАТУС';
-        return `<details class="tech-passport"><summary><span>Как воспроизвести</span><span class="tech-status${available ? '' : ' is-unavailable'}">${status}</span></summary><dl class="tech-passport-body">
+      function techStatusMeta(status) {
+        if (status === 'умеем 1:1') return { label: 'УМЕЕМ 1:1', className: 'is-exact' };
+        if (status === 'умеем частично') return { label: 'УМЕЕМ ЧАСТИЧНО', className: 'is-partial' };
+        return { label: 'НЕ УМЕЕМ', className: 'is-unavailable' };
+      }
+
+      function techStatusMarkup(status) {
+        const meta = techStatusMeta(status);
+        return `<span class="tech-status ${meta.className}">${meta.label}</span>`;
+      }
+
+      function techPassportRecordMarkup(record, label = 'Как воспроизвести', showStatus = true, extraClass = '') {
+        return `<details class="tech-passport${extraClass ? ` ${extraClass}` : ''}"><summary><span>${escapeHtml(label)}</span>${showStatus ? techStatusMarkup(record.status) : ''}</summary><dl class="tech-passport-body">
           ${techFieldMarkup('tech_path', record.tech_path, true)}
           ${techFieldMarkup('tool', record.tool)}
           ${techFieldMarkup('how_to', record.how_to, true)}
           ${techFieldMarkup('sample', record.sample, true)}
         </dl></details>`;
+      }
+
+      function techPassportMarkup(family) {
+        const record = state.oursTech?.[family] || {};
+        return techPassportRecordMarkup(record);
+      }
+
+      function oursTechEntries() {
+        return Object.entries(state.oursTech || {}).map(([name, record]) => ({ name, ...record }));
+      }
+
+      function repoSamplePath(sample) {
+        const value = asText(sample).trim().replaceAll('\\', '/');
+        if (value.startsWith('assets/')) return value;
+        const marker = '/katalog-elementov/assets/';
+        const index = value.indexOf(marker);
+        return index === -1 ? '' : `assets/${value.slice(index + marker.length)}`;
+      }
+
+      function abilitySampleMarkup(entry) {
+        const source = repoSamplePath(entry.sample);
+        const label = `Образец умения ${entry.name}`;
+        if (/\.(?:png|jpe?g|gif|webp|avif)(?:[?#]|$)/i.test(source)) {
+          return `<div class="ability-sample"><img src="${escapeAttribute(source)}" alt="${escapeAttribute(label)}" data-lightbox-media data-lightbox-type="image" data-lightbox-label="${escapeAttribute(label)}" loading="lazy"></div>`;
+        }
+        if (/\.(?:mp4|webm|mov)(?:[?#]|$)/i.test(source)) {
+          return `<div class="ability-sample"><video src="${escapeAttribute(source)}" controls preload="metadata" data-lightbox-media data-lightbox-type="video" data-lightbox-label="${escapeAttribute(label)}" aria-label="${escapeAttribute(label)}"></video></div>`;
+        }
+        return '';
+      }
+
+      function abilityCardMarkup(entry) {
+        return `<article class="ability-card" data-ability-name="${escapeAttribute(entry.name)}" data-ability-status="${escapeAttribute(entry.status)}"><header class="ability-card-header"><h3 class="ability-name">${escapeHtml(entry.name)}</h3>${techStatusMarkup(entry.status)}</header>${abilitySampleMarkup(entry)}${techPassportRecordMarkup(entry, 'Техпаспорт', false, 'ability-passport')}</article>`;
+      }
+
+      function abilityMatches(entry, query) {
+        if (!query) return true;
+        return [entry.name, entry.status, entry.matches_competitor_family, entry.tech_path, entry.tool, entry.how_to, entry.sample]
+          .map(asText).join(' ').toLocaleLowerCase().includes(query);
+      }
+
+      function abilityStatsMarkup(entries) {
+        const exact = entries.filter((entry) => entry.status === 'умеем 1:1').length;
+        const partial = entries.filter((entry) => entry.status === 'умеем частично').length;
+        const unavailable = entries.filter((entry) => entry.status === 'не умеем').length;
+        return `<section class="ability-stats" aria-label="Статистика умений">
+          <div class="ability-stat"><strong class="ability-stat-value" data-ability-stat="total">${entries.length}</strong><span class="ability-stat-label">Всего умений</span></div>
+          <div class="ability-stat is-exact"><strong class="ability-stat-value" data-ability-stat="exact">${exact}</strong><span class="ability-stat-label">Умеем 1:1</span></div>
+          <div class="ability-stat is-partial"><strong class="ability-stat-value" data-ability-stat="partial">${partial}</strong><span class="ability-stat-label">Частично</span></div>
+          <div class="ability-stat is-unavailable"><strong class="ability-stat-value" data-ability-stat="unavailable">${unavailable}</strong><span class="ability-stat-label">Не умеем</span></div>
+        </section>`;
       }
 
       function comparisonMediaMarkup(entry) {
@@ -2134,7 +2215,7 @@
       async function loadOursTech() {
         try {
           const response = await fetch(OURS_TECH_URL, { headers: { Accept: 'application/json' }, cache: 'no-store' });
-          if (!response.ok) throw new Error(`ours_tech.json GET: ${response.status}`);
+          if (!response.ok) throw new Error(`ours_tech_full.json GET: ${response.status}`);
           const data = await response.json();
           state.oursTech = data && typeof data === 'object' && !Array.isArray(data) ? data : {};
         } catch (error) {
@@ -2145,14 +2226,22 @@
       function renderComparison() {
         dom.playerDock.hidden = true;
         const source = Array.isArray(globalThis.SRAVNENIE?.families) ? globalThis.SRAVNENIE.families : [];
+        const abilities = oursTechEntries();
         const query = state.search.trim().toLocaleLowerCase();
-        const shown = source.filter((entry) => {
+        const families = source.filter((entry) => {
           if (state.familyFilter !== 'all' && entry.family !== state.familyFilter) return false;
           if (!query) return true;
-          return [entry.family, entry.level, entry.notes].map(asText).join(' ').toLocaleLowerCase().includes(query);
+          const comparisonMatches = [entry.family, entry.level, entry.notes].map(asText).join(' ').toLocaleLowerCase().includes(query);
+          return comparisonMatches || abilities.some((ability) => ability.matches_competitor_family === entry.family && abilityMatches(ability, query));
         });
-        const cards = shown.map(comparisonCard).join('');
-        dom.workspaceInner.innerHTML = `<section class="comparison-page"><header class="comparison-intro"><div><h1>Сравнение: мы vs конкурент</h1><p>18 семейств: слева наш воспроизводимый образец, справа репрезентативные карточки каталога конкурента.</p></div><span class="comparison-count">${shown.length}/${source.length} семейств</span></header>${cards || '<div class="family-empty">По выбранному фильтру сравнений нет</div>'}</section>`;
+        let shownAbilities = 0;
+        const groups = families.map((entry) => {
+          const matching = abilities.filter((ability) => ability.matches_competitor_family === entry.family && abilityMatches(ability, query));
+          shownAbilities += matching.length;
+          const abilitiesMarkup = matching.length ? `<section class="abilities-group" data-ability-family="${escapeAttribute(entry.family)}"><header class="abilities-heading"><h2>Умения · ${escapeHtml(entry.family)}</h2><span>${matching.length} умений</span></header><div class="abilities-grid">${matching.map(abilityCardMarkup).join('')}</div></section>` : '';
+          return `<section class="capability-family">${comparisonCard(entry)}${abilitiesMarkup}</section>`;
+        }).join('');
+        dom.workspaceInner.innerHTML = `<section class="comparison-page"><header class="comparison-intro"><div><h1>Сравнение и наши умения</h1><p>Все ${abilities.length} умений сгруппированы по 18 семействам конкурента; сравнение образцов и референсов сохранено.</p></div><span class="comparison-count">${shownAbilities}/${abilities.length} умений</span></header>${abilityStatsMarkup(abilities)}${groups || '<div class="family-empty">По выбранному фильтру умений нет</div>'}</section>`;
       }
 
       function renderWorkspace() {

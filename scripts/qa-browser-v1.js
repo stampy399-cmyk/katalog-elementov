@@ -198,14 +198,34 @@ async function validateCatalog(cdp, page, label) {
 
   await evaluate(cdp, page.sessionId, `document.querySelector('[data-view="comparison"]').click()`);
   await waitFor(cdp, page.sessionId, `document.querySelectorAll('.comparison-card').length === 18`);
+  await waitFor(cdp, page.sessionId, `document.querySelectorAll('.ability-card').length === 216`);
   await waitFor(cdp, page.sessionId, `[...document.images].filter(image=>{const box=image.getBoundingClientRect();return box.bottom>=0&&box.top<=innerHeight}).every(image=>image.complete)`, 45000);
-  const comparison = await evaluate(cdp, page.sessionId, `({cards:document.querySelectorAll('.comparison-card').length,videos:document.querySelectorAll('.comparison-media video').length,refs:document.querySelectorAll('.competitor-card').length,refMinWidth:Math.min(...[...document.querySelectorAll('.competitor-card')].map(card=>card.getBoundingClientRect().width)),tech:document.querySelectorAll('.tech-passport').length,todo:document.querySelectorAll('.tech-field.is-todo').length,media:document.querySelectorAll('[data-lightbox-media]').length,pairs:document.querySelectorAll('[data-lightbox-pair]').length,hash:location.hash,navActive:document.querySelector('#viewSwitch [data-view="comparison"]')?.classList.contains('is-active')})`);
+  const comparison = await evaluate(cdp, page.sessionId, `({cards:document.querySelectorAll('.comparison-card').length,videos:document.querySelectorAll('.comparison-media video').length,refs:document.querySelectorAll('.competitor-card').length,refMinWidth:Math.min(...[...document.querySelectorAll('.competitor-card')].map(card=>card.getBoundingClientRect().width)),tech:document.querySelectorAll('.tech-passport').length,todo:document.querySelectorAll('.tech-field.is-todo').length,abilities:document.querySelectorAll('.ability-card').length,groups:document.querySelectorAll('.abilities-group').length,previews:document.querySelectorAll('.ability-sample').length,exact:document.querySelectorAll('.ability-card .tech-status.is-exact').length,partial:document.querySelectorAll('.ability-card .tech-status.is-partial').length,unavailable:document.querySelectorAll('.ability-card .tech-status.is-unavailable').length,stats:[...document.querySelectorAll('[data-ability-stat]')].map(node=>Number(node.textContent)),media:document.querySelectorAll('[data-lightbox-media]').length,pairs:document.querySelectorAll('[data-lightbox-pair]').length,hash:location.hash,navActive:document.querySelector('#viewSwitch [data-view="comparison"]')?.classList.contains('is-active')})`);
   check(comparison.cards === 18 && comparison.videos === 13 && comparison.refs === 52, `${label}: comparison counters mismatch`);
   check(comparison.refMinWidth >= 300, `${label}: competitor reference width ${comparison.refMinWidth}px, expected >=300px`);
-  check(comparison.tech === 18 && comparison.todo > 0, `${label}: tech passports or TODO fields missing`);
-  check(comparison.media === 69 && comparison.pairs === 17, `${label}: lightbox media/pair controls mismatch`);
+  check(comparison.abilities === 216 && comparison.groups === 18 && comparison.tech === 234, `${label}: ability/group/passport counters mismatch`);
+  check(comparison.exact === 154 && comparison.partial === 60 && comparison.unavailable === 2, `${label}: ability status counters mismatch`);
+  check(comparison.stats.join('|') === '216|154|60|2', `${label}: ability statistics mismatch`);
+  check(comparison.previews === 32 && comparison.todo === 0, `${label}: ability previews or TODO fields mismatch`);
+  check(comparison.media === 101 && comparison.pairs === 17, `${label}: lightbox media/pair controls mismatch`);
   check(comparison.hash === '#comparison', `${label}: comparison hash mismatch`);
   check(comparison.navActive, `${label}: comparison navigation active state mismatch`);
+
+  await evaluate(cdp, page.sessionId, `document.querySelector('.ability-card .tech-passport summary').click()`);
+  const passport = await evaluate(cdp, page.sessionId, `(()=>{const details=document.querySelector('.ability-card .tech-passport');return {open:details?.open,fields:details?.querySelectorAll('.tech-field').length,text:details?.textContent}})()`);
+  check(passport.open && passport.fields === 4 && !passport.text.includes('TODO:'), `${label}: ability tech passport did not open cleanly`);
+  if (label === 'HTTP') {
+    await evaluate(cdp, page.sessionId, `document.querySelector('.ability-card').scrollIntoView({block:'center'})`);
+    await delay(250);
+    const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }, page.sessionId);
+    fs.writeFileSync('/tmp/katalog-abilities-qa.png', Buffer.from(screenshot.data, 'base64'));
+  }
+
+  await evaluate(cdp, page.sessionId, `document.querySelector('.ability-sample [data-lightbox-media]').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open .lightbox-media')`);
+  check(await evaluate(cdp, page.sessionId, `Boolean(document.querySelector('#lightbox.is-open .lightbox-media'))`), `${label}: ability sample lightbox did not open`);
+  await evaluate(cdp, page.sessionId, `document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}))`);
+  await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
 
   await evaluate(cdp, page.sessionId, `document.querySelector('.competitor-card img').click()`);
   await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open .lightbox-media')`);
@@ -244,6 +264,7 @@ async function validateCatalog(cdp, page, label) {
   await evaluate(cdp, page.sessionId, `(()=>{const select=document.getElementById('familyFilter');select.value='KEYFRAMES-MOTION';select.dispatchEvent(new Event('change',{bubbles:true}))})()`);
   await waitFor(cdp, page.sessionId, `document.querySelectorAll('.comparison-card').length === 1`);
   check(await evaluate(cdp, page.sessionId, `document.querySelector('.comparison-family')?.textContent === 'KEYFRAMES-MOTION'`), `${label}: comparison family filter mismatch`);
+  check(await evaluate(cdp, page.sessionId, `document.querySelectorAll('.ability-card').length === 4`), `${label}: comparison family ability filter mismatch`);
 
   await evaluate(cdp, page.sessionId, `(()=>{const select=document.getElementById('familyFilter');select.value='all';select.dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('[data-view="catalog"]').click()})()`);
   await waitFor(cdp, page.sessionId, `document.querySelectorAll('.element-card').length > 0 && !document.querySelector('.comparison-page')`);
