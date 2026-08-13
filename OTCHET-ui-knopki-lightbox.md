@@ -139,3 +139,64 @@ QA-кадры:
 ## Что не вышло
 
 Нет незакрытых функциональных блокеров. Все требуемые UI-сценарии опубликованы и проверены на живом сайте.
+
+---
+
+# Продолжение: полный инвентарь «МЫ УМЕЕМ»
+
+Дата: 2026-08-13
+
+## Результат
+
+- Единственный источник техпаспортов — `ours_tech_full.json`; старый `ours_tech.json` удалён.
+- Загружены все `216` умений и сгруппированы по `18` значениям `matches_competitor_family`.
+- Статусы: `154` «умеем 1:1», `60` «умеем частично», `2` «не умеем».
+- На вкладке добавлена верхняя статистика `216 / 154 / 60 / 2` и отдельные карточки всех умений.
+- Каждая карточка содержит название, цветной статус и раскрывающийся техпаспорт: `tech_path`, `tool`, `how_to`, `sample`.
+- `32` sample-пути внутри `assets/` показаны как медиа-превью с общим лайтбоксом; `65` внешних путей оставлены текстом, `119` пустых значений показаны как `—`. Файлы в репозиторий не копировались.
+- Существующие `18` сравнений и `17` side-by-side кнопок сохранены.
+- Фильтр семейств и текстовый поиск учитывают новые карточки и поля техпаспортов.
+- `data.json` не менялся: SHA-256 `d25a276eb7e0f14cae9a99c631f48b52227b43adc247a12dd0699feb59a5bcba`.
+- SHA-256 локального и опубликованного `ours_tech_full.json`: `16f682499e9399d61e29116de765c6cc8e9b9c2bd2fae7479e8640176c20cbe7`.
+
+Изменённые файлы:
+
+- `/Users/alphabravo/Downloads/katalog-elementov/index.html`
+- `/Users/alphabravo/Downloads/katalog-elementov/ours_tech_full.json`
+- `/Users/alphabravo/Downloads/katalog-elementov/ours_tech.json` — удалён
+- `/Users/alphabravo/Downloads/katalog-elementov/scripts/qa-site-v1.js`
+- `/Users/alphabravo/Downloads/katalog-elementov/scripts/qa-browser-v1.js`
+- `/Users/alphabravo/Downloads/katalog-elementov/OTCHET-ui-knopki-lightbox.md`
+
+## QA
+
+Статический Node QA:
+
+```text
+node scripts/qa-site-v1.js
+PASS 48666 assertions; projects=9; elements=2852; base=2780; unique=72; families=18; imported=624
+```
+
+Проверены схема всех `216` записей, точные счётчики статусов, покрытие `18` семейств, существование `32` локальных sample-файлов, `216` карточек, `234` техпаспорта, `101` lightbox-медиа, поиск и фильтр. TODO-заглушек нет.
+
+Headless Google Chrome на локальном HTTP, `file://` и живом GitHub Pages:
+
+```text
+node scripts/qa-browser-v1.js 'https://stampy399-cmyk.github.io/katalog-elementov/index.html?ui=3d2eb97'
+PASS 60 browser assertions; HTTP console=0; file console=0; refresh=PASS
+```
+
+Проверены обе вкладки, статистика, раскрытие нового техпаспорта, лайтбокс нового sample-превью, закрытие по `Esc`, существующие image/video lightbox, side-by-side и листание референсов, фильтр, IndexedDB и server merge.
+
+## Публикация и live-проверка
+
+- Коммит реализации: `3d2eb97d0571bf59d9493811ebc4ec449133daf5`.
+- Push: `4e3d909..3d2eb97  main -> main`.
+- GitHub Pages Actions run `31685186136`: `completed/success`.
+- `curl` живого `index.html` нашёл `ours_tech_full.json`, `data-ability-stat="total"` и `ability-card`.
+- `curl` живого JSON подтвердил `216 / 154 / 60 / 2`, `18` семейств и точное совпадение SHA-256 с локальным файлом.
+- Живой headless Chrome: `60/60`, `HTTP console=0`.
+
+## Что не вышло
+
+Нет незакрытых блокеров.
