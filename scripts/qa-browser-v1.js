@@ -197,7 +197,7 @@ async function validateCatalog(cdp, page, label) {
   check(summary.selfTest.failures.length === 0, `${label}: self-test failures: ${summary.selfTest.failures.join(', ')}`);
 
   await evaluate(cdp, page.sessionId, `document.querySelector('[data-view="comparison"]').click()`);
-  await waitFor(cdp, page.sessionId, `document.querySelectorAll('.ability-family-summary').length === 18`);
+  await waitFor(cdp, page.sessionId, `document.querySelectorAll('.ability-family-summary').length === 18 && document.querySelector('[data-ability-stat="total"]')?.textContent === '216' && document.querySelector('.ability-family-count')?.textContent.includes('3')`);
   const collapsed = await evaluate(cdp, page.sessionId, `(()=>{const rows=[...document.querySelectorAll('.capability-family')];const first=rows[0]?.querySelector('.ability-family-summary');return {rows:rows.length,summaries:document.querySelectorAll('.ability-family-summary').length,open:document.querySelectorAll('.capability-family.is-open').length,cards:document.querySelectorAll('.comparison-card').length,abilities:document.querySelectorAll('.ability-card').length,media:document.querySelectorAll('[data-lightbox-media]').length,stats:[...document.querySelectorAll('[data-ability-stat]')].map(node=>Number(node.textContent)),name:first?.querySelector('.ability-family-name')?.textContent.trim(),counts:[...first.querySelectorAll('.ability-family-count')].map(node=>node.textContent.trim()),percent:first?.querySelector('.ability-family-percent')?.textContent.trim(),expanded:first?.getAttribute('aria-expanded'),hash:location.hash,navActive:document.querySelector('#viewSwitch [data-view="comparison"]')?.classList.contains('is-active')}})()`);
   check(collapsed.rows === 18 && collapsed.summaries === 18 && collapsed.open === 0, `${label}: default family rows are not 18 collapsed summaries`);
   check(collapsed.cards === 0 && collapsed.abilities === 0 && collapsed.media === 0, `${label}: collapsed view eagerly rendered cards or media`);
@@ -264,6 +264,29 @@ async function validateCatalog(cdp, page, label) {
     const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }, page.sessionId);
     fs.writeFileSync('/tmp/katalog-lightbox-pair-qa.png', Buffer.from(screenshot.data, 'base64'));
   }
+  await evaluate(cdp, page.sessionId, `document.getElementById('lightbox').click()`);
+  await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
+
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-ability-family-toggle="HARD-CUT"]').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelector('[data-comparison-family="HARD-CUT"] .competitor-card video')`);
+  const videoComparison = await evaluate(cdp, page.sessionId, `(()=>{const card=document.querySelector('[data-comparison-family="HARD-CUT"]');const clips=[...card.querySelectorAll('.competitor-card video')];return {clips:clips.length,images:card.querySelectorAll('.competitor-card img').length,muted:clips.every(video=>video.muted),loop:clips.every(video=>video.loop),captions:[...card.querySelectorAll('.competitor-card span')].map(node=>node.textContent.trim())}})()`);
+  check(videoComparison.clips === 3 && videoComparison.images === 0, `${label}: HARD-CUT competitor media are not 3 videos`);
+  check(videoComparison.muted && videoComparison.loop, `${label}: competitor videos are not muted and looping`);
+  check(videoComparison.captions.length === 3 && videoComparison.captions.every(Boolean), `${label}: competitor clip captions missing`);
+
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-comparison-family="HARD-CUT"] .competitor-card video').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open video.lightbox-media')?.readyState >= 2`, 45000);
+  check(await evaluate(cdp, page.sessionId, `(()=>{const video=document.querySelector('#lightbox.is-open video');return video.muted&&video.loop&&video.autoplay&&!video.paused})()`), `${label}: competitor clip did not play in lightbox`);
+  await evaluate(cdp, page.sessionId, `document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}))`);
+  await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
+
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-comparison-family="HARD-CUT"] [data-lightbox-pair]').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelectorAll('#lightbox.is-open .lightbox-pair video').length === 2 && [...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')].every(video=>video.readyState>=2)`, 45000);
+  const videoPair = await evaluate(cdp, page.sessionId, `(()=>{const videos=[...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')];return {count:videos.length,playing:videos.every(video=>video.muted&&video.loop&&video.autoplay&&!video.paused),counter:document.getElementById('lightboxCounter').textContent,competitor:videos[1]?.src}})()`);
+  check(videoPair.count === 2 && videoPair.playing && videoPair.counter === '1 / 3', `${label}: video-vs-video lightbox did not play both clips`);
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-lightbox-next]').click()`);
+  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '2 / 3' && document.querySelectorAll('#lightbox.is-open .lightbox-pair video').length === 2`);
+  check(await evaluate(cdp, page.sessionId, `document.querySelectorAll('#lightbox.is-open .lightbox-pair video')[1]?.src !== ${JSON.stringify(videoPair.competitor)}`), `${label}: competitor video arrow did not change clip`);
   await evaluate(cdp, page.sessionId, `document.getElementById('lightbox').click()`);
   await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
 

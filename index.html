@@ -624,7 +624,7 @@
     .comparison-pair-button:hover, .comparison-pair-button:focus-visible { background: var(--accent); color: #fff; }
     .competitor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 12px; }
     .competitor-card { min-width: 0; margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); }
-    .competitor-card img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: #090a0c; cursor: zoom-in; }
+    .competitor-card img, .competitor-card video { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: #090a0c; cursor: zoom-in; }
     .competitor-card span { display: block; padding: 6px 8px; overflow: hidden; color: var(--muted); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
     .comparison-notes { margin: 0; padding: 0 16px 16px; color: var(--muted); font-size: 12px; }
     .abilities-group { padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--surface) 78%, transparent); }
@@ -2152,12 +2152,29 @@
         return `<img src="${media}" alt="${escapeAttribute(label)}" data-lightbox-media data-lightbox-type="image" data-lightbox-label="${escapeAttribute(label)}" loading="lazy">`;
       }
 
-      function comparisonCard(entry) {
+      function competitorMediaItems(entry) {
+        const clips = Array.isArray(entry.competitor_clips) ? entry.competitor_clips.filter((clip) => clip?.media).slice(0, 3) : [];
+        if (clips.length) return clips.map((clip, index) => ({
+          media: clip.media,
+          type: 'video',
+          label: clip.variant || `Клип ${index + 1}`
+        }));
         const references = Array.isArray(entry.competitor_refs) ? entry.competitor_refs.filter(Boolean).slice(0, 3) : [];
-        const competitors = references.length
-          ? references.map((source, index) => `<figure class="competitor-card"><img src="${escapeAttribute(source)}" alt="Референс конкурента ${escapeAttribute(entry.family)} ${index + 1}" data-lightbox-media data-lightbox-type="image" data-lightbox-label="Референс конкурента ${escapeAttribute(entry.family)} ${index + 1}" loading="lazy"><span>Референс ${index + 1}</span></figure>`).join('')
+        return references.map((media, index) => ({ media, type: 'image', label: `Референс ${index + 1}` }));
+      }
+
+      function comparisonCard(entry) {
+        const competitorsMedia = competitorMediaItems(entry);
+        const competitors = competitorsMedia.length
+          ? competitorsMedia.map((item, index) => {
+            const label = `Конкурент ${entry.family} ${index + 1}: ${item.label}`;
+            const media = item.type === 'video'
+              ? `<video controls muted loop playsinline preload="none" data-comparison-video="${escapeAttribute(item.media)}" data-lightbox-media data-lightbox-type="video" data-lightbox-label="${escapeAttribute(label)}" aria-label="${escapeAttribute(label)}"></video>`
+              : `<img src="${escapeAttribute(item.media)}" alt="${escapeAttribute(label)}" data-lightbox-media data-lightbox-type="image" data-lightbox-label="${escapeAttribute(label)}" loading="lazy">`;
+            return `<figure class="competitor-card">${media}<span>${escapeHtml(item.label)}</span></figure>`;
+          }).join('')
           : '<div class="comparison-media-placeholder">Референсов нет</div>';
-        const pairButton = entry.our_media && references.length
+        const pairButton = entry.our_media && competitorsMedia.length
           ? `<button class="comparison-pair-button" type="button" data-lightbox-pair="${escapeAttribute(entry.family)}">Сравнить бок о бок</button>`
           : '';
         return `<article class="comparison-card" data-comparison-family="${escapeAttribute(entry.family)}">
@@ -2172,7 +2189,7 @@
         const title = escapeAttribute(label);
         if (type === 'video') {
           const posterAttribute = poster ? ` poster="${escapeAttribute(poster)}"` : '';
-          return `<video class="lightbox-media" src="${src}"${posterAttribute} controls autoplay aria-label="${title}"></video>`;
+          return `<video class="lightbox-media" src="${src}"${posterAttribute} controls autoplay muted loop playsinline aria-label="${title}"></video>`;
         }
         return `<img class="lightbox-media" src="${src}" alt="${title}">`;
       }
@@ -2182,11 +2199,12 @@
         if (!current) return;
         const pair = current.mode === 'pair';
         if (pair) {
-          const references = current.entry.competitor_refs.filter(Boolean).slice(0, 3);
-          current.index = (current.index + references.length) % references.length;
+          const competitors = competitorMediaItems(current.entry);
+          current.index = (current.index + competitors.length) % competitors.length;
+          const competitor = competitors[current.index];
           const ourType = /\.mp4(?:[?#]|$)/i.test(current.entry.our_media) ? 'video' : 'image';
-          dom.lightboxContent.innerHTML = `<div class="lightbox-pair"><section class="lightbox-pane"><div class="lightbox-label">Наш образец · ${escapeHtml(current.entry.family)}</div><div class="lightbox-pane-media" data-lightbox-backdrop>${lightboxMediaMarkup(current.entry.our_media, ourType, `Наш образец ${current.entry.family}`, current.entry.our_poster)}</div></section><section class="lightbox-pane"><div class="lightbox-label">Референс конкурента ${current.index + 1}</div><div class="lightbox-pane-media" data-lightbox-backdrop>${lightboxMediaMarkup(references[current.index], 'image', `Референс конкурента ${current.entry.family} ${current.index + 1}`)}</div></section></div>`;
-          dom.lightboxCounter.textContent = `${current.index + 1} / ${references.length}`;
+          dom.lightboxContent.innerHTML = `<div class="lightbox-pair"><section class="lightbox-pane"><div class="lightbox-label">Наш образец · ${escapeHtml(current.entry.family)}</div><div class="lightbox-pane-media" data-lightbox-backdrop>${lightboxMediaMarkup(current.entry.our_media, ourType, `Наш образец ${current.entry.family}`, current.entry.our_poster)}</div></section><section class="lightbox-pane"><div class="lightbox-label">Конкурент · ${escapeHtml(competitor.label)}</div><div class="lightbox-pane-media" data-lightbox-backdrop>${lightboxMediaMarkup(competitor.media, competitor.type, `Конкурент ${current.entry.family}: ${competitor.label}`)}</div></section></div>`;
+          dom.lightboxCounter.textContent = `${current.index + 1} / ${competitors.length}`;
         } else {
           dom.lightboxContent.innerHTML = lightboxMediaMarkup(current.source, current.type, current.label, current.poster);
           dom.lightboxCounter.textContent = '';
@@ -2223,7 +2241,7 @@
 
       function openPairLightbox(family) {
         const entry = globalThis.SRAVNENIE?.families?.find((candidate) => candidate.family === family);
-        if (!entry?.our_media || !entry.competitor_refs?.filter(Boolean).length) return;
+        if (!entry?.our_media || !competitorMediaItems(entry).length) return;
         showLightbox({ mode: 'pair', entry, index: 0 });
       }
 
