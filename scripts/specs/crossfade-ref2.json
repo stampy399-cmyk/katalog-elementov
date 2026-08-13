@@ -1,10 +1,29 @@
 {
   "type": "crossfade",
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "graded-crossfade",
+  "route": "ffmpeg",
   "layers": {
-    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/liquid-damper-tank-cutaway-08.png",
-    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/ИСПАНИЯ ВОЙНА В ЮЖНОЙ АМЕРИКЕ/04-MAPS/full/mapa-23.png"
+    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/japan-certificate-fraud-09.png",
+    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/liquid-damper-tank-cutaway-08.png"
   },
-  "palette": {"background": "#214357", "accent": "#697A6C"},
-  "motion": {"startFrame": 24, "fadeFrames": 14},
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080, "fit": "cover"},
+    "personZone": {"left": 160, "right": 760},
+    "machineZone": {"left": 500, "right": 1570},
+    "safeZone": {"y": 940, "height": 140}
+  },
+  "palette": {
+    "colors": ["#B0B69F", "#1E2225", "#687174", "#404950"],
+    "first": {"saturation": 0.68, "toneMap": {"black": "#1E2225", "shadow": "#404950", "midtone": "#687174", "highlight": "#B0B69F"}},
+    "second": {"saturation": 0.68, "toneMap": {"black": "#1E2225", "shadow": "#404950", "midtone": "#687174", "highlight": "#B0B69F"}}
+  },
+  "motion": {
+    "fadeStart": 19,
+    "fadeFrames": 17,
+    "first": {"mode": "scale", "endFrame": 35, "scale": {"start": 1.0, "end": 1.02, "anchorX": 520, "anchorY": 540}},
+    "second": {"mode": "scale", "endFrame": 40, "scale": {"start": 1.0, "end": 1.02, "anchorX": 1035, "anchorY": 540}},
+    "interpolation": "linear"
+  },
   "output": "../../assets/ours/pairs/crossfade-ref2-ours.mp4"
 }

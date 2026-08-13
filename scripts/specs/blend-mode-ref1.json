@@ -1,10 +1,28 @@
 {
   "type": "blend-mode",
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "portrait-blend",
+  "route": "ffmpeg",
   "layers": {
-    "base": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/citicorp-secret-repair-1978-04.png",
-    "overlay": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/assets/photo/kenneth-arnold-1947/wikimedia_180242201.jpg"
+    "background": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ww2-ostfront/00-DOSSIER/BRANDING/ostfront-chronik/banner-1-archive-table-lantern-bg.png",
+    "portrait": "/Users/alphabravo/Documents/BASE/01-NICHES/en-iran-military/ТЕСТ/people/0002.png"
   },
-  "palette": {"background": "#24150D", "accent": "#C68045"},
-  "motion": {"mode": "screen", "opacity": 0.58},
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080, "fit": "cover"},
+    "lightCenter": {"x": 470, "y": 620},
+    "portrait": {"x": 1030, "y": 40, "width": 780, "height": 980, "faceX": 1320, "faceY": 310, "sourceCrop": {"x": 380, "y": 0, "width": 644, "height": 1024}},
+    "particles": {"width": 1920, "height": 1080, "opacity": 0.16}
+  },
+  "palette": {
+    "colors": ["#121717", "#432920", "#623C2A", "#87573D"],
+    "highlight": "#87573D",
+    "background": {"saturation": 0.62, "toneMap": {"black": "#121717", "shadow": "#432920", "midtone": "#623C2A", "highlight": "#87573D"}}
+  },
+  "motion": {
+    "backgroundScale": {"start": 1.0, "end": 1.018, "anchorX": 470, "anchorY": 620},
+    "portrait": {"xStart": 1060, "xEnd": 1030, "fadeStart": 8, "fadeEnd": 27, "opacityStart": 0, "opacityEnd": 0.42},
+    "particlesY": {"start": 0, "end": -60},
+    "interpolation": "linear"
+  },
   "output": "../../assets/ours/pairs/blend-mode-ref1-ours.mp4"
 }

@@ -1,10 +1,29 @@
 {
   "type": "crossfade",
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "graded-crossfade",
+  "route": "ffmpeg",
   "layers": {
-    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/ФАРАОН ЕГИПЕТ ФРАНЦИЯ/production/pilot-fastgen/video/p03-city-dawn.mp4",
+    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/Англия (ГеоЭссе-Дания-разбор)/движок-вступления/london_drone.mp4",
     "second": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/СТИЛЬ-КИТ/assets/infographics_maps/alt_map_city_pin.mp4"
   },
-  "palette": {"background": "#244A4B", "accent": "#9AAEAA"},
-  "motion": {"startFrame": 21, "fadeFrames": 18},
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080, "fit": "cover"},
+    "horizonY": 350,
+    "mapMarker": {"x": 1270, "y": 565},
+    "mapCaptionBounds": {"left": 80, "top": 870, "right": 820, "bottom": 980}
+  },
+  "palette": {
+    "colors": ["#020A14", "#797F46", "#3D512E", "#23352B"],
+    "first": {"saturation": 0.55, "toneMap": {"black": "#020A14", "shadow": "#23352B", "midtone": "#3D512E", "highlight": "#797F46"}},
+    "second": {"saturation": 0.7, "toneMap": {"black": "#020A14", "shadow": "#23352B", "midtone": "#3D512E", "highlight": "#797F46"}}
+  },
+  "motion": {
+    "fadeStart": 20,
+    "fadeFrames": 20,
+    "first": {"mode": "pan", "endFrame": 39, "xStart": 0, "xEnd": -24},
+    "second": {"mode": "scale", "endFrame": 39, "scale": {"start": 1.0, "end": 1.025, "anchorX": 1270, "anchorY": 565}},
+    "interpolation": "linear"
+  },
   "output": "../../assets/ours/pairs/crossfade-ref3-ours.mp4"
 }

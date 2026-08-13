@@ -1,10 +1,24 @@
 {
   "type": "position-slide",
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "document-slide",
+  "route": "ffmpeg",
   "layers": {
-    "base": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/photos/documents/logbook-young-phoenix-1885-p1.jpg",
-    "foreground": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/photo-tools/bluebook_staging/witness-sketches/archiveorg_1948-07-6387139-Indianapolis-Indiana-151-_leaf14.jpg"
+    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/production/crossshot/frames-raw/s070-register-on-the-table.png",
+    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/production/crossshot/frames-raw/s089-page-of-three-bearings.png"
   },
-  "palette": {"background": "#E1D5BA", "accent": "#453C2F"},
-  "motion": {"xStart": 1880, "xEnd": 420, "yStart": 0, "yEnd": 0, "width": 1500, "height": 1080, "easing": "linear"},
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080},
+    "document": {"x": 520, "y": 150, "width": 880, "height": 720},
+    "margins": {"top": 150, "bottom": 210, "left": 520, "right": 520}
+  },
+  "palette": {
+    "colors": ["#DFDBD2", "#C4C1BA", "#F4EFE6", "#86827F"],
+    "background": "#DFDBD2",
+    "shadow": "#C4C1BA",
+    "paper": "#F4EFE6",
+    "toneMap": {"black": "#86827F", "shadow": "#C4C1BA", "midtone": "#DFDBD2", "highlight": "#F4EFE6"}
+  },
+  "motion": {"startFrame": 12, "endFrame": 38, "distance": 1120, "firstXStart": 520, "firstXEnd": -600, "secondXStart": 1640, "secondXEnd": 520, "y": 150, "interpolation": "linear"},
   "output": "../../assets/ours/pairs/position-slide-ref2-ours.mp4"
 }

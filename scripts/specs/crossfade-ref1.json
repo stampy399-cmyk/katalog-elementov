@@ -1,10 +1,28 @@
 {
   "type": "crossfade",
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "graded-crossfade",
+  "route": "ffmpeg",
   "layers": {
-    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/liquid-damper-tank-cutaway-08.png",
-    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/04-rascacielos-coche/ai/facade-panel-caustic-convergence.png"
+    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/hydraulic-pistons-closeup-03.png",
+    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/sliding-mass-rail-damper-07.png"
   },
-  "palette": {"background": "#1B3540", "accent": "#A8B0AD"},
-  "motion": {"startFrame": 22, "fadeFrames": 16},
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080, "fit": "cover"},
+    "mechanicalZone": {"left": 260, "top": 270, "right": 1700, "bottom": 810},
+    "captionBar": {"x": 210, "y": 1000, "width": 1500, "height": 42, "opacity": 0.45}
+  },
+  "palette": {
+    "colors": ["#ACACAA", "#797979", "#4B4543", "#161616"],
+    "first": {"monochrome": true, "toneMap": {"black": "#161616", "shadow": "#4B4543", "midtone": "#797979", "highlight": "#ACACAA"}},
+    "second": {"monochrome": true, "toneMap": {"black": "#161616", "shadow": "#4B4543", "midtone": "#797979", "highlight": "#ACACAA"}}
+  },
+  "motion": {
+    "fadeStart": 21,
+    "fadeFrames": 18,
+    "first": {"mode": "scale", "endFrame": 38, "scale": {"start": 1.0, "end": 1.02, "anchorX": 960, "anchorY": 540}},
+    "second": {"mode": "scale", "endFrame": 38, "scale": {"start": 1.0, "end": 1.02, "anchorX": 960, "anchorY": 540}},
+    "interpolation": "linear"
+  },
   "output": "../../assets/ours/pairs/crossfade-ref1-ours.mp4"
 }

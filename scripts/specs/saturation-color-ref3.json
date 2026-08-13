@@ -1,7 +1,24 @@
 {
   "type": "saturation-color",
-  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/en-retirees-philippines/production/Футаж — НЕ ТРОГАТЬ НИ ЗА ЧТО НИКОГДА НЕ УДАЛЯТЬ/out/hD4Qb_e7izg_clean.mp4"},
-  "palette": {"contrast": 1.05, "brightness": 0, "redShift": 0, "greenShift": 0, "blueShift": 0},
-  "motion": {"saturationStart": 1.15, "saturationEnd": 0},
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "saturation-ramp",
+  "route": "ffmpeg",
+  "layers": {
+    "source": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/production/crossshot/frames-raw/s083-crew-walking-in.png"
+  },
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080, "fit": "exact"},
+    "leadPersonBounds": {"left": 1050, "top": 110, "right": 1510, "bottom": 1040},
+    "minimumPeople": 3
+  },
+  "palette": {
+    "colors": ["#DEDFE0", "#1C1D1E", "#646464", "#9E9E9E"],
+    "toneMap": {"black": "#1C1D1E", "shadow": "#646464", "midtone": "#9E9E9E", "highlight": "#DEDFE0"}
+  },
+  "motion": {
+    "saturation": {"holdColorStart": 0, "startFrame": 9, "endFrame": 44, "holdMonochromeStart": 45, "start": 1.0, "end": 0.0},
+    "scale": {"start": 1.0, "end": 1.018, "anchorX": 1280, "anchorY": 575},
+    "interpolation": "linear"
+  },
   "output": "../../assets/ours/pairs/saturation-color-ref3-ours.mp4"
 }

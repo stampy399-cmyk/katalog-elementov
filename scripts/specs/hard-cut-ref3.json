@@ -1,10 +1,24 @@
 {
   "type": "hard-cut",
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "hard-cut-map",
+  "route": "ffmpeg",
   "layers": {
-    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/СТИЛЬ-КИТ/assets/infographics_maps/alt_map_heat.mp4",
-    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/04-rascacielos-coche/ai/walkie-talkie-solar-focus-street.png"
+    "source": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/СТИЛЬ-КИТ/assets/infographics_maps/alt_map_heat.mp4"
   },
-  "palette": {"background": "#304C2D", "accent": "#E4C23C"},
-  "motion": {"cutFrame": 32},
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080, "fit": "cover"},
+    "zone": {"width": 760, "height": 430, "centerX": 1040, "centerY": 530},
+    "marker": {"x": 1321, "y": 681, "size": 18},
+    "title": {"x": 70, "y": 880, "width": 760, "height": 48, "fontSize": 34, "text": "OUR COVERAGE"}
+  },
+  "palette": {
+    "colors": ["#3C4F22", "#5D652B", "#899228", "#263519"],
+    "saturation": 0.7,
+    "contrast": 1.08,
+    "toneMap": {"black": "#263519", "shadow": "#3C4F22", "midtone": "#5D652B", "highlight": "#899228"},
+    "text": "#F1F2EE"
+  },
+  "motion": {"cutFrame": 30, "firstSourceTime": 0.1, "secondSourceTime": 2.5, "interpolation": "hold"},
   "output": "../../assets/ours/pairs/hard-cut-ref3-ours.mp4"
 }

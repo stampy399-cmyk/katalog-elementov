@@ -1,7 +1,26 @@
 {
   "type": "blur-effect",
-  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/ФАРАОН ЕГИПЕТ ФРАНЦИЯ/production/pilot-fastgen/img/img-map-01.png"},
-  "palette": {"background": "#C9A897", "accent": "#8DB6C0"},
-  "motion": {"mode": "background-fill", "sigma": 38},
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "blur-single",
+  "route": "ffmpeg",
+  "layers": {
+    "source": "/Users/alphabravo/Documents/BASE/01-NICHES/ИСПАНИЯ ВОЙНА В ЮЖНОЙ АМЕРИКЕ/04-MAPS/full/mapa-23.png"
+  },
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080},
+    "center": {"x": 635, "y": 60, "width": 650, "height": 960, "border": 0},
+    "backplate": {"width": 1920, "height": 1080, "blur": 46}
+  },
+  "palette": {
+    "colors": ["#C0BAAE", "#393133", "#0A0815", "#E8E8DE"],
+    "center": {"saturation": 0.75, "toneMap": {"black": "#0A0815", "shadow": "#393133", "midtone": "#C0BAAE", "highlight": "#E8E8DE"}},
+    "backplate": {"saturation": 0.75, "brightness": -0.08, "toneMap": {"black": "#0A0815", "shadow": "#393133", "midtone": "#C0BAAE", "highlight": "#E8E8DE"}}
+  },
+  "motion": {
+    "centerPan": {"yStart": 35, "yEnd": 75},
+    "centerScale": {"start": 1.0, "end": 1.035},
+    "backplateScale": {"start": 1.18, "end": 1.21},
+    "interpolation": "linear"
+  },
   "output": "../../assets/ours/pairs/blur-effect-ref2-ours.mp4"
 }

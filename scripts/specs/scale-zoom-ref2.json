@@ -1,7 +1,22 @@
 {
   "type": "scale-zoom",
-  "layers": {"source": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/artifacts/reference_main_000_180/frames/f_172.png"},
-  "palette": {"background": "#C7CDC7", "accent": "#53725A"},
-  "motion": {"zoomStart": 1, "zoomEnd": 1.15, "anchorX": 0.54, "anchorY": 0.44, "easing": "linear"},
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "scale-zoom",
+  "route": "ffmpeg",
+  "layers": {
+    "source": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/04-rascacielos-coche/ai/eastcheap-caustic-hotspot.png"
+  },
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080, "fit": "cover"},
+    "facadeBounds": {"left": 710, "top": 0, "right": 1510, "bottom": 1030},
+    "entrance": {"x": 1090, "y": 720},
+    "callout": {"x": 1050, "y": 500, "width": 220, "height": 58, "fontSize": 26, "lineWidth": 4, "text": "EASTCHEAP"}
+  },
+  "palette": {
+    "colors": ["#45484E", "#9D9B9E", "#181A1E", "#666D74"],
+    "saturation": 0.42,
+    "toneMap": {"black": "#181A1E", "shadow": "#45484E", "midtone": "#666D74", "highlight": "#9D9B9E"}
+  },
+  "motion": {"scale": {"start": 1.0, "end": 1.06, "anchorX": 1090, "anchorY": 620}, "interpolation": "linear", "durationFrames": 60},
   "output": "../../assets/ours/pairs/scale-zoom-ref2-ours.mp4"
 }

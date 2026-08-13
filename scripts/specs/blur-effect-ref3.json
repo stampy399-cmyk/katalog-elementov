@@ -1,7 +1,29 @@
 {
   "type": "blur-effect",
-  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/_assets/stills/background/commons_36643440_men-are-fishing-for-whale-in-small-boats-with-harpoons-larg-wellcome-v0041_447fc93cbda9.jpg"},
-  "palette": {"background": "#5A5A58", "accent": "#D6D4CE"},
-  "motion": {"mode": "background-fill", "sigma": 45},
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "blur-double",
+  "route": "ffmpeg",
+  "layers": {
+    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/_assets/stills/background/commons_36643440_men-are-fishing-for-whale-in-small-boats-with-harpoons-larg-wellcome-v0041_447fc93cbda9.jpg",
+    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/_assets/stills/background/commons_36643431_men-are-gathering-in-small-boats-at-the-quay-to-sail-out-to-wellcome-v0041_2aee8f11e050.jpg"
+  },
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080},
+    "center": {"x": 320, "y": 60, "width": 1280, "height": 960, "aspect": "4:3", "border": 0},
+    "backplate": {"width": 1920, "height": 1080, "blur": 48, "scale": 1.14, "visibleSideWidth": 320}
+  },
+  "palette": {
+    "colors": ["#A2A5A4", "#D4D9D8", "#7A7C7B", "#484A4A"],
+    "monochrome": true,
+    "grain": 0.06,
+    "toneMap": {"black": "#484A4A", "shadow": "#7A7C7B", "midtone": "#A2A5A4", "highlight": "#D4D9D8"}
+  },
+  "motion": {
+    "firstPan": {"startFrame": 0, "endFrame": 29, "xStart": 0, "xEnd": -32},
+    "fadeStart": 30,
+    "fadeFrames": 8,
+    "secondPan": {"startFrame": 38, "endFrame": 59, "xStart": 22, "xEnd": 0},
+    "interpolation": "linear"
+  },
   "output": "../../assets/ours/pairs/blur-effect-ref3-ours.mp4"
 }

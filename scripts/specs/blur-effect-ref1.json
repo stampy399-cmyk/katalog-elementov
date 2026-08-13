@@ -1,7 +1,26 @@
 {
   "type": "blur-effect",
-  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/production/roswell-ep12/ep01-a-press-office.png"},
-  "palette": {"background": "#3D4938", "accent": "#B69B76"},
-  "motion": {"mode": "background-fill", "sigma": 42},
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "blur-single",
+  "route": "ffmpeg",
+  "layers": {
+    "source": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/OpenMontage/remotion-composer/projects/uk-intro/public/img7/careworker.jpg"
+  },
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080},
+    "center": {"x": 655, "y": 60, "width": 610, "height": 960, "border": 0},
+    "backplate": {"width": 1920, "height": 1080, "blur": 42}
+  },
+  "palette": {
+    "colors": ["#020202", "#515337", "#1A1D22", "#A3A29B"],
+    "center": {"saturation": 0.82, "toneMap": {"black": "#020202", "shadow": "#1A1D22", "midtone": "#515337", "highlight": "#A3A29B"}},
+    "backplate": {"saturation": 0.64, "brightness": -0.12, "toneMap": {"black": "#020202", "shadow": "#1A1D22", "midtone": "#515337", "highlight": "#A3A29B"}}
+  },
+  "motion": {
+    "centerPan": {"yStart": 70, "yEnd": 50},
+    "centerScale": {"start": 1.0, "end": 1.025},
+    "backplateScale": {"start": 1.16, "end": 1.19},
+    "interpolation": "linear"
+  },
   "output": "../../assets/ours/pairs/blur-effect-ref1-ours.mp4"
 }

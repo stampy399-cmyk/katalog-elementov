@@ -1,7 +1,33 @@
 {
   "type": "light-glow",
-  "layers": {"base": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ww2-ostfront/00-DOSSIER/BRANDING/ostfront-chronik/avatar-1-open-book-quill.png"},
-  "palette": {"background": "#1A111B", "glow": "#E676C4"},
-  "motion": {"size": 780, "sigma": 190, "opacity": 0.72, "xStart": 120, "xEnd": 1020, "yStart": 470, "yEnd": 280, "fadeInFrames": 6, "fadeOutFrames": 7},
+  "productionTemplate": "visual-gate-v1",
+  "recipe": "book-light-leak",
+  "route": "ffmpeg",
+  "layers": {
+    "book": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ww2-ostfront/00-DOSSIER/BRANDING/ostfront-chronik/avatar-1-open-book-quill.png",
+    "city": "/Users/alphabravo/Documents/BASE/01-NICHES/ФАРАОН ЕГИПЕТ ФРАНЦИЯ/production/pilot-fastgen/video/p03-city-dawn.mp4"
+  },
+  "composition": {
+    "canvas": {"width": 1920, "height": 1080},
+    "book": {"x": 500, "y": 195, "width": 920, "height": 720, "centerX": 960, "centerY": 555, "sourceCrop": {"x": 90, "y": 200, "width": 620, "height": 400}},
+    "city": {"fit": "cover", "sourceCrop": {"x": 0, "y": 40, "width": 1280, "height": 640}},
+    "glow": {"width": 1500, "height": 820, "centerX": 960, "centerY": 690}
+  },
+  "palette": {
+    "colors": ["#D4D0B1", "#AF9B98", "#6B6068", "#17181C"],
+    "background": "#17181C",
+    "glowCore": "#D4D0B1",
+    "glowEdge": "#AF9B98",
+    "bookGrade": {"saturation": 0.4, "toneMap": {"black": "#17181C", "shadow": "#17181C", "midtone": "#AF9B98", "highlight": "#D4D0B1"}},
+    "cityGrade": {"saturation": 0.55, "toneMap": {"black": "#17181C", "shadow": "#6B6068", "midtone": "#AF9B98", "highlight": "#D4D0B1"}}
+  },
+  "motion": {
+    "bookScale": {"start": 1.0, "end": 1.025, "anchorX": 960, "anchorY": 555, "progress": "min(n/18,1)"},
+    "fadeStart": 19,
+    "fadeFrames": 20,
+    "glowFrames": {"start": 19, "peak": 28, "end": 38, "opacityPeak": 0.85},
+    "cityScale": {"start": 1.0, "end": 1.02, "anchorX": 960, "anchorY": 540, "progress": "max(min((n-20)/20,1),0)"},
+    "interpolation": "linear"
+  },
   "output": "../../assets/ours/pairs/light-glow-ref1-ours.mp4"
 }
