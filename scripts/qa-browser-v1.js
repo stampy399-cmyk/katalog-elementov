@@ -196,9 +196,9 @@ async function validateCatalog(cdp, page, label) {
     selfTest:globalThis.__catalogSelfTest()
   })`);
   check(summary.title === 'РУЧНОЙ каталог отбора', `${label}: title mismatch`);
-  check(summary.nav.length === 2 && summary.nav.map(item=>item.text).join('|') === 'КАТАЛОГ КОНКУРЕНТОВ|МЫ УМЕЕМ', `${label}: primary navigation labels mismatch`);
+  check(summary.nav.length === 3 && summary.nav.map(item=>item.text).join('|') === 'КАТАЛОГ КОНКУРЕНТОВ|МЫ УМЕЕМ|САНТЕХНИКА', `${label}: primary navigation labels mismatch`);
   check(summary.nav.every(item=>item.height >= 55 && item.fontSize >= 20 && item.fontWeight >= 700), `${label}: primary navigation is not large and bold`);
-  check(summary.nav[0].active && !summary.nav[1].active, `${label}: catalog navigation active state mismatch`);
+  check(summary.nav[0].active && !summary.nav[1].active && !summary.nav[2].active, `${label}: catalog navigation active state mismatch`);
   check(summary.videos === 9 && summary.videoCounter === '9/9', `${label}: video list mismatch`);
   check(summary.cards > 0 && summary.badges === summary.cards, `${label}: card badges mismatch`);
   check(summary.familyOptions === 19, `${label}: family filter options mismatch`);
@@ -267,7 +267,56 @@ async function validateCatalog(cdp, page, label) {
   check(await evaluate(cdp, page.sessionId, `document.querySelector('.comparison-family')?.textContent === 'KEYFRAMES-MOTION'`), `${label}: comparison family filter mismatch`);
   check(await evaluate(cdp, page.sessionId, `document.querySelectorAll('.ability-card').length === 4`), `${label}: comparison family ability filter mismatch`);
 
-  await evaluate(cdp, page.sessionId, `(()=>{const select=document.getElementById('familyFilter');select.value='all';select.dispatchEvent(new Event('change',{bubbles:true}));document.querySelector('[data-view="catalog"]').click()})()`);
+  await evaluate(cdp, page.sessionId, `(()=>{const select=document.getElementById('familyFilter');select.value='all';select.dispatchEvent(new Event('change',{bubbles:true}))})()`);
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-view="santehnika"]').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelectorAll('[data-santehnika-family]').length === 18 && document.querySelectorAll('.santehnika-page .element-card').length > 0`);
+  const santehnika = await evaluate(cdp, page.sessionId, `({
+    families:document.querySelectorAll('[data-santehnika-family]').length,
+    stats:[...document.querySelectorAll('[data-santehnika-stat]')].map(node=>Number(node.textContent)).join('|'),
+    dataElements:Object.keys(SANTEHNIKA.elements).length,
+    dataFamilies:SANTEHNIKA.families.length,
+    dataTechniques:SANTEHNIKA.techniques.length,
+    mounted:document.querySelectorAll('[data-santehnika-mounted="true"]').length,
+    cards:document.querySelectorAll('.santehnika-page .element-card').length,
+    badges:document.querySelectorAll('.santehnika-page .element-family-meta').length,
+    techniques:document.querySelectorAll('.santehnika-page .santehnika-technique').length,
+    tiers:[...new Set([...document.querySelectorAll('[data-santehnika-tier]')].map(node=>node.dataset.santehnikaTier))].sort().join(','),
+    count:document.querySelector('.santehnika-count').textContent.trim(),
+    options:document.getElementById('familyFilter').options.length,
+    tierFilterVisible:getComputedStyle(document.getElementById('tierFilter')).display !== 'none',
+    hash:location.hash,
+    navActive:document.querySelector('[data-view="santehnika"]').classList.contains('is-active')
+  })`);
+  check(santehnika.families === 18 && santehnika.dataElements === 756 && santehnika.dataFamilies === 18 && santehnika.dataTechniques === 77, `${label}: santehnika analysis is not fully loaded`);
+  check(santehnika.stats === '756|18|77|612|81|63', `${label}: santehnika summary tiles mismatch`);
+  check(santehnika.cards > 0 && santehnika.badges === santehnika.cards && santehnika.techniques === santehnika.cards, `${label}: santehnika cards lost the tier badge or the technique`);
+  check(santehnika.mounted > 0 && santehnika.mounted < 18 && santehnika.cards < 756, `${label}: santehnika rendered every family eagerly`);
+  check(santehnika.count === '756 из 756 элементов' && santehnika.options === 19 && santehnika.tierFilterVisible, `${label}: santehnika counters or filters mismatch`);
+  check(santehnika.hash === '#santehnika' && santehnika.navActive, `${label}: santehnika navigation state mismatch`);
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-tier-filter="unique"]').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelector('.santehnika-count').textContent.trim() === '81 из 756 элементов'`);
+  const santehnikaUnique = await evaluate(cdp, page.sessionId, `({
+    groups:[...new Set([...document.querySelectorAll('.santehnika-tier-group')].map(node=>node.dataset.santehnikaTierGroup))].join(','),
+    tiers:[...new Set([...document.querySelectorAll('[data-santehnika-tier]')].map(node=>node.dataset.santehnikaTier))].join(','),
+    headings:[...new Set([...document.querySelectorAll('.santehnika-tier-heading h3')].map(node=>node.textContent.trim()))].join(',')
+  })`);
+  check(santehnikaUnique.groups === 'unique' && santehnikaUnique.tiers === 'unique' && santehnikaUnique.headings === 'Уникальные вставки', `${label}: santehnika tier filter leaked other tiers`);
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-tier-filter="all"]').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelector('.santehnika-count').textContent.trim() === '756 из 756 элементов'`);
+  await evaluate(cdp, page.sessionId, `document.querySelector('.santehnika-page .element-card').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelector('.editing-element .element-card.is-expanded textarea[data-element-field="description"]')`);
+  const santehnikaCard = await evaluate(cdp, page.sessionId, `({
+    player:!document.getElementById('playerDock').hidden,
+    link:document.getElementById('playerLink').href,
+    badge:document.querySelector('.editing-element [data-santehnika-tier]')?.textContent.trim(),
+    activeVideo:Boolean(document.querySelector('#videoList .video-row.is-active'))
+  })`);
+  check(santehnikaCard.player && /youtube\.com|youtu\.be/.test(santehnikaCard.link), `${label}: santehnika card did not open its source video`);
+  check(Boolean(santehnikaCard.badge) && santehnikaCard.activeVideo, `${label}: expanded santehnika card lost its tier badge`);
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-collapse-element]').click()`);
+  await waitFor(cdp, page.sessionId, `!document.querySelector('.element-card.is-expanded')`);
+
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-view="catalog"]').click()`);
   await waitFor(cdp, page.sessionId, `document.querySelectorAll('.element-card').length > 0 && !document.querySelector('.comparison-page')`);
   check(await evaluate(cdp, page.sessionId, `document.getElementById('familyFilter').options.length === 19`), `${label}: catalog family filter did not restore 18 families`);
   await waitFor(cdp, page.sessionId, `[...document.images].filter(image=>{const box=image.getBoundingClientRect();return box.bottom>=0&&box.top<=innerHeight}).every(image=>image.complete)`, 45000);

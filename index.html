@@ -313,8 +313,8 @@
     button, input, textarea { font: inherit; }
     button { cursor: pointer; }
     .app-shell { display: grid; grid-template-columns: 272px minmax(0, 1fr); grid-template-rows: 76px 56px minmax(0, 1fr); height: 100vh; background: var(--bg); }
-    .primary-nav { grid-column: 1 / -1; position: relative; z-index: 16; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 97%, transparent); }
-    .primary-nav-button { min-height: 55px; padding: 0 20px; border: 2px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--muted); cursor: pointer; font-size: clamp(20px, 2vw, 24px); font-weight: 800; letter-spacing: .025em; transition: border-color 180ms ease-out, background 180ms ease-out, color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out; }
+    .primary-nav { grid-column: 1 / -1; position: relative; z-index: 16; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 97%, transparent); }
+    .primary-nav-button { min-width: 0; min-height: 55px; padding: 0 20px; border: 2px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--muted); cursor: pointer; font-size: clamp(20px, 2vw, 24px); font-weight: 800; letter-spacing: .025em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: border-color 180ms ease-out, background 180ms ease-out, color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out; }
     .primary-nav-button:hover, .primary-nav-button:focus-visible { border-color: var(--accent); color: var(--text); }
     .primary-nav-button:active { transform: scale(.99); }
     .primary-nav-button.is-active { border-color: var(--accent); background: var(--accent); color: #fff; box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 32%, transparent); }
@@ -582,6 +582,30 @@
     .family-stat-tier { font-weight: 700; letter-spacing: .025em; }
     .family-stat-tier.is-base { color: var(--accent); }
     .family-stat-tier.is-unique { color: #f59e0b; }
+    .tier-badge.is-gray { border-color: var(--line); color: var(--muted); }
+    .santehnika-page { display: grid; gap: 18px; }
+    .santehnika-intro { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+    .santehnika-intro h1 { margin: 0; font-size: 20px; letter-spacing: -.025em; }
+    .santehnika-intro p { max-width: 760px; margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+    .santehnika-count { flex: 0 0 auto; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+    .santehnika-stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+    .santehnika-stat { padding: 14px 16px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface); }
+    .santehnika-stat-value { display: block; font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.035em; line-height: 1; }
+    .santehnika-stat-label { display: block; margin-top: 7px; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .santehnika-stat.is-base .santehnika-stat-value { color: var(--accent); }
+    .santehnika-stat.is-unique .santehnika-stat-value { color: #f59e0b; }
+    .santehnika-stat.is-gray .santehnika-stat-value { color: var(--muted); }
+    .santehnika-families { display: grid; gap: 26px; }
+    .santehnika-family-name { color: var(--muted); font-weight: 600; }
+    .santehnika-body { display: grid; gap: 18px; }
+    .santehnika-tier-group { display: grid; gap: 10px; }
+    .santehnika-tier-heading { display: flex; align-items: baseline; gap: 9px; }
+    .santehnika-tier-heading h3 { margin: 0; color: var(--accent); font-size: 11px; font-weight: 750; letter-spacing: .05em; text-transform: uppercase; }
+    .santehnika-tier-group.is-unique .santehnika-tier-heading h3 { color: #f59e0b; }
+    .santehnika-tier-group.is-gray { opacity: .82; }
+    .santehnika-tier-group.is-gray .santehnika-tier-heading h3 { color: var(--muted); }
+    .santehnika-tier-count { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+    .santehnika-technique { min-width: 0; }
     .comparison-page { display: grid; gap: 18px; }
     .comparison-intro { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
     .comparison-intro h1 { margin: 0; font-size: 20px; letter-spacing: -.025em; }
@@ -687,9 +711,13 @@
     .modal-button-danger { border-color: color-mix(in srgb, var(--danger) 70%, var(--line)); background: var(--danger); color: #fff; }
     .modal-button:disabled { cursor: not-allowed; opacity: .45; }
     .modal-help { margin-top: 9px !important; font-size: 11px; }
+    @media (max-width: 1180px) { .santehnika-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    /* Три вкладки в шапке: ниже ~1000 px «КАТАЛОГ КОНКУРЕНТОВ» перестаёт влезать в треть строки. */
+    @media (max-width: 1000px) { .primary-nav-button { padding: 0 10px; font-size: clamp(14px, 1.7vw, 20px); } }
+    @media (max-width: 680px) { .santehnika-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .santehnika-intro { align-items: start; flex-direction: column; } }
     @media (max-width: 680px) { .stat-summary, .ability-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ability-family-summary { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; } .ability-family-counts { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; padding-left: 18px; } }
     @media (max-width: 900px) { .comparison-columns { grid-template-columns: 1fr; } }
-    @media (max-width: 760px) { .player-dock { grid-template-columns: 1fr; padding: 20px 18px 0; } .player-copy { padding: 0 2px; } .catalog-toolbar { padding: 14px 12px 0; } .primary-nav { gap: 8px; padding: 9px 10px; } .primary-nav-button { padding: 0 8px; font-size: 20px; } .lightbox { padding: 58px 12px 38px; } .lightbox-pair { grid-template-columns: 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 10px; } .lightbox-label { font-size: 12px; } }
+    @media (max-width: 760px) { .player-dock { grid-template-columns: 1fr; padding: 20px 18px 0; } .player-copy { padding: 0 2px; } .catalog-toolbar { padding: 14px 12px 0; } .primary-nav { gap: 8px; padding: 9px 10px; } .primary-nav-button { padding: 0 6px; font-size: clamp(11px, 1.9vw, 20px); } .lightbox { padding: 58px 12px 38px; } .lightbox-pair { grid-template-columns: 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 10px; } .lightbox-label { font-size: 12px; } }
     @media (max-width: 620px) { .catalog-toolbar { align-items: stretch; flex-direction: column; } .catalog-controls { align-items: stretch; } .tier-filter { display: grid; grid-template-columns: repeat(3, 1fr); } .family-filter-select { flex: 1; width: auto; } .comparison-intro { align-items: start; flex-direction: column; } }
     @media (max-width: 620px) { .server-refresh { width: 32px; padding: 0; overflow: hidden; font-size: 0; } .server-refresh::before { content: "↻"; font-size: 17px; } }
     @media (max-width: 500px) { .brand { font-size: 12px; } .brand::after { content: none; } }
@@ -700,6 +728,7 @@
     <nav id="viewSwitch" class="primary-nav" aria-label="Основные разделы">
       <button class="primary-nav-button is-active" type="button" data-view="catalog" aria-pressed="true">КАТАЛОГ КОНКУРЕНТОВ</button>
       <button class="primary-nav-button" type="button" data-view="comparison" aria-pressed="false">МЫ УМЕЕМ</button>
+      <button class="primary-nav-button" type="button" data-view="santehnika" aria-pressed="false">САНТЕХНИКА</button>
     </nav>
     <header class="topbar">
       <div class="brand">РУЧНОЙ каталог отбора</div>
@@ -762,6 +791,7 @@
   <script src="owner-baseline-data.js"></script>
   <script src="catalog-data.js"></script>
   <script src="sravnenie-data.js"></script>
+  <script src="santehnika-data.js"></script>
   <script>
     (() => {
       'use strict';
@@ -839,6 +869,12 @@
         ? new URLSearchParams(globalThis.location.search).get('family') || ''
         : '';
 
+      function viewFromHash(hash) {
+        if (hash === '#comparison') return 'comparison';
+        if (hash === '#santehnika') return 'santehnika';
+        return 'catalog';
+      }
+
       const state = {
         db: null,
         projects: [],
@@ -846,7 +882,7 @@
         categories: [],
         settings: { ...DEFAULT_SETTINGS },
         search: '',
-        view: globalThis.location?.hash === '#comparison' ? 'comparison' : 'catalog',
+        view: viewFromHash(globalThis.location?.hash),
         tierFilter: 'all',
         familyFilter: globalThis.SRAVNENIE?.families?.some((entry) => entry.family === initialComparisonFamily) ? initialComparisonFamily : 'all',
         categoryFilter: '',
@@ -2010,7 +2046,10 @@
         return `<div class="element-family-meta"><span class="tier-badge ${tier === 'unique' ? 'is-unique' : ''}">${tierLabel(tier)}</span><span>${escapeHtml(family)} · в ${element.freq_videos} из ${state.projects.length} видео · ${element.freq_total} карточек</span></div>`;
       }
 
-      function elementCard(project, element) {
+      // meta заменяет строку метаданных карточки (вкладка «САНТЕХНИКА» показывает там
+      // метку разбора и приём). Без аргумента карточка остаётся прежней.
+      function elementCard(project, element, meta) {
+        const metaMarkup = meta || familyMeta(element);
         const image = previewImageMarkup(element);
         const isNew = String(element.id) === String(state.newElementId);
         const isExpanded = String(element.id) === String(state.editingElementId) || isNew;
@@ -2025,7 +2064,7 @@
           .map((field) => asText(element[field]).trim())
           .filter(Boolean)
           .map((value) => linkifyReferences(value, total));
-        const editor = `<div class="element-editor">${familyMeta(element)}
+        const editor = `<div class="element-editor">${metaMarkup}
           <textarea class="element-description" data-element-field="description" placeholder="Что это и как работает" aria-label="Описание">${escapeHtml(element.description)}</textarea>
           <input class="element-technique" data-element-field="technique" value="${escapeAttribute(element.technique)}" placeholder="Техника" aria-label="Техника" autocomplete="off">
           <div class="element-bottom"><div class="category-combo">
@@ -2041,7 +2080,7 @@
           <div class="card-frame"><div class="image-slot">${image}</div><div class="card-overlay">
             <button class="element-number" type="button" data-copy-anchor="${escapeAttribute(anchor)}" title="Копировать якорь ${escapeAttribute(anchor)}" aria-label="Копировать якорь ${escapeAttribute(anchor)}">#${number}</button>
             <span class="card-timecode">${escapeHtml(timecode)}</span></div></div>
-          ${isExpanded ? editor : `<div class="element-compact">${familyMeta(element)}${element.category ? `<span class="element-category-chip"><span class="category-icon">${categoryIcon(element.category)}</span>${escapeHtml(element.category)}</span>` : ''}<div class="element-description-preview ${preview ? '' : 'is-empty'}">${preview ? linkifyReferences(preview, total) : 'Что это и как работает'}</div>${extras.length ? `<div class="element-extra-preview">${extras.join(' · ')}</div>` : ''}${backlinkNumbers.length ? `<div class="element-backlinks">упоминается в: ${backlinkNumbers.map((from) => `<button class="ref-link" type="button" data-ref-number="${from}" title="Перейти к элементу #${String(from).padStart(2, '0')}">#${String(from).padStart(2, '0')}</button>`).join(' ')}</div>` : ''}</div>`}
+          ${isExpanded ? editor : `<div class="element-compact">${metaMarkup}${element.category ? `<span class="element-category-chip"><span class="category-icon">${categoryIcon(element.category)}</span>${escapeHtml(element.category)}</span>` : ''}<div class="element-description-preview ${preview ? '' : 'is-empty'}">${preview ? linkifyReferences(preview, total) : 'Что это и как работает'}</div>${extras.length ? `<div class="element-extra-preview">${extras.join(' · ')}</div>` : ''}${backlinkNumbers.length ? `<div class="element-backlinks">упоминается в: ${backlinkNumbers.map((from) => `<button class="ref-link" type="button" data-ref-number="${from}" title="Перейти к элементу #${String(from).padStart(2, '0')}">#${String(from).padStart(2, '0')}</button>`).join(' ')}</div>` : ''}</div>`}
           <button class="repeat-badge" type="button" data-heat="${repeatHeatLevel(weight)}" data-repeat-count="${element.repeatCount}" style="--heat:${(repeatHeatLevel(weight) / 6).toFixed(3)}" title="Клик: +1, Alt+клик: −1. Вес повторяемости ${weight} (×${element.repeatCount}${backlinkNumbers.length ? ` и ${backlinkNumbers.length} ссылок #NN` : ''})." aria-label="Повторы ${element.repeatCount}">×${element.repeatCount}</button>
           <div class="element-top-actions" aria-label="Действия элемента">${isExpanded ? '<button class="element-top-action element-collapse" type="button" data-collapse-element title="Свернуть" aria-label="Свернуть">−</button>' : ''}<button class="element-top-action delete" type="button" data-delete-element title="Удалить" aria-label="Удалить"><svg class="action-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 4.5h9M6 4.5V3h4v1.5M5 6.5l.5 6h5l.5-6"></path></svg></button></div>
           <div class="card-actions" aria-label="Действия элемента"><button class="card-action" type="button" data-copy-element title="Копировать" aria-label="Копировать"><svg class="action-icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="5.25" y="5.25" width="8" height="8" rx="1.5"></rect><path d="M10.75 5.25V3.5A1.5 1.5 0 0 0 9.25 2h-5.5A1.75 1.75 0 0 0 2 3.75v5.5a1.5 1.5 0 0 0 1.5 1.5h1.75"></path></svg></button></div>
@@ -2287,6 +2326,225 @@
         }
       }
 
+      // ---- Вкладка «САНТЕХНИКА» ---------------------------------------------------
+      // Готовый разбор ниши (santehnika-data.js) только читается: семейства, приёмы и
+      // метки «базовый набор / уникальная вставка / серая зона» берутся как есть.
+      // 756 карточек в одном innerHTML стоят ~740 мс на перерисовку, поэтому тело
+      // каждого семейства монтируется лениво — когда секция подходит к экрану.
+      const SANTEHNIKA_TIER_ORDER = Object.freeze(['base', 'unique', 'gray']);
+      const SANTEHNIKA_TIER_TITLES = Object.freeze({ base: 'Базовый набор', unique: 'Уникальные вставки', gray: 'Серая зона' });
+      const SANTEHNIKA_TIER_LABELS = Object.freeze({ base: 'БАЗОВЫЙ НАБОР', unique: 'УНИКАЛЬНАЯ ВСТАВКА', gray: 'СЕРАЯ ЗОНА' });
+      // Оценка высоты ещё не смонтированного семейства, чтобы полоса прокрутки не прыгала:
+      // сетка карточек — 4 колонки по ~236 px, плюс заголовок группы.
+      const SANTEHNIKA_CARD_HEIGHT = 236;
+      const SANTEHNIKA_CARD_COLUMNS = 4;
+      const SANTEHNIKA_GROUP_HEADER = 32;
+      const santehnikaSections = new Map();
+      let santehnikaObserver = null;
+
+      function santehnikaData() {
+        const data = globalThis.SANTEHNIKA;
+        return data && Array.isArray(data.families) && Array.isArray(data.techniques) && data.elements ? data : null;
+      }
+
+      function santehnikaEntry(data, element) {
+        const raw = data.elements[String(element?.id)];
+        if (!raw) return null;
+        const technique = data.techniques[raw[1]];
+        return {
+          family: data.families[raw[0]]?.family || 'OTHER',
+          technique: technique?.name || '',
+          techniqueId: technique?.id || '',
+          tier: data.tiers[raw[2]] || 'gray'
+        };
+      }
+
+      function santehnikaPlural(count) {
+        const tail = count % 100;
+        if (tail >= 11 && tail <= 14) return 'элементов';
+        const last = count % 10;
+        if (last === 1) return 'элемент';
+        if (last >= 2 && last <= 4) return 'элемента';
+        return 'элементов';
+      }
+
+      function santehnikaMeta(entry) {
+        const tierClass = entry.tier === 'unique' ? 'is-unique' : entry.tier === 'gray' ? 'is-gray' : '';
+        return `<div class="element-family-meta"><span class="tier-badge ${tierClass}" data-santehnika-tier="${entry.tier}">${SANTEHNIKA_TIER_LABELS[entry.tier]}</span><span class="santehnika-technique">${escapeHtml(entry.family)} · приём: ${escapeHtml(entry.technique)}</span></div>`;
+      }
+
+      function santehnikaSearchText(project, element, entry) {
+        return derived('santehnikaSearch', String(element.id), () => [elementSearchText(project, element), entry.family, entry.technique,
+          SANTEHNIKA_TIER_TITLES[entry.tier], santehnikaData()?.tierNames?.[entry.tier]].map(asText).join(' ').toLocaleLowerCase());
+      }
+
+      function santehnikaMatches(project, element, entry, needles) {
+        if (state.categoryFilter && categoryKey(element.category) !== state.categoryFilter) return false;
+        if (!needles.length) return true;
+        const haystack = santehnikaSearchText(project, element, entry);
+        return needles.some((needle) => haystack.includes(needle));
+      }
+
+      function santehnikaGroups(data) {
+        const needles = searchNeedles(state.search.trim());
+        const groups = new Map(data.families.map((family) => [family.family, {
+          family: family.family,
+          name: family.name,
+          total: family.elements,
+          techniques: family.techniques,
+          byTier: family.byTier,
+          shown: 0,
+          tiers: { base: [], unique: [], gray: [] }
+        }]));
+        const editing = [];
+        let shown = 0;
+        for (const element of state.elements) {
+          const entry = santehnikaEntry(data, element);
+          if (!entry) continue;
+          const project = findProject(element.projectId);
+          if (!project) continue;
+          if (state.tierFilter !== 'all' && entry.tier !== state.tierFilter) continue;
+          if (state.familyFilter !== 'all' && entry.family !== state.familyFilter) continue;
+          if (!santehnikaMatches(project, element, entry, needles)) continue;
+          shown += 1;
+          const item = { project, element, entry };
+          if (String(element.id) === String(state.editingElementId)) {
+            editing.push(item);
+            continue;
+          }
+          const group = groups.get(entry.family);
+          if (!group) continue;
+          group.tiers[entry.tier].push(item);
+          group.shown += 1;
+        }
+        const order = new Map(state.projects.map((project, index) => [String(project.id), index]));
+        for (const group of groups.values()) {
+          for (const tier of SANTEHNIKA_TIER_ORDER) {
+            group.tiers[tier].sort((left, right) => (order.get(String(left.element.projectId)) - order.get(String(right.element.projectId)))
+              || (elementNumber(left.element) - elementNumber(right.element)));
+          }
+        }
+        return { groups: [...groups.values()], editing, shown };
+      }
+
+      function santehnikaTierGroupMarkup(tier, items) {
+        if (!items.length) return '';
+        return `<section class="santehnika-tier-group is-${tier}" data-santehnika-tier-group="${tier}">
+          <header class="santehnika-tier-heading"><h3>${SANTEHNIKA_TIER_TITLES[tier]}</h3><span class="santehnika-tier-count">${items.length} ${santehnikaPlural(items.length)}</span></header>
+          <div class="element-grid" aria-label="${escapeAttribute(SANTEHNIKA_TIER_TITLES[tier])}">${items.map(({ project, element, entry }) => elementCard(project, element, santehnikaMeta(entry))).join('')}</div>
+        </section>`;
+      }
+
+      function santehnikaBodyMarkup(group) {
+        return SANTEHNIKA_TIER_ORDER.map((tier) => santehnikaTierGroupMarkup(tier, group.tiers[tier])).join('');
+      }
+
+      function santehnikaBodyHeight(group) {
+        return SANTEHNIKA_TIER_ORDER.reduce((height, tier) => {
+          const count = group.tiers[tier].length;
+          return count ? height + SANTEHNIKA_GROUP_HEADER + Math.ceil(count / SANTEHNIKA_CARD_COLUMNS) * SANTEHNIKA_CARD_HEIGHT : height;
+        }, 0);
+      }
+
+      function santehnikaFamilyMarkup(group) {
+        const meta = `${group.shown} из ${group.total} · ${group.techniques} приёмов · база ${group.byTier.base} · уник ${group.byTier.unique} · серая ${group.byTier.gray}`;
+        return `<section class="family-section santehnika-family" data-santehnika-family="${escapeAttribute(group.family)}">
+          <header class="family-heading"><h2>${escapeHtml(group.family)} <span class="santehnika-family-name">${escapeHtml(group.name)}</span></h2><span class="family-heading-meta">${escapeHtml(meta)}</span></header>
+          <div class="santehnika-body" data-santehnika-body="${escapeAttribute(group.family)}" style="min-height:${santehnikaBodyHeight(group)}px"></div>
+        </section>`;
+      }
+
+      function santehnikaIntroMarkup(data, shown) {
+        return `<header class="santehnika-intro"><div><h1>Все элементы сантехники</h1>
+          <p>Ниша «${escapeHtml(data.niche)}», канал ${escapeHtml(data.channel)}: ${data.totals.elements} элементов из ${data.totals.videos} роликов, разложены по ${data.totals.families} семействам и ${data.totals.techniques} приёмам.
+          Базовый набор — приём встречается не меньше ${data.thresholds.N} раз в одном ролике и минимум в ${data.thresholds.M} роликах из ${data.totals.videos}. Уникальная вставка — 1–2 раза или только в одном ролике. Что не попало ни туда, ни туда — серая зона.</p></div>
+          <span class="santehnika-count">${shown} из ${data.totals.elements} ${santehnikaPlural(data.totals.elements)}</span></header>`;
+      }
+
+      function santehnikaStatsMarkup(data) {
+        const tiles = [
+          ['total', data.totals.elements, 'Элементов', ''],
+          ['families', data.totals.families, 'Семейств', ''],
+          ['techniques', data.totals.techniques, 'Приёмов', ''],
+          ['base', data.totals.elementsByTier.base, 'Базовый набор', 'is-base'],
+          ['unique', data.totals.elementsByTier.unique, 'Уникальные', 'is-unique'],
+          ['gray', data.totals.elementsByTier.gray, 'Серая зона', 'is-gray']
+        ];
+        return `<section class="santehnika-stats" aria-label="Сводка по нише">${tiles.map(([key, value, label, className]) => `<div class="santehnika-stat ${className}"><strong class="santehnika-stat-value" data-santehnika-stat="${key}">${value}</strong><span class="santehnika-stat-label">${label}</span></div>`).join('')}</section>`;
+      }
+
+      function disconnectSantehnikaObserver() {
+        santehnikaObserver?.disconnect();
+        santehnikaObserver = null;
+        santehnikaSections.clear();
+      }
+
+      function mountSantehnikaBody(node) {
+        if (!node || node.dataset.santehnikaMounted === 'true') return;
+        const group = santehnikaSections.get(node.dataset.santehnikaBody);
+        if (!group) return;
+        node.dataset.santehnikaMounted = 'true';
+        node.style.minHeight = '';
+        node.innerHTML = santehnikaBodyMarkup(group);
+      }
+
+      function observeSantehnikaBodies() {
+        const nodes = [...dom.workspaceInner.querySelectorAll('[data-santehnika-body]')];
+        if (!nodes.length) return;
+        if (typeof IntersectionObserver !== 'function') {
+          for (const node of nodes) mountSantehnikaBody(node);
+          return;
+        }
+        santehnikaObserver = new IntersectionObserver((entries, observer) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            observer.unobserve(entry.target);
+            mountSantehnikaBody(entry.target);
+          }
+        }, { root: dom.workspace, rootMargin: '900px 0px' });
+        for (const node of nodes) santehnikaObserver.observe(node);
+        // Наблюдатель отвечает первым кадром, а иногда и позже: чтобы после фильтра
+        // или поиска экран не оставался пустым, то, что уже попало в окно, монтируем сами.
+        requestAnimationFrame(() => {
+          for (const node of nodes) {
+            if (node.dataset.santehnikaMounted === 'true' || !node.isConnected) continue;
+            const box = node.getBoundingClientRect();
+            if (box.top <= globalThis.innerHeight && box.bottom >= 0) mountSantehnikaBody(node);
+          }
+        });
+      }
+
+      function renderSantehnika() {
+        const data = santehnikaData();
+        if (!data) {
+          dom.playerDock.hidden = true;
+          dom.workspaceInner.innerHTML = '<div class="family-empty">Разбор ниши не загружен: нет santehnika-data.js</div>';
+          return;
+        }
+        const { groups, editing, shown } = santehnikaGroups(data);
+        for (const group of groups) santehnikaSections.set(group.family, group);
+        const families = groups.filter((group) => group.shown > 0).map(santehnikaFamilyMarkup).join('');
+        const editingMarkup = editing.length
+          ? `<section class="editing-element" aria-label="Редактируемый элемент">${editing.map(({ project, element, entry }) => elementCard(project, element, santehnikaMeta(entry))).join('')}</section>`
+          : '';
+        dom.workspaceInner.innerHTML = `<section class="santehnika-page">${santehnikaIntroMarkup(data, shown)}${santehnikaStatsMarkup(data)}${editingMarkup}<div class="santehnika-families">${families || '<div class="family-empty">По выбранному фильтру элементов нет</div>'}</div></section>`;
+        if (editing.length) renderPlayerDock();
+        else dom.playerDock.hidden = true;
+        observeSantehnikaBodies();
+        requestAnimationFrame(() => resizeDescriptions());
+      }
+
+      // Карточка из вкладки «САНТЕХНИКА» принадлежит своему ролику: перед раскрытием
+      // активным становится он, иначе плеер и таймкод показали бы чужое видео.
+      function focusSantehnikaProject(projectId) {
+        const project = findProject(projectId);
+        if (!project || String(state.activeProjectId) === String(project.id)) return false;
+        state.activeProjectId = project.id;
+        state.settings.activeProjectId = project.id;
+        saveSettings(['activeProjectId']);
+        return true;
+      }
+
       function renderComparison() {
         dom.playerDock.hidden = true;
         const source = Array.isArray(globalThis.SRAVNENIE?.families) ? globalThis.SRAVNENIE.families : [];
@@ -2313,8 +2571,13 @@
 
       function renderWorkspace() {
         invalidateDerived();
+        disconnectSantehnikaObserver();
         if (state.view === 'comparison') {
           renderComparison();
+          return;
+        }
+        if (state.view === 'santehnika') {
+          renderSantehnika();
           return;
         }
         const project = findProject(state.activeProjectId);
@@ -2372,6 +2635,7 @@
       }
 
       function visibleFamilyOrder() {
+        if (state.view === 'santehnika') return santehnikaData()?.families.map((entry) => entry.family) || [];
         if (state.view !== 'comparison') return FAMILY_ORDER;
         return Array.isArray(globalThis.SRAVNENIE?.families) ? globalThis.SRAVNENIE.families.map((entry) => entry.family) : [];
       }
@@ -2394,17 +2658,18 @@
       }
 
       function setView(view, updateHash = true) {
-        if (!['catalog', 'comparison'].includes(view)) return;
+        if (!['catalog', 'comparison', 'santehnika'].includes(view)) return;
         if (state.lightbox) closeLightbox();
         state.view = view;
         state.editingElementId = null;
         if (updateHash) {
-          const target = view === 'comparison' ? '#comparison' : `${globalThis.location?.pathname || 'index.html'}${globalThis.location?.search || ''}`;
+          const hash = view === 'catalog' ? '' : view;
+          const target = hash ? `#${hash}` : `${globalThis.location?.pathname || 'index.html'}${globalThis.location?.search || ''}`;
           try {
             if (globalThis.history?.replaceState) globalThis.history.replaceState(null, '', target);
-            else globalThis.location.hash = view === 'comparison' ? 'comparison' : '';
+            else globalThis.location.hash = hash;
           } catch (error) {
-            globalThis.location.hash = view === 'comparison' ? 'comparison' : '';
+            globalThis.location.hash = hash;
           }
         }
         renderFeed();
@@ -4310,8 +4575,10 @@
         } else if (event.target.closest('[data-delete-element]')) {
           showDeleteModal('element', element);
         } else if (!card.classList.contains('is-expanded') && !event.target.closest('input, textarea, summary, [data-category-choice]')) {
+          const projectSwitched = state.view === 'santehnika' && focusSantehnikaProject(element.projectId);
           state.editingElementId = element.id;
-          renderWorkspace();
+          if (projectSwitched) renderFeed();
+          else renderWorkspace();
           requestAnimationFrame(() => dom.workspaceInner.querySelector(`[data-element-id="${CSS.escape(String(element.id))}"] [data-element-field="description"]`)?.focus());
         }
       });
@@ -4480,7 +4747,7 @@
       });
 
       globalThis.addEventListener('hashchange', () => {
-        const view = globalThis.location.hash === '#comparison' ? 'comparison' : 'catalog';
+        const view = viewFromHash(globalThis.location.hash);
         if (view !== state.view) setView(view, false);
       });
 
@@ -4668,6 +4935,22 @@
         invalidateDerived();
         state.drafts.clear();
 
+        const santehnika = santehnikaData();
+        expect(Boolean(santehnika), 'santehnika analysis is loaded');
+        if (santehnika) {
+          const ids = Object.keys(santehnika.elements);
+          expect(ids.length === santehnika.totals.elements, 'santehnika element count matches totals');
+          const tiers = ids.reduce((acc, id) => {
+            const tier = santehnika.tiers[santehnika.elements[id][2]];
+            return { ...acc, [tier]: (acc[tier] || 0) + 1 };
+          }, {});
+          expect(SANTEHNIKA_TIER_ORDER.every((tier) => tiers[tier] === santehnika.totals.elementsByTier[tier]), 'santehnika tier split matches totals');
+          expect(santehnika.families.reduce((sum, family) => sum + family.elements, 0) === santehnika.totals.elements, 'santehnika family sum matches totals');
+          const sample = santehnikaEntry(santehnika, { id: ids[0] });
+          expect(Boolean(sample?.family && sample.technique && sample.tier), 'santehnika element resolves family, technique and tier');
+          expect(santehnikaMeta({ family: 'HARD-CUT', technique: 'Match cut', tier: 'unique' }).includes('УНИКАЛЬНАЯ ВСТАВКА'), 'santehnika card badge shows the tier label');
+          expect(viewFromHash('#santehnika') === 'santehnika' && viewFromHash('#comparison') === 'comparison' && viewFromHash('') === 'catalog', 'hash routing covers all three views');
+        }
         expect(presenceCount().total >= 1, 'presence counts at least this tab');
         expect(isCatalogSnapshot({ projects: [], elements: [] }), 'published catalog shape');
         expect(!isCatalogSnapshot({ projects: [] }), 'invalid published catalog shape');
