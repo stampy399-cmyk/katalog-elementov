@@ -328,26 +328,38 @@ async function main() {
     for (const surface of surfaces) check(surface.errors.length === 0, `${surface.label}: console errors: ${surface.errors.join(' | ')}`);
   } finally {
     try { await cdp.send('Browser.close'); } catch (error) { child.kill('SIGTERM'); }
+    cdp.socket?.close();
     await Promise.race([
       new Promise((resolve) => child.once('exit', resolve)),
       delay(3000)
     ]);
-    if (child.exitCode === null) child.kill('SIGTERM');
-    await delay(300);
+    if (child.exitCode === null) {
+      child.kill('SIGTERM');
+      await Promise.race([
+        new Promise((resolve) => child.once('exit', resolve)),
+        delay(1000)
+      ]);
+    }
+    if (child.exitCode === null) {
+      child.kill('SIGKILL');
+      await Promise.race([
+        new Promise((resolve) => child.once('exit', resolve)),
+        delay(1000)
+      ]);
+    }
     await removeTemporaryProfile();
   }
 
   if (failures.length) {
     console.error(`FAIL ${failures.length}/${assertions}`);
     failures.forEach((failure) => console.error(`- ${failure}`));
-    process.exitCode = 1;
-    return;
+    process.exit(1);
   }
   console.log(`PASS ${assertions} browser assertions; HTTP console=0; file console=0; refresh=PASS`);
+  process.exit(0);
 }
 
 main().catch((error) => {
   console.error(error.stack || error);
-  removeTemporaryProfile().catch(() => undefined);
-  process.exitCode = 1;
+  removeTemporaryProfile().finally(() => process.exit(1));
 });
