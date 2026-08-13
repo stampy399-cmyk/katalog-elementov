@@ -319,7 +319,7 @@
     .search:hover, .search:focus { border-color: var(--line); background: var(--surface-raised); }
     .online-presence, .save-state { font-size: 11px; }
     /* Fixed widths: the status text changes constantly and must not move the topbar. */
-    .save-state { width: 148px; min-width: 148px; justify-content: flex-end; overflow: hidden; cursor: pointer; font-variant-numeric: tabular-nums; }
+    .save-state { width: 148px; min-width: 148px; justify-content: flex-end; overflow: hidden; font-variant-numeric: tabular-nums; }
     .online-presence { width: 74px; min-width: 74px; margin-left: auto; text-align: right; font-variant-numeric: tabular-nums; }
     .icon-button { width: 30px; height: 30px; border-radius: 7px; font-size: 18px; }
     .category-filter-active { max-width: 170px; font-size: 11px; }
@@ -519,7 +519,7 @@
       .project-header-actions { margin-top: 12px; }
     }
 
-    /* Cloud controls and the final contrast/stacking fixes live after the legacy styles. */
+    /* Final contrast and stacking fixes live after the legacy styles. */
     :root { --surface-raised: #222831; --line: #343c47; }
     [data-theme="light"] { --bg: #f3f5f8; --surface: #ffffff; --surface-raised: #e9eef5; --line: #cbd5e1; }
     .search-wrap { position: relative; }
@@ -604,7 +604,6 @@
     <button class="menu-item" type="button" data-action="import-json"><span class="menu-icon">⇧</span>Импорт JSON</button>
     <button class="menu-item" type="button" data-action="export-claude"><span class="menu-icon">✦</span>Экспорт для Клода</button>
     <div class="menu-separator"></div>
-    <button class="menu-item" type="button" data-action="cloud-token"><span class="menu-icon">🔑</span>Ключ записи</button>
     <button class="menu-item" type="button" data-action="backup-folder"><span class="menu-icon">▣</span>Папка бэкапа</button>
     <button class="menu-item" type="button" data-action="crop"><span class="menu-icon">✂</span>Обрезка</button>
     <button class="menu-item" type="button" data-action="recalibrate"><span class="menu-icon">⌗</span>Перекалибровка рамки</button>
@@ -623,30 +622,13 @@
       'use strict';
 
       const DB_NAME = 'local-element-catalog';
-      const DB_VERSION = 6;
+      const DB_VERSION = 7;
       const CATALOG_VERSION = 5;
       const SAVE_DELAY = 240;
-      const CLOUD_SAVE_DELAY = 1000;
-      // GitHub Pages rebuilds on every commit and allows only ~10 builds per hour,
-      // so catalog commits are batched instead of following each keystroke.
-      const CLOUD_PUSH_DELAY = 45000;
-      const CLOUD_PUSH_MIN_INTERVAL = 45000;
-      const CLOUD_PUSH_BLUR_DELAY = 5000;
-      const CLOUD_PUSH_MAX_DEFERRAL = 90000;
       const TYPING_QUIET_PERIOD = 1200;
-      const CLOUD_POLL_INTERVAL = 3000;
-      const CLOUD_WRITE_RACE_RETRIES = 3;
       const DELETE_CONFIRMATION = 'УДАЛИТЬ';
       const PUBLISHED_DATA_URL = 'data.json';
-      const GITHUB_CONTENTS_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/contents/data.json';
-      const GITHUB_GIT_URL = 'https://api.github.com/repos/stampy399-cmyk/katalog-elementov/git';
       const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/stampy399-cmyk/katalog-elementov/main/';
-      const GITHUB_BRANCH = 'main';
-      const MAX_IMAGE_ASSET_BYTES = 95 * 1024 * 1024;
-      const MAX_CLOUD_JSON_BYTES = 1024 * 1024;
-      // Эта страница публичная: любой зашитый в неё секрет читает каждый посетитель.
-      // Ключ записи вводится вручную и хранится только в localStorage конкретного браузера.
-      const CLOUD_TOKEN_KEY = 'katalog-elementov.cloud-token';
       const PRESENCE_CLIENT_KEY = 'katalog-elementov.presence-client-id';
       const PRESENCE_LOCAL_KEY = 'katalog-elementov.presence-peers';
       const PRESENCE_CHANNEL_NAME = 'katalog-elementov.presence';
@@ -656,11 +638,6 @@
       const PREVIEW_CACHE_KEY = 'katalog-elementov.local-previews';
       const PREVIEW_CACHE_LIMIT = 14;
       const PREVIEW_CACHE_BYTES = 3 * 1024 * 1024;
-      const CLOUD_CACHE_KEY = 'katalog-elementov.cloud-cache';
-      const CLOUD_OUTBOX_KEY = 'katalog-elementov.cloud-outbox';
-      const CLOUD_BACKUP_KEY = 'backup';
-      const CLOUD_BACKUP_COMPAT_KEY = 'katalog-elementov.cloud-backup';
-      const CLOUD_GUARDED_OUTBOX_KEY = 'katalog-elementov.cloud-guarded-outbox';
       const DEFAULT_SETTINGS = Object.freeze({
         theme: 'dark',
         crop: null,
@@ -746,41 +723,6 @@
           clockTimer: null,
           generation: 0
         },
-        cloud: {
-          token: '',
-          observedEtag: '',
-          observedSha: '',
-          baseEtag: '',
-          baseSha: '',
-          baseSnapshot: null,
-          dirty: false,
-          saving: false,
-          error: '',
-          ready: false,
-          applying: false,
-          importing: false,
-          pollPaused: false,
-          saveTimer: null,
-          outboxTimer: null,
-          outboxPending: false,
-          pollTimer: null,
-          pollInFlight: false,
-          pendingSnapshot: null,
-          remoteProjectCount: 0,
-          knownProjectIds: new Set(),
-          knownElementIds: new Set(),
-          initialPullDone: false,
-          revision: 0,
-          outbox: null,
-          outboxError: false,
-          syncQueue: Promise.resolve(),
-          generation: 0,
-          writeGeneration: 0,
-          lastPushAt: 0,
-          saveDueAt: 0,
-          firstDirtyAt: 0,
-          pendingPush: false
-        },
         presence: {
           clientId: '',
           count: 1,
@@ -824,22 +766,9 @@
         }
       }
 
-      function removeLocalValue(key) {
-        try {
-          localStorage.removeItem(key);
-          return true;
-        } catch (error) {
-          return false;
-        }
-      }
-
       function isTextEditing(target = document.activeElement) {
         if (!target || !(target instanceof Element)) return false;
         return Boolean(target.closest('input, textarea, select, [contenteditable="true"], [contenteditable=""], [contenteditable]:not([contenteditable="false"])'));
-      }
-
-      function isCloudReadOnly() {
-        return state.cloud.applying || state.cloud.importing;
       }
 
       // A local draft is never lost: while a field is focused (and shortly after) an incoming
@@ -901,18 +830,6 @@
 
       function isTypingPause() {
         return Date.now() - state.lastTypingAt < TYPING_QUIET_PERIOD;
-      }
-
-      function applyReadOnlyState() {
-        const readOnly = isCloudReadOnly();
-        dom.appShell.classList.toggle('is-read-only', readOnly);
-        for (const field of dom.appShell.querySelectorAll('[data-project-field], [data-video-field], [data-element-field], [data-category-input]')) {
-          field.readOnly = readOnly;
-          if (field.matches('input[type="range"]')) field.disabled = readOnly;
-        }
-        for (const control of dom.appShell.querySelectorAll('[data-project-complete], [data-project-auto], [data-add-element], [data-delete-project], [data-delete-element], [data-copy-element], .repeat-badge, #addVideo')) {
-          control.disabled = readOnly;
-        }
       }
 
       function clamp(value, min, max) {
@@ -1142,9 +1059,7 @@
         const categories = db.objectStoreNames.contains('categories')
           ? transaction.objectStore('categories')
           : db.createObjectStore('categories', { keyPath: 'key' });
-        if (!db.objectStoreNames.contains('cloudSync')) {
-          db.createObjectStore('cloudSync', { keyPath: 'key' });
-        }
+        if (db.objectStoreNames.contains('cloudSync')) db.deleteObjectStore('cloudSync');
 
         if (!elements.indexNames.contains('projectId')) {
           elements.createIndex('projectId', 'projectId', { unique: false });
@@ -1289,30 +1204,17 @@
           ? settings.activeProjectId
           : state.projects[0]?.id || null;
         state.editingElementId = null;
-        state.cloud.token = storedCloudToken();
         applyTheme();
         refreshBackupPermission();
       }
 
       function setSaveState(kind, message) {
-        if (state.cloud.ready && !state.cloud.applying) {
-          if (state.cloud.saving) {
-            kind = 'saving';
-            message = 'Отправка…';
-          } else if (state.cloud.error) {
-            kind = 'error';
-            message = state.cloud.error;
-          } else if (state.cloud.dirty) {
-            kind = 'saving';
-            message = 'В очереди';
-          }
-        }
         const text = message || ({ saving: 'Сохранение…', saved: 'Сохранено', error: 'Ошибка' }[kind] || 'Сохранено');
         if (dom.saveState.dataset.state !== kind) dom.saveState.dataset.state = kind;
         if (dom.saveState.textContent !== text) dom.saveState.textContent = text;
         dom.saveState.title = kind === 'error'
-          ? `${text}. Данные сохранены локально. Клик — повторить отправку.`
-          : (state.cloud.dirty ? 'Правки сохранены локально, отправка в облако пакетом. Клик — отправить сейчас.' : 'Все правки отправлены в облако.');
+          ? `${text}. Данные остались в памяти браузера.`
+          : 'Правки сохранены локально в этом браузере.';
       }
 
       function cancelScheduledCommit(key) {
@@ -1364,7 +1266,6 @@
       function saveProject(project, deferred = true) {
         project.progress = projectProgress(project);
         project.updatedAt = Date.now();
-        markCloudDirty();
         const task = () => runTransaction(['projects'], 'readwrite', (transaction) => {
           transaction.objectStore('projects').put(project);
         });
@@ -1378,7 +1279,6 @@
         for (const key of Object.keys(element)) if (!hasOwn(normalized, key)) delete element[key];
         Object.assign(element, normalized);
         element.updatedAt = Date.now();
-        markCloudDirty();
         const { changed } = rebuildCategories();
         const task = () => runTransaction(['elements', 'categories'], 'readwrite', (transaction) => {
           const store = transaction.objectStore('elements');
@@ -1393,7 +1293,6 @@
       function saveSettings(keys, deferred = true, options = {}) {
         const normalizedKeys = [...new Set((Array.isArray(keys) ? keys : [keys]).map(asText).map((key) => key.trim()).filter(Boolean))];
         if (normalizedKeys.length === 0) return deferred ? undefined : Promise.resolve();
-        if (options.cloud !== false) markCloudDirty();
         const task = () => runTransaction(['settings'], 'readwrite', (transaction) => {
           const store = transaction.objectStore('settings');
           for (const key of normalizedKeys) store.put({ key, value: state.settings[key] });
@@ -1988,7 +1887,6 @@
         renderCategoryFilter();
         renderSidebar();
         renderWorkspace();
-        applyReadOnlyState();
         if (state.statsOpen) renderStats();
       }
 
@@ -2041,10 +1939,6 @@
       }
 
       function selectCategory(element, value) {
-        if (isCloudReadOnly()) {
-          showToast('Каталог обновляется.');
-          return;
-        }
         const key = categoryKey(value);
         const category = categoryByKey(key);
         element.category = category?.name || categoryName(value);
@@ -2327,7 +2221,6 @@
         const card = [...dom.workspaceInner.querySelectorAll('[data-element-id]')].find((node) => node.dataset.elementId === String(element.id));
         cancelElementCommit(element.id);
         state.elements.splice(index, 1);
-        markCloudDirty();
         if (String(state.editingElementId) === String(element.id)) state.editingElementId = null;
         deleteElementFromDatabase(element.id).catch(() => undefined);
         updateProjectCounts(element.projectId);
@@ -2349,7 +2242,6 @@
         const wasActive = String(state.activeProjectId) === String(project.id);
         state.projects.splice(index, 1);
         state.elements = state.elements.filter((element) => String(element.projectId) !== String(project.id));
-        markCloudDirty();
         if (wasActive) {
           const nextProject = state.projects[Math.min(index, state.projects.length - 1)] || null;
           state.activeProjectId = nextProject?.id || null;
@@ -2426,7 +2318,6 @@
       function closeModal() {
         state.modal = null;
         renderModal();
-        setTimeout(() => applyPendingRemoteSnapshot().catch(() => undefined), 0);
       }
 
       function closeMenu() {
@@ -2465,7 +2356,7 @@
       function toggleTheme() {
         state.settings.theme = state.settings.theme === 'light' ? 'dark' : 'light';
         applyTheme();
-        saveSettings(['theme'], true, { cloud: !isCloudReadOnly() });
+        saveSettings(['theme']);
       }
 
       function cropFrameStyle(frame) {
@@ -3105,1165 +2996,18 @@
         };
       }
 
-      function base64FromText(value) {
-        const bytes = new TextEncoder().encode(value);
-        let binary = '';
-        const chunkSize = 0x8000;
-        for (let start = 0; start < bytes.length; start += chunkSize) {
-          binary += String.fromCharCode(...bytes.subarray(start, start + chunkSize));
-        }
-        return btoa(binary);
-      }
-
-      function textFromBase64(value) {
-        const binary = atob(asText(value).replace(/\s/g, ''));
-        const bytes = new Uint8Array(binary.length);
-        for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
-        return new TextDecoder().decode(bytes);
-      }
-
-      function storedCloudToken() {
-        return localValue(CLOUD_TOKEN_KEY, '').trim();
-      }
-
-      function applyCloudToken(value) {
-        const token = asText(value).trim();
-        const saved = token ? saveLocalValue(CLOUD_TOKEN_KEY, token) : removeLocalValue(CLOUD_TOKEN_KEY);
-        if (!saved) {
-          showToast('Браузер не разрешил сохранить ключ записи.');
-          return false;
-        }
-        state.cloud.token = token;
-        return true;
-      }
-
-      function promptCloudToken() {
-        const current = storedCloudToken();
-        const entered = globalThis.prompt(current
-          ? 'Ключ записи сохранён в этом браузере. Введите другой ключ или очистите поле, чтобы вернуться к режиму чтения.'
-          : 'Вставьте персональный токен GitHub со scope repo. Он останется только в этом браузере и никогда не попадёт в файлы каталога.', current);
-        if (entered === null) return;
-        if (!applyCloudToken(entered)) return;
-        showToast(state.cloud.token
-          ? 'Ключ записи сохранён в этом браузере.'
-          : 'Ключ записи удалён: каталог работает только на чтение.');
-      }
-
-      function cloudHeaders(headers = {}) {
-        const next = { Accept: 'application/vnd.github+json', ...headers };
-        if (state.cloud.token) next.Authorization = `Bearer ${state.cloud.token}`;
-        return next;
-      }
-
-      function cloudWriteError(message, status = 0, race = false) {
-        const error = new Error(message);
-        error.status = status;
-        error.cloudRace = race;
-        return error;
-      }
-
-      async function githubApiJson(path, { method = 'GET', body } = {}, label = 'GitHub') {
-        const response = await fetch(`${GITHUB_GIT_URL}${path}`, {
-          method,
-          headers: cloudHeaders(body === undefined ? {} : { 'Content-Type': 'application/json' }),
-          ...(body === undefined ? {} : { body: JSON.stringify(body) }),
-          cache: 'no-store'
-        });
-        let payload = null;
-        try {
-          payload = await response.json();
-        } catch (error) {
-          // Some GitHub failures have an empty response body; the status remains actionable.
-        }
-        if (!response.ok) {
-          const detail = asText(payload?.message).trim();
-          throw cloudWriteError(`${label}: GitHub ${response.status}${detail ? ` — ${detail}` : ''}`, response.status);
-        }
-        return payload;
-      }
-
-      function safeAssetId(value) {
-        const raw = asText(value).trim();
-        if (!raw) throw cloudWriteError('Изображение элемента без id не может быть сохранено в облако.');
-        if (/^[A-Za-z0-9][A-Za-z0-9._-]{0,95}$/.test(raw)) return raw;
-        const slug = raw.replace(/[^A-Za-z0-9._-]+/g, '-').replace(/^[.-]+|[.-]+$/g, '').slice(0, 80) || 'element';
-        let hash = 2166136261;
-        for (let index = 0; index < raw.length; index += 1) hash = Math.imul(hash ^ raw.charCodeAt(index), 16777619) >>> 0;
-        return `${slug}-${hash.toString(16).padStart(8, '0')}`;
-      }
-
-      function imageDataPayload(value, label) {
-        const source = asText(value);
-        if (!/^data:/i.test(source)) return null;
-        const match = /^data:image\/(png|jpeg|webp);base64,([A-Za-z0-9+/=\s]+)$/i.exec(source);
-        if (!match) throw cloudWriteError(`${label}: поддерживаются только data URL PNG, JPEG и WebP.`);
-        let content = match[2].replace(/\s/g, '');
-        if (!content || content.length % 4 === 1 || !/^[A-Za-z0-9+/]*={0,2}$/.test(content)) {
-          throw cloudWriteError(`${label}: повреждённые base64-данные.`);
-        }
-        content += '='.repeat((4 - content.length % 4) % 4);
-        const padding = content.endsWith('==') ? 2 : (content.endsWith('=') ? 1 : 0);
-        const bytes = content.length * 3 / 4 - padding;
-        if (bytes > MAX_IMAGE_ASSET_BYTES) {
-          throw cloudWriteError(`${label}: файл ${Math.ceil(bytes / 1024 / 1024)} МБ превышает лимит ${Math.floor(MAX_IMAGE_ASSET_BYTES / 1024 / 1024)} МБ.`);
-        }
-        return { content, bytes, extension: match[1].toLowerCase() === 'jpeg' ? 'jpg' : match[1].toLowerCase() };
-      }
-
-      function snapshotSettingValue(snapshot, key) {
-        if (Array.isArray(snapshot?.settings)) return snapshot.settings.find((row) => row && row.key === key)?.value;
-        return snapshot?.settings?.[key];
-      }
-
-      function setSnapshotSettingValue(snapshot, key, value) {
-        if (Array.isArray(snapshot.settings)) {
-          const row = snapshot.settings.find((item) => item && item.key === key);
-          if (row) row.value = value;
-        } else {
-          snapshot.settings[key] = value;
-        }
-      }
-
-      async function uploadGitBlob(asset) {
-        const payload = await githubApiJson('/blobs', {
-          method: 'POST',
-          body: { content: asset.content, encoding: 'base64' }
-        }, `Загрузка ${asset.path}`);
-        const sha = asText(payload?.sha).trim();
-        if (!sha) throw cloudWriteError(`Загрузка ${asset.path}: GitHub не вернул SHA.`);
-        return sha;
-      }
-
-      async function externalizeSnapshotDataUrls(sourceSnapshot) {
-        const snapshot = cloneSnapshot(sourceSnapshot);
-        const assets = new Map();
-        const targets = [];
-        const register = (path, payload, target) => {
-          const existing = assets.get(path);
-          if (existing && existing.content !== payload.content) throw cloudWriteError(`Коллизия пути облачного актива: ${path}.`);
-          if (!existing) assets.set(path, { path, content: payload.content, bytes: payload.bytes, sha: '' });
-          targets.push({ ...target, path });
-        };
-
-        for (const element of snapshot.elements) {
-          const source = asText(element.image);
-          const payload = imageDataPayload(source, `Элемент ${asText(element.id) || 'без id'}`);
-          if (!payload) continue;
-          register(`assets/elements/${safeAssetId(element.id)}.${payload.extension}`, payload, {
-            kind: 'element', id: String(element.id), source
-          });
-        }
-        const cropSource = asText(snapshotSettingValue(snapshot, 'lastCropSource'));
-        const cropPayload = imageDataPayload(cropSource, 'Источник последней обрезки');
-        if (cropPayload) {
-          register(`assets/crop/last-source.${cropPayload.extension}`, cropPayload, {
-            kind: 'lastCropSource', source: cropSource
-          });
-        }
-
-        const pendingAssets = [...assets.values()];
-        for (let start = 0; start < pendingAssets.length; start += 4) {
-          await Promise.all(pendingAssets.slice(start, start + 4).map(async (asset) => {
-            asset.sha = await uploadGitBlob(asset);
-          }));
-        }
-
-        const replacements = { elements: [], lastCropSource: null };
-        for (const target of targets) {
-          const asset = assets.get(target.path);
-          const value = `${target.path}?v=${asset.sha.slice(0, 12)}`;
-          if (target.kind === 'element') {
-            const element = snapshot.elements.find((row) => String(row.id) === target.id && row.image === target.source);
-            if (!element) throw cloudWriteError(`Элемент ${target.id}: исходное изображение изменилось во время подготовки.`);
-            element.image = value;
-            replacements.elements.push({ id: target.id, source: target.source, value });
-          } else {
-            setSnapshotSettingValue(snapshot, 'lastCropSource', value);
-            replacements.lastCropSource = { source: target.source, value };
-          }
-        }
-        return {
-          snapshot,
-          replacements,
-          assets: pendingAssets.map(({ path, sha }) => ({ path, sha }))
-        };
-      }
-
-      async function commitSnapshotWithGitData(snapshot, expectedDataSha, shouldCancel = () => false) {
-        const externalized = await externalizeSnapshotDataUrls(snapshot);
-        if (shouldCancel()) {
-          const error = cloudWriteError('Облачная запись отменена из-за замены каталога.');
-          error.cloudCancelled = true;
-          throw error;
-        }
-        const serialized = JSON.stringify(externalized.snapshot, null, 2);
-        const serializedBytes = new TextEncoder().encode(serialized).byteLength;
-        if (serializedBytes > MAX_CLOUD_JSON_BYTES) {
-          throw cloudWriteError(`data.json после выноса изображений занимает ${Math.ceil(serializedBytes / 1024)} КБ; лимит ${MAX_CLOUD_JSON_BYTES / 1024} КБ.`);
-        }
-        const dataBlob = await githubApiJson('/blobs', {
-          method: 'POST',
-          body: { content: serialized, encoding: 'utf-8' }
-        }, 'Запись data.json blob');
-        const dataBlobSha = asText(dataBlob?.sha).trim();
-        if (!dataBlobSha) throw cloudWriteError('Запись data.json blob: GitHub не вернул SHA.');
-        if (shouldCancel()) {
-          const error = cloudWriteError('Облачная запись отменена из-за замены каталога.');
-          error.cloudCancelled = true;
-          throw error;
-        }
-
-        const branch = encodeURIComponent(GITHUB_BRANCH);
-        const ref = await githubApiJson(`/ref/heads/${branch}`, {}, 'Чтение main ref');
-        const headSha = asText(ref?.object?.sha).trim();
-        if (!headSha) throw cloudWriteError('Чтение main ref: GitHub не вернул SHA коммита.');
-        const headCommit = await githubApiJson(`/commits/${encodeURIComponent(headSha)}`, {}, 'Чтение head commit');
-        const baseTreeSha = asText(headCommit?.tree?.sha).trim();
-        if (!baseTreeSha) throw cloudWriteError('Чтение head commit: GitHub не вернул SHA дерева.');
-        const baseTree = await githubApiJson(`/trees/${encodeURIComponent(baseTreeSha)}`, {}, 'Проверка base tree');
-        const actualDataSha = asText(baseTree?.tree?.find((entry) => entry.path === 'data.json' && entry.type === 'blob')?.sha).trim();
-        if (actualDataSha !== asText(expectedDataSha).trim()) {
-          throw cloudWriteError('data.json изменился перед созданием коммита.', 409, true);
-        }
-
-        const tree = await githubApiJson('/trees', {
-          method: 'POST',
-          body: {
-            base_tree: baseTreeSha,
-            tree: [
-              { path: 'data.json', mode: '100644', type: 'blob', sha: dataBlobSha },
-              ...externalized.assets.map((asset) => ({ path: asset.path, mode: '100644', type: 'blob', sha: asset.sha }))
-            ]
-          }
-        }, 'Создание catalog tree');
-        const treeSha = asText(tree?.sha).trim();
-        if (!treeSha) throw cloudWriteError('Создание catalog tree: GitHub не вернул SHA.');
-        const commitPayload = await githubApiJson('/commits', {
-          method: 'POST',
-          body: { message: 'chore: update catalog data', tree: treeSha, parents: [headSha] }
-        }, 'Создание catalog commit');
-        const commitSha = asText(commitPayload?.sha).trim();
-        if (!commitSha) throw cloudWriteError('Создание catalog commit: GitHub не вернул SHA.');
-        if (shouldCancel()) {
-          const error = cloudWriteError('Облачная запись отменена из-за замены каталога.');
-          error.cloudCancelled = true;
-          throw error;
-        }
-        try {
-          await githubApiJson(`/refs/heads/${branch}`, {
-            method: 'PATCH',
-            body: { sha: commitSha, force: false }
-          }, 'Обновление main ref');
-        } catch (error) {
-          if (error.status === 409 || error.status === 422) error.cloudRace = true;
-          throw error;
-        }
-        return { dataBlobSha, commitSha, ...externalized };
-      }
-
-      async function recoverCommittedGitData(snapshot, remote) {
-        const externalized = await externalizeSnapshotDataUrls(snapshot);
-        if (!cloudSnapshotsSemanticallyEqual(externalized.snapshot, remote?.raw)) return null;
-        return {
-          dataBlobSha: remote.sha,
-          commitSha: '',
-          ...externalized
-        };
-      }
-
-      function emptyCloudSnapshot() {
-        return { version: CATALOG_VERSION, exportedAt: '', projects: [], elements: [], categories: [], settings: {} };
-      }
-
-      function isCloudSnapshot(raw) {
+      function isCatalogSnapshot(raw) {
         return Boolean(raw && typeof raw === 'object' && Array.isArray(raw.projects) && Array.isArray(raw.elements));
       }
 
-      function snapshotVersion(snapshot) {
-        const version = Number(snapshot?.version);
-        return Number.isFinite(version) ? version : 0;
-      }
-
-      function snapshotExportedAt(snapshot) {
-        const timestamp = Date.parse(asText(snapshot?.exportedAt));
-        return Number.isFinite(timestamp) ? timestamp : 0;
-      }
-
-      function isPublishedSnapshotNewer(server, local) {
-        if (!isCloudSnapshot(server)) return false;
-        if (!isCloudSnapshot(local)) return true;
-        const serverVersion = snapshotVersion(server);
-        const localVersion = snapshotVersion(local);
-        if (serverVersion !== localVersion) return serverVersion > localVersion;
-        return snapshotExportedAt(server) > snapshotExportedAt(local);
-      }
-
-      function cloneSnapshot(snapshot) {
-        if (snapshot === undefined) return undefined;
-        return JSON.parse(JSON.stringify(snapshot));
-      }
-
-      function cloudSnapshotSemantics(snapshot) {
-        const sorted = (rows, identity) => [...(Array.isArray(rows) ? rows : [])]
-          .sort((left, right) => identity(left).localeCompare(identity(right), 'en'));
-        const settings = Array.isArray(snapshot?.settings)
-          ? Object.fromEntries(snapshot.settings.filter((row) => row && hasOwn(row, 'key')).map((row) => [row.key, row.value]))
-          : (snapshot?.settings || {});
-        return {
-          version: Number(snapshot?.version) || CATALOG_VERSION,
-          projects: sorted(snapshot?.projects, (row) => String(row?.id ?? '')),
-          elements: sorted(snapshot?.elements, (row) => String(row?.id ?? '')),
-          categories: sorted(snapshot?.categories, (row) => asText(row?.key || categoryKey(row?.name))),
-          settings
-        };
-      }
-
-      function cloudSnapshotsSemanticallyEqual(left, right) {
-        return isCloudSnapshot(left)
-          && isCloudSnapshot(right)
-          && valuesEqual(cloudSnapshotSemantics(left), cloudSnapshotSemantics(right));
-      }
-
-      function compactOutboxRecord(record) {
-        return {
-          ...record,
-          version: 2,
-          baseSha: asText(record.baseSha).trim(),
-          baseEtag: asText(record.baseEtag).trim(),
-          ...(isCloudSnapshot(record.baseSnapshot) ? { baseSnapshot: cloneSnapshot(record.baseSnapshot) } : {}),
-          ...(isCloudSnapshot(record.localSnapshot) ? { localSnapshot: cloneSnapshot(record.localSnapshot) } : {}),
-          localConflicts: Array.isArray(record.localConflicts) ? [...new Set(record.localConflicts)].sort() : []
-        };
-      }
-
       function prepareRemoteSnapshot(raw, meta = {}) {
-        if (!isCloudSnapshot(raw)) throw new Error('Облачный data.json имеет неверную структуру.');
+        if (!isCatalogSnapshot(raw)) throw new Error('data.json имеет неверную структуру.');
         return {
           raw,
           incoming: prepareImport(raw),
-          sha: asText(meta.sha).trim(),
           etag: asText(meta.etag).trim(),
           empty: raw.projects.length === 0 && raw.elements.length === 0
         };
-      }
-
-      async function remoteSnapshotFromPayload(payload, contentsEtag = '') {
-        if (!payload || payload.type !== 'file') throw new Error('Облачный data.json недоступен.');
-        let source = '';
-        if (payload.content && payload.encoding === 'base64') {
-          source = textFromBase64(payload.content);
-        } else if (payload.download_url) {
-          const rawResponse = await fetch(payload.download_url, {
-            method: 'GET',
-            headers: { Accept: 'application/vnd.github.raw+json' },
-            cache: 'no-store'
-          });
-          if (!rawResponse.ok) throw new Error(`GitHub raw GET: ${rawResponse.status}`);
-          source = await rawResponse.text();
-        } else {
-          throw new Error('Облачный data.json не содержит содержимого.');
-        }
-        return prepareRemoteSnapshot(JSON.parse(source), { sha: payload.sha, etag: contentsEtag });
-      }
-
-      function getCloudSyncValue(key) {
-        return new Promise((resolve, reject) => {
-          const transaction = state.db.transaction('cloudSync', 'readonly');
-          const request = transaction.objectStore('cloudSync').get(key);
-          request.onsuccess = () => resolve(request.result?.value ?? null);
-          request.onerror = () => reject(request.error || new Error('Не удалось прочитать облачный кэш.'));
-        });
-      }
-
-      function writeCloudSyncBatch(entries = [], deleteKeys = []) {
-        return runTransaction(['cloudSync'], 'readwrite', (transaction) => {
-          const store = transaction.objectStore('cloudSync');
-          for (const [key, value] of entries) store.put({ key, value, updatedAt: Date.now() });
-          for (const key of deleteKeys) store.delete(key);
-        });
-      }
-
-      function enqueueCloudSync(work, onError = null) {
-        const job = state.cloud.syncQueue.then(work);
-        state.cloud.syncQueue = job.catch((error) => {
-          if (onError) onError(error);
-        });
-        return job;
-      }
-
-      function outboxMarker(record) {
-        return JSON.stringify({
-          version: 2,
-          storage: 'indexedDB',
-          revision: record.revision,
-          baseSha: asText(record.baseSha).trim(),
-          updatedAt: Date.now()
-        });
-      }
-
-      function saveOutboxMarker(record) {
-        return saveLocalValue(CLOUD_OUTBOX_KEY, outboxMarker(record));
-      }
-
-      function baseRecordFrom(snapshot, sha, contentsEtag) {
-        const confirmed = cloneSnapshot(snapshot);
-        return {
-          version: 2,
-          sha: asText(sha).trim(),
-          contentsEtag: asText(contentsEtag).trim(),
-          snapshot: confirmed,
-          knownProjectIds: confirmed.projects.map((project) => String(project.id)),
-          knownElementIds: confirmed.elements.map((element) => String(element.id)),
-          savedAt: Date.now()
-        };
-      }
-
-      function applyBaseRecord(record) {
-        if (!record || !isCloudSnapshot(record.snapshot)) return false;
-        state.cloud.baseSha = asText(record.sha).trim();
-        state.cloud.baseEtag = asText(record.contentsEtag).trim();
-        state.cloud.baseSnapshot = cloneSnapshot(record.snapshot);
-        state.cloud.knownProjectIds = new Set((record.knownProjectIds || record.snapshot.projects.map((project) => project.id)).map(String));
-        state.cloud.knownElementIds = new Set((record.knownElementIds || record.snapshot.elements.map((element) => element.id)).map(String));
-        state.cloud.remoteProjectCount = record.snapshot.projects.length;
-        state.cloud.initialPullDone = true;
-        return true;
-      }
-
-      function validOutboxRecord(record) {
-        return Boolean(record && Number.isInteger(record.revision) && record.revision > 0 && isCloudSnapshot(record.snapshot));
-      }
-
-      async function rememberRemoteSnapshot(raw) {
-        if (!isCloudSnapshot(raw)) return false;
-        await enqueueCloudSync(() => writeCloudSyncBatch([['cache', cloneSnapshot(raw)]]));
-        return true;
-      }
-
-      async function loadCloudSyncState() {
-        const localSnapshot = catalogSnapshot();
-        const [storedBase, storedOutbox, storedCache] = await Promise.all([
-          getCloudSyncValue('base'), getCloudSyncValue('outbox'), getCloudSyncValue('cache')
-        ]);
-        const hadStoredBase = applyBaseRecord(storedBase);
-
-        let outbox = validOutboxRecord(storedOutbox) ? storedOutbox : null;
-        const legacyOutboxText = localValue(CLOUD_OUTBOX_KEY);
-        if (!outbox && legacyOutboxText) {
-          try {
-            const legacy = JSON.parse(legacyOutboxText);
-            if (validOutboxRecord(legacy)) outbox = legacy;
-          } catch (error) {
-            state.cloud.outboxError = true;
-          }
-        }
-        if (outbox) {
-          const legacyBaseSnapshot = isCloudSnapshot(outbox.baseSnapshot) ? outbox.baseSnapshot : null;
-          const baseSha = asText(outbox.baseSha || state.cloud.baseSha).trim();
-          const baseEtag = asText(outbox.baseEtag || state.cloud.baseEtag).trim();
-          if (legacyBaseSnapshot) {
-            const legacyBase = baseRecordFrom(legacyBaseSnapshot, baseSha, baseEtag);
-            await writeCloudSyncBatch([['base', legacyBase]]);
-            applyBaseRecord(legacyBase);
-          }
-          outbox = compactOutboxRecord({ ...outbox, baseSha, baseEtag });
-          state.cloud.outbox = outbox;
-          state.cloud.revision = Math.max(state.cloud.revision, outbox.revision);
-          state.cloud.dirty = true;
-          state.cloud.outboxError = false;
-          const localChanged = hadStoredBase
-            && !cloudSnapshotsSemanticallyEqual(localSnapshot, state.cloud.baseSnapshot);
-          const localReplacesOutbox = localChanged
-            && !cloudSnapshotsSemanticallyEqual(localSnapshot, outbox.snapshot);
-          if (localReplacesOutbox) {
-            persistCloudOutbox(localSnapshot);
-            await state.cloud.syncQueue;
-          } else {
-            await writeCloudSyncBatch([['outbox', outbox]]);
-            saveOutboxMarker(outbox);
-            if (!localChanged) await rehydrateOutboxCatalog(outbox);
-          }
-        } else if (legacyOutboxText) {
-          removeLocalValue(CLOUD_OUTBOX_KEY);
-        }
-
-        if (!outbox && hadStoredBase && !cloudSnapshotsSemanticallyEqual(localSnapshot, state.cloud.baseSnapshot)) {
-          persistCloudOutbox(localSnapshot);
-          await state.cloud.syncQueue;
-        }
-
-        let cacheMigrated = Boolean(storedCache);
-        if (!storedCache) {
-          const legacyCacheText = localValue(CLOUD_CACHE_KEY);
-          if (legacyCacheText) {
-            try {
-              const legacyCache = JSON.parse(legacyCacheText);
-              if (isCloudSnapshot(legacyCache)) {
-                await writeCloudSyncBatch([['cache', legacyCache]]);
-                cacheMigrated = true;
-              }
-            } catch (error) {
-              // Invalid legacy cache is ignored; IndexedDB catalog data remains untouched.
-            }
-          }
-        }
-        if (cacheMigrated) removeLocalValue(CLOUD_CACHE_KEY);
-      }
-
-      async function rehydrateOutboxCatalog(record) {
-        const incoming = prepareImport(record.snapshot);
-        const base = isCloudSnapshot(record.baseSnapshot)
-          ? record.baseSnapshot
-          : (state.cloud.baseSnapshot || emptyCloudSnapshot());
-        const knownProjects = new Set(base.projects.map((project) => String(project.id)));
-        const knownElements = new Set(base.elements.map((element) => String(element.id)));
-        const currentProjectKeys = new Map(state.projects.map((project) => [String(project.id), project.id]));
-        const currentElementKeys = new Map(state.elements.map((element) => [String(element.id), element.id]));
-        const projectMap = new Map(incoming.projects.map((project) => [String(project.id), project]));
-        const elementMap = new Map(incoming.elements.map((element) => [String(element.id), element]));
-        let preservedUnknown = false;
-
-        for (const project of state.projects) {
-          const id = String(project.id);
-          if (!knownProjects.has(id) && !projectMap.has(id)) {
-            projectMap.set(id, project);
-            preservedUnknown = true;
-          }
-        }
-        for (const element of state.elements) {
-          const id = String(element.id);
-          if (!knownElements.has(id) && !elementMap.has(id) && projectMap.has(String(element.projectId))) {
-            elementMap.set(id, element);
-            preservedUnknown = true;
-          }
-        }
-
-        state.projects = [...projectMap.values()];
-        state.elements = [...elementMap.values()].filter((element) => projectMap.has(String(element.projectId)));
-        state.categories = categoryRecords(state.elements, incoming.categories);
-        state.settings = incoming.settings;
-        state.activeProjectId = state.settings.activeProjectId && findProject(state.settings.activeProjectId)
-          ? state.settings.activeProjectId : state.projects[0]?.id || null;
-        state.editingElementId = null;
-        state.newElementId = null;
-        const finalProjectIds = new Set(state.projects.map((project) => String(project.id)));
-        const finalElementIds = new Set(state.elements.map((element) => String(element.id)));
-        await commit(() => runTransaction(['projects', 'elements', 'categories', 'settings'], 'readwrite', (transaction) => {
-          const projects = transaction.objectStore('projects');
-          const elements = transaction.objectStore('elements');
-          for (const id of knownProjects) if (!finalProjectIds.has(id)) projects.delete(currentProjectKeys.get(id) ?? id);
-          for (const id of knownElements) if (!finalElementIds.has(id)) elements.delete(currentElementKeys.get(id) ?? id);
-          for (const project of state.projects) projects.put(project);
-          for (const element of state.elements) elements.put(element);
-          writeCategoryRecords(transaction);
-          const settings = transaction.objectStore('settings');
-          for (const [key, value] of Object.entries(state.settings)) settings.put({ key, value });
-        }), { backup: false });
-        if (preservedUnknown) persistCloudOutbox(catalogSnapshot());
-        applyTheme();
-      }
-
-      function persistCloudOutbox(snapshot = catalogSnapshot()) {
-        const localSnapshot = cloneSnapshot(snapshot);
-        const previous = validOutboxRecord(state.cloud.outbox) ? state.cloud.outbox : null;
-        const previousLocal = isCloudSnapshot(previous?.localSnapshot) ? previous.localSnapshot : previous?.snapshot;
-        const merged = previous && isCloudSnapshot(previousLocal)
-          ? mergeCloudSnapshots(previousLocal, previous.snapshot, localSnapshot)
-          : { ok: true, snapshot: localSnapshot, conflicts: [] };
-        const previousConflicts = Array.isArray(previous?.localConflicts) ? previous.localConflicts : [];
-        const previousStickyConflicts = previousConflicts.filter((path) =>
-          !conflictFieldsChanged([path], previousLocal, localSnapshot)
-        );
-        const localConflicts = [...new Set([
-          ...previousStickyConflicts,
-          ...(merged.ok ? [] : merged.conflicts)
-        ])].sort();
-        const baseSnapshot = isCloudSnapshot(previous?.baseSnapshot)
-          ? previous.baseSnapshot
-          : (state.cloud.baseSnapshot || emptyCloudSnapshot());
-        const record = compactOutboxRecord({
-          version: 2,
-          revision: state.cloud.revision + 1,
-          createdAt: Date.now(),
-          baseSha: previous?.baseSha ?? state.cloud.baseSha,
-          baseEtag: previous?.baseEtag ?? state.cloud.baseEtag,
-          baseSnapshot,
-          snapshot: merged.ok ? merged.snapshot : cloneSnapshot(previous.snapshot),
-          localSnapshot,
-          localConflicts
-        });
-        state.cloud.revision = record.revision;
-        state.cloud.outbox = record;
-        state.cloud.dirty = true;
-        state.cloud.outboxError = false;
-        saveOutboxMarker(record);
-        enqueueCloudSync(() => writeCloudSyncBatch([['outbox', record]]), () => {
-          if (state.cloud.outbox?.revision === record.revision) {
-            state.cloud.outboxError = true;
-            setCloudError('Ошибка: локального хранилища');
-          }
-        });
-        return true;
-      }
-
-      async function clearCloudOutbox(revision) {
-        if (!state.cloud.outbox || state.cloud.outbox.revision !== revision) return false;
-        await enqueueCloudSync(() => writeCloudSyncBatch([], ['outbox']));
-        if (!state.cloud.outbox || state.cloud.outbox.revision !== revision) return false;
-        removeLocalValue(CLOUD_OUTBOX_KEY);
-        state.cloud.outbox = null;
-        state.cloud.dirty = state.cloud.outboxPending;
-        state.cloud.outboxError = false;
-        return true;
-      }
-
-      function stableJson(value) {
-        if (Array.isArray(value)) return `[${value.map(stableJson).join(',')}]`;
-        if (value && typeof value === 'object') {
-          return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${stableJson(value[key])}`).join(',')}}`;
-        }
-        return JSON.stringify(value);
-      }
-
-      function valuesEqual(left, right) {
-        return stableJson(left) === stableJson(right);
-      }
-
-      function snapshotConflictValue(snapshot, path) {
-        const entity = /^(projects|elements|categories)\[([^\]]+)\](?:\.([^:]+))?/.exec(path);
-        if (entity) {
-          const [, collection, id, field] = entity;
-          const row = (snapshot?.[collection] || []).find((entry) => String(
-            collection === 'categories' ? asText(entry.key || categoryKey(entry.name)).trim() : entry.id
-          ) === id);
-          if (!field) return { exists: Boolean(row), value: row };
-          return { exists: Boolean(row && hasOwn(row, field)), value: row?.[field] };
-        }
-        const setting = /^settings\.([^:]+)/.exec(path);
-        if (setting) {
-          const settings = snapshot?.settings || {};
-          return { exists: hasOwn(settings, setting[1]), value: settings[setting[1]] };
-        }
-        return { exists: false, value: undefined };
-      }
-
-      function conflictFieldsChanged(conflicts, before, after) {
-        return conflicts.some((path) => !valuesEqual(
-          snapshotConflictValue(before, path), snapshotConflictValue(after, path)
-        ));
-      }
-
-      function mergeRecordFields(base, remote, local, path, conflicts) {
-        const merged = {};
-        const keys = new Set([...Object.keys(base || {}), ...Object.keys(remote || {}), ...Object.keys(local || {})]);
-        for (const key of [...keys].sort()) {
-          const baseHas = hasOwn(base || {}, key);
-          const remoteHas = hasOwn(remote || {}, key);
-          const localHas = hasOwn(local || {}, key);
-          const baseValue = baseHas ? base[key] : undefined;
-          const remoteValue = remoteHas ? remote[key] : undefined;
-          const localValueNext = localHas ? local[key] : undefined;
-          const remoteChanged = remoteHas !== baseHas || !valuesEqual(remoteValue, baseValue);
-          const localChanged = localHas !== baseHas || !valuesEqual(localValueNext, baseValue);
-          let chosenHas = baseHas;
-          let chosen = baseValue;
-          if (remoteChanged && !localChanged) {
-            chosenHas = remoteHas;
-            chosen = remoteValue;
-          } else if (localChanged && !remoteChanged) {
-            chosenHas = localHas;
-            chosen = localValueNext;
-          } else if (remoteChanged && localChanged) {
-            if (remoteHas === localHas && valuesEqual(remoteValue, localValueNext)) {
-              chosenHas = remoteHas;
-              chosen = remoteValue;
-            } else if (key === 'updatedAt') {
-              chosenHas = remoteHas || localHas;
-              chosen = Math.max(Number(remoteValue) || 0, Number(localValueNext) || 0) || remoteValue || localValueNext;
-            } else if (key === 'progress' || key === 'uses' || key === 'repeats') {
-              chosenHas = localHas;
-              chosen = localValueNext;
-            } else {
-              conflicts.push(`${path}.${key}`);
-              continue;
-            }
-          }
-          if (chosenHas) merged[key] = cloneSnapshot(chosen);
-        }
-        return merged;
-      }
-
-      function snapshotIdentityMap(rows, identity) {
-        return new Map(rows.map((row) => [identity(row), row]));
-      }
-
-      function knownRemoteDeletions(knownIds, freshIds) {
-        const fresh = new Set([...freshIds].map(String));
-        return [...knownIds].map(String).filter((id) => !fresh.has(id)).sort();
-      }
-
-      function mergeEntityCollections(baseRows, remoteRows, localRows, identity, path, conflicts) {
-        const baseMap = snapshotIdentityMap(baseRows, identity);
-        const remoteMap = snapshotIdentityMap(remoteRows, identity);
-        const localMap = snapshotIdentityMap(localRows, identity);
-        const orderedIds = [];
-        const seen = new Set();
-        for (const row of [...localRows, ...remoteRows, ...baseRows]) {
-          const id = identity(row);
-          if (!seen.has(id)) {
-            seen.add(id);
-            orderedIds.push(id);
-          }
-        }
-        const merged = [];
-        for (const id of orderedIds) {
-          const baseHas = baseMap.has(id);
-          const remoteHas = remoteMap.has(id);
-          const localHas = localMap.has(id);
-          const base = baseMap.get(id);
-          const remote = remoteMap.get(id);
-          const local = localMap.get(id);
-          if (!baseHas) {
-            if (remoteHas && localHas) {
-              const row = mergeRecordFields({}, remote, local, `${path}[${id}]`, conflicts);
-              if (!conflicts.some((entry) => entry.startsWith(`${path}[${id}]`))) merged.push(row);
-            } else if (localHas) merged.push(cloneSnapshot(local));
-            else if (remoteHas) merged.push(cloneSnapshot(remote));
-            continue;
-          }
-          if (!remoteHas && !localHas) continue;
-          if (!remoteHas) {
-            if (valuesEqual(local, base)) continue;
-            conflicts.push(`${path}[${id}]: удалено в облаке, изменено локально`);
-            continue;
-          }
-          if (!localHas) {
-            if (valuesEqual(remote, base)) continue;
-            conflicts.push(`${path}[${id}]: удалено локально, изменено в облаке`);
-            continue;
-          }
-          merged.push(mergeRecordFields(base, remote, local, `${path}[${id}]`, conflicts));
-        }
-        return merged;
-      }
-
-      function mergeCloudSnapshots(base, remote, local) {
-        if (![base, remote, local].every(isCloudSnapshot)) return { ok: false, conflicts: ['snapshot: неверная структура'] };
-        const conflicts = [];
-        const projectIdentity = (row) => String(row.id);
-        const elementIdentity = (row) => String(row.id);
-        const categoryIdentity = (row) => asText(row.key || categoryKey(row.name)).trim();
-        const projects = mergeEntityCollections(base.projects, remote.projects, local.projects, projectIdentity, 'projects', conflicts);
-        const elements = mergeEntityCollections(base.elements, remote.elements, local.elements, elementIdentity, 'elements', conflicts);
-        const categories = mergeEntityCollections(base.categories || [], remote.categories || [], local.categories || [], categoryIdentity, 'categories', conflicts);
-        const settings = mergeRecordFields(base.settings || {}, remote.settings || {}, local.settings || {}, 'settings', conflicts);
-        if (conflicts.length) return { ok: false, conflicts: [...new Set(conflicts)].sort() };
-        return {
-          ok: true,
-          conflicts: [],
-          snapshot: {
-            version: Math.max(Number(base.version) || 0, Number(remote.version) || 0, Number(local.version) || CATALOG_VERSION),
-            exportedAt: new Date().toISOString(),
-            projects,
-            elements,
-            categories,
-            settings
-          }
-        };
-      }
-
-      async function rebaseOutboxRecord(record, freshRemote) {
-        if (!validOutboxRecord(record) || !freshRemote || freshRemote.unchanged) {
-          return { ok: false, conflicts: ['outbox: недоступна база слияния'] };
-        }
-        if (state.cloud.outbox?.revision !== record.revision) return { ok: false, stale: true, conflicts: [] };
-        const base = isCloudSnapshot(record.baseSnapshot)
-          ? record.baseSnapshot
-          : (state.cloud.baseSnapshot || emptyCloudSnapshot());
-        const merged = mergeCloudSnapshots(base, freshRemote.raw, record.snapshot);
-        if (!merged.ok) return merged;
-        const rebased = {
-          ...record,
-          version: 2,
-          baseSha: freshRemote.sha,
-          baseEtag: freshRemote.etag,
-          baseSnapshot: cloneSnapshot(freshRemote.raw),
-          snapshot: merged.snapshot,
-          rebasedAt: Date.now()
-        };
-        const compactRebased = compactOutboxRecord(rebased);
-        const baseRecord = baseRecordFrom(freshRemote.raw, freshRemote.sha, freshRemote.etag);
-        await enqueueCloudSync(() => writeCloudSyncBatch([['base', baseRecord], ['outbox', compactRebased]]));
-        if (state.cloud.outbox?.revision !== record.revision) return { ok: false, stale: true, conflicts: [] };
-        state.cloud.outbox = compactRebased;
-        state.cloud.baseSha = freshRemote.sha;
-        state.cloud.baseEtag = freshRemote.etag;
-        state.cloud.baseSnapshot = cloneSnapshot(freshRemote.raw);
-        updateKnownRemoteIds(freshRemote.incoming);
-        state.cloud.initialPullDone = true;
-        saveOutboxMarker(compactRebased);
-        return { ok: true, record: compactRebased };
-      }
-
-      async function snapshotHash(serialized) {
-        const bytes = new TextEncoder().encode(serialized);
-        if (globalThis.crypto?.subtle) {
-          const digest = new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256', bytes));
-          return [...digest].map((byte) => byte.toString(16).padStart(2, '0')).join('');
-        }
-        let hash = 2166136261;
-        for (const byte of bytes) hash = Math.imul(hash ^ byte, 16777619) >>> 0;
-        return `fnv1a-${hash.toString(16).padStart(8, '0')}`;
-      }
-
-      async function persistConfirmedBackup(snapshot, sha) {
-        if (!isCloudSnapshot(snapshot)) return false;
-        const confirmed = cloneSnapshot(snapshot);
-        const serialized = JSON.stringify(confirmed);
-        const hash = await snapshotHash(serialized);
-        const record = { version: 2, sha: asText(sha).trim(), hash, bytes: new Blob([serialized]).size, snapshot: confirmed, savedAt: Date.now() };
-        try {
-          await enqueueCloudSync(() => writeCloudSyncBatch([['backup', record]]));
-          const verified = await getCloudSyncValue('backup');
-          if (!verified || verified.hash !== hash || !isCloudSnapshot(verified.snapshot) || !valuesEqual(verified.snapshot, confirmed)) return false;
-        } catch (error) {
-          return false;
-        }
-        try {
-          localStorage.setItem(CLOUD_BACKUP_KEY, serialized);
-          const fullStored = localStorage.getItem(CLOUD_BACKUP_KEY);
-          if (fullStored === serialized) {
-            saveLocalValue(CLOUD_BACKUP_COMPAT_KEY, JSON.stringify({ version: 2, storage: 'localStorage', key: CLOUD_BACKUP_KEY, hash, bytes: record.bytes }));
-            return true;
-          }
-        } catch (error) {
-          // Large snapshots fall back to the verified IndexedDB copy plus a compact manifest.
-        }
-        const manifest = JSON.stringify({ version: 2, storage: 'indexedDB', store: 'cloudSync', key: 'backup', sha: record.sha, hash, bytes: record.bytes, savedAt: record.savedAt });
-        if (!saveLocalValue(CLOUD_BACKUP_KEY, manifest)) return false;
-        saveLocalValue(CLOUD_BACKUP_COMPAT_KEY, manifest);
-        return localValue(CLOUD_BACKUP_KEY) === manifest;
-      }
-
-      function setCloudError(message) {
-        state.cloud.error = message;
-        setSaveState('error', message);
-      }
-
-      function markCloudDirty({ allowDuringImport = false } = {}) {
-        if (state.cloud.applying || (state.cloud.importing && !allowDuringImport)) return false;
-        if (!state.cloud.dirty || !state.cloud.firstDirtyAt) state.cloud.firstDirtyAt = Date.now();
-        clearTimeout(state.cloud.saveTimer);
-        state.cloud.saveTimer = null;
-        state.cloud.saveDueAt = 0;
-        clearTimeout(state.cloud.outboxTimer);
-        state.cloud.outboxTimer = null;
-        state.cloud.dirty = true;
-        state.cloud.error = '';
-        setSaveState('saving', 'Сохранение…');
-        if (allowDuringImport) {
-          state.cloud.outboxPending = false;
-          persistCloudOutbox();
-          return true;
-        }
-        state.cloud.outboxPending = true;
-        state.cloud.outboxTimer = setTimeout(() => {
-          state.cloud.outboxTimer = null;
-          if (!state.cloud.outboxPending) return;
-          state.cloud.outboxPending = false;
-          persistCloudOutbox();
-          state.cloud.syncQueue.then(() => {
-            if (state.cloud.ready && state.cloud.dirty && !state.cloud.outboxError && !state.cloud.outboxPending && !state.cloud.importing) {
-              scheduleCloudSave();
-            }
-          });
-        }, CLOUD_SAVE_DELAY);
-        return true;
-      }
-
-      // Every push is a commit and every commit is a GitHub Pages build, so pushes are
-      // batched: at most one per CLOUD_PUSH_MIN_INTERVAL, and never one per keystroke.
-      // A pending deadline is never pushed further away — the poll runs every few seconds
-      // and would otherwise postpone the upload forever.
-      function scheduleCloudSave(delay = CLOUD_PUSH_DELAY) {
-        if (state.cloud.importing || state.cloud.outboxPending || state.cloud.outboxTimer) return;
-        const now = Date.now();
-        const earliest = state.cloud.lastPushAt ? state.cloud.lastPushAt + CLOUD_PUSH_MIN_INTERVAL : now;
-        const latest = (state.cloud.firstDirtyAt || now) + CLOUD_PUSH_MAX_DEFERRAL;
-        const dueAt = Math.max(Math.min(now + delay, Math.max(latest, earliest)), earliest);
-        if (state.cloud.saveTimer && state.cloud.saveDueAt <= dueAt) return;
-        clearTimeout(state.cloud.saveTimer);
-        state.cloud.saveDueAt = dueAt;
-        state.cloud.pendingPush = true;
-        state.cloud.saveTimer = setTimeout(() => {
-          state.cloud.saveTimer = null;
-          state.cloud.saveDueAt = 0;
-          state.cloud.pendingPush = false;
-          saveCloud().catch(() => undefined);
-        }, Math.max(0, dueAt - Date.now()));
-        setSaveState('saving');
-      }
-
-      function flushCloudSave(force = false) {
-        if (!state.cloud.dirty || state.cloud.importing) return;
-        if (!force) {
-          scheduleCloudSave(CLOUD_PUSH_BLUR_DELAY);
-          return;
-        }
-        clearTimeout(state.cloud.saveTimer);
-        state.cloud.saveTimer = null;
-        state.cloud.pendingPush = false;
-        saveCloud().catch(() => undefined);
-      }
-
-      function updateKnownRemoteIds(incoming) {
-        state.cloud.knownProjectIds = new Set(incoming.projects.map((project) => String(project.id)));
-        state.cloud.knownElementIds = new Set(incoming.elements.map((element) => String(element.id)));
-        state.cloud.remoteProjectCount = incoming.projects.length;
-      }
-
-      async function commitAppliedRemote(remote) {
-        const record = baseRecordFrom(remote.raw, remote.sha, remote.etag);
-        await enqueueCloudSync(() => writeCloudSyncBatch([['base', record], ['cache', cloneSnapshot(remote.raw)]]));
-        state.cloud.baseSha = remote.sha;
-        state.cloud.baseEtag = remote.etag;
-        state.cloud.baseSnapshot = cloneSnapshot(remote.raw);
-        state.cloud.observedSha = remote.sha;
-        state.cloud.observedEtag = remote.etag || state.cloud.observedEtag;
-        updateKnownRemoteIds(remote.incoming);
-        state.cloud.initialPullDone = true;
-      }
-
-      function canApplyRemote() {
-        return !state.cloud.dirty && !state.cloud.saving && !state.cloud.importing && !isTextEditing() && !isTypingPause();
-      }
-
-      function remoteDataChanged(remote) {
-        const remoteProjectIds = new Set(remote.incoming.projects.map((project) => String(project.id)));
-        const remoteElementIds = new Set(remote.incoming.elements.map((element) => String(element.id)));
-        return [...state.cloud.knownProjectIds].some((id) => !remoteProjectIds.has(id) && findProject(id))
-          || [...state.cloud.knownElementIds].some((id) => !remoteElementIds.has(id) && findElement(id))
-          || remote.incoming.projects.some((project) => !valuesEqual(findProject(project.id), project))
-          || remote.incoming.elements.some((element) => {
-            const local = findElement(element.id);
-            return !valuesEqual(local, remoteElementWithLocalImage(element, local));
-          })
-          || remoteSettingsEntries(remote).some(([key, value]) => !valuesEqual(state.settings[key], value));
-      }
-
-      function remoteElementWithLocalImage(remoteElement, localElement) {
-        const remoteImage = asText(remoteElement?.image).trim();
-        const localImage = asText(localElement?.image).trim();
-        if (!remoteImage && localImage) return { ...remoteElement, image: localElement.image };
-        return remoteElement;
-      }
-
-      function preservePreviewImages(render) {
-        const previews = new Map();
-        for (const card of dom.workspaceInner.querySelectorAll('[data-element-id]')) {
-          const image = card.querySelector('.image-slot img');
-          if (image) previews.set(previewImageKey(card, image), image);
-        }
-        render();
-        for (const card of dom.workspaceInner.querySelectorAll('[data-element-id]')) {
-          const image = card.querySelector('.image-slot img');
-          if (!image) continue;
-          const preserved = previews.get(previewImageKey(card, image));
-          if (preserved && preserved !== image) image.replaceWith(preserved);
-        }
-      }
-
-      function renderFeedPreservingPreviewImages() {
-        preservePreviewImages(renderFeed);
-      }
-
-      function patchRemoteFeed(previousActiveId, previousVisibleIds, changedElementIds) {
-        if (state.videoComposer || state.editingElementId || state.newElementId || state.search.trim() || state.categoryFilter) return false;
-        if (String(state.activeProjectId) !== String(previousActiveId)) return false;
-        const project = findProject(state.activeProjectId);
-        const grid = dom.workspaceInner.querySelector('#elementGrid');
-        if (!project || !grid) return false;
-
-        const cards = [...grid.children].filter((node) => node.classList.contains('element-card'));
-        const currentIds = cards.map((card) => String(card.dataset.elementId));
-        const nextElements = elementsForProject(project.id);
-        const nextIds = nextElements.map((element) => String(element.id));
-        if (!valuesEqual(currentIds, previousVisibleIds) || !valuesEqual(nextIds, previousVisibleIds)) return false;
-
-        const cardsById = new Map(cards.map((card) => [String(card.dataset.elementId), card]));
-        for (const element of nextElements) {
-          const id = String(element.id);
-          if (!changedElementIds.has(id)) continue;
-          const card = cardsById.get(id);
-          if (!card) return false;
-          preservePreviewImages(() => { card.outerHTML = elementCard(project, element); });
-        }
-        updateProjectCounts(project.id);
-        renderSidebar();
-        if (state.statsOpen) renderStats();
-        applyReadOnlyState();
-        return true;
-      }
-
-      function remoteSettingsEntries(remote) {
-        const rawSettings = remote?.raw?.settings;
-        if (Array.isArray(rawSettings)) {
-          return rawSettings.filter((row) => row && hasOwn(row, 'key')).map((row) => [row.key, remote.incoming.settings[row.key]]);
-        }
-        if (rawSettings && typeof rawSettings === 'object') {
-          return Object.keys(rawSettings).map((key) => [key, remote.incoming.settings[key]]);
-        }
-        return [];
-      }
-
-      async function applyRemoteSnapshot(remote, { allowDirty = false, suppressCloudMark = false } = {}) {
-        if (!remote || remote.unchanged) return false;
-        // An allowDirty merge may be needed during cloud recovery, but it must never replace a live draft.
-        if (isTextEditing() || isTypingPause()) {
-          state.cloud.pendingSnapshot = remote;
-          return false;
-        }
-        if (!allowDirty && !canApplyRemote()) {
-          state.cloud.pendingSnapshot = remote;
-          return false;
-        }
-        const firstEmptyCloudMigration = remote.empty
-          && !state.cloud.initialPullDone
-          && !state.cloud.baseSnapshot
-          && state.projects.length > 0;
-        if (firstEmptyCloudMigration) {
-          await commitAppliedRemote(remote);
-          state.cloud.pendingSnapshot = null;
-          if (!suppressCloudMark && state.projects.length > 0 && !state.cloud.outbox) markCloudDirty();
-          setSaveState('saved', 'Сохранено');
-          return true;
-        }
-
-        const changed = remoteDataChanged(remote);
-        const hadInitialPull = state.cloud.initialPullDone;
-        const previousEditing = state.editingElementId;
-        const previousNew = state.newElementId;
-        const previousActive = state.activeProjectId;
-        const previousScroll = dom.workspace.scrollTop;
-        const previousVisibleIds = !state.videoComposer && !previousEditing && !previousNew && !state.search.trim() && !state.categoryFilter && previousActive
-          ? elementsForProject(previousActive).map((element) => String(element.id)) : [];
-        const previousElements = new Map(state.elements.map((element) => [String(element.id), element]));
-        const projectMap = new Map(state.projects.map((project) => [String(project.id), project]));
-        const elementMap = new Map(state.elements.map((element) => [String(element.id), element]));
-        const currentProjectKeys = new Map(state.projects.map((project) => [String(project.id), project.id]));
-        const currentElementKeys = new Map(state.elements.map((element) => [String(element.id), element.id]));
-        const previousKnownProjects = new Set(state.cloud.knownProjectIds);
-        const previousKnownElements = new Set(state.cloud.knownElementIds);
-        const remoteProjectIds = new Set(remote.incoming.projects.map((project) => String(project.id)));
-        const remoteElementIds = new Set(remote.incoming.elements.map((element) => String(element.id)));
-        const deletedElementIds = new Set(knownRemoteDeletions(previousKnownElements, remoteElementIds));
-        for (const id of deletedElementIds) elementMap.delete(id);
-        const deletedProjectIds = new Set();
-        for (const id of knownRemoteDeletions(previousKnownProjects, remoteProjectIds)) {
-          const hasUnknownChild = [...elementMap.values()].some((element) => String(element.projectId) === id && !previousKnownElements.has(String(element.id)));
-          if (!hasUnknownChild) {
-            projectMap.delete(id);
-            deletedProjectIds.add(id);
-          }
-        }
-        for (const project of remote.incoming.projects) projectMap.set(String(project.id), project);
-        const appliedRemoteElements = remote.incoming.elements.map((element) => {
-          const next = remoteElementWithLocalImage(element, elementMap.get(String(element.id)));
-          elementMap.set(String(element.id), next);
-          return next;
-        });
-        const preservedUnknown = [...projectMap.keys()].some((id) => !remoteProjectIds.has(id) && !previousKnownProjects.has(id))
-          || [...elementMap.keys()].some((id) => !remoteElementIds.has(id) && !previousKnownElements.has(id));
-
-        let restored = { elements: [], projects: [], conflicts: [], count: 0 };
-        state.cloud.applying = true;
-        applyReadOnlyState();
-        try {
-          state.projects = [...projectMap.values()];
-          state.elements = [...elementMap.values()].filter((element) => projectMap.has(String(element.projectId)));
-          state.categories = categoryRecords(state.elements, remote.incoming.categories);
-          state.settings = { ...state.settings, ...Object.fromEntries(remoteSettingsEntries(remote)) };
-          state.activeProjectId = previousActive && findProject(previousActive) ? previousActive
-            : (state.settings.activeProjectId && findProject(state.settings.activeProjectId) ? state.settings.activeProjectId : state.projects[0]?.id || null);
-          state.editingElementId = previousEditing && findElement(previousEditing) ? previousEditing : null;
-          state.newElementId = previousNew && findElement(previousNew) ? previousNew : null;
-          restored = restoreDrafts();
-          await commit(() => runTransaction(['projects', 'elements', 'categories', 'settings'], 'readwrite', (transaction) => {
-            const projects = transaction.objectStore('projects');
-            const elements = transaction.objectStore('elements');
-            for (const id of deletedElementIds) elements.delete(currentElementKeys.get(id) ?? id);
-            for (const id of deletedProjectIds) projects.delete(currentProjectKeys.get(id) ?? id);
-            for (const project of remote.incoming.projects) projects.put(project);
-            for (const element of appliedRemoteElements) elements.put(element);
-            for (const element of restored.elements) elements.put(element);
-            for (const project of restored.projects) projects.put(project);
-            writeCategoryRecords(transaction);
-            const settings = transaction.objectStore('settings');
-            for (const [key, value] of remoteSettingsEntries(remote)) settings.put({ key, value });
-          }), { backup: false });
-          await commitAppliedRemote(remote);
-          state.cloud.pendingSnapshot = null;
-          applyTheme();
-          if (changed) {
-            const patched = patchRemoteFeed(previousActive, previousVisibleIds, new Set(
-              appliedRemoteElements
-                .filter((element) => !valuesEqual(previousElements.get(String(element.id)), element))
-                .map((element) => String(element.id))
-            ));
-            if (!patched) {
-              renderFeedPreservingPreviewImages();
-              dom.workspace.scrollTop = previousScroll;
-            }
-          }
-        } finally {
-          state.cloud.applying = false;
-          applyReadOnlyState();
-        }
-        if ((preservedUnknown || restored.count) && !suppressCloudMark) markCloudDirty();
-        if (restored.conflicts.length) {
-          showToast(`Ваш текст сохранён: партнёр правил ${[...new Set(restored.conflicts)].slice(0, 2).join(', ')}.`);
-        }
-        // The very first pull always differs from an empty catalog; that is not a partner.
-        if (changed && hadInitialPull) markRemotePresence();
-        setSaveState('saved', 'Сохранено');
-        return changed;
-      }
-
-      async function applyPendingRemoteSnapshot() {
-        const pending = state.cloud.pendingSnapshot;
-        if (!pending || !canApplyRemote()) return;
-        await applyRemoteSnapshot(pending);
-      }
-
-      async function getCloudSnapshot({ force = false, apply = true } = {}) {
-        const headers = cloudHeaders(force ? {} : { 'If-None-Match': state.cloud.observedEtag || '""' });
-        // A response that started before our own write finished is already stale: applying it
-        // would roll the catalog back to the pre-write state.
-        const writeGeneration = state.cloud.writeGeneration;
-        const response = await fetch(GITHUB_CONTENTS_URL, { method: 'GET', headers, cache: 'no-store' });
-        if (writeGeneration !== state.cloud.writeGeneration && !force) return { unchanged: true };
-        if (response.status === 304) return { unchanged: true };
-        const responseEtag = response.headers.get('ETag') || '';
-        let remote;
-        if (response.status === 404) {
-          remote = prepareRemoteSnapshot(emptyCloudSnapshot(), { sha: '', etag: responseEtag });
-        } else {
-          if (!response.ok) throw new Error(`GitHub GET: ${response.status}`);
-          const payload = await response.json();
-          remote = await remoteSnapshotFromPayload(payload, responseEtag);
-        }
-        state.cloud.observedSha = remote.sha;
-        state.cloud.observedEtag = remote.etag || responseEtag || state.cloud.observedEtag;
-        state.cloud.remoteProjectCount = remote.incoming.projects.length;
-        state.cloud.error = '';
-        await rememberRemoteSnapshot(remote.raw);
-        if (state.cloud.importing || state.cloud.pollPaused) return remote;
-        if (apply) {
-          if (writeGeneration !== state.cloud.writeGeneration) return remote;
-          if (canApplyRemote()) await applyRemoteSnapshot(remote);
-          else state.cloud.pendingSnapshot = remote;
-        }
-        return remote;
       }
 
       async function getPublishedSnapshot() {
@@ -4289,411 +3033,19 @@
         dom.serverRefresh.textContent = 'Обновление…';
         try {
           const remote = await getPublishedSnapshot();
-          const localReference = state.cloud.baseSnapshot;
-          if (!force && !isPublishedSnapshotNewer(remote.raw, localReference)) return false;
-
-          const unbasedLocalCatalog = !localReference && (state.projects.length > 0 || state.elements.length > 0);
-          if ((state.cloud.dirty || unbasedLocalCatalog) && !validOutboxRecord(state.cloud.outbox)) {
-            persistCloudOutbox(catalogSnapshot());
-            await state.cloud.syncQueue;
+          const hasLocalCatalog = state.projects.length > 0 || state.elements.length > 0;
+          if (hasLocalCatalog && !force) return false;
+          if (hasLocalCatalog && notify && !globalThis.confirm('Заменить локальный каталог данными с сервера? Перед заменой при необходимости экспортируйте JSON.')) {
+            return false;
           }
-
-          const outbox = validOutboxRecord(state.cloud.outbox) ? state.cloud.outbox : null;
-          if (outbox) {
-            const rebased = await rebaseOutboxRecord(outbox, remote);
-            if (rebased.ok) {
-              await rehydrateOutboxCatalog(rebased.record);
-              renderFeed();
-              setSaveState('saving', 'В очереди');
-              if (state.cloud.ready) scheduleCloudSave();
-              if (notify) showToast('Сервер обновлён; локальные правки смёржены и сохранены.');
-              return true;
-            }
-
-            const conflicts = rebased.conflicts.slice(0, 3).join(', ');
-            const replace = globalThis.confirm(
-              `На сервере новые данные, но автослияние не удалось${conflicts ? `: ${conflicts}` : '.'}\n\n` +
-              'ОК — показать серверные данные. Локальные правки будут сохранены в резервной очереди, но не применятся автоматически.\n' +
-              'Отмена — оставить локальные данные на экране.'
-            );
-            if (!replace) return false;
-            if (!await archiveGuardedOutbox(outbox, 'published-refresh-merge-conflict')) {
-              throw new Error('Не удалось сохранить резервную очередь.');
-            }
-            state.cloud.knownProjectIds = new Set(state.projects.map((project) => String(project.id)));
-            state.cloud.knownElementIds = new Set(state.elements.map((element) => String(element.id)));
-            await applyRemoteSnapshot(remote, { allowDirty: true, suppressCloudMark: true });
-            if (notify) showToast('Серверные данные загружены; локальные правки в резервной очереди.');
-            return true;
-          }
-
-          const changed = await applyRemoteSnapshot(remote, { allowDirty: true, suppressCloudMark: true });
-          if (notify) showToast(changed ? 'Данные обновлены с сервера.' : 'На сервере нет изменений.');
-          return changed;
+          await importCatalog(remote.raw, { notify: false });
+          if (notify) showToast('Данные обновлены с сервера.');
+          return true;
         } finally {
           dom.serverRefresh.disabled = false;
           dom.serverRefresh.textContent = 'Обновить с сервера';
         }
       }
-
-      async function archiveGuardedOutbox(record, reason = 'empty-local-remote-nonempty') {
-        if (!validOutboxRecord(record) || state.cloud.outbox?.revision !== record.revision) return false;
-        const archived = { ...record, blocked: true, blockedAt: Date.now(), reason };
-        await enqueueCloudSync(() => writeCloudSyncBatch([['guardedOutbox', archived]], ['outbox']));
-        saveLocalValue(CLOUD_GUARDED_OUTBOX_KEY, JSON.stringify({ version: 2, storage: 'indexedDB', key: 'guardedOutbox', revision: record.revision }));
-        removeLocalValue(CLOUD_OUTBOX_KEY);
-        state.cloud.outbox = null;
-        state.cloud.dirty = state.cloud.outboxPending;
-        state.cloud.outboxError = false;
-        return true;
-      }
-
-      function applyCommittedAssetUrls(snapshot, replacements) {
-        if (!isCloudSnapshot(snapshot)) return false;
-        let changed = false;
-        for (const replacement of replacements.elements) {
-          const element = snapshot.elements.find((row) => String(row.id) === replacement.id);
-          if (element?.image === replacement.source) {
-            element.image = replacement.value;
-            changed = true;
-          }
-        }
-        const crop = replacements.lastCropSource;
-        if (crop && snapshotSettingValue(snapshot, 'lastCropSource') === crop.source) {
-          setSnapshotSettingValue(snapshot, 'lastCropSource', crop.value);
-          changed = true;
-        }
-        return changed;
-      }
-
-      function prepareCommittedAssetUrlsForCatalog(replacements) {
-        const elements = [];
-        for (const replacement of replacements.elements) {
-          const element = state.elements.find((row) => String(row.id) === replacement.id);
-          if (element?.image === replacement.source) {
-            elements.push({
-              id: replacement.id,
-              source: replacement.source,
-              value: replacement.value,
-              record: { ...cloneSnapshot(element), image: replacement.value }
-            });
-          }
-        }
-        const crop = replacements.lastCropSource;
-        const lastCropSource = crop && state.settings.lastCropSource === crop.source
-          ? { source: crop.source, value: crop.value }
-          : null;
-        return { elements, lastCropSource };
-      }
-
-      function applyPreparedAssetUrlsToCatalog(localChanges) {
-        for (const change of localChanges.elements) {
-          const element = state.elements.find((row) => String(row.id) === change.id);
-          if (element?.image === change.source) {
-            // The asset URL only starts working after the next Pages build; keep the frame visible.
-            rememberLocalPreview(change.id, change.source);
-            element.image = change.value;
-          }
-        }
-        if (localChanges.lastCropSource && state.settings.lastCropSource === localChanges.lastCropSource.source) {
-          state.settings.lastCropSource = localChanges.lastCropSource.value;
-        }
-      }
-
-      function writeCloudFinalization(entries, deleteKeys, localChanges) {
-        const storeNames = ['cloudSync'];
-        if (localChanges.elements.length) storeNames.push('elements');
-        if (localChanges.lastCropSource) storeNames.push('settings');
-        return runTransaction(storeNames, 'readwrite', (transaction) => {
-          const cloudSync = transaction.objectStore('cloudSync');
-          for (const [key, value] of entries) cloudSync.put({ key, value, updatedAt: Date.now() });
-          for (const key of deleteKeys) cloudSync.delete(key);
-          if (localChanges.elements.length) {
-            const elements = transaction.objectStore('elements');
-            for (const change of localChanges.elements) elements.put(change.record);
-          }
-          if (localChanges.lastCropSource) {
-            transaction.objectStore('settings').put({ key: 'lastCropSource', value: localChanges.lastCropSource.value });
-          }
-        });
-      }
-
-      async function finalizeCloudPut(sending, written) {
-        if (state.cloud.outboxPending) {
-          clearTimeout(state.cloud.outboxTimer);
-          state.cloud.outboxTimer = null;
-          state.cloud.outboxPending = false;
-          persistCloudOutbox();
-        }
-        let pendingWrites;
-        let pendingSync;
-        do {
-          pendingWrites = state.writeQueue;
-          pendingSync = state.cloud.syncQueue;
-          await Promise.all([pendingWrites, pendingSync]);
-        } while (pendingWrites !== state.writeQueue || pendingSync !== state.cloud.syncQueue);
-
-        const sha = written.dataBlobSha;
-        const confirmedSnapshot = cloneSnapshot(written.snapshot);
-        const localChanges = prepareCommittedAssetUrlsForCatalog(written.replacements);
-        const baseRecord = baseRecordFrom(confirmedSnapshot, sha, '');
-        const current = state.cloud.outbox;
-        let nextOutbox = null;
-        let mergeConflicts = [];
-        if (current && current.revision !== sending.revision) {
-          const currentSnapshot = cloneSnapshot(current.snapshot);
-          const currentLocalSnapshot = isCloudSnapshot(current.localSnapshot)
-            ? cloneSnapshot(current.localSnapshot)
-            : cloneSnapshot(current.snapshot);
-          applyCommittedAssetUrls(currentSnapshot, written.replacements);
-          applyCommittedAssetUrls(currentLocalSnapshot, written.replacements);
-          const rebased = mergeCloudSnapshots(sending.snapshot, confirmedSnapshot, currentSnapshot);
-          if (rebased.ok) {
-            nextOutbox = compactOutboxRecord({
-              ...current,
-              baseSha: sha,
-              baseEtag: '',
-              baseSnapshot: confirmedSnapshot,
-              snapshot: rebased.snapshot,
-              localSnapshot: currentLocalSnapshot,
-              rebasedAt: Date.now()
-            });
-          } else {
-            mergeConflicts = rebased.conflicts;
-            nextOutbox = compactOutboxRecord({
-              ...current,
-              baseSha: sha,
-              baseEtag: '',
-              baseSnapshot: confirmedSnapshot,
-              snapshot: currentSnapshot,
-              localSnapshot: currentLocalSnapshot,
-              localConflicts: [...(current.localConflicts || []), ...mergeConflicts]
-            });
-          }
-          mergeConflicts = [...new Set([...(current.localConflicts || []), ...mergeConflicts])].sort();
-        }
-
-        const entries = [['base', baseRecord], ['cache', confirmedSnapshot]];
-        const deleteKeys = [];
-        if (!current || current.revision === sending.revision) deleteKeys.push('outbox');
-        else entries.push(['outbox', nextOutbox]);
-
-        state.cloud.applying = true;
-        applyReadOnlyState();
-        try {
-          await enqueueCloudSync(() => writeCloudFinalization(entries, deleteKeys, localChanges));
-        } finally {
-          state.cloud.applying = false;
-          applyReadOnlyState();
-        }
-        applyPreparedAssetUrlsToCatalog(localChanges);
-        state.cloud.writeGeneration += 1;
-        state.cloud.lastPushAt = Date.now();
-        state.cloud.firstDirtyAt = 0;
-        state.cloud.baseSha = sha;
-        state.cloud.baseEtag = '';
-        state.cloud.baseSnapshot = confirmedSnapshot;
-        state.cloud.observedSha = sha;
-        updateKnownRemoteIds(prepareImport(confirmedSnapshot));
-        state.cloud.initialPullDone = true;
-        state.cloud.pendingSnapshot = null;
-        state.cloud.outbox = nextOutbox;
-        state.cloud.dirty = Boolean(nextOutbox) || state.cloud.outboxPending;
-        state.cloud.outboxError = false;
-
-        if (state.cloud.outbox) saveOutboxMarker(state.cloud.outbox);
-        else removeLocalValue(CLOUD_OUTBOX_KEY);
-        if (localChanges.elements.length || localChanges.lastCropSource) renderFeed();
-        return { ok: mergeConflicts.length === 0, conflicts: mergeConflicts };
-      }
-
-      async function saveCloud() {
-        if (!state.cloud.dirty || state.cloud.saving || state.cloud.importing || state.cloud.outboxPending || state.cloud.outboxTimer) return;
-        if (!state.cloud.token) {
-          setCloudError('Только чтение: нет ключа');
-          return;
-        }
-        await state.cloud.syncQueue;
-        if (state.cloud.outboxPending || state.cloud.outboxTimer) return;
-        let sending = state.cloud.outbox;
-        if (!sending || state.cloud.outboxError) {
-          setCloudError('Ошибка: локального хранилища');
-          return;
-        }
-        if (sending.localConflicts?.length) {
-          const hint = sending.localConflicts.slice(0, 2).join(', ');
-          setCloudError(`Ошибка: конфликт полей${hint ? ` — ${hint}` : ''}`);
-          return;
-        }
-        state.cloud.saving = true;
-        state.cloud.error = '';
-        const generation = state.cloud.generation;
-        let status = '';
-        let succeeded = false;
-        let conflictDetails = [];
-        let retryCount = 0;
-        try {
-          let remote = await getCloudSnapshot({ force: true, apply: false });
-          if (generation !== state.cloud.generation || state.cloud.importing) {
-            status = 'cancelled';
-          } else if (sending.snapshot.projects.length === 0 && remote.incoming.projects.length > 0) {
-            if (!await archiveGuardedOutbox(sending)) status = 'cancelled';
-            else {
-              await applyRemoteSnapshot(remote, { allowDirty: true, suppressCloudMark: true });
-              status = 'guarded';
-            }
-          } else if (remote.sha !== asText(sending.baseSha).trim()) {
-            const recovered = await recoverCommittedGitData(sending.snapshot, remote);
-            if (recovered) {
-              const finalized = await finalizeCloudPut(sending, recovered);
-              succeeded = true;
-              if (!finalized.ok) {
-                conflictDetails = finalized.conflicts;
-                status = 'post-put-conflict';
-              }
-            } else {
-              const rebased = await rebaseOutboxRecord(sending, remote);
-              if (rebased.stale) status = 'cancelled';
-              else if (!rebased.ok) {
-                conflictDetails = rebased.conflicts;
-                status = 'merge-conflict';
-              } else {
-                sending = rebased.record;
-              }
-            }
-          }
-
-          while (!status && !succeeded) {
-            if (generation !== state.cloud.generation || state.cloud.importing || state.cloud.outbox?.revision !== sending.revision) {
-              status = 'cancelled';
-              break;
-            }
-            if (sending.snapshot.projects.length === 0 && remote.incoming.projects.length > 0) {
-              if (!await archiveGuardedOutbox(sending)) status = 'cancelled';
-              else {
-                await applyRemoteSnapshot(remote, { allowDirty: true, suppressCloudMark: true });
-                status = 'guarded';
-              }
-              break;
-            }
-            if (!await persistConfirmedBackup(remote.raw, remote.sha)) {
-              status = 'backup-error';
-              break;
-            }
-            let written;
-            try {
-              written = await commitSnapshotWithGitData(
-                sending.snapshot,
-                sending.baseSha,
-                () => generation !== state.cloud.generation || state.cloud.importing
-              );
-            } catch (error) {
-              if (error.cloudCancelled) {
-                status = 'cancelled';
-                break;
-              }
-              if (!error.cloudRace) throw error;
-              if (retryCount >= CLOUD_WRITE_RACE_RETRIES) {
-                status = 'retry-conflict';
-                break;
-              }
-              const fresh = await getCloudSnapshot({ force: true, apply: false });
-              if (sending.snapshot.projects.length === 0 && fresh.incoming.projects.length > 0) {
-                if (!await archiveGuardedOutbox(sending)) status = 'cancelled';
-                else {
-                  await applyRemoteSnapshot(fresh, { allowDirty: true, suppressCloudMark: true });
-                  status = 'guarded';
-                }
-                break;
-              }
-              const rebased = await rebaseOutboxRecord(sending, fresh);
-              if (rebased.stale) {
-                status = 'cancelled';
-                break;
-              }
-              if (!rebased.ok) {
-                conflictDetails = rebased.conflicts;
-                status = 'merge-conflict';
-                break;
-              }
-              sending = rebased.record;
-              remote = fresh;
-              retryCount += 1;
-              continue;
-            }
-            const finalized = await finalizeCloudPut(sending, written);
-            succeeded = true;
-            if (!finalized.ok) {
-              conflictDetails = finalized.conflicts;
-              status = 'post-put-conflict';
-            }
-            break;
-          }
-        } catch (error) {
-          status = 'network';
-        } finally {
-          state.cloud.saving = false;
-        }
-        if (status === 'merge-conflict' || status === 'post-put-conflict') {
-          const hint = conflictDetails.slice(0, 2).join(', ');
-          setCloudError(`Ошибка: конфликт полей${hint ? ` — ${hint}` : ''}`);
-        }
-        else if (status === 'retry-conflict') setCloudError(`Ошибка: конфликт SHA после ${CLOUD_WRITE_RACE_RETRIES} повторов`);
-        else if (status === 'backup-error') setCloudError('Ошибка: резервная копия не сохранена');
-        else if (status === 'network') setCloudError('Ошибка: сети');
-        else if (status === 'guarded') setSaveState('saved', 'Сохранено');
-        else if (status === 'cancelled') {
-          if (state.cloud.dirty && !state.cloud.importing) scheduleCloudSave();
-          setSaveState(state.cloud.dirty ? 'saving' : 'saved', state.cloud.dirty ? 'Сохранение…' : 'Сохранено');
-        }
-        else if (!status && succeeded) {
-          if (state.cloud.dirty) scheduleCloudSave();
-          setSaveState('saved', 'Сохранено');
-        }
-      }
-
-      async function pollCloud() {
-        if (state.cloud.pollInFlight || state.cloud.pollPaused || state.cloud.importing) return;
-        state.cloud.pollInFlight = true;
-        try {
-          await getCloudSnapshot();
-          await applyPendingRemoteSnapshot();
-          if (state.cloud.dirty && !state.cloud.saving) scheduleCloudSave();
-        } catch (error) {
-          if (!state.cloud.dirty && !state.cloud.saving) setCloudError('Ошибка: сети');
-        } finally {
-          state.cloud.pollInFlight = false;
-        }
-      }
-
-      function startCloudPolling() {
-        clearInterval(state.cloud.pollTimer);
-        state.cloud.pollTimer = setInterval(pollCloud, CLOUD_POLL_INTERVAL);
-      }
-
-      async function initializeCloud() {
-        let cloudLoaded = false;
-        try {
-          await getCloudSnapshot({ force: true, apply: true });
-          cloudLoaded = true;
-          if (state.cloud.dirty) scheduleCloudSave();
-          if (!state.cloud.dirty) setSaveState('saved', 'Сохранено');
-        } catch (error) {
-          const cached = await getCloudSyncValue('cache').catch(() => null);
-          if (!state.projects.length && isCloudSnapshot(cached)) {
-            try {
-              await applyRemoteSnapshot(prepareRemoteSnapshot(cached), { suppressCloudMark: true });
-            } catch (cacheError) {
-              // IndexedDB remains the safe offline cache when a cached cloud snapshot is invalid.
-            }
-          }
-          setCloudError('Ошибка: сети');
-        }
-        startCloudPolling();
-        applyReadOnlyState();
-        if (state.cloud.dirty) scheduleCloudSave();
-      }
-
       function presenceClientId() {
         try {
           const existing = sessionStorage.getItem(PRESENCE_CLIENT_KEY);
@@ -4872,63 +3224,41 @@
         return { projects, elements, categories, settings: importedSettings(raw.settings) };
       }
 
-      async function importCatalog(raw) {
+      async function importCatalog(raw, { notify = true } = {}) {
         const incoming = prepareImport(raw);
-        state.cloud.importing = true;
-        state.cloud.pollPaused = true;
-        state.cloud.generation += 1;
-        clearTimeout(state.cloud.saveTimer);
-        state.cloud.saveTimer = null;
-        clearTimeout(state.cloud.outboxTimer);
-        state.cloud.outboxTimer = null;
-        state.cloud.outboxPending = false;
-        state.cloud.pendingSnapshot = null;
-        applyReadOnlyState();
         cancelAllScheduledCommits();
         stopAllProjectMetadata();
         clearTimeout(state.backupTimer);
         state.backupTimer = null;
         state.backupGeneration += 1;
         state.backupDirty = false;
-        try {
-          await state.writeQueue;
-          await state.cloud.syncQueue;
-          await commit(() => runTransaction(['projects', 'elements', 'categories', 'settings'], 'readwrite', (transaction) => {
-            // Import is an explicit user replacement; cloud synchronization never clears stores.
-            const projects = transaction.objectStore('projects');
-            const elements = transaction.objectStore('elements');
-            const categories = transaction.objectStore('categories');
-            const settings = transaction.objectStore('settings');
-            projects.clear();
-            elements.clear();
-            categories.clear();
-            settings.clear();
-            for (const project of incoming.projects) projects.put(project);
-            for (const element of incoming.elements) elements.put(element);
-            for (const category of incoming.categories) categories.put(category);
-            for (const [key, value] of Object.entries(incoming.settings)) settings.put({ key, value });
-          }));
-          state.projects = incoming.projects;
-          state.elements = incoming.elements;
-          state.categories = incoming.categories;
-          state.settings = incoming.settings;
-          state.activeProjectId = state.settings.activeProjectId && findProject(state.settings.activeProjectId)
-            ? state.settings.activeProjectId : state.projects[0]?.id || null;
-          state.editingElementId = null;
-          state.videoComposer = null;
-          state.newElementId = null;
-          markCloudDirty({ allowDuringImport: true });
-          await state.cloud.syncQueue;
-          if (state.cloud.outboxError) throw new Error('Импорт сохранён локально, но облачный outbox недоступен.');
-          applyTheme();
-          renderFeed();
-          showToast('Импорт завершён.');
-        } finally {
-          state.cloud.importing = false;
-          state.cloud.pollPaused = false;
-          applyReadOnlyState();
-          if (state.cloud.dirty) scheduleCloudSave();
-        }
+        await state.writeQueue;
+        await commit(() => runTransaction(['projects', 'elements', 'categories', 'settings'], 'readwrite', (transaction) => {
+          const projects = transaction.objectStore('projects');
+          const elements = transaction.objectStore('elements');
+          const categories = transaction.objectStore('categories');
+          const settings = transaction.objectStore('settings');
+          projects.clear();
+          elements.clear();
+          categories.clear();
+          settings.clear();
+          for (const project of incoming.projects) projects.put(project);
+          for (const element of incoming.elements) elements.put(element);
+          for (const category of incoming.categories) categories.put(category);
+          for (const [key, value] of Object.entries(incoming.settings)) settings.put({ key, value });
+        }));
+        state.projects = incoming.projects;
+        state.elements = incoming.elements;
+        state.categories = incoming.categories;
+        state.settings = incoming.settings;
+        state.activeProjectId = state.settings.activeProjectId && findProject(state.settings.activeProjectId)
+          ? state.settings.activeProjectId : state.projects[0]?.id || null;
+        state.editingElementId = null;
+        state.videoComposer = null;
+        state.newElementId = null;
+        applyTheme();
+        renderFeed();
+        if (notify) showToast('Импорт завершён.');
       }
 
       function markdownValue(value) {
@@ -5155,7 +3485,7 @@
             if (permission !== 'granted') throw new Error('Доступ к папке бэкапа не подтверждён.');
             await writeBackupFile(directory, JSON.stringify(catalogSnapshot(), null, 2));
             state.settings.backupLastWrittenAt = Date.now();
-            await saveSettings(['backupLastWrittenAt'], false, { backup: false, cloud: false });
+            await saveSettings(['backupLastWrittenAt'], false, { backup: false });
           }
         } finally {
           state.backupInFlight = false;
@@ -5180,13 +3510,12 @@
       }
 
       function selectProject(projectId) {
-        if (state.cloud.applying || state.cloud.importing) return;
         const project = findProject(projectId);
         if (!project) return;
         state.activeProjectId = project.id;
         state.settings.activeProjectId = project.id;
         state.editingElementId = null;
-        if (!isCloudReadOnly()) saveSettings(['activeProjectId']);
+        saveSettings(['activeProjectId']);
         renderFeed();
       }
 
@@ -5218,10 +3547,6 @@
       }, true);
 
       dom.appShell.addEventListener('click', (event) => {
-        if (state.cloud.applying || state.cloud.importing) {
-          event.preventDefault();
-          return;
-        }
         const deleteProject = event.target.closest('[data-delete-project]');
         if (deleteProject) {
           event.stopPropagation();
@@ -5301,7 +3626,6 @@
       });
 
       dom.appShell.addEventListener('input', (event) => {
-        if (state.cloud.applying || state.cloud.importing) return;
         const input = event.target;
         state.lastTypingAt = Date.now();
         const videoField = input.dataset.videoField;
@@ -5370,10 +3694,8 @@
           }, 0);
         }
         if (event.target.matches('input, textarea')) {
-          flushCloudSave();
           if (event.target.dataset.elementField) refreshReferenceVisuals();
         }
-        setTimeout(() => applyPendingRemoteSnapshot().catch(() => undefined), 0);
       });
 
       dom.appShell.addEventListener('mousedown', (event) => {
@@ -5436,21 +3758,12 @@
       dom.menuPanel.addEventListener('click', (event) => {
         const action = event.target.closest('[data-action]')?.dataset.action;
         if (!action) return;
-        if (isCloudReadOnly() && !['export-json', 'export-claude', 'stats', 'theme', 'cloud-token'].includes(action)) {
-          closeMenu();
-          showToast('Каталог обновляется.');
-          return;
-        }
         if (action === 'export-json') exportJson();
         if (action === 'import-json') {
           closeMenu();
           dom.importFile.click();
         }
         if (action === 'export-claude') exportForClaude();
-        if (action === 'cloud-token') {
-          closeMenu();
-          promptCloudToken();
-        }
         if (action === 'backup-folder') chooseBackupFolder();
         if (action === 'crop') showCropStatus();
         if (action === 'recalibrate') reCalibrate();
@@ -5462,10 +3775,6 @@
         const [file] = dom.importFile.files;
         dom.importFile.value = '';
         if (!file) return;
-        if (isCloudReadOnly()) {
-          showToast('Каталог обновляется.');
-          return;
-        }
         try {
           await importCatalog(JSON.parse(await file.text()));
         } catch (error) {
@@ -5533,10 +3842,6 @@
         if (isTextEditing(event.target)) return;
         const item = [...(event.clipboardData?.items || [])].find((candidate) => candidate.type.startsWith('image/'));
         if (!item) return;
-        if (isCloudReadOnly()) {
-          showToast('Каталог обновляется.');
-          return;
-        }
         event.preventDefault();
         const capturedTimecode = captureTimecodeAtPaste(event.clipboardData);
         handleImagePaste(item.getAsFile(), capturedTimecode);
@@ -5604,67 +3909,18 @@
         state.elements = state.elements.filter((element) => element.id !== 'draft-test');
         state.drafts.clear();
 
-        const typingAt = state.lastTypingAt;
-        state.lastTypingAt = Date.now();
-        expect(!canApplyRemote(), 'incoming sync waits while the user types');
-        state.lastTypingAt = typingAt;
-
-        const capturedFrame = 'data:image/jpeg;base64,AAAA';
-        const capturedElement = normalizeElement({ id: 'capture-test', projectId: 'capture-project', image: capturedFrame });
-        state.elements.push(capturedElement);
-        rememberLocalPreview(capturedElement.id, capturedFrame);
-        applyPreparedAssetUrlsToCatalog({ elements: [{ id: 'capture-test', source: capturedFrame, value: 'assets/elements/capture-test.jpg?v=1' }], lastCropSource: null });
-        expect(capturedElement.image === 'assets/elements/capture-test.jpg?v=1', 'externalized asset URL is applied to the catalog');
-        expect(previewSourceList(capturedElement)[0] === capturedFrame, 'captured frame stays visible until the Pages build lands');
-        expect(previewImageMarkup(capturedElement).includes('data:image/jpeg'), 'card markup keeps the captured frame');
-        state.elements = state.elements.filter((element) => element.id !== 'capture-test');
-        forgetLocalPreview('capture-test');
-
-        expect(CLOUD_PUSH_MIN_INTERVAL >= 30000 && CLOUD_PUSH_DELAY >= 30000, 'cloud pushes are batched');
         expect(presenceCount().total >= 1, 'presence counts at least this tab');
-        const publishedBase = { version: 5, exportedAt: '2026-08-11T09:00:00Z', projects: [], elements: [] };
-        expect(isPublishedSnapshotNewer({ ...publishedBase, exportedAt: '2026-08-11T10:00:00Z' }, publishedBase), 'newer exportedAt wins');
-        expect(isPublishedSnapshotNewer({ ...publishedBase, version: 6, exportedAt: '2020-01-01T00:00:00Z' }, publishedBase), 'newer version wins');
-        expect(!isPublishedSnapshotNewer({ ...publishedBase }, publishedBase), 'equal published snapshot is not newer');
-        expect(!isPublishedSnapshotNewer({ ...publishedBase, version: 4, exportedAt: '2030-01-01T00:00:00Z' }, publishedBase), 'older version does not replace newer schema');
-
-        const base = { version: 5, projects: [], elements: [{ id: 'element', description: 'base', technique: 'base', updatedAt: 1 }], categories: [], settings: {} };
-        const remote = cloneSnapshot(base);
-        remote.elements[0].description = 'remote';
-        remote.elements[0].updatedAt = 2;
-        const local = cloneSnapshot(base);
-        local.elements[0].technique = 'local';
-        local.elements[0].updatedAt = 3;
-        const merged = mergeCloudSnapshots(base, remote, local);
-        expect(merged.ok && merged.snapshot.elements[0].description === 'remote' && merged.snapshot.elements[0].technique === 'local', 'independent field merge');
-        local.elements[0].description = 'local';
-        const conflict = mergeCloudSnapshots(base, remote, local);
-        expect(!conflict.ok && conflict.conflicts.includes('elements[element].description'), 'same-field conflict only');
+        expect(isCatalogSnapshot({ projects: [], elements: [] }), 'published catalog shape');
+        expect(!isCatalogSnapshot({ projects: [] }), 'invalid published catalog shape');
         return Object.freeze({ passed: total - failures.length, total, failures: Object.freeze(failures) });
       }
 
       globalThis.__catalogSelfTest = runCatalogSelfTest;
 
-      dom.saveState.addEventListener('click', () => {
-        if (state.cloud.dirty) {
-          showToast('Отправляю правки в облако…');
-          flushCloudSave(true);
-        } else {
-          showToast('Все правки уже в облаке.');
-        }
-      });
-
       dom.serverRefresh.addEventListener('click', () => {
         refreshFromPublishedData({ force: true, notify: true }).catch((error) => {
-          setCloudError('Ошибка: сети');
           showToast(error.message || 'Не удалось обновить data.json.');
         });
-      });
-
-      globalThis.addEventListener('beforeunload', (event) => {
-        if (!state.cloud.dirty) return;
-        event.preventDefault();
-        event.returnValue = '';
       });
 
       async function initialize() {
@@ -5679,18 +3935,14 @@
           return;
         }
         try {
-          await loadCloudSyncState();
-          state.cloud.ready = true;
-          applyReadOnlyState();
           try {
             await refreshFromPublishedData();
           } catch (error) {
-            // The GitHub API fallback below still gets a chance when Pages is unavailable.
+            if (!state.projects.length) showToast(error.message || 'Не удалось загрузить data.json.');
           }
           renderFeed();
-          setSaveState(state.cloud.dirty ? 'saving' : 'saved');
+          setSaveState('saved');
           initializePresence();
-          await initializeCloud();
         } catch (error) {
           setSaveState('error', 'Ошибка интерфейса');
           dom.workspaceInner.innerHTML = '<div class="workspace-empty"><div><strong>Не удалось отрисовать каталог</strong>Данные в локальной базе сохранены. Обновите страницу.</div></div>';
