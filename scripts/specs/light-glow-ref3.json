@@ -1,0 +1,7 @@
+{
+  "type": "light-glow",
+  "layers": {"base": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/citicorp-secret-repair-1978-04.png"},
+  "palette": {"background": "#32100A", "glow": "#FFD343"},
+  "motion": {"size": 980, "sigma": 210, "opacity": 0.95, "xStart": -260, "xEnd": 1180, "yStart": 170, "yEnd": 220, "fadeInFrames": 2, "fadeOutFrames": 4},
+  "output": "../../assets/ours/pairs/light-glow-ref3-ours.mp4"
+}

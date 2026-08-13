@@ -1,0 +1,10 @@
+{
+  "type": "hard-cut",
+  "layers": {
+    "first": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/artifacts/reference_main_000_180/frames/f_168.png",
+    "second": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/artifacts/reference_main_000_180/frames/f_172.png"
+  },
+  "palette": {"background": "#25332F", "accent": "#E8E7DE"},
+  "motion": {"cutFrame": 30},
+  "output": "../../assets/ours/pairs/hard-cut-ref2-ours.mp4"
+}

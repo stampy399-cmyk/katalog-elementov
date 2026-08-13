@@ -1,0 +1,10 @@
+{
+  "type": "inset-window",
+  "layers": {
+    "base": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/03-JEDDAH/ai/workers-leaving-2018.png",
+    "inset": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/03-JEDDAH/ai/workers-leaving-2018.png"
+  },
+  "palette": {"border": "#F4F1E8", "borderAlpha": 0.95},
+  "motion": {"x": 300, "y": 236, "width": 1320, "height": 608, "borderWidth": 10, "opacity": 1},
+  "output": "../../assets/ours/pairs/inset-window-ref1-ours.mp4"
+}

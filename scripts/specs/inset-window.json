@@ -1,0 +1,21 @@
+{
+  "type": "inset-window",
+  "layers": {
+    "base": "../../assets/clips/inset-window-ref1.mp4",
+    "inset": "../../assets/clips/inset-window-ref2.mp4"
+  },
+  "palette": {
+    "background": "#1B252B",
+    "border": "#F1EEE8",
+    "borderAlpha": 0.9
+  },
+  "motion": {
+    "x": 480,
+    "y": 270,
+    "width": 960,
+    "height": 540,
+    "borderWidth": 8,
+    "opacity": 0.96
+  },
+  "output": "../../assets/ours/pairs/_smoke/inset-window.mp4"
+}

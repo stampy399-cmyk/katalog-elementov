@@ -1,0 +1,10 @@
+{
+  "type": "inset-window",
+  "layers": {
+    "base": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/artifacts/reference_main_000_180_supplemental_zcHZn8y2f_s/frames/f_131.0s.png",
+    "inset": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/artifacts/reference_main_000_180_supplemental_zcHZn8y2f_s/frames/f_132.0s.png"
+  },
+  "palette": {"border": "#4A4A47", "borderAlpha": 1},
+  "motion": {"x": 400, "y": 220, "width": 1120, "height": 640, "borderWidth": 16, "opacity": 1},
+  "output": "../../assets/ours/pairs/inset-window-ref3-ours.mp4"
+}

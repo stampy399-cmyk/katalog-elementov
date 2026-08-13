@@ -1,0 +1,7 @@
+{
+  "type": "light-glow",
+  "layers": {"base": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ww2-ostfront/00-DOSSIER/BRANDING/ostfront-chronik/avatar-1-open-book-quill.png"},
+  "palette": {"background": "#1A111B", "glow": "#E676C4"},
+  "motion": {"size": 780, "sigma": 190, "opacity": 0.72, "xStart": 120, "xEnd": 1020, "yStart": 470, "yEnd": 280, "fadeInFrames": 6, "fadeOutFrames": 7},
+  "output": "../../assets/ours/pairs/light-glow-ref1-ours.mp4"
+}

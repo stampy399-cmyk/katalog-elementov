@@ -633,14 +633,9 @@
     .abilities-heading span { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
     .abilities-grid { display: grid; gap: 6px; }
     .ability-card { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 10px; min-width: 0; min-height: 48px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
-    .ability-card.has-sample { grid-template-columns: minmax(0, 1fr) auto auto auto; }
     .ability-card-header { display: contents; }
     .ability-name { min-width: 0; margin: 0; overflow: hidden; font-size: 13px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
-    .ability-sample-button { display: grid; width: 27px; height: 27px; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: 7px; background: var(--surface-raised); color: var(--muted); cursor: pointer; }
-    .ability-sample-button:hover, .ability-sample-button:focus-visible { border-color: var(--accent); color: var(--accent); }
-    .ability-sample-icon { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.5; }
     .tech-passport.ability-passport { grid-column: 3; min-width: 0; margin: 0; border-width: 0; border-radius: 0; background: transparent; }
-    .ability-card.has-sample .ability-passport { grid-column: 4; }
     .tech-passport.ability-passport summary { min-height: 32px; padding: 0 8px; border: 0; font-size: 11px; white-space: nowrap; }
     .ability-passport[open] { display: contents; }
     .ability-passport[open] summary { grid-column: 3; grid-row: 1; }
@@ -888,7 +883,7 @@
         referenceHighlightTimer: null,
         oursTech: {},
         expandedAbilityFamilies: new Set(initialComparisonFamily ? [initialComparisonFamily] : []),
-        competitorCarousel: new Map(),
+        comparisonCarousel: new Map(),
         lightbox: null,
         player: {
           apiPromise: null,
@@ -2099,28 +2094,9 @@
         return Object.entries(state.oursTech || {}).map(([name, record]) => ({ name, ...record }));
       }
 
-      function repoSamplePath(sample) {
-        const value = asText(sample).trim().replaceAll('\\', '/');
-        if (value.startsWith('assets/')) return value;
-        const marker = '/katalog-elementov/assets/';
-        const index = value.indexOf(marker);
-        return index === -1 ? '' : `assets/${value.slice(index + marker.length)}`;
-      }
-
-      function abilitySampleMarkup(entry, usedSamples) {
-        const source = repoSamplePath(entry.sample);
-        const label = `Образец умения ${entry.name}`;
-        if (!source || source === 'assets/ours/other.mp4' || usedSamples.has(source)) return '';
-        if (!/\.(?:mp4|webm|mov|png|jpe?g|gif|webp|avif)(?:[?#]|$)/i.test(source)) return '';
-        usedSamples.add(source);
-        const type = /\.(?:mp4|webm|mov)(?:[?#]|$)/i.test(source) ? 'video' : 'image';
-        return `<button class="ability-sample-button" type="button" data-lightbox-media data-lightbox-source="${escapeAttribute(source)}" data-lightbox-type="${type}" data-lightbox-label="${escapeAttribute(label)}" aria-label="Открыть образец умения: ${escapeAttribute(entry.name)}"><svg class="ability-sample-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8s2-3.5 5.5-3.5S13.5 8 13.5 8 11.5 11.5 8 11.5 2.5 8 2.5 8Z"></path><circle cx="8" cy="8" r="1.5"></circle></svg></button>`;
-      }
-
-      function abilityCardMarkup(entry, usedSamples) {
-        const record = repoSamplePath(entry.sample) === 'assets/ours/other.mp4' ? { ...entry, sample: '' } : entry;
-        const sample = abilitySampleMarkup(record, usedSamples);
-        return `<article class="ability-card${sample ? ' has-sample' : ''}" data-ability-name="${escapeAttribute(record.name)}" data-ability-status="${escapeAttribute(record.status)}"><header class="ability-card-header"><h3 class="ability-name">${escapeHtml(record.name)}</h3>${techStatusMarkup(record.status)}</header>${sample}${techPassportRecordMarkup(record, 'Техпаспорт', false, 'ability-passport')}</article>`;
+      function abilityCardMarkup(entry) {
+        const record = { ...entry, sample: '' };
+        return `<article class="ability-card" data-ability-name="${escapeAttribute(record.name)}" data-ability-status="${escapeAttribute(record.status)}"><header class="ability-card-header"><h3 class="ability-name">${escapeHtml(record.name)}</h3>${techStatusMarkup(record.status)}</header>${techPassportRecordMarkup(record, 'Техпаспорт', false, 'ability-passport')}</article>`;
       }
 
       function abilityMatches(entry, query) {
@@ -2153,31 +2129,31 @@
         </button>`;
       }
 
-      function comparisonMediaMarkup(entry) {
-        const media = escapeAttribute(entry.our_media);
-        const label = `Наш образец ${entry.family}`;
-        return `<video src="${media}" controls preload="metadata" aria-label="${escapeAttribute(label)}"></video>`;
+      function comparisonMediaMarkup(pair, family) {
+        const label = `Наш образец ${family}: ${pair.label}`;
+        return `<video src="${escapeAttribute(pair.ourMedia)}" controls muted loop playsinline preload="metadata" aria-label="${escapeAttribute(label)}"></video>`;
       }
 
-      function competitorMediaItems(entry) {
-        const clips = Array.isArray(entry.competitor_clips) ? entry.competitor_clips.filter((clip) => clip?.media && /\.mp4(?:[?#]|$)/i.test(clip.media)).slice(0, 3) : [];
-        return clips.map((clip, index) => ({
-          media: clip.media,
+      function comparisonPairs(entry) {
+        const pairs = Array.isArray(entry.pairs) ? entry.pairs : [];
+        return pairs.filter((pair) => /\.mp4(?:[?#]|$)/i.test(asText(pair?.our_media)) && /\.mp4(?:[?#]|$)/i.test(asText(pair?.competitor_media))).map((pair, index) => ({
+          ourMedia: pair.our_media,
+          competitorMedia: pair.competitor_media,
           type: 'video',
-          label: clip.variant || `Клип ${index + 1}`
+          label: pair.variant || `Пара ${index + 1}`
         }));
       }
 
       function comparisonCard(entry) {
-        const competitorsMedia = competitorMediaItems(entry);
-        if (!/\.mp4(?:[?#]|$)/i.test(asText(entry.our_media)) || !competitorsMedia.length) return '';
-        const index = ((state.competitorCarousel.get(entry.family) || 0) + competitorsMedia.length) % competitorsMedia.length;
-        state.competitorCarousel.set(entry.family, index);
-        const competitor = competitorsMedia[index];
-        const label = `Конкурент ${entry.family}: ${competitor.label}`;
-        return `<article class="comparison-card" data-comparison-family="${escapeAttribute(entry.family)}">
+        const pairs = comparisonPairs(entry);
+        if (!pairs.length) return '';
+        const index = ((state.comparisonCarousel.get(entry.family) || 0) + pairs.length) % pairs.length;
+        state.comparisonCarousel.set(entry.family, index);
+        const pair = pairs[index];
+        const label = `Конкурент ${entry.family}: ${pair.label}`;
+        return `<article class="comparison-card" data-comparison-family="${escapeAttribute(entry.family)}" data-pair-index="${index}" data-pair-count="${pairs.length}">
           <header class="comparison-card-header"><h2 class="comparison-family">${escapeHtml(entry.family)}</h2><span class="comparison-level">${escapeHtml(entry.level || 'нет')}</span><div class="comparison-level-bar" style="--level:${comparisonLevelPercent(entry.level)}%"><span></span></div></header>
-          <div class="comparison-columns"><section class="comparison-side"><h3>НАШ ОБРАЗЕЦ</h3><div class="comparison-media">${comparisonMediaMarkup(entry)}</div><button class="comparison-pair-button" type="button" data-lightbox-pair="${escapeAttribute(entry.family)}">Сравнить бок о бок</button></section><section class="comparison-side"><h3>КОНКУРЕНТ</h3><div class="competitor-carousel"><video src="${escapeAttribute(competitor.media)}" controls muted loop playsinline preload="metadata" aria-label="${escapeAttribute(label)}"></video><div class="competitor-carousel-controls"><button class="competitor-carousel-button" type="button" data-competitor-prev="${escapeAttribute(entry.family)}" aria-label="Предыдущий клип">‹</button><span class="competitor-variant">${escapeHtml(competitor.label)}</span><button class="competitor-carousel-button" type="button" data-competitor-next="${escapeAttribute(entry.family)}" aria-label="Следующий клип">›</button></div></div></section></div>
+          <div class="comparison-columns"><section class="comparison-side"><h3>НАШ ОБРАЗЕЦ</h3><div class="comparison-media">${comparisonMediaMarkup(pair, entry.family)}</div><button class="comparison-pair-button" type="button" data-lightbox-pair="${escapeAttribute(entry.family)}">Сравнить бок о бок</button></section><section class="comparison-side"><h3>КОНКУРЕНТ</h3><div class="competitor-carousel"><video src="${escapeAttribute(pair.competitorMedia)}" controls muted loop playsinline preload="metadata" aria-label="${escapeAttribute(label)}"></video><div class="competitor-carousel-controls"><button class="competitor-carousel-button" type="button" data-comparison-prev="${escapeAttribute(entry.family)}" aria-label="Предыдущая пара">‹</button><span class="competitor-variant">${escapeHtml(pair.label)}</span><button class="competitor-carousel-button" type="button" data-comparison-next="${escapeAttribute(entry.family)}" aria-label="Следующая пара">›</button></div></div></section></div>
         </article>`;
       }
 
@@ -2196,12 +2172,11 @@
         if (!current) return;
         const pair = current.mode === 'pair';
         if (pair) {
-          const competitors = competitorMediaItems(current.entry);
-          current.index = (current.index + competitors.length) % competitors.length;
-          const competitor = competitors[current.index];
-          const ourType = /\.mp4(?:[?#]|$)/i.test(current.entry.our_media) ? 'video' : 'image';
-          dom.lightboxContent.innerHTML = `<div class="lightbox-pair"><section class="lightbox-pane"><div class="lightbox-label">Наш образец · ${escapeHtml(current.entry.family)}</div><div class="lightbox-pane-media" data-lightbox-backdrop>${lightboxMediaMarkup(current.entry.our_media, ourType, `Наш образец ${current.entry.family}`, current.entry.our_poster)}</div></section><section class="lightbox-pane"><div class="lightbox-label">Конкурент · ${escapeHtml(competitor.label)}</div><div class="lightbox-pane-media" data-lightbox-backdrop>${lightboxMediaMarkup(competitor.media, competitor.type, `Конкурент ${current.entry.family}: ${competitor.label}`)}</div></section></div>`;
-          dom.lightboxCounter.textContent = `${current.index + 1} / ${competitors.length}`;
+          const pairs = comparisonPairs(current.entry);
+          current.index = (current.index + pairs.length) % pairs.length;
+          const activePair = pairs[current.index];
+          dom.lightboxContent.innerHTML = `<div class="lightbox-pair"><section class="lightbox-pane"><div class="lightbox-label">Наш образец · ${escapeHtml(current.entry.family)}</div><div class="lightbox-pane-media" data-lightbox-backdrop>${lightboxMediaMarkup(activePair.ourMedia, activePair.type, `Наш образец ${current.entry.family}: ${activePair.label}`)}</div></section><section class="lightbox-pane"><div class="lightbox-label">Конкурент · ${escapeHtml(activePair.label)}</div><div class="lightbox-pane-media" data-lightbox-backdrop>${lightboxMediaMarkup(activePair.competitorMedia, activePair.type, `Конкурент ${current.entry.family}: ${activePair.label}`)}</div></section></div>`;
+          dom.lightboxCounter.textContent = `${current.index + 1} / ${pairs.length}`;
         } else {
           dom.lightboxContent.innerHTML = lightboxMediaMarkup(current.source, current.type, current.label, current.poster);
           dom.lightboxCounter.textContent = '';
@@ -2238,8 +2213,8 @@
 
       function openPairLightbox(family) {
         const entry = globalThis.SRAVNENIE?.families?.find((candidate) => candidate.family === family);
-        if (!/\.mp4(?:[?#]|$)/i.test(asText(entry?.our_media)) || !competitorMediaItems(entry).length) return;
-        showLightbox({ mode: 'pair', entry, index: state.competitorCarousel.get(family) || 0 });
+        if (!comparisonPairs(entry).length) return;
+        showLightbox({ mode: 'pair', entry, index: state.comparisonCarousel.get(family) || 0 });
       }
 
       function openMediaLightbox(media) {
@@ -2278,12 +2253,11 @@
           return comparisonMatches || abilities.some((ability) => ability.matches_competitor_family === entry.family && abilityMatches(ability, query));
         });
         let shownAbilities = 0;
-        const usedSamples = new Set();
         const groups = families.map((entry) => {
           const matching = abilities.filter((ability) => ability.matches_competitor_family === entry.family && abilityMatches(ability, query));
           shownAbilities += matching.length;
           const expanded = state.expandedAbilityFamilies.has(entry.family);
-          const abilitiesMarkup = matching.length ? `<section class="abilities-group" data-ability-family="${escapeAttribute(entry.family)}"><header class="abilities-heading"><h2>Умения · ${escapeHtml(entry.family)}</h2><span>${matching.length} умений</span></header><div class="abilities-grid">${matching.map((ability) => abilityCardMarkup(ability, usedSamples)).join('')}</div></section>` : '';
+          const abilitiesMarkup = matching.length ? `<section class="abilities-group" data-ability-family="${escapeAttribute(entry.family)}"><header class="abilities-heading"><h2>Умения · ${escapeHtml(entry.family)}</h2><span>${matching.length} умений</span></header><div class="abilities-grid">${matching.map(abilityCardMarkup).join('')}</div></section>` : '';
           const body = expanded ? `<div class="capability-family-body">${comparisonCard(entry)}${abilitiesMarkup}</div>` : '';
           return `<section class="capability-family${expanded ? ' is-open' : ''}" data-capability-family="${escapeAttribute(entry.family)}">${abilityFamilySummaryMarkup(entry.family, matching, expanded)}${body}</section>`;
         }).join('');
@@ -4177,17 +4151,17 @@
       }, true);
 
       dom.appShell.addEventListener('click', (event) => {
-        const carouselButton = event.target.closest('[data-competitor-prev], [data-competitor-next]');
+        const carouselButton = event.target.closest('[data-comparison-prev], [data-comparison-next]');
         if (carouselButton) {
-          const family = carouselButton.dataset.competitorPrev || carouselButton.dataset.competitorNext;
+          const family = carouselButton.dataset.comparisonPrev || carouselButton.dataset.comparisonNext;
           const entry = globalThis.SRAVNENIE?.families?.find((candidate) => candidate.family === family);
-          const clips = entry ? competitorMediaItems(entry) : [];
-          if (clips.length) {
-            const direction = carouselButton.dataset.competitorNext ? 1 : -1;
-            const index = ((state.competitorCarousel.get(family) || 0) + direction + clips.length) % clips.length;
-            state.competitorCarousel.set(family, index);
+          const pairs = entry ? comparisonPairs(entry) : [];
+          if (pairs.length) {
+            const direction = carouselButton.dataset.comparisonNext ? 1 : -1;
+            const index = ((state.comparisonCarousel.get(family) || 0) + direction + pairs.length) % pairs.length;
+            state.comparisonCarousel.set(family, index);
             renderComparison();
-            requestAnimationFrame(() => dom.workspaceInner.querySelector(`[data-competitor-${direction > 0 ? 'next' : 'prev'}="${CSS.escape(family)}"]`)?.focus());
+            requestAnimationFrame(() => dom.workspaceInner.querySelector(`[data-comparison-${direction > 0 ? 'next' : 'prev'}="${CSS.escape(family)}"]`)?.focus());
           }
           return;
         }

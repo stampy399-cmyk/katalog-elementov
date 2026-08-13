@@ -1,0 +1,10 @@
+{
+  "type": "crossfade",
+  "layers": {
+    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/ФАРАОН ЕГИПЕТ ФРАНЦИЯ/production/pilot-fastgen/video/p03-city-dawn.mp4",
+    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/СТИЛЬ-КИТ/assets/infographics_maps/alt_map_city_pin.mp4"
+  },
+  "palette": {"background": "#244A4B", "accent": "#9AAEAA"},
+  "motion": {"startFrame": 21, "fadeFrames": 18},
+  "output": "../../assets/ours/pairs/crossfade-ref3-ours.mp4"
+}

@@ -1,0 +1,20 @@
+{
+  "type": "grid-lines",
+  "layers": {
+    "base": "../../assets/clips/grid-lines-ref1.mp4"
+  },
+  "palette": {
+    "background": "#050505",
+    "line": "#D8D8D8",
+    "lineAlpha": 0.32,
+    "accent": "#F18C32"
+  },
+  "motion": {
+    "spacingX": 128,
+    "spacingY": 108,
+    "thickness": 2,
+    "offsetX": 0,
+    "offsetY": 0
+  },
+  "output": "../../assets/ours/pairs/_smoke/grid-lines.mp4"
+}

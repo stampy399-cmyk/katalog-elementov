@@ -1,0 +1,7 @@
+{
+  "type": "camera-motion",
+  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/ФАРАОН ЕГИПЕТ ФРАНЦИЯ/production/pilot-fastgen/video-gemini/gem-p03-city-aerial.mp4"},
+  "palette": {"background": "#3A5940", "accent": "#B77652"},
+  "motion": {"overscan": 1.14, "xStart": 0.08, "xEnd": 0.86, "yStart": 0.42, "yEnd": 0.57, "easing": "linear"},
+  "output": "../../assets/ours/pairs/camera-motion-ref2-ours.mp4"
+}

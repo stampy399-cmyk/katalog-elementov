@@ -1,0 +1,7 @@
+{
+  "type": "saturation-color",
+  "layers": {"source": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/artifacts/reference_main_000_180/frames/f_002.png"},
+  "palette": {"contrast": 1.03, "brightness": 0, "redShift": 0.01, "greenShift": 0, "blueShift": -0.01},
+  "motion": {"saturationStart": 1.1, "saturationEnd": 0},
+  "output": "../../assets/ours/pairs/saturation-color-ref2-ours.mp4"
+}

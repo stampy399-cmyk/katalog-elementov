@@ -1,0 +1,21 @@
+{
+  "type": "position-slide",
+  "layers": {
+    "base": "../../assets/clips/position-slide-ref1.mp4",
+    "foreground": "../../assets/clips/position-slide-ref2.mp4"
+  },
+  "palette": {
+    "background": "#080808",
+    "accent": "#E9B72E"
+  },
+  "motion": {
+    "xStart": -720,
+    "xEnd": 160,
+    "yStart": 250,
+    "yEnd": 250,
+    "width": 720,
+    "height": 405,
+    "easing": "linear"
+  },
+  "output": "../../assets/ours/pairs/_smoke/position-slide.mp4"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "position-slide",
+  "layers": {
+    "base": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/photos/documents/logbook-young-phoenix-1885-p1.jpg",
+    "foreground": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/photo-tools/bluebook_staging/witness-sketches/archiveorg_1948-07-6387139-Indianapolis-Indiana-151-_leaf14.jpg"
+  },
+  "palette": {"background": "#E1D5BA", "accent": "#453C2F"},
+  "motion": {"xStart": 1880, "xEnd": 420, "yStart": 0, "yEnd": 0, "width": 1500, "height": 1080, "easing": "linear"},
+  "output": "../../assets/ours/pairs/position-slide-ref2-ours.mp4"
+}

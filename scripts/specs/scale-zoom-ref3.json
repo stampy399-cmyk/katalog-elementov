@@ -1,0 +1,7 @@
+{
+  "type": "scale-zoom",
+  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/ФАРАОН ЕГИПЕТ ФРАНЦИЯ/production/pilot-fastgen/img/img-map-01.png"},
+  "palette": {"background": "#B89B6A", "accent": "#382C20"},
+  "motion": {"zoomStart": 1, "zoomEnd": 1.2, "anchorX": 0.57, "anchorY": 0.42, "easing": "linear"},
+  "output": "../../assets/ours/pairs/scale-zoom-ref3-ours.mp4"
+}

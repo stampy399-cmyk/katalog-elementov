@@ -1,0 +1,10 @@
+{
+  "type": "hard-cut",
+  "layers": {
+    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/СТИЛЬ-КИТ/assets/infographics_maps/alt_map_heat.mp4",
+    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/04-rascacielos-coche/ai/walkie-talkie-solar-focus-street.png"
+  },
+  "palette": {"background": "#304C2D", "accent": "#E4C23C"},
+  "motion": {"cutFrame": 32},
+  "output": "../../assets/ours/pairs/hard-cut-ref3-ours.mp4"
+}

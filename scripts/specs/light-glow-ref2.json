@@ -1,0 +1,7 @@
+{
+  "type": "light-glow",
+  "layers": {"base": "/Users/alphabravo/Documents/BASE/01-NICHES/ФАРАОН ЕГИПЕТ ФРАНЦИЯ/production/pilot-fastgen/video-gemini/gem-p03-city-aerial.mp4"},
+  "palette": {"background": "#718994", "glow": "#F7D7E5"},
+  "motion": {"size": 1000, "sigma": 250, "opacity": 0.68, "xStart": 430, "xEnd": 560, "yStart": 590, "yEnd": 430, "fadeInFrames": 8, "fadeOutFrames": 8},
+  "output": "../../assets/ours/pairs/light-glow-ref2-ours.mp4"
+}

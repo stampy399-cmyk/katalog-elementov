@@ -1,0 +1,10 @@
+{
+  "type": "crossfade",
+  "layers": {
+    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/liquid-damper-tank-cutaway-08.png",
+    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/04-rascacielos-coche/ai/facade-panel-caustic-convergence.png"
+  },
+  "palette": {"background": "#1B3540", "accent": "#A8B0AD"},
+  "motion": {"startFrame": 22, "fadeFrames": 16},
+  "output": "../../assets/ours/pairs/crossfade-ref1-ours.mp4"
+}

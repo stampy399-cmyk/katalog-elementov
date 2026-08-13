@@ -1,0 +1,18 @@
+{
+  "type": "saturation-color",
+  "layers": {
+    "source": "../../assets/clips/saturation-color-ref1.mp4"
+  },
+  "palette": {
+    "contrast": 1.04,
+    "brightness": 0.01,
+    "redShift": 0.02,
+    "greenShift": 0.0,
+    "blueShift": -0.02
+  },
+  "motion": {
+    "saturationStart": 1.15,
+    "saturationEnd": 0.0
+  },
+  "output": "../../assets/ours/pairs/_smoke/saturation-color.mp4"
+}

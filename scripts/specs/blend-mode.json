@@ -1,0 +1,16 @@
+{
+  "type": "blend-mode",
+  "layers": {
+    "base": "../../assets/clips/blend-mode-ref1.mp4",
+    "overlay": "../../assets/clips/light-glow-ref3.mp4"
+  },
+  "palette": {
+    "background": "#21150F",
+    "accent": "#D37A3C"
+  },
+  "motion": {
+    "mode": "screen",
+    "opacity": 0.62
+  },
+  "output": "../../assets/ours/pairs/_smoke/blend-mode.mp4"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "crossfade",
+  "layers": {
+    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/liquid-damper-tank-cutaway-08.png",
+    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/ИСПАНИЯ ВОЙНА В ЮЖНОЙ АМЕРИКЕ/04-MAPS/full/mapa-23.png"
+  },
+  "palette": {"background": "#214357", "accent": "#697A6C"},
+  "motion": {"startFrame": 24, "fadeFrames": 14},
+  "output": "../../assets/ours/pairs/crossfade-ref2-ours.mp4"
+}

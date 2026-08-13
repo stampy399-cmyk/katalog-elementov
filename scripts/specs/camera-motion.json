@@ -1,0 +1,19 @@
+{
+  "type": "camera-motion",
+  "layers": {
+    "source": "../../assets/clips/camera-motion-ref2.mp4"
+  },
+  "palette": {
+    "background": "#335541",
+    "accent": "#D4A16B"
+  },
+  "motion": {
+    "overscan": 1.2,
+    "xStart": 0.0,
+    "xEnd": 1.0,
+    "yStart": 0.42,
+    "yEnd": 0.58,
+    "easing": "linear"
+  },
+  "output": "../../assets/ours/pairs/_smoke/camera-motion.mp4"
+}

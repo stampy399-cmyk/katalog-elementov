@@ -1,0 +1,10 @@
+{
+  "type": "inset-window",
+  "layers": {
+    "base": "/Users/alphabravo/Documents/BASE/01-NICHES/ФАРАОН ЕГИПЕТ ФРАНЦИЯ/production/pilot-fastgen/video/p03-city-dawn.mp4",
+    "inset": "/Users/alphabravo/Documents/BASE/01-NICHES/en-esoteric-narration/production/маскот/дед_05.png"
+  },
+  "palette": {"border": "#EEF3F5", "borderAlpha": 0.9},
+  "motion": {"x": 660, "y": 150, "width": 600, "height": 780, "borderWidth": 6, "opacity": 0.96},
+  "output": "../../assets/ours/pairs/inset-window-ref2-ours.mp4"
+}

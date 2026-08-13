@@ -1,0 +1,18 @@
+{
+  "type": "scale-zoom",
+  "layers": {
+    "source": "../../assets/clips/scale-zoom-ref3.mp4"
+  },
+  "palette": {
+    "background": "#C5A875",
+    "accent": "#372B20"
+  },
+  "motion": {
+    "zoomStart": 1.0,
+    "zoomEnd": 1.16,
+    "anchorX": 0.56,
+    "anchorY": 0.46,
+    "easing": "linear"
+  },
+  "output": "../../assets/ours/pairs/_smoke/scale-zoom.mp4"
+}

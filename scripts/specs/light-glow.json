@@ -1,0 +1,22 @@
+{
+  "type": "light-glow",
+  "layers": {
+    "base": "../../assets/clips/light-glow-ref1.mp4"
+  },
+  "palette": {
+    "background": "#19121B",
+    "glow": "#E66FBD"
+  },
+  "motion": {
+    "size": 760,
+    "sigma": 180,
+    "opacity": 0.72,
+    "xStart": 80,
+    "xEnd": 980,
+    "yStart": 470,
+    "yEnd": 270,
+    "fadeInFrames": 6,
+    "fadeOutFrames": 8
+  },
+  "output": "../../assets/ours/pairs/_smoke/light-glow.mp4"
+}

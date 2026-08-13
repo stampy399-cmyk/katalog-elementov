@@ -1,0 +1,7 @@
+{
+  "type": "camera-motion",
+  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/ФАРАОН ЕГИПЕТ ФРАНЦИЯ/production/pilot-fastgen/video/p03-city-dawn.mp4"},
+  "palette": {"background": "#425D4B", "accent": "#C8C8C3"},
+  "motion": {"overscan": 1.16, "xStart": 0.68, "xEnd": 0.24, "yStart": 0.52, "yEnd": 0.43, "easing": "linear"},
+  "output": "../../assets/ours/pairs/camera-motion-ref1-ours.mp4"
+}

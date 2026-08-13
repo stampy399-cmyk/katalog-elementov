@@ -1,0 +1,10 @@
+{
+  "type": "blend-mode",
+  "layers": {
+    "base": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/citicorp-secret-repair-1978-04.png",
+    "overlay": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/assets/photo/kenneth-arnold-1947/wikimedia_180242201.jpg"
+  },
+  "palette": {"background": "#24150D", "accent": "#C68045"},
+  "motion": {"mode": "screen", "opacity": 0.58},
+  "output": "../../assets/ours/pairs/blend-mode-ref1-ours.mp4"
+}

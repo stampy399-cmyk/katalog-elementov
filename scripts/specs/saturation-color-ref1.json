@@ -1,0 +1,7 @@
+{
+  "type": "saturation-color",
+  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/ФАРАОН ЕГИПЕТ ФРАНЦИЯ/production/pilot-fastgen/video-gemini/gem-p03-city-aerial.mp4"},
+  "palette": {"contrast": 1.04, "brightness": 0.01, "redShift": 0.02, "greenShift": 0, "blueShift": -0.02},
+  "motion": {"saturationStart": 1.25, "saturationEnd": 0},
+  "output": "../../assets/ours/pairs/saturation-color-ref1-ours.mp4"
+}

@@ -1,0 +1,7 @@
+{
+  "type": "blur-effect",
+  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/_assets/stills/background/commons_36643440_men-are-fishing-for-whale-in-small-boats-with-harpoons-larg-wellcome-v0041_447fc93cbda9.jpg"},
+  "palette": {"background": "#5A5A58", "accent": "#D6D4CE"},
+  "motion": {"mode": "background-fill", "sigma": 45},
+  "output": "../../assets/ours/pairs/blur-effect-ref3-ours.mp4"
+}

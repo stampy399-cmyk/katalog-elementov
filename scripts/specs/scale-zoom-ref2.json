@@ -1,0 +1,7 @@
+{
+  "type": "scale-zoom",
+  "layers": {"source": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/artifacts/reference_main_000_180/frames/f_172.png"},
+  "palette": {"background": "#C7CDC7", "accent": "#53725A"},
+  "motion": {"zoomStart": 1, "zoomEnd": 1.15, "anchorX": 0.54, "anchorY": 0.44, "easing": "linear"},
+  "output": "../../assets/ours/pairs/scale-zoom-ref2-ours.mp4"
+}

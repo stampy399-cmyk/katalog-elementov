@@ -1,0 +1,10 @@
+{
+  "type": "hard-cut",
+  "layers": {
+    "first": "/Users/alphabravo/Documents/BASE/01-NICHES/ИСПАНИЯ ВОЙНА В ЮЖНОЙ АМЕРИКЕ/04-MAPS/full/mapa-23.png",
+    "second": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/photo-tools/bluebook_staging/witness-sketches/archiveorg_1948-07-6387139-Indianapolis-Indiana-151-_leaf14.jpg"
+  },
+  "palette": {"background": "#111111", "accent": "#D8BC48"},
+  "motion": {"cutFrame": 30},
+  "output": "../../assets/ours/pairs/hard-cut-ref1-ours.mp4"
+}

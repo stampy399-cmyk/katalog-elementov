@@ -1,0 +1,10 @@
+{
+  "type": "blend-mode",
+  "layers": {
+    "base": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/03-JEDDAH/ai/workers-leaving-2018.png",
+    "overlay": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/02-CONTRAPESO/ai/citicorp-secret-repair-1978-04.png"
+  },
+  "palette": {"background": "#3A130A", "accent": "#E55B2D"},
+  "motion": {"mode": "overlay", "opacity": 0.78},
+  "output": "../../assets/ours/pairs/blend-mode-ref3-ours.mp4"
+}

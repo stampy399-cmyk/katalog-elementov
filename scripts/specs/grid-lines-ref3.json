@@ -1,0 +1,7 @@
+{
+  "type": "grid-lines",
+  "layers": {"base": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/ТЕСТ-2МИН/img/_replaced/c1_45acp_ORIG_graphpaper-45acp-cartridge.jpg"},
+  "palette": {"background": "#050505", "line": "#F1F1F1", "lineAlpha": 0.3, "accent": "#F07828"},
+  "motion": {"spacingX": 72, "spacingY": 72, "thickness": 2, "offsetX": 0, "offsetY": 0},
+  "output": "../../assets/ours/pairs/grid-lines-ref3-ours.mp4"
+}

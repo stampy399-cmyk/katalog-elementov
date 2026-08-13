@@ -1,0 +1,7 @@
+{
+  "type": "blur-effect",
+  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/ФАРАОН ЕГИПЕТ ФРАНЦИЯ/production/pilot-fastgen/img/img-map-01.png"},
+  "palette": {"background": "#C9A897", "accent": "#8DB6C0"},
+  "motion": {"mode": "background-fill", "sigma": 38},
+  "output": "../../assets/ours/pairs/blur-effect-ref2-ours.mp4"
+}

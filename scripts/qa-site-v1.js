@@ -30,8 +30,11 @@ const VIDEO_COMPARISON = Object.freeze({
   'BLUR-EFFECT': 3
 });
 const COMPARISON_FAMILY_ORDER = FAMILY_ORDER.filter((family) => !['OTHER', 'EMPTY'].includes(family));
-const COMPARISON_EXPECTED = Object.freeze({ families: 16, pairs: 13, abilities: 167, exact: 121, partial: 46, unavailable: 0, sampleButtons: 16, repoSamples: 30, clips: 42, frames: 6 });
-const RESTRUCTURED_FAMILIES = new Set(['KEYFRAMES-MOTION', 'PHOTO-IMAGE', 'OPACITY-FADE', 'TEXT-TYPOGRAPHY', 'GEOMETRY-SHAPE', 'BLUR-EFFECT']);
+const COMPARISON_EXPECTED = Object.freeze({ families: 16, cards: 16, pairs: 42, abilities: 167, exact: 121, partial: 46, unavailable: 0, sampleButtons: 0, repoSamples: 30 });
+const FORBIDDEN_COMPARISON_TEXT = [
+  'TODO:', 'DEBUG', 'placeholder', 'Нашего образца пока нет', 'Референсов нет',
+  'Комментарий не добавлен', 'семейство не входило в визуальную сверку', 'undefined', 'null'
+];
 const EXPECTED = Object.freeze({ projects: 9, elements: 2852, base: 2780, unique: 72, families: 18, imported: 624, abilities: 216, exact: 154, partial: 60, unavailable: 2, repoSamples: 32 });
 const failures = [];
 let assertions = 0;
@@ -184,7 +187,7 @@ function exportIndexScript(script) {
   const index = script.lastIndexOf(marker);
   check(index !== -1, 'index.html: initialize marker not found');
   if (index === -1) return script;
-  const injected = `\n      globalThis.__qaIndex = {\n        BASE_VIDEO_THRESHOLD, FAMILY_ORDER, state, dom, normalizeProject, normalizeElement,\n        tierMatches, familyMatches, renderTierFilter, familyStatisticsMarkup, previewSourceList, previewImageMarkup,\n        familyMeta, prepareImport, catalogAssetUrl, previewFallbackUrl, rawAssetUrl,\n        renderComparison, comparisonCard, comparisonLevelPercent\n      };\n    })();`;
+  const injected = `\n      globalThis.__qaIndex = {\n        BASE_VIDEO_THRESHOLD, FAMILY_ORDER, state, dom, normalizeProject, normalizeElement,\n        tierMatches, familyMatches, renderTierFilter, familyStatisticsMarkup, previewSourceList, previewImageMarkup,\n        familyMeta, prepareImport, catalogAssetUrl, previewFallbackUrl, rawAssetUrl,\n        renderComparison, comparisonCard, comparisonPairs, comparisonLevelPercent\n      };\n    })();`;
   return `${script.slice(0, index)}${injected}${script.slice(index + marker.length)}`;
 }
 
@@ -372,15 +375,19 @@ function validateComparison(comparison, oursTech, indexPage) {
   comparison.families.forEach((record) => qa.state.expandedAbilityFamilies.add(record.family));
   qa.renderComparison();
   const expandedHtml = nodes.get('workspaceInner').innerHTML;
-  check((expandedHtml.match(/class="comparison-card"/g) || []).length === COMPARISON_EXPECTED.pairs, 'expanded comparison did not render exactly 13 complete video pairs');
-  check((expandedHtml.match(/class="comparison-media"><video/g) || []).length === COMPARISON_EXPECTED.pairs, 'expanded comparison did not render 13 local videos');
-  check((expandedHtml.match(/class="competitor-carousel"><video/g) || []).length === COMPARISON_EXPECTED.pairs, 'expanded comparison did not render one active competitor clip per pair');
-  check((expandedHtml.match(/class="competitor-variant"/g) || []).length === COMPARISON_EXPECTED.pairs, 'competitor variant caption count mismatch');
-  check((expandedHtml.match(/data-competitor-prev=/g) || []).length === COMPARISON_EXPECTED.pairs && (expandedHtml.match(/data-competitor-next=/g) || []).length === COMPARISON_EXPECTED.pairs, 'competitor carousel controls mismatch');
-  check((expandedHtml.match(/data-lightbox-pair=/g) || []).length === COMPARISON_EXPECTED.pairs, 'expanded comparison did not render 13 side-by-side buttons');
-  check(!expandedHtml.includes('<img') && !expandedHtml.includes('competitor-frame-button'), 'static media leaked into the primary comparison output');
-  check(!expandedHtml.includes('comparison-media-placeholder') && !expandedHtml.includes('Нашего образца пока нет') && !expandedHtml.includes('Референсов нет'), 'expanded comparison renders a media placeholder');
-  check(!expandedHtml.includes('comparison-notes') && !expandedHtml.includes('Комментарий не добавлен') && !expandedHtml.includes('семейство не входило в визуальную сверку'), 'expanded comparison renders service or fallback notes');
+  const pairCounts = [...expandedHtml.matchAll(/data-pair-count="(\d+)"/g)].map((match) => Number(match[1]));
+  const ourSources = [...expandedHtml.matchAll(/class="comparison-media"><video src="([^"]+)"/g)].map((match) => match[1]);
+  const competitorSources = [...expandedHtml.matchAll(/class="competitor-carousel"><video src="([^"]+)"/g)].map((match) => match[1]);
+  check((expandedHtml.match(/class="comparison-card"/g) || []).length === COMPARISON_EXPECTED.cards, 'expanded comparison did not render 16 complete active pair cards');
+  check(ourSources.length === COMPARISON_EXPECTED.cards && ourSources.every((source) => /^assets\/ours\/pairs\/.+-ours\.mp4$/.test(source)), 'expanded comparison local videos are not pair-specific MP4 files');
+  check(competitorSources.length === COMPARISON_EXPECTED.cards && competitorSources.every((source) => /^assets\/clips\/.+\.mp4$/.test(source)), 'expanded comparison competitor videos are not pair-specific MP4 files');
+  check(pairCounts.length === COMPARISON_EXPECTED.families && pairCounts.reduce((total, count) => total + count, 0) === COMPARISON_EXPECTED.pairs, 'rendered family pair counts do not total 42');
+  check((expandedHtml.match(/class="competitor-variant"/g) || []).length === COMPARISON_EXPECTED.cards, 'pair variant caption count mismatch');
+  check((expandedHtml.match(/data-comparison-prev=/g) || []).length === COMPARISON_EXPECTED.cards && (expandedHtml.match(/data-comparison-next=/g) || []).length === COMPARISON_EXPECTED.cards, 'pair carousel controls mismatch');
+  check((expandedHtml.match(/data-lightbox-pair=/g) || []).length === COMPARISON_EXPECTED.cards, 'expanded comparison did not render 16 side-by-side buttons');
+  check(!/<img\b/i.test(expandedHtml) && !/\.(?:jpe?g|png|webp)(?:[?#"]|$)/i.test(expandedHtml), 'static media leaked into the primary comparison output');
+  check(!/assets\/ours\/(?!pairs\/)/.test(expandedHtml), 'legacy local samples leaked into the comparison DOM');
+  check(FORBIDDEN_COMPARISON_TEXT.every((text) => !expandedHtml.includes(text)), 'placeholder, debug, or service text leaked into the comparison DOM');
   const techPassportCount = (expandedHtml.match(/class="tech-passport(?: |")/g) || []).length;
   check(techPassportCount === COMPARISON_EXPECTED.abilities, `integrated comparison tech passport count ${techPassportCount}, expected ${COMPARISON_EXPECTED.abilities}`);
   check((expandedHtml.match(/class="ability-card(?: |")/g) || []).length === COMPARISON_EXPECTED.abilities, 'expanded comparison did not render 167 abilities');
@@ -393,11 +400,7 @@ function validateComparison(comparison, oursTech, indexPage) {
   check(abilityCards.every((card) => card.includes('<summary><span>Техпаспорт</span>')), 'ability rows are missing the Tech Passport disclosure');
   const sampleSources = [...expandedHtml.matchAll(/class="ability-sample-button"[^>]*data-lightbox-source="([^"]+)"/g)].map((match) => match[1]);
   check(sampleSources.length === COMPARISON_EXPECTED.sampleButtons, `ability sample button count ${sampleSources.length}, expected ${COMPARISON_EXPECTED.sampleButtons}`);
-  check(new Set(sampleSources).size === sampleSources.length, 'an ability sample is attached to more than one visible row');
-  check(!sampleSources.includes('assets/ours/other.mp4'), 'generic OTHER sample leaked into ability rows');
-  check(!expandedHtml.includes('data-comparison-family="PHOTO-IMAGE"') && !expandedHtml.includes('data-comparison-family="TEXT-TYPOGRAPHY"') && !expandedHtml.includes('data-comparison-family="GEOMETRY-SHAPE"'), 'static-only family rendered a primary comparison block');
-  check(!expandedHtml.includes('TODO: инвентарь'), 'expanded comparison still renders TODO inventory fields');
-  check(!expandedHtml.includes('undefined') && !expandedHtml.includes('null'), 'expanded comparison renders null/undefined text');
+  check(['PHOTO-IMAGE', 'TEXT-TYPOGRAPHY', 'GEOMETRY-SHAPE'].every((family) => expandedHtml.includes(`data-comparison-family="${family}"`)), 'formerly static families are missing complete comparison cards');
 
   qa.state.expandedAbilityFamilies.clear();
   qa.state.expandedAbilityFamilies.add(comparison.families[0].family);
@@ -417,6 +420,8 @@ function validateComparison(comparison, oursTech, indexPage) {
 async function main() {
   const catalog = readJson('data.json');
   const comparison = readJson('sravnenie.json');
+  const comparisonDataContext = { window: {} };
+  new vm.Script(fs.readFileSync(path.join(ROOT, 'sravnenie-data.js'), 'utf8'), { filename: 'sravnenie-data.js' }).runInNewContext(comparisonDataContext);
   const oursTech = readJson('ours_tech_full.json');
   const indexPage = inlineScript('index.html');
   const dataSummary = validateData(catalog);
@@ -425,22 +430,26 @@ async function main() {
   check(comparison.families.length === COMPARISON_EXPECTED.families, `sravnenie.json: expected 16 families, got ${comparison.families.length}`);
   check(new Set(comparison.families.map((record) => record.family)).size === COMPARISON_EXPECTED.families, 'sravnenie.json: duplicate family records');
   check(comparison.families.map((record) => record.family).join('|') === COMPARISON_FAMILY_ORDER.join('|'), 'sravnenie.json: comparison family set or order mismatch');
-  check(comparison.families.every((record) => record.our_media), 'sravnenie.json: comparison family without local sample');
-  check(comparison.version === 3, `sravnenie.json: expected version 3, got ${comparison.version}`);
-  check(comparison.families.filter((record) => String(record.our_media).endsWith('.mp4')).length === 13, 'sravnenie.json: expected 13 local clips');
-  const videoFamilies = comparison.families.filter((record) => record.competitor_clips?.length);
-  check(videoFamilies.map((record) => record.family).join('|') === Object.keys(VIDEO_COMPARISON).join('|'), 'sravnenie.json: competitor video family set or order mismatch');
-  check(videoFamilies.reduce((total, record) => total + record.competitor_clips.length, 0) === COMPARISON_EXPECTED.clips, 'sravnenie.json: expected 42 competitor clips');
-  for (const record of videoFamilies) {
-    check(record.competitor_clips.length === VIDEO_COMPARISON[record.family], `${record.family}: competitor clip count mismatch`);
-    check(record.competitor_clips.every((clip) => typeof clip.variant === 'string' && clip.variant.trim()), `${record.family}: empty competitor clip caption`);
+  check(comparison.version === 4, `sravnenie.json: expected version 4, got ${comparison.version}`);
+  check(JSON.stringify(comparisonDataContext.window.SRAVNENIE) === JSON.stringify(comparison), 'sravnenie-data.js differs from sravnenie.json');
+  const allPairs = comparison.families.flatMap((record) => record.pairs || []);
+  check(allPairs.length === COMPARISON_EXPECTED.pairs, `sravnenie.json: expected 42 pairs, got ${allPairs.length}`);
+  check(comparison.families.every((record) => Array.isArray(record.pairs) && record.pairs.length === VIDEO_COMPARISON[record.family]), 'sravnenie.json: family pair count mismatch');
+  check(comparison.families.every((record) => !['our_media', 'our_poster', 'competitor_clips', 'competitor_refs', 'competitor_frames'].some((field) => field in record)), 'sravnenie.json: legacy family media fields remain');
+  for (const record of comparison.families) {
+    const ourSamples = record.pairs.filter((pair) => /^assets\/ours\/pairs\/.+-ours\.mp4$/.test(pair.our_media || ''));
+    const competitorClips = record.pairs.filter((pair) => /^assets\/clips\/.+\.mp4$/.test(pair.competitor_media || ''));
+    check(ourSamples.length === competitorClips.length && ourSamples.length === VIDEO_COMPARISON[record.family], `${record.family}: our sample and competitor clip counts differ`);
+    check(record.pairs.every((pair) => typeof pair.variant === 'string' && pair.variant.trim()), `${record.family}: empty pair caption`);
+    check(record.pairs.every((pair) => path.basename(pair.our_media, '.mp4') === `${path.basename(pair.competitor_media, '.mp4')}-ours`), `${record.family}: pair filename mismatch`);
   }
-  const frameVariants = comparison.families.flatMap((record) => record.competitor_frames || []);
-  check(frameVariants.length === COMPARISON_EXPECTED.frames, 'sravnenie.json: expected 6 reassigned frame variants');
-  check(frameVariants.every((frame) => typeof frame.variant === 'string' && frame.variant.trim()), 'sravnenie.json: empty frame variant caption');
-  check(comparison.families.filter((record) => RESTRUCTURED_FAMILIES.has(record.family)).every((record) => !(record.competitor_refs || []).length), 'sravnenie.json: old D-family JPG references remain');
-  check(comparison.families.find((record) => record.family === 'GRID-LINES')?.our_media === 'assets/ours/grid-lines.mp4', 'GRID-LINES: new local sample is not connected');
-  check(comparison.families.find((record) => record.family === 'SATURATION-COLOR')?.our_media === 'assets/ours/saturation-color-v2.mp4', 'SATURATION-COLOR: new local sample is not connected');
+  const ourSources = allPairs.map((pair) => pair.our_media);
+  const competitorSources = allPairs.map((pair) => pair.competitor_media);
+  check(new Set(ourSources).size === COMPARISON_EXPECTED.pairs, 'sravnenie.json: duplicate our pair sample');
+  check(new Set(competitorSources).size === COMPARISON_EXPECTED.pairs, 'sravnenie.json: duplicate competitor pair clip');
+  check([...ourSources, ...competitorSources].every((source) => /\.mp4$/.test(source) && !/\.(?:jpe?g|png|webp)$/i.test(source)), 'sravnenie.json: non-video primary pair media remains');
+  const pairAssets = fs.readdirSync(path.join(ROOT, 'assets', 'ours', 'pairs')).filter((name) => name.endsWith('.mp4')).map((name) => `assets/ours/pairs/${name}`).sort();
+  check(pairAssets.length === COMPARISON_EXPECTED.pairs && pairAssets.join('|') === [...ourSources].sort().join('|'), 'assets/ours/pairs: files and comparison references differ');
   check(Object.keys(oursTech).length === EXPECTED.abilities, `ours_tech_full.json: expected 216 abilities, got ${Object.keys(oursTech).length}`);
   check(Object.values(oursTech).every((record) => ['умеем 1:1', 'умеем частично', 'не умеем'].includes(record.status)), 'ours_tech_full.json: invalid status');
   check(Object.values(oursTech).every((record) => ['status', 'tech_path', 'tool', 'how_to', 'sample', 'matches_competitor_family'].every((field) => typeof record[field] === 'string')), 'ours_tech_full.json: invalid field type');
@@ -453,12 +462,9 @@ async function main() {
   for (const [name, record] of repoSamples) {
     check(fs.existsSync(inventorySampleAsset(record.sample)), `${name}: sample missing`);
   }
-  for (const record of comparison.families) {
-    if (record.our_media) check(fs.existsSync(localAsset(record.our_media)), `${record.family}: our_media missing`);
-    if (record.our_poster) check(fs.existsSync(localAsset(record.our_poster)), `${record.family}: our_poster missing`);
-    for (const reference of record.competitor_refs || []) check(fs.existsSync(localAsset(reference)), `${record.family}: competitor ref missing`);
-    for (const clip of record.competitor_clips || []) check(fs.existsSync(localAsset(clip.media)), `${record.family}: competitor clip missing: ${clip.media}`);
-    for (const frame of record.competitor_frames || []) check(fs.existsSync(localAsset(frame.media)), `${record.family}: competitor frame missing: ${frame.media}`);
+  for (const record of comparison.families) for (const pair of record.pairs) {
+    check(fs.existsSync(localAsset(pair.our_media)), `${record.family}: our pair sample missing: ${pair.our_media}`);
+    check(fs.existsSync(localAsset(pair.competitor_media)), `${record.family}: competitor pair clip missing: ${pair.competitor_media}`);
   }
   validateComparison(comparison, oursTech, indexPage);
 

@@ -1,0 +1,7 @@
+{
+  "type": "scale-zoom",
+  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/photos/documents/logbook-young-phoenix-1885-p1.jpg"},
+  "palette": {"background": "#E8DEC7", "accent": "#29251F"},
+  "motion": {"zoomStart": 1, "zoomEnd": 1.18, "anchorX": 0.63, "anchorY": 0.46, "easing": "linear"},
+  "output": "../../assets/ours/pairs/scale-zoom-ref1-ours.mp4"
+}

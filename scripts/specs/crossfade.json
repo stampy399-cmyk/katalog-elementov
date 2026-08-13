@@ -1,0 +1,16 @@
+{
+  "type": "crossfade",
+  "layers": {
+    "first": "../../assets/clips/crossfade-ref1.mp4",
+    "second": "../../assets/clips/crossfade-ref3.mp4"
+  },
+  "palette": {
+    "background": "#152A35",
+    "accent": "#A8C0C5"
+  },
+  "motion": {
+    "startFrame": 23,
+    "fadeFrames": 15
+  },
+  "output": "../../assets/ours/pairs/_smoke/crossfade.mp4"
+}

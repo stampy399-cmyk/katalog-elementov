@@ -1,0 +1,7 @@
+{
+  "type": "blur-effect",
+  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/en-ufo-disclosure/production/roswell-ep12/ep01-a-press-office.png"},
+  "palette": {"background": "#3D4938", "accent": "#B69B76"},
+  "motion": {"mode": "background-fill", "sigma": 42},
+  "output": "../../assets/ours/pairs/blur-effect-ref1-ours.mp4"
+}

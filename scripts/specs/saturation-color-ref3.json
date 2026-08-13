@@ -1,0 +1,7 @@
+{
+  "type": "saturation-color",
+  "layers": {"source": "/Users/alphabravo/Documents/BASE/01-NICHES/en-retirees-philippines/production/Футаж — НЕ ТРОГАТЬ НИ ЗА ЧТО НИКОГДА НЕ УДАЛЯТЬ/out/hD4Qb_e7izg_clean.mp4"},
+  "palette": {"contrast": 1.05, "brightness": 0, "redShift": 0, "greenShift": 0, "blueShift": 0},
+  "motion": {"saturationStart": 1.15, "saturationEnd": 0},
+  "output": "../../assets/ours/pairs/saturation-color-ref3-ours.mp4"
+}

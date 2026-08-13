@@ -1,0 +1,10 @@
+{
+  "type": "position-slide",
+  "layers": {
+    "base": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/artifacts/reference_main_000_180/frames/f_035.png",
+    "foreground": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/artifacts/reference_main_000_180/frames/f_038.png"
+  },
+  "palette": {"background": "#050505", "accent": "#E4B92E"},
+  "motion": {"xStart": 1920, "xEnd": 0, "yStart": 0, "yEnd": 0, "width": 1920, "height": 1080, "easing": "linear"},
+  "output": "../../assets/ours/pairs/position-slide-ref1-ours.mp4"
+}

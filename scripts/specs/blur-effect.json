@@ -1,0 +1,15 @@
+{
+  "type": "blur-effect",
+  "layers": {
+    "source": "../../assets/clips/blur-effect-ref1.mp4"
+  },
+  "palette": {
+    "background": "#394136",
+    "accent": "#C6A787"
+  },
+  "motion": {
+    "mode": "background-fill",
+    "sigma": 35
+  },
+  "output": "../../assets/ours/pairs/_smoke/blur-effect.mp4"
+}

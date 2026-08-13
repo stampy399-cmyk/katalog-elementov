@@ -1,0 +1,110 @@
+[
+  {
+    "family": "KEYFRAMES-MOTION",
+    "our_media": "/Users/alphabravo/Documents/BASE/05-READY/ocean_scale_motion_draft_v2/visual.mp4",
+    "level": "1:1",
+    "notes": "Многобитовая keyframe-анимация совпадает по технике; отличается сюжет. Для страницы достаточно заменить контент и палитру."
+  },
+  {
+    "family": "PHOTO-IMAGE",
+    "our_media": "/Users/alphabravo/Documents/BASE/05-READY/STYLE-FRAMES/FRAME-b-otto-card.png",
+    "level": "~67%",
+    "notes": "Есть photo/person card, но только still без opacity/scale reveal и световой маски; нужны отдельные animated photo/text layers."
+  },
+  {
+    "family": "HARD-CUT",
+    "our_media": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/01_hard_cut.mp4",
+    "level": "1:1",
+    "notes": "Чистая мгновенная склейка; заменить только медиаконтент."
+  },
+  {
+    "family": "OPACITY-FADE",
+    "our_media": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/СТИЛЬ-КИТ/assets/transitions_sfx/dip_to_black_03.mp4",
+    "level": "~67%",
+    "notes": "Есть fade через чёрный, но не отдельный alpha fade текста/карточки; нужен 0→100% reveal поверх видимого фона."
+  },
+  {
+    "family": "INSET-WINDOW",
+    "our_media": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/3d/remotion-kashalot/out/qa-sperm-carousel-A-3s-v2.mp4",
+    "level": "~67%",
+    "notes": "Есть framed carousel/card, но нет full-frame background и однокадрового technical-grid bridge; добавить inset-window переход."
+  },
+  {
+    "family": "SCALE-ZOOM",
+    "our_media": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/СТИЛЬ-КИТ/assets/transitions_sfx/zoom_punch_subtle.mp4",
+    "level": "~67%",
+    "notes": "Есть короткий zoom punch; нужен 3–6 s continuous zoom с фиксированным anchor и saturation 100→0%."
+  },
+  {
+    "family": "TEXT-TYPOGRAPHY",
+    "our_media": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/17_warning_list.png",
+    "level": "~67%",
+    "notes": "Есть жёлтая warning-типографика с ! и тремя пунктами, но still, круг вместо треугольника и нет timed reveal; вернуть треугольник/дуги и анимацию пунктов."
+  },
+  {
+    "family": "POSITION-SLIDE",
+    "our_media": "/Users/alphabravo/Documents/BASE/05-READY/ocean_infographic_fastgen_batch_v1/oxygen/output/oxygen.mp4",
+    "level": "1:1",
+    "notes": "Translate-in, settle и translate-out совпадают по технике; параметризовать направление и дистанцию под референс."
+  },
+  {
+    "family": "GRID-LINES",
+    "our_media": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/01_black_grid_frame.png",
+    "level": "1:1",
+    "notes": "Чёрная technical grid, рамка и label совпадают; заменить содержимое cards."
+  },
+  {
+    "family": "LIGHT-GLOW",
+    "our_media": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/07_flash_white.mp4",
+    "level": "1:1",
+    "notes": "Белая вспышка/overexposure bridge готова; настроить tint, peak exposure и длительность."
+  },
+  {
+    "family": "SATURATION-COLOR",
+    "our_media": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/motion/blurpad_sigma27_desat070.mp4",
+    "level": "~67%",
+    "notes": "Есть desaturated blur-pad, но цветность постоянная; анимировать saturation 100→0% синхронно с zoom."
+  },
+  {
+    "family": "OTHER",
+    "our_media": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/СТИЛЬ-КИТ/assets/transitions_sfx/glitch_documentary.mp4",
+    "level": "~67%",
+    "notes": "Есть готовый glitch, но примеры семейства — Cross Dissolve и kinetic scramble/count-down; нужен точный вариант под выбранную карточку."
+  },
+  {
+    "family": "CROSSFADE",
+    "our_media": "/Users/alphabravo/Documents/BASE/01-NICHES/en-europe-migration/СТИЛЬ-КИТ/assets/transitions_sfx/crossfade_04.mp4",
+    "level": "1:1",
+    "notes": "Готовый crossfade; выставить overlap 8–20 кадров и при необходимости добавить локальную colorization."
+  },
+  {
+    "family": "BLEND-MODE",
+    "our_media": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/transitions/08_film_burn_light_leak.mp4",
+    "level": "1:1",
+    "notes": "Готовый film-burn/light-leak со всеми фазами; подобрать texture, blend mode и opacity."
+  },
+  {
+    "family": "GEOMETRY-SHAPE",
+    "our_media": "/Users/alphabravo/Documents/КОНВЕЙЕР ЮТУБ АВТОМТАЗИЦИЯ/tests/tonrohr_first3_graphics/fixtures/generated/18_marker_chapter_alpha.png",
+    "level": "~67%",
+    "notes": "Есть зелёная editable marker-геометрия, но нет check/pencil/cross glyph set и draw-on reveal; добавить три glyph-варианта и отдельные тайминги."
+  },
+  {
+    "family": "EMPTY",
+    "our_media": null,
+    "level": "нет",
+    "notes": "Семейство не задаёт технику: 32 карточки нужно переописать или переразметить до поиска образца."
+  },
+  {
+    "family": "CAMERA-MOTION",
+    "our_media": "/Users/alphabravo/Documents/BASE/01-NICHES/de-ocean-deepsea/production/KASHALOT/conveyor-v1/pre-render-v1/stills/smooth-motion-sample-20260810/clips/s001.mp4",
+    "level": "1:1",
+    "notes": "Готовый smooth camera move по still-media; настроить anchor, speed и final crop под референс."
+  },
+  {
+    "family": "BLUR-EFFECT",
+    "our_media": "/Users/alphabravo/Documents/BASE/01-NICHES/en-guns-ammo/production/СТИЛЬ-КИТ/assets/motion/blurpad_sigma27_dark090.mp4",
+    "level": "1:1",
+    "notes": "Готовая двухслойная композиция с scale-to-fill blurred background; выставить blur 40–80 px и brightness под референс."
+  }
+]

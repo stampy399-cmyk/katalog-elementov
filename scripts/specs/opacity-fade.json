@@ -1,0 +1,15 @@
+{
+  "type": "opacity-fade",
+  "layers": {
+    "source": "../../assets/clips/opacity-fade-ref1.mp4"
+  },
+  "palette": {
+    "background": "#080B0B",
+    "accent": "#DDE1DC"
+  },
+  "motion": {
+    "fadeInFrames": 9,
+    "fadeOutFrames": 12
+  },
+  "output": "../../assets/ours/pairs/_smoke/opacity-fade.mp4"
+}

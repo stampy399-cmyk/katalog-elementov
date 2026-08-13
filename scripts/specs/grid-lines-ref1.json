@@ -1,0 +1,7 @@
+{
+  "type": "grid-lines",
+  "layers": {"base": "/Users/alphabravo/Documents/BASE/01-NICHES/небоскрёбы испания-здания/scripts/03-JEDDAH/graphics/plan002-63plantasdehormigondesnu.png"},
+  "palette": {"background": "#050505", "line": "#A8A8A8", "lineAlpha": 0.42, "accent": "#F28D32"},
+  "motion": {"spacingX": 160, "spacingY": 135, "thickness": 3, "offsetX": 0, "offsetY": 0},
+  "output": "../../assets/ours/pairs/grid-lines-ref1-ours.mp4"
+}

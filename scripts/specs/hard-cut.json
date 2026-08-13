@@ -1,0 +1,15 @@
+{
+  "type": "hard-cut",
+  "layers": {
+    "first": "../../assets/clips/hard-cut-ref1.mp4",
+    "second": "../../assets/clips/hard-cut-ref3.mp4"
+  },
+  "palette": {
+    "background": "#101010",
+    "accent": "#D8B949"
+  },
+  "motion": {
+    "cutFrame": 30
+  },
+  "output": "../../assets/ours/pairs/_smoke/hard-cut.mp4"
+}
