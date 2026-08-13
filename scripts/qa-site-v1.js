@@ -458,7 +458,7 @@ async function main() {
   check(ourHashes.every(Boolean) && new Set(ourHashes).size === COMPARISON_EXPECTED.pairs, 'sravnenie.json: duplicate our pair sample content');
   check(competitorHashes.every(Boolean) && new Set(competitorHashes).size === COMPARISON_EXPECTED.pairs, 'sravnenie.json: duplicate competitor pair clip content');
   check([...ourSources, ...competitorSources].every((source) => /\.mp4$/.test(source) && !/\.(?:jpe?g|png|webp)$/i.test(source)), 'sravnenie.json: non-video primary pair media remains');
-  const pairAssets = fs.readdirSync(path.join(ROOT, 'assets', 'ours', 'pairs')).filter((name) => name.endsWith('.mp4')).map((name) => `assets/ours/pairs/${name}`).sort();
+  const pairAssets = fs.readdirSync(path.join(ROOT, 'assets', 'ours', 'pairs')).filter((name) => !name.startsWith('.') && name.endsWith('.mp4')).map((name) => `assets/ours/pairs/${name}`).sort();
   check(pairAssets.length === COMPARISON_EXPECTED.pairs && pairAssets.join('|') === [...ourSources].sort().join('|'), 'assets/ours/pairs: files and comparison references differ');
   check(Object.keys(oursTech).length === EXPECTED.abilities, `ours_tech_full.json: expected 216 abilities, got ${Object.keys(oursTech).length}`);
   check(Object.values(oursTech).every((record) => ['умеем 1:1', 'умеем частично', 'не умеем'].includes(record.status)), 'ours_tech_full.json: invalid status');
