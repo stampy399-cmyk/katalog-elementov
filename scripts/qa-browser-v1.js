@@ -8,7 +8,7 @@ const path = require('path');
 const { spawn } = require('child_process');
 
 const root = path.resolve(__dirname, '..');
-const chromePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const chromePath = process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const httpUrl = process.argv[2] || 'http://127.0.0.1:8765/index.html';
 const fileUrl = `file://${encodeURI(path.join(root, 'index.html'))}`;
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'katalog-browser-'));
@@ -197,23 +197,34 @@ async function validateCatalog(cdp, page, label) {
   check(summary.selfTest.failures.length === 0, `${label}: self-test failures: ${summary.selfTest.failures.join(', ')}`);
 
   await evaluate(cdp, page.sessionId, `document.querySelector('[data-view="comparison"]').click()`);
-  await waitFor(cdp, page.sessionId, `document.querySelectorAll('.comparison-card').length === 18`);
-  await waitFor(cdp, page.sessionId, `document.querySelectorAll('.ability-card').length === 216`);
+  await waitFor(cdp, page.sessionId, `document.querySelectorAll('.ability-family-summary').length === 18`);
+  const collapsed = await evaluate(cdp, page.sessionId, `(()=>{const rows=[...document.querySelectorAll('.capability-family')];const first=rows[0]?.querySelector('.ability-family-summary');return {rows:rows.length,summaries:document.querySelectorAll('.ability-family-summary').length,open:document.querySelectorAll('.capability-family.is-open').length,cards:document.querySelectorAll('.comparison-card').length,abilities:document.querySelectorAll('.ability-card').length,media:document.querySelectorAll('[data-lightbox-media]').length,stats:[...document.querySelectorAll('[data-ability-stat]')].map(node=>Number(node.textContent)),name:first?.querySelector('.ability-family-name')?.textContent.trim(),counts:[...first.querySelectorAll('.ability-family-count')].map(node=>node.textContent.trim()),percent:first?.querySelector('.ability-family-percent')?.textContent.trim(),expanded:first?.getAttribute('aria-expanded'),hash:location.hash,navActive:document.querySelector('#viewSwitch [data-view="comparison"]')?.classList.contains('is-active')}})()`);
+  check(collapsed.rows === 18 && collapsed.summaries === 18 && collapsed.open === 0, `${label}: default family rows are not 18 collapsed summaries`);
+  check(collapsed.cards === 0 && collapsed.abilities === 0 && collapsed.media === 0, `${label}: collapsed view eagerly rendered cards or media`);
+  check(collapsed.name === 'KEYFRAMES-MOTION' && collapsed.counts.join('|') === 'Умеем 1:1 · 3|Частично · 1|Не умеем · 0' && collapsed.percent === '75% 1:1', `${label}: first family summary mismatch`);
+  check(collapsed.stats.join('|') === '216|154|60|2', `${label}: ability statistics mismatch`);
+  check(collapsed.hash === '#comparison' && collapsed.navActive, `${label}: comparison navigation state mismatch`);
+  if (label === 'HTTP') {
+    const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }, page.sessionId);
+    fs.writeFileSync('/tmp/katalog-families-collapsed-qa.png', Buffer.from(screenshot.data, 'base64'));
+  }
+
+  await evaluate(cdp, page.sessionId, `document.querySelector('.ability-family-summary').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelectorAll('.ability-card').length === 4`);
   await waitFor(cdp, page.sessionId, `[...document.images].filter(image=>{const box=image.getBoundingClientRect();return box.bottom>=0&&box.top<=innerHeight}).every(image=>image.complete)`, 45000);
-  const comparison = await evaluate(cdp, page.sessionId, `({cards:document.querySelectorAll('.comparison-card').length,videos:document.querySelectorAll('.comparison-media video').length,refs:document.querySelectorAll('.competitor-card').length,refMinWidth:Math.min(...[...document.querySelectorAll('.competitor-card')].map(card=>card.getBoundingClientRect().width)),tech:document.querySelectorAll('.tech-passport').length,todo:document.querySelectorAll('.tech-field.is-todo').length,abilities:document.querySelectorAll('.ability-card').length,groups:document.querySelectorAll('.abilities-group').length,previews:document.querySelectorAll('.ability-sample').length,exact:document.querySelectorAll('.ability-card .tech-status.is-exact').length,partial:document.querySelectorAll('.ability-card .tech-status.is-partial').length,unavailable:document.querySelectorAll('.ability-card .tech-status.is-unavailable').length,stats:[...document.querySelectorAll('[data-ability-stat]')].map(node=>Number(node.textContent)),media:document.querySelectorAll('[data-lightbox-media]').length,pairs:document.querySelectorAll('[data-lightbox-pair]').length,hash:location.hash,navActive:document.querySelector('#viewSwitch [data-view="comparison"]')?.classList.contains('is-active')})`);
-  check(comparison.cards === 18 && comparison.videos === 13 && comparison.refs === 52, `${label}: comparison counters mismatch`);
+  const comparison = await evaluate(cdp, page.sessionId, `(()=>{const grid=document.querySelector('.abilities-grid');const cards=[...document.querySelectorAll('.ability-card')];const rows=Object.groupBy(cards.map(card=>card.getBoundingClientRect()),rect=>Math.round(rect.top));return {cards:document.querySelectorAll('.comparison-card').length,videos:document.querySelectorAll('.comparison-media video').length,refs:document.querySelectorAll('.competitor-card').length,refMinWidth:Math.min(...[...document.querySelectorAll('.competitor-card')].map(card=>card.getBoundingClientRect().width)),tech:document.querySelectorAll('.tech-passport').length,todo:document.querySelectorAll('.tech-field.is-todo').length,abilities:cards.length,groups:document.querySelectorAll('.abilities-group').length,open:document.querySelectorAll('.capability-family.is-open').length,previews:document.querySelectorAll('.ability-sample').length,exact:document.querySelectorAll('.ability-card .tech-status.is-exact').length,partial:document.querySelectorAll('.ability-card .tech-status.is-partial').length,unavailable:document.querySelectorAll('.ability-card .tech-status.is-unavailable').length,media:document.querySelectorAll('[data-lightbox-media]').length,pairs:document.querySelectorAll('[data-lightbox-pair]').length,gridDisplay:getComputedStyle(grid).display,gridColumns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,equalRows:Object.values(rows).every(rects=>Math.max(...rects.map(rect=>rect.height))-Math.min(...rects.map(rect=>rect.height))<1)}})()`);
+  check(comparison.cards === 1 && comparison.videos === 1 && comparison.refs === 3, `${label}: expanded comparison counters mismatch`);
   check(comparison.refMinWidth >= 300, `${label}: competitor reference width ${comparison.refMinWidth}px, expected >=300px`);
-  check(comparison.abilities === 216 && comparison.groups === 18 && comparison.tech === 234, `${label}: ability/group/passport counters mismatch`);
-  check(comparison.exact === 154 && comparison.partial === 60 && comparison.unavailable === 2, `${label}: ability status counters mismatch`);
-  check(comparison.stats.join('|') === '216|154|60|2', `${label}: ability statistics mismatch`);
-  check(comparison.previews === 32 && comparison.todo === 0, `${label}: ability previews or TODO fields mismatch`);
-  check(comparison.media === 101 && comparison.pairs === 17, `${label}: lightbox media/pair controls mismatch`);
-  check(comparison.hash === '#comparison', `${label}: comparison hash mismatch`);
-  check(comparison.navActive, `${label}: comparison navigation active state mismatch`);
+  check(comparison.abilities === 4 && comparison.groups === 1 && comparison.open === 1 && comparison.tech === 5, `${label}: expanded ability/group/passport counters mismatch`);
+  check(comparison.exact === 3 && comparison.partial === 1 && comparison.unavailable === 0, `${label}: expanded ability status counters mismatch`);
+  check(comparison.previews === 1 && comparison.todo === 0, `${label}: expanded ability previews or TODO fields mismatch`);
+  check(comparison.media === 5 && comparison.pairs === 1, `${label}: expanded lightbox media/pair controls mismatch`);
+  check(comparison.gridDisplay === 'grid' && comparison.gridColumns >= 2 && comparison.equalRows, `${label}: ability cards are not an equal-row CSS grid`);
 
   await evaluate(cdp, page.sessionId, `document.querySelector('.ability-card .tech-passport summary').click()`);
   const passport = await evaluate(cdp, page.sessionId, `(()=>{const details=document.querySelector('.ability-card .tech-passport');return {open:details?.open,fields:details?.querySelectorAll('.tech-field').length,text:details?.textContent}})()`);
   check(passport.open && passport.fields === 4 && !passport.text.includes('TODO:'), `${label}: ability tech passport did not open cleanly`);
+  check(await evaluate(cdp, page.sessionId, `(()=>{const rows=Object.groupBy([...document.querySelectorAll('.ability-card')].map(card=>card.getBoundingClientRect()),rect=>Math.round(rect.top));return Object.values(rows).every(rects=>Math.max(...rects.map(rect=>rect.height))-Math.min(...rects.map(rect=>rect.height))<1)})()`), `${label}: cards lost equal row height after passport expansion`);
   if (label === 'HTTP') {
     await evaluate(cdp, page.sessionId, `document.querySelector('.ability-card').scrollIntoView({block:'center'})`);
     await delay(250);

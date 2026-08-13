@@ -594,7 +594,21 @@
     .ability-stat.is-exact .ability-stat-value { color: var(--success); }
     .ability-stat.is-partial .ability-stat-value { color: #f59e0b; }
     .ability-stat.is-unavailable .ability-stat-value { color: var(--danger); }
-    .capability-family { display: grid; gap: 12px; }
+    .capability-families { display: grid; gap: 8px; }
+    .capability-family { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+    .ability-family-summary { display: grid; grid-template-columns: minmax(170px, 1fr) auto auto; align-items: center; gap: 18px; width: 100%; min-height: 62px; padding: 11px 16px; border: 0; background: transparent; color: var(--text); cursor: pointer; text-align: left; }
+    .ability-family-summary:hover, .ability-family-summary:focus-visible { background: var(--surface-raised); }
+    .ability-family-name { min-width: 0; overflow: hidden; font-size: 14px; font-weight: 750; letter-spacing: .035em; text-overflow: ellipsis; white-space: nowrap; }
+    .ability-family-name::before { display: inline-block; width: 18px; content: "›"; color: var(--muted); font-size: 20px; line-height: 1; transform-origin: center; transition: transform 180ms ease-out; }
+    .capability-family.is-open .ability-family-name::before { transform: rotate(90deg); }
+    .ability-family-counts { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+    .ability-family-count { padding: 3px 7px; border-radius: 99px; background: var(--surface-raised); white-space: nowrap; }
+    .ability-family-count.is-exact { color: var(--success); }
+    .ability-family-count.is-partial { color: #f59e0b; }
+    .ability-family-count.is-unavailable { color: var(--danger); }
+    .ability-family-percent { min-width: 64px; color: var(--accent); font-size: 15px; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+    .capability-family-body { display: grid; gap: 12px; padding: 0 12px 12px; border-top: 1px solid var(--line); }
+    .capability-family-body > :first-child { margin-top: 12px; }
     .comparison-card { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: 0 5px 16px rgba(0, 0, 0, .06); }
     .comparison-card-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--line); }
     .comparison-family { margin: 0; font-size: 14px; letter-spacing: .035em; }
@@ -617,13 +631,13 @@
     .abilities-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
     .abilities-heading h2 { margin: 0; font-size: 15px; letter-spacing: .025em; }
     .abilities-heading span { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-    .abilities-grid { columns: 280px; column-gap: 12px; }
-    .ability-card { display: inline-block; width: 100%; min-width: 0; margin: 0 0 12px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); break-inside: avoid; vertical-align: top; }
+    .abilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); grid-auto-rows: auto; align-items: stretch; gap: 12px; }
+    .ability-card { display: flex; min-width: 0; height: 100%; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); flex-direction: column; }
     .ability-card-header { display: flex; align-items: start; justify-content: space-between; gap: 10px; min-height: 65px; padding: 12px; }
     .ability-name { margin: 0; font-size: 13px; line-height: 1.35; }
     .ability-sample { display: grid; aspect-ratio: 16 / 9; place-items: center; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #090a0c; }
     .ability-sample img, .ability-sample video { display: block; width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
-    .ability-passport { margin: 0; border-width: 0; border-radius: 0; background: transparent; }
+    .ability-passport { margin: auto 0 0; border-width: 0; border-radius: 0; background: transparent; }
     .ability-passport summary { border-top: 1px solid var(--line); }
     .tech-passport { margin: 10px 0 0; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); }
     .tech-passport summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 40px; padding: 0 11px; color: var(--text); cursor: pointer; font-weight: 700; list-style: none; }
@@ -671,7 +685,7 @@
     .modal-button-danger { border-color: color-mix(in srgb, var(--danger) 70%, var(--line)); background: var(--danger); color: #fff; }
     .modal-button:disabled { cursor: not-allowed; opacity: .45; }
     .modal-help { margin-top: 9px !important; font-size: 11px; }
-    @media (max-width: 680px) { .stat-summary, .ability-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 680px) { .stat-summary, .ability-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ability-family-summary { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; } .ability-family-counts { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; padding-left: 18px; } }
     @media (max-width: 900px) { .comparison-columns { grid-template-columns: 1fr; } }
     @media (max-width: 760px) { .player-dock { grid-template-columns: 1fr; padding: 20px 18px 0; } .player-copy { padding: 0 2px; } .catalog-toolbar { padding: 14px 12px 0; } .primary-nav { gap: 8px; padding: 9px 10px; } .primary-nav-button { padding: 0 8px; font-size: 20px; } .lightbox { padding: 58px 12px 38px; } .lightbox-pair { grid-template-columns: 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 10px; } .lightbox-label { font-size: 12px; } }
     @media (max-width: 620px) { .catalog-toolbar { align-items: stretch; flex-direction: column; } .catalog-controls { align-items: stretch; } .tier-filter { display: grid; grid-template-columns: repeat(3, 1fr); } .family-filter-select { flex: 1; width: auto; } .comparison-intro { align-items: start; flex-direction: column; } }
@@ -862,6 +876,7 @@
         statsBarsDrawn: false,
         referenceHighlightTimer: null,
         oursTech: {},
+        expandedAbilityFamilies: new Set(),
         lightbox: null,
         player: {
           apiPromise: null,
@@ -2114,6 +2129,18 @@
         </section>`;
       }
 
+      function abilityFamilySummaryMarkup(family, entries, expanded) {
+        const exact = entries.filter((entry) => entry.status === 'умеем 1:1').length;
+        const partial = entries.filter((entry) => entry.status === 'умеем частично').length;
+        const unavailable = entries.filter((entry) => entry.status === 'не умеем').length;
+        const percent = entries.length ? Math.round(exact / entries.length * 100) : 0;
+        return `<button class="ability-family-summary" type="button" data-ability-family-toggle="${escapeAttribute(family)}" aria-expanded="${expanded}">
+          <span class="ability-family-name">${escapeHtml(family)}</span>
+          <span class="ability-family-counts"><span class="ability-family-count is-exact">Умеем 1:1 · ${exact}</span><span class="ability-family-count is-partial">Частично · ${partial}</span><span class="ability-family-count is-unavailable">Не умеем · ${unavailable}</span></span>
+          <strong class="ability-family-percent">${percent}% 1:1</strong>
+        </button>`;
+      }
+
       function comparisonMediaMarkup(entry) {
         if (!entry.our_media) return '<div class="comparison-media-placeholder">Нашего образца пока нет</div>';
         const media = escapeAttribute(entry.our_media);
@@ -2238,10 +2265,12 @@
         const groups = families.map((entry) => {
           const matching = abilities.filter((ability) => ability.matches_competitor_family === entry.family && abilityMatches(ability, query));
           shownAbilities += matching.length;
+          const expanded = state.expandedAbilityFamilies.has(entry.family);
           const abilitiesMarkup = matching.length ? `<section class="abilities-group" data-ability-family="${escapeAttribute(entry.family)}"><header class="abilities-heading"><h2>Умения · ${escapeHtml(entry.family)}</h2><span>${matching.length} умений</span></header><div class="abilities-grid">${matching.map(abilityCardMarkup).join('')}</div></section>` : '';
-          return `<section class="capability-family">${comparisonCard(entry)}${abilitiesMarkup}</section>`;
+          const body = expanded ? `<div class="capability-family-body">${comparisonCard(entry)}${abilitiesMarkup}</div>` : '';
+          return `<section class="capability-family${expanded ? ' is-open' : ''}" data-capability-family="${escapeAttribute(entry.family)}">${abilityFamilySummaryMarkup(entry.family, matching, expanded)}${body}</section>`;
         }).join('');
-        dom.workspaceInner.innerHTML = `<section class="comparison-page"><header class="comparison-intro"><div><h1>Сравнение и наши умения</h1><p>Все ${abilities.length} умений сгруппированы по 18 семействам конкурента; сравнение образцов и референсов сохранено.</p></div><span class="comparison-count">${shownAbilities}/${abilities.length} умений</span></header>${abilityStatsMarkup(abilities)}${groups || '<div class="family-empty">По выбранному фильтру умений нет</div>'}</section>`;
+        dom.workspaceInner.innerHTML = `<section class="comparison-page"><header class="comparison-intro"><div><h1>Сравнение и наши умения</h1><p>Все ${abilities.length} умений сгруппированы по 18 семействам. Раскройте семейство, чтобы увидеть карточки, образцы и техпаспорта.</p></div><span class="comparison-count">${shownAbilities}/${abilities.length} умений</span></header>${abilityStatsMarkup(abilities)}<div class="capability-families">${groups || '<div class="family-empty">По выбранному фильтру умений нет</div>'}</div></section>`;
       }
 
       function renderWorkspace() {
@@ -4124,6 +4153,15 @@
       }, true);
 
       dom.appShell.addEventListener('click', (event) => {
+        const abilityFamilyToggle = event.target.closest('[data-ability-family-toggle]');
+        if (abilityFamilyToggle) {
+          const family = abilityFamilyToggle.dataset.abilityFamilyToggle;
+          if (state.expandedAbilityFamilies.has(family)) state.expandedAbilityFamilies.delete(family);
+          else state.expandedAbilityFamilies.add(family);
+          renderComparison();
+          requestAnimationFrame(() => dom.workspaceInner.querySelector(`[data-ability-family-toggle="${CSS.escape(family)}"]`)?.focus());
+          return;
+        }
         const pairButton = event.target.closest('[data-lightbox-pair]');
         if (pairButton) {
           openPairLightbox(pairButton.dataset.lightboxPair);
