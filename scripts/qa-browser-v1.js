@@ -9,7 +9,9 @@ const { spawn } = require('child_process');
 
 const root = path.resolve(__dirname, '..');
 const chromePath = process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const httpUrl = process.argv[2] || 'http://127.0.0.1:8765/index.html';
+const args = process.argv.slice(2);
+const comparisonOnly = args.includes('--comparison-only');
+const httpUrl = args.find((argument) => !argument.startsWith('--')) || 'http://127.0.0.1:8765/index.html';
 const fileUrl = `file://${encodeURI(path.join(root, 'index.html'))}`;
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'katalog-browser-'));
 const failures = [];
@@ -112,7 +114,7 @@ async function createPage(cdp) {
     cdp.send('Page.enable', {}, sessionId),
     cdp.send('Runtime.enable', {}, sessionId),
     cdp.send('Log.enable', {}, sessionId),
-    cdp.send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false }, sessionId)
+    cdp.send('Emulation.setDeviceMetricsOverride', { width: 1920, height: 1080, deviceScaleFactor: 1, mobile: false }, sessionId)
   ]);
   return { targetId, sessionId };
 }
@@ -138,7 +140,8 @@ async function waitFor(cdp, sessionId, expression, timeout = 30000) {
     }
     await delay(200);
   }
-  throw new Error(`waitFor timeout: ${expression}`);
+  const snapshot = await evaluate(cdp, sessionId, `document.body.innerText.slice(0,500)`).catch(() => 'document unavailable');
+  throw new Error(`waitFor timeout: ${expression}\nDOM: ${snapshot}`);
 }
 
 async function navigate(cdp, page, url, label) {
@@ -198,103 +201,59 @@ async function validateCatalog(cdp, page, label) {
 
   await evaluate(cdp, page.sessionId, `document.querySelector('[data-view="comparison"]').click()`);
   await waitFor(cdp, page.sessionId, `document.querySelectorAll('.ability-family-summary').length === 16 && document.querySelector('[data-ability-stat="total"]')?.textContent === '167' && document.querySelector('.ability-family-count')?.textContent.includes('3')`);
-  const collapsed = await evaluate(cdp, page.sessionId, `(()=>{const rows=[...document.querySelectorAll('.capability-family')];const first=rows[0]?.querySelector('.ability-family-summary');const options=[...document.getElementById('familyFilter').options].map(option=>option.value);return {rows:rows.length,summaries:document.querySelectorAll('.ability-family-summary').length,open:document.querySelectorAll('.capability-family.is-open').length,cards:document.querySelectorAll('.comparison-card').length,abilities:document.querySelectorAll('.ability-card').length,media:document.querySelectorAll('[data-lightbox-media]').length,stats:[...document.querySelectorAll('[data-ability-stat]')].map(node=>Number(node.textContent)),options,name:first?.querySelector('.ability-family-name')?.textContent.trim(),counts:[...first.querySelectorAll('.ability-family-count')].map(node=>node.textContent.trim()),percent:first?.querySelector('.ability-family-percent')?.textContent.trim(),expanded:first?.getAttribute('aria-expanded'),hash:location.hash,navActive:document.querySelector('#viewSwitch [data-view="comparison"]')?.classList.contains('is-active')}})()`);
+  const collapsed = await evaluate(cdp, page.sessionId, `(()=>{const rows=[...document.querySelectorAll('.capability-family')];const first=rows[0]?.querySelector('.ability-family-summary');const options=[...document.getElementById('familyFilter').options].map(option=>option.value);return {rows:rows.length,summaries:document.querySelectorAll('.ability-family-summary').length,open:document.querySelectorAll('.capability-family.is-open').length,cards:document.querySelectorAll('.comparison-card').length,abilities:document.querySelectorAll('.ability-card').length,media:document.querySelectorAll('[data-lightbox-media]').length,stats:[...document.querySelectorAll('[data-ability-stat]')].map(node=>Number(node.textContent)),options,name:first?.querySelector('.ability-family-name')?.textContent.trim(),counts:[...first.querySelectorAll('.ability-family-count')].map(node=>node.textContent.trim()),percent:first?.querySelector('.ability-family-percent')?.textContent.trim(),expanded:first?.getAttribute('aria-expanded'),hash:location.hash,theme:document.documentElement.dataset.theme,navActive:document.querySelector('#viewSwitch [data-view="comparison"]')?.classList.contains('is-active')}})()`);
   check(collapsed.rows === 16 && collapsed.summaries === 16 && collapsed.open === 0, `${label}: default family rows are not 16 collapsed summaries`);
   check(collapsed.cards === 0 && collapsed.abilities === 0 && collapsed.media === 0, `${label}: collapsed view eagerly rendered cards or media`);
   check(collapsed.name === 'KEYFRAMES-MOTION' && collapsed.counts.join('|') === 'Умеем 1:1 · 3|Частично · 1|Не умеем · 0' && collapsed.percent === '75% 1:1', `${label}: first family summary mismatch`);
   check(collapsed.stats.join('|') === '167|121|46|0', `${label}: ability statistics mismatch`);
   check(collapsed.options.length === 17 && !collapsed.options.includes('OTHER') && !collapsed.options.includes('EMPTY'), `${label}: comparison family filter still contains OTHER or EMPTY`);
+  check(collapsed.theme === 'dark', `${label}: comparison did not preserve the dark theme`);
   check(collapsed.hash === '#comparison' && collapsed.navActive, `${label}: comparison navigation state mismatch`);
-  if (label === 'HTTP') {
-    const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }, page.sessionId);
-    fs.writeFileSync('/tmp/katalog-families-collapsed-qa.png', Buffer.from(screenshot.data, 'base64'));
-  }
-
   await evaluate(cdp, page.sessionId, `document.querySelector('.ability-family-summary').click()`);
   await waitFor(cdp, page.sessionId, `document.querySelectorAll('.ability-card').length === 4`);
-  await waitFor(cdp, page.sessionId, `[...document.images].filter(image=>{const box=image.getBoundingClientRect();return box.bottom>=0&&box.top<=innerHeight}).every(image=>image.complete)`, 45000);
-  const comparison = await evaluate(cdp, page.sessionId, `(()=>{const grid=document.querySelector('.abilities-grid');const cards=[...document.querySelectorAll('.ability-card')];const rows=Object.groupBy(cards.map(card=>card.getBoundingClientRect()),rect=>Math.round(rect.top));return {cards:document.querySelectorAll('.comparison-card').length,videos:document.querySelectorAll('.comparison-media video').length,refs:document.querySelectorAll('.competitor-card').length,refMinWidth:Math.min(...[...document.querySelectorAll('.competitor-card')].map(card=>card.getBoundingClientRect().width)),tech:document.querySelectorAll('.tech-passport').length,todo:document.querySelectorAll('.tech-field.is-todo').length,abilities:cards.length,groups:document.querySelectorAll('.abilities-group').length,open:document.querySelectorAll('.capability-family.is-open').length,previews:document.querySelectorAll('.ability-sample').length,exact:document.querySelectorAll('.ability-card .tech-status.is-exact').length,partial:document.querySelectorAll('.ability-card .tech-status.is-partial').length,unavailable:document.querySelectorAll('.ability-card .tech-status.is-unavailable').length,media:document.querySelectorAll('[data-lightbox-media]').length,pairs:document.querySelectorAll('[data-lightbox-pair]').length,gridDisplay:getComputedStyle(grid).display,gridColumns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,equalRows:Object.values(rows).every(rects=>Math.max(...rects.map(rect=>rect.height))-Math.min(...rects.map(rect=>rect.height))<1)}})()`);
-  check(comparison.cards === 1 && comparison.videos === 1 && comparison.refs === 3, `${label}: expanded comparison counters mismatch`);
-  check(comparison.refMinWidth >= 300, `${label}: competitor reference width ${comparison.refMinWidth}px, expected >=300px`);
-  check(comparison.abilities === 4 && comparison.groups === 1 && comparison.open === 1 && comparison.tech === 5, `${label}: expanded ability/group/passport counters mismatch`);
+  await waitFor(cdp, page.sessionId, `document.querySelectorAll('.comparison-card video').length === 2`);
+  const comparison = await evaluate(cdp, page.sessionId, `(()=>{const cards=[...document.querySelectorAll('.ability-card')];const heights=cards.map(card=>card.getBoundingClientRect().height);const columns=getComputedStyle(document.querySelector('.comparison-columns')).gridTemplateColumns.split(' ').length;return {pairs:document.querySelectorAll('.comparison-card').length,ourVideos:document.querySelectorAll('.comparison-media video').length,competitorVideos:document.querySelectorAll('.competitor-carousel video').length,images:document.querySelectorAll('.comparison-page img').length,tech:document.querySelectorAll('.ability-card .tech-passport').length,abilities:cards.length,groups:document.querySelectorAll('.abilities-group').length,open:document.querySelectorAll('.capability-family.is-open').length,samples:document.querySelectorAll('.ability-sample-button').length,inlineMedia:document.querySelectorAll('.ability-card img,.ability-card video').length,exact:document.querySelectorAll('.ability-card .tech-status.is-exact').length,partial:document.querySelectorAll('.ability-card .tech-status.is-partial').length,unavailable:document.querySelectorAll('.ability-card .tech-status.is-unavailable').length,pairsButtons:document.querySelectorAll('[data-lightbox-pair]').length,variant:document.querySelector('.competitor-variant')?.textContent.trim(),variantSize:parseFloat(getComputedStyle(document.querySelector('.competitor-variant')).fontSize),headings:[...document.querySelectorAll('.comparison-side h3')].map(node=>node.textContent.trim()),rowMin:Math.min(...heights),rowMax:Math.max(...heights),equalRows:Math.max(...heights)-Math.min(...heights)<1,columns,text:document.querySelector('.comparison-page').textContent}})()`);
+  check(comparison.pairs === 1 && comparison.ourVideos === 1 && comparison.competitorVideos === 1 && comparison.images === 0, `${label}: expanded view is not one video pair`);
+  check(comparison.abilities === 4 && comparison.groups === 1 && comparison.open === 1 && comparison.tech === 4, `${label}: expanded ability/group/passport counters mismatch`);
   check(comparison.exact === 3 && comparison.partial === 1 && comparison.unavailable === 0, `${label}: expanded ability status counters mismatch`);
-  check(comparison.previews === 1 && comparison.todo === 0, `${label}: expanded ability previews or TODO fields mismatch`);
-  check(comparison.media === 6 && comparison.pairs === 1, `${label}: expanded lightbox media/pair controls mismatch`);
-  check(comparison.gridDisplay === 'grid' && comparison.gridColumns >= 2 && comparison.equalRows, `${label}: ability cards are not an equal-row CSS grid`);
-
+  check(comparison.samples === 1 && comparison.inlineMedia === 0 && comparison.pairsButtons === 1, `${label}: ability samples or pair controls mismatch`);
+  check(comparison.equalRows && comparison.rowMin >= 48 && comparison.rowMax <= 50 && comparison.columns === 2, `${label}: closed ability rows or video columns are uneven`);
+  check(comparison.headings.join('|') === 'НАШ ОБРАЗЕЦ|КОНКУРЕНТ' && comparison.variant && comparison.variantSize <= 11, `${label}: pair headings or competitor caption mismatch`);
+  check(!comparison.text.includes('Нашего образца пока нет') && !comparison.text.includes('семейство не входило в визуальную сверку'), `${label}: placeholder or service text leaked into DOM`);
   await evaluate(cdp, page.sessionId, `document.querySelector('.ability-card .tech-passport summary').click()`);
-  const passport = await evaluate(cdp, page.sessionId, `(()=>{const details=document.querySelector('.ability-card .tech-passport');return {open:details?.open,fields:details?.querySelectorAll('.tech-field').length,text:details?.textContent}})()`);
-  check(passport.open && passport.fields === 4 && !passport.text.includes('TODO:'), `${label}: ability tech passport did not open cleanly`);
-  check(await evaluate(cdp, page.sessionId, `(()=>{const rows=Object.groupBy([...document.querySelectorAll('.ability-card')].map(card=>card.getBoundingClientRect()),rect=>Math.round(rect.top));return Object.values(rows).every(rects=>Math.max(...rects.map(rect=>rect.height))-Math.min(...rects.map(rect=>rect.height))<1)})()`), `${label}: cards lost equal row height after passport expansion`);
-  if (label === 'HTTP') {
-    await evaluate(cdp, page.sessionId, `document.querySelector('.ability-card').scrollIntoView({block:'center'})`);
-    await delay(250);
-    const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }, page.sessionId);
-    fs.writeFileSync('/tmp/katalog-abilities-qa.png', Buffer.from(screenshot.data, 'base64'));
-  }
+  const passport = await evaluate(cdp, page.sessionId, `(()=>{const cards=[...document.querySelectorAll('.ability-card')];const details=cards[0].querySelector('.tech-passport');const closed=cards.slice(1).map(card=>card.getBoundingClientRect().height);return {open:details.open,fields:details.querySelectorAll('.tech-field').length,text:details.textContent,openHeight:cards[0].getBoundingClientRect().height,closedMin:Math.min(...closed),closedMax:Math.max(...closed),inlineMedia:cards[0].querySelectorAll('img,video').length}})()`);
+  check(passport.open && passport.fields === 4 && !passport.text.includes('TODO:') && passport.inlineMedia === 0, `${label}: ability tech passport did not open cleanly`);
+  check(passport.openHeight > passport.closedMax && passport.closedMax - passport.closedMin < 1, `${label}: passport expansion broke flat closed rows`);
 
-  await evaluate(cdp, page.sessionId, `document.querySelector('.ability-sample [data-lightbox-media]').click()`);
+  const carouselBefore = await evaluate(cdp, page.sessionId, `({source:document.querySelector('.competitor-carousel video').src,caption:document.querySelector('.competitor-variant').textContent.trim()})`);
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-competitor-next]').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelector('.competitor-carousel video').src !== ${JSON.stringify(carouselBefore.source)}`);
+  const carouselNext = await evaluate(cdp, page.sessionId, `({source:document.querySelector('.competitor-carousel video').src,caption:document.querySelector('.competitor-variant').textContent.trim(),videos:document.querySelectorAll('.competitor-carousel video').length})`);
+  check(carouselNext.videos === 1 && carouselNext.source !== carouselBefore.source && carouselNext.caption !== carouselBefore.caption, `${label}: competitor carousel did not replace its single active clip`);
+
+  await evaluate(cdp, page.sessionId, `document.querySelector('.ability-sample-button').click()`);
   await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open .lightbox-media')`);
   check(await evaluate(cdp, page.sessionId, `Boolean(document.querySelector('#lightbox.is-open .lightbox-media'))`), `${label}: ability sample lightbox did not open`);
-  await evaluate(cdp, page.sessionId, `document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}))`);
-  await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
-
-  await evaluate(cdp, page.sessionId, `document.querySelector('.competitor-frame-button').click()`);
-  await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open .lightbox-media')`);
-  check(await evaluate(cdp, page.sessionId, `document.querySelector('#lightbox.is-open .lightbox-media')?.tagName === 'IMG'`), `${label}: image lightbox did not open`);
-  await evaluate(cdp, page.sessionId, `document.getElementById('lightboxContent').click()`);
-  await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
-
-  await evaluate(cdp, page.sessionId, `document.querySelector('.comparison-media video').click()`);
-  await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open video[controls]')`);
-  check(await evaluate(cdp, page.sessionId, `document.querySelector('#lightbox.is-open video')?.controls === true`), `${label}: video lightbox controls missing`);
   await evaluate(cdp, page.sessionId, `document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}))`);
   await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
 
   await evaluate(cdp, page.sessionId, `document.querySelector('[data-lightbox-pair]').click()`);
   await waitFor(cdp, page.sessionId, `document.querySelectorAll('#lightbox.is-open .lightbox-pair video').length === 2 && [...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')].every(video=>video.readyState>=2)`, 45000);
   const pairStart = await evaluate(cdp, page.sessionId, `(()=>{const videos=[...document.querySelectorAll('.lightbox-pair video')];return {media:document.querySelectorAll('.lightbox-pair .lightbox-media').length,counter:document.getElementById('lightboxCounter').textContent,ref:videos[1]?.src,playing:videos.every(video=>video.muted&&video.loop&&video.autoplay&&!video.paused)}})()`);
-  check(pairStart.media === 2 && pairStart.counter === '1 / 3' && pairStart.playing, `${label}: D-family video-vs-video lightbox mismatch`);
+  check(pairStart.media === 2 && pairStart.counter === '2 / 3' && pairStart.ref === carouselNext.source && pairStart.playing, `${label}: side-by-side lightbox did not use the active competitor clip`);
   await evaluate(cdp, page.sessionId, `document.querySelector('[data-lightbox-next]').click()`);
-  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '2 / 3' && [...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')].every(video=>video.readyState>=2&&!video.paused)`, 45000);
-  const pairNext = await evaluate(cdp, page.sessionId, `({counter:document.getElementById('lightboxCounter').textContent,ref:document.querySelectorAll('.lightbox-pane:last-child video')[0]?.src})`);
-  check(pairNext.counter === '2 / 3' && pairNext.ref !== pairStart.ref, `${label}: side-by-side next button mismatch`);
-  await evaluate(cdp, page.sessionId, `document.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}))`);
   await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '3 / 3' && [...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')].every(video=>video.readyState>=2&&!video.paused)`, 45000);
-  if (label === 'HTTP') {
-    const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }, page.sessionId);
-    fs.writeFileSync('/tmp/katalog-lightbox-pair-qa.png', Buffer.from(screenshot.data, 'base64'));
-  }
+  const pairNext = await evaluate(cdp, page.sessionId, `({counter:document.getElementById('lightboxCounter').textContent,ref:document.querySelectorAll('.lightbox-pane:last-child video')[0]?.src})`);
+  check(pairNext.counter === '3 / 3' && pairNext.ref !== pairStart.ref, `${label}: side-by-side next button mismatch`);
+  await evaluate(cdp, page.sessionId, `document.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}))`);
+  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '1 / 3' && [...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')].every(video=>video.readyState>=2&&!video.paused)`, 45000);
   await evaluate(cdp, page.sessionId, `document.getElementById('lightbox').click()`);
   await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
 
-  await evaluate(cdp, page.sessionId, `document.querySelector('[data-ability-family-toggle="HARD-CUT"]').click()`);
-  await waitFor(cdp, page.sessionId, `document.querySelector('[data-comparison-family="HARD-CUT"] .competitor-card video')`);
-  const videoComparison = await evaluate(cdp, page.sessionId, `(()=>{const card=document.querySelector('[data-comparison-family="HARD-CUT"]');const clips=[...card.querySelectorAll('.competitor-card video')];return {clips:clips.length,images:card.querySelectorAll('.competitor-card img').length,muted:clips.every(video=>video.muted),loop:clips.every(video=>video.loop),captions:[...card.querySelectorAll('.competitor-card span')].map(node=>node.textContent.trim())}})()`);
-  check(videoComparison.clips === 3 && videoComparison.images === 0, `${label}: HARD-CUT competitor media are not 3 videos`);
-  check(videoComparison.muted && videoComparison.loop, `${label}: competitor videos are not muted and looping`);
-  check(videoComparison.captions.length === 3 && videoComparison.captions.every(Boolean), `${label}: competitor clip captions missing`);
-
-  await evaluate(cdp, page.sessionId, `document.querySelector('[data-comparison-family="HARD-CUT"] .competitor-card video').click()`);
-  await waitFor(cdp, page.sessionId, `document.querySelector('#lightbox.is-open video.lightbox-media')?.readyState >= 2`, 45000);
-  check(await evaluate(cdp, page.sessionId, `(()=>{const video=document.querySelector('#lightbox.is-open video');return video.muted&&video.loop&&video.autoplay&&!video.paused})()`), `${label}: competitor clip did not play in lightbox`);
-  await evaluate(cdp, page.sessionId, `document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}))`);
-  await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
-
-  await evaluate(cdp, page.sessionId, `document.querySelector('[data-comparison-family="HARD-CUT"] [data-lightbox-pair]').click()`);
-  await waitFor(cdp, page.sessionId, `document.querySelectorAll('#lightbox.is-open .lightbox-pair video').length === 2 && [...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')].every(video=>video.readyState>=2)`, 45000);
-  const videoPair = await evaluate(cdp, page.sessionId, `(()=>{const videos=[...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')];return {count:videos.length,playing:videos.every(video=>video.muted&&video.loop&&video.autoplay&&!video.paused),counter:document.getElementById('lightboxCounter').textContent,competitor:videos[1]?.src}})()`);
-  check(videoPair.count === 2 && videoPair.playing && videoPair.counter === '1 / 3', `${label}: video-vs-video lightbox did not play both clips`);
-  await evaluate(cdp, page.sessionId, `document.querySelector('[data-lightbox-next]').click()`);
-  await waitFor(cdp, page.sessionId, `document.getElementById('lightboxCounter').textContent === '2 / 3' && [...document.querySelectorAll('#lightbox.is-open .lightbox-pair video')].every(video=>video.readyState>=2&&!video.paused)`, 45000);
-  check(await evaluate(cdp, page.sessionId, `document.querySelectorAll('#lightbox.is-open .lightbox-pair video')[1]?.src !== ${JSON.stringify(videoPair.competitor)}`), `${label}: competitor video arrow did not change clip`);
-  await evaluate(cdp, page.sessionId, `document.getElementById('lightbox').click()`);
-  await waitFor(cdp, page.sessionId, `!document.getElementById('lightbox').classList.contains('is-open')`);
-
-  if (label === 'HTTP') {
-    const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }, page.sessionId);
-    fs.writeFileSync('/tmp/katalog-comparison-qa.png', Buffer.from(screenshot.data, 'base64'));
-  }
+  await evaluate(cdp, page.sessionId, `document.querySelector('[data-ability-family-toggle="PHOTO-IMAGE"]').click()`);
+  await waitFor(cdp, page.sessionId, `document.querySelector('[data-capability-family="PHOTO-IMAGE"].is-open .abilities-group')`);
+  const staticFamily = await evaluate(cdp, page.sessionId, `(()=>{const family=document.querySelector('[data-capability-family="PHOTO-IMAGE"]');return {pairs:family.querySelectorAll('.comparison-card').length,abilities:family.querySelectorAll('.ability-card').length,media:family.querySelectorAll('img,video').length,placeholders:family.querySelectorAll('.comparison-media-placeholder').length}})()`);
+  check(staticFamily.pairs === 0 && staticFamily.abilities > 0 && staticFamily.media === 0 && staticFamily.placeholders === 0, `${label}: static-only family did not omit its media block cleanly`);
 
   await evaluate(cdp, page.sessionId, `(()=>{const select=document.getElementById('familyFilter');select.value='KEYFRAMES-MOTION';select.dispatchEvent(new Event('change',{bubbles:true}))})()`);
   await waitFor(cdp, page.sessionId, `document.querySelectorAll('.comparison-card').length === 1`);
@@ -372,15 +331,17 @@ async function main() {
     const httpPage = await createPage(cdp);
     const removeHttp = await navigate(cdp, httpPage, httpUrl, 'HTTP');
     await validateCatalog(cdp, httpPage, 'HTTP');
-    await validateHttpRefresh(cdp, httpPage);
+    if (!comparisonOnly) await validateHttpRefresh(cdp, httpPage);
     removeHttp();
 
-    const filePage = await createPage(cdp);
-    const removeFile = await navigate(cdp, filePage, fileUrl, 'file://');
-    await validateCatalog(cdp, filePage, 'file://');
-    const fileDb = await evaluate(cdp, filePage.sessionId, idbCountExpression);
-    check(fileDb.count === 2852 && fileDb.families === 2852, 'file://: static snapshot did not populate IndexedDB');
-    removeFile();
+    if (!comparisonOnly) {
+      const filePage = await createPage(cdp);
+      const removeFile = await navigate(cdp, filePage, fileUrl, 'file://');
+      await validateCatalog(cdp, filePage, 'file://');
+      const fileDb = await evaluate(cdp, filePage.sessionId, idbCountExpression);
+      check(fileDb.count === 2852 && fileDb.families === 2852, 'file://: static snapshot did not populate IndexedDB');
+      removeFile();
+    }
 
     for (const surface of surfaces) check(surface.errors.length === 0, `${surface.label}: console errors: ${surface.errors.join(' | ')}`);
   } finally {
@@ -412,7 +373,9 @@ async function main() {
     failures.forEach((failure) => console.error(`- ${failure}`));
     process.exit(1);
   }
-  console.log(`PASS ${assertions} browser assertions; HTTP console=0; file console=0; refresh=PASS`);
+  console.log(comparisonOnly
+    ? `PASS ${assertions} browser assertions; HTTP console=0; comparison=PASS`
+    : `PASS ${assertions} browser assertions; HTTP console=0; file console=0; refresh=PASS`);
   process.exit(0);
 }
 

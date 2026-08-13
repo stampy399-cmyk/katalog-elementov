@@ -30,7 +30,7 @@ const VIDEO_COMPARISON = Object.freeze({
   'BLUR-EFFECT': 3
 });
 const COMPARISON_FAMILY_ORDER = FAMILY_ORDER.filter((family) => !['OTHER', 'EMPTY'].includes(family));
-const COMPARISON_EXPECTED = Object.freeze({ families: 16, abilities: 167, exact: 121, partial: 46, unavailable: 0, repoSamples: 30, clips: 42, frames: 6 });
+const COMPARISON_EXPECTED = Object.freeze({ families: 16, pairs: 13, abilities: 167, exact: 121, partial: 46, unavailable: 0, sampleButtons: 16, repoSamples: 30, clips: 42, frames: 6 });
 const RESTRUCTURED_FAMILIES = new Set(['KEYFRAMES-MOTION', 'PHOTO-IMAGE', 'OPACITY-FADE', 'TEXT-TYPOGRAPHY', 'GEOMETRY-SHAPE', 'BLUR-EFFECT']);
 const EXPECTED = Object.freeze({ projects: 9, elements: 2852, base: 2780, unique: 72, families: 18, imported: 624, abilities: 216, exact: 154, partial: 60, unavailable: 2, repoSamples: 32 });
 const failures = [];
@@ -196,8 +196,9 @@ function localAsset(image) {
 function inventorySampleAsset(sample) {
   const normalized = String(sample || '').replaceAll('\\', '/');
   if (normalized.startsWith('assets/')) return path.join(ROOT, normalized);
-  const prefix = `${ROOT.replaceAll('\\', '/')}/assets/`;
-  return normalized.startsWith(prefix) ? normalized : '';
+  const marker = '/katalog-elementov/assets/';
+  const index = normalized.indexOf(marker);
+  return index === -1 ? '' : path.join(ROOT, 'assets', normalized.slice(index + marker.length));
 }
 
 function validateData(catalog) {
@@ -365,33 +366,36 @@ function validateComparison(comparison, oursTech, indexPage) {
   check((html.match(/class="ability-card"/g) || []).length === 0, 'collapsed comparison rendered ability cards');
   check(html.includes('Умеем 1:1 · 3') && html.includes('Частично · 1') && html.includes('Не умеем · 0') && html.includes('75% 1:1'), 'family summary counters or percentage mismatch');
   check(html.includes(`${COMPARISON_EXPECTED.abilities}/${COMPARISON_EXPECTED.abilities} умений`), 'integrated comparison count mismatch');
-  check(html.includes('по 16 семействам') && html.includes('data-ability-stat="total">167') && html.includes('data-ability-stat="exact">121') && html.includes('data-ability-stat="partial">46') && html.includes('data-ability-stat="unavailable">0'), 'integrated ability statistics mismatch');
+  check(html.includes('data-ability-stat="total">167') && html.includes('data-ability-stat="exact">121') && html.includes('data-ability-stat="partial">46') && html.includes('data-ability-stat="unavailable">0'), 'integrated ability statistics mismatch');
+  check(html.includes('видеосравнение сверху') && html.includes('умения и техпаспорта ниже'), 'comparison intro does not describe the new layout');
 
   comparison.families.forEach((record) => qa.state.expandedAbilityFamilies.add(record.family));
   qa.renderComparison();
   const expandedHtml = nodes.get('workspaceInner').innerHTML;
-  check((expandedHtml.match(/class="comparison-card"/g) || []).length === COMPARISON_EXPECTED.families, 'expanded comparison did not preserve 16 comparison cards');
-  check(!expandedHtml.includes('Нашего образца пока нет'), 'expanded comparison renders null-media placeholder');
-  check((expandedHtml.match(/<video controls preload="none"/g) || []).length === 13, 'expanded comparison did not render 13 local clips');
-  check((expandedHtml.match(/<video controls muted loop playsinline preload="none"/g) || []).length === COMPARISON_EXPECTED.clips, 'expanded comparison did not render 42 muted looping competitor clips');
-  check((expandedHtml.match(/class="competitor-card"/g) || []).length === COMPARISON_EXPECTED.clips, 'expanded comparison competitor media count mismatch');
-  check((expandedHtml.match(/class="competitor-card"><img/g) || []).length === 0, 'expanded comparison still renders competitor JPG cards');
-  check((expandedHtml.match(/class="competitor-frame-button"/g) || []).length === COMPARISON_EXPECTED.frames, 'expanded comparison frame variant count mismatch');
+  check((expandedHtml.match(/class="comparison-card"/g) || []).length === COMPARISON_EXPECTED.pairs, 'expanded comparison did not render exactly 13 complete video pairs');
+  check((expandedHtml.match(/class="comparison-media"><video/g) || []).length === COMPARISON_EXPECTED.pairs, 'expanded comparison did not render 13 local videos');
+  check((expandedHtml.match(/class="competitor-carousel"><video/g) || []).length === COMPARISON_EXPECTED.pairs, 'expanded comparison did not render one active competitor clip per pair');
+  check((expandedHtml.match(/class="competitor-variant"/g) || []).length === COMPARISON_EXPECTED.pairs, 'competitor variant caption count mismatch');
+  check((expandedHtml.match(/data-competitor-prev=/g) || []).length === COMPARISON_EXPECTED.pairs && (expandedHtml.match(/data-competitor-next=/g) || []).length === COMPARISON_EXPECTED.pairs, 'competitor carousel controls mismatch');
+  check((expandedHtml.match(/data-lightbox-pair=/g) || []).length === COMPARISON_EXPECTED.pairs, 'expanded comparison did not render 13 side-by-side buttons');
+  check(!expandedHtml.includes('<img') && !expandedHtml.includes('competitor-frame-button'), 'static media leaked into the primary comparison output');
+  check(!expandedHtml.includes('comparison-media-placeholder') && !expandedHtml.includes('Нашего образца пока нет') && !expandedHtml.includes('Референсов нет'), 'expanded comparison renders a media placeholder');
+  check(!expandedHtml.includes('comparison-notes') && !expandedHtml.includes('Комментарий не добавлен') && !expandedHtml.includes('семейство не входило в визуальную сверку'), 'expanded comparison renders service or fallback notes');
   const techPassportCount = (expandedHtml.match(/class="tech-passport(?: |")/g) || []).length;
-  check(techPassportCount === COMPARISON_EXPECTED.families + COMPARISON_EXPECTED.abilities, `integrated comparison tech passport count ${techPassportCount}, expected ${COMPARISON_EXPECTED.families + COMPARISON_EXPECTED.abilities}`);
-  check((expandedHtml.match(/class="ability-card"/g) || []).length === COMPARISON_EXPECTED.abilities, 'expanded comparison did not render 167 abilities');
+  check(techPassportCount === COMPARISON_EXPECTED.abilities, `integrated comparison tech passport count ${techPassportCount}, expected ${COMPARISON_EXPECTED.abilities}`);
+  check((expandedHtml.match(/class="ability-card(?: |")/g) || []).length === COMPARISON_EXPECTED.abilities, 'expanded comparison did not render 167 abilities');
   check((expandedHtml.match(/class="abilities-group"/g) || []).length === COMPARISON_EXPECTED.families, 'expanded comparison did not render 16 ability groups');
   check((expandedHtml.match(/data-ability-status="умеем 1:1"/g) || []).length === COMPARISON_EXPECTED.exact, 'expanded comparison exact status count mismatch');
   check((expandedHtml.match(/data-ability-status="умеем частично"/g) || []).length === COMPARISON_EXPECTED.partial, 'expanded comparison partial status count mismatch');
   check((expandedHtml.match(/data-ability-status="не умеем"/g) || []).length === COMPARISON_EXPECTED.unavailable, 'expanded comparison unavailable status count mismatch');
-  check((expandedHtml.match(/data-lightbox-media/g) || []).length === 16 + COMPARISON_EXPECTED.clips + COMPARISON_EXPECTED.frames + COMPARISON_EXPECTED.repoSamples, 'expanded comparison media are not all lightbox-enabled');
-  check((expandedHtml.match(/data-lightbox-pair=/g) || []).length === COMPARISON_EXPECTED.families, 'expanded comparison did not render 16 side-by-side buttons');
-  for (const record of comparison.families.filter((entry) => VIDEO_COMPARISON[entry.family])) {
-    check((record.competitor_refs || []).every((reference) => !expandedHtml.includes(reference)), `${record.family}: static competitor frame leaked into main view`);
-  }
-  check(expandedHtml.includes('короткий punch') && expandedHtml.includes('тёплый film-burn') && expandedHtml.includes('particles · наш: burn') && expandedHtml.includes('virtual Ken Burns'), 'disputed clip captions are missing audit wording');
-  check(expandedHtml.includes('YouTube CTA: like → subscribe → bell') && expandedHtml.includes('count-up €49 → €40 MILLIARDEN'), 'reassigned frame variants are missing');
-  check(!expandedHtml.includes('data-comparison-family="OTHER"') && !expandedHtml.includes('data-comparison-family="EMPTY"') && !expandedHtml.includes('assets/ours/other.mp4'), 'OTHER or EMPTY leaked into comparison output');
+  const abilityCards = [...expandedHtml.matchAll(/<article class="ability-card(?: [^"]*)?"[\s\S]*?<\/article>/g)].map((match) => match[0]);
+  check(abilityCards.length === COMPARISON_EXPECTED.abilities && abilityCards.every((card) => !/<(?:img|video)\b/.test(card)), `ability rows contain inline media or count ${abilityCards.length}, expected ${COMPARISON_EXPECTED.abilities}`);
+  check(abilityCards.every((card) => card.includes('<summary><span>Техпаспорт</span>')), 'ability rows are missing the Tech Passport disclosure');
+  const sampleSources = [...expandedHtml.matchAll(/class="ability-sample-button"[^>]*data-lightbox-source="([^"]+)"/g)].map((match) => match[1]);
+  check(sampleSources.length === COMPARISON_EXPECTED.sampleButtons, `ability sample button count ${sampleSources.length}, expected ${COMPARISON_EXPECTED.sampleButtons}`);
+  check(new Set(sampleSources).size === sampleSources.length, 'an ability sample is attached to more than one visible row');
+  check(!sampleSources.includes('assets/ours/other.mp4'), 'generic OTHER sample leaked into ability rows');
+  check(!expandedHtml.includes('data-comparison-family="PHOTO-IMAGE"') && !expandedHtml.includes('data-comparison-family="TEXT-TYPOGRAPHY"') && !expandedHtml.includes('data-comparison-family="GEOMETRY-SHAPE"'), 'static-only family rendered a primary comparison block');
   check(!expandedHtml.includes('TODO: инвентарь'), 'expanded comparison still renders TODO inventory fields');
   check(!expandedHtml.includes('undefined') && !expandedHtml.includes('null'), 'expanded comparison renders null/undefined text');
 
@@ -400,13 +404,14 @@ function validateComparison(comparison, oursTech, indexPage) {
   qa.state.familyFilter = comparison.families[0].family;
   qa.renderComparison();
   check((nodes.get('workspaceInner').innerHTML.match(/class="comparison-card"/g) || []).length === 1, 'comparison family filter mismatch');
-  check((nodes.get('workspaceInner').innerHTML.match(/class="ability-card"/g) || []).length === 4, 'comparison family ability count mismatch');
+  check((nodes.get('workspaceInner').innerHTML.match(/class="ability-card(?: |")/g) || []).length === 4, 'comparison family ability count mismatch');
+  check((nodes.get('workspaceInner').innerHTML.match(/class="competitor-carousel"><video/g) || []).length === 1, 'filtered family renders more than one competitor clip');
 
   qa.state.familyFilter = 'all';
   qa.state.search = 'Whisper word timestamps';
   qa.renderComparison();
   check((nodes.get('workspaceInner').innerHTML.match(/class="comparison-card"/g) || []).length === 1, 'comparison ability search family mismatch');
-  check((nodes.get('workspaceInner').innerHTML.match(/class="ability-card"/g) || []).length === 1, 'comparison ability search result mismatch');
+  check((nodes.get('workspaceInner').innerHTML.match(/class="ability-card(?: |")/g) || []).length === 1, 'comparison ability search result mismatch');
 }
 
 async function main() {
