@@ -417,6 +417,8 @@
     .card-timecode, .element-number { padding: 3px 5px; border: 1px solid color-mix(in srgb, var(--line) 75%, transparent); border-radius: 5px; background: color-mix(in srgb, var(--bg) 78%, transparent); color: var(--text); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; line-height: 1.1; backdrop-filter: blur(6px); }
     .element-number { border: 0; pointer-events: auto; text-decoration: none; transition: background 180ms ease-out, color 180ms ease-out, transform 180ms ease-out; }
     .element-number:hover, .element-number:focus-visible { background: var(--accent); color: #fff; outline: none; transform: translateY(-1px); }
+    .youtube-moment-button { position: absolute; z-index: 3; bottom: 8px; left: 8px; min-height: 28px; padding: 0 9px; border: 1px solid rgba(255, 255, 255, .3); border-radius: 7px; background: rgba(0, 0, 0, .72); color: #fff; cursor: pointer; font-size: 9px; font-weight: 800; letter-spacing: .025em; backdrop-filter: blur(6px); }
+    .youtube-moment-button:hover, .youtube-moment-button:focus-visible { border-color: #fff; background: var(--accent); }
     .element-compact { display: grid; gap: 7px; min-height: 78px; padding: 11px 48px 12px 12px; }
     .element-category-chip { width: max-content; max-width: 100%; padding: 2px 6px; overflow: hidden; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
     .element-description-preview { display: -webkit-box; min-height: 36px; overflow: hidden; color: var(--text); font-size: 12px; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
@@ -637,8 +639,11 @@
     .acceptance-card { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(320px, .65fr); gap: 22px; width: min(1240px, 100%); margin: 0 auto; }
     .acceptance-visual { display: grid; min-height: 0; align-content: start; gap: 12px; }
     .acceptance-media { display: grid; width: 100%; max-height: 62vh; overflow: hidden; aspect-ratio: 16 / 9; place-items: center; border: 1px solid var(--line); border-radius: 14px; background: #050607; box-shadow: var(--shadow); }
-    .acceptance-media img, .acceptance-media video { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .acceptance-media img, .acceptance-media video, .acceptance-media iframe { display: block; width: 100%; height: 100%; border: 0; object-fit: contain; }
     .acceptance-media .paste-hint { position: static; width: calc(100% - 24px); height: calc(100% - 24px); }
+    .youtube-segment-repeat { justify-self: start; min-height: 38px; padding: 0 13px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); color: var(--text); cursor: pointer; font-size: 11px; font-weight: 800; letter-spacing: .035em; }
+    .youtube-segment-repeat:hover, .youtube-segment-repeat:focus-visible { border-color: var(--accent); color: var(--accent); }
+    .youtube-segment-unavailable { width: max-content; padding: 5px 9px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 10px; font-weight: 750; text-transform: uppercase; }
     .acceptance-caption { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; color: var(--muted); font-size: 12px; }
     .acceptance-caption strong { color: var(--text); }
     .acceptance-controls { align-self: start; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
@@ -655,6 +660,13 @@
     .acceptance-action.is-trash { color: var(--danger); }
     .acceptance-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
     .acceptance-ok { width: 100%; margin-top: 8px; border-color: var(--accent); background: var(--accent); color: #fff; }
+    .acceptance-params { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+    .acceptance-params-label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 10px; font-weight: 750; letter-spacing: .055em; }
+    .acceptance-param-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .acceptance-param { min-height: 32px; padding: 0 9px; border: 1px solid var(--line); border-radius: 99px; background: var(--surface-raised); color: var(--muted); cursor: pointer; font-size: 10px; font-weight: 800; }
+    .acceptance-param:hover:not(:disabled), .acceptance-param:focus-visible:not(:disabled) { border-color: var(--accent); color: var(--text); }
+    .acceptance-param.is-active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+    .acceptance-param:disabled { cursor: wait; opacity: .5; }
     .acceptance-panel { display: grid; gap: 9px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
     .acceptance-panel[hidden] { display: none; }
     .acceptance-panel-label { margin: 0; color: var(--muted); font-size: 11px; }
@@ -749,6 +761,9 @@
     .lightbox-content { display: grid; width: 100%; height: 100%; min-width: 0; place-items: center; }
     .lightbox-media { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
     .lightbox-media:is(video) { width: min(1280px, 100%); }
+    .lightbox-youtube { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 12px; width: min(1280px, 100%); height: 100%; min-height: 0; place-items: center; }
+    .lightbox-youtube-frame { width: 100%; max-height: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 12px; background: #000; }
+    .lightbox-youtube .youtube-segment-repeat { justify-self: center; border-color: rgba(255, 255, 255, .38); background: rgba(0, 0, 0, .64); color: #fff; }
     .lightbox-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; width: 100%; height: 100%; min-height: 0; }
     .lightbox-pane { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 8px; min-width: 0; min-height: 0; }
     .lightbox-label { color: #fff; font-size: 14px; font-weight: 750; text-align: center; }
@@ -872,6 +887,7 @@
         'CROSSFADE', 'BLEND-MODE', 'GEOMETRY-SHAPE', 'EMPTY', 'CAMERA-MOTION', 'BLUR-EFFECT'
       ]);
       const ACCEPTANCE_VERDICTS = Object.freeze(['base', 'unique', 'trash', 'ok']);
+      const ACCEPTANCE_PARAMS = Object.freeze(['ТЕКСТ', 'ЦИФРА', 'ЦВЕТ', 'РАЗМЕР', 'СКОРОСТЬ', 'ПОЗИЦИЯ', 'КАРТИНКА']);
       const TYPING_QUIET_PERIOD = 1200;
       const DELETE_CONFIRMATION = 'УДАЛИТЬ';
       const PUBLISHED_DATA_URL = 'data.json';
@@ -993,6 +1009,7 @@
           queue: [],
           index: 0,
           panel: '',
+          params: [],
           busy: false,
           recognition: null
         },
@@ -2126,6 +2143,8 @@
       function elementCard(project, element, meta) {
         const metaMarkup = meta || familyMeta(element);
         const image = previewImageMarkup(element);
+        const momentButton = youtubeSegment(project, element)
+          ? '<button class="youtube-moment-button" type="button" data-youtube-moment>▶ МОМЕНТ НА YOUTUBE</button>' : '';
         const isNew = String(element.id) === String(state.newElementId);
         const isExpanded = String(element.id) === String(state.editingElementId) || isNew;
         const timecode = timecodesFrom(element)[0] || '—';
@@ -2154,7 +2173,7 @@
         return `<article class="element-card ${isExpanded ? 'is-expanded' : ''} ${isNew ? 'is-new' : ''}" data-element-id="${escapeAttribute(element.id)}" tabindex="0">
           <div class="card-frame"><div class="image-slot">${image}</div><div class="card-overlay">
             <button class="element-number" type="button" data-copy-anchor="${escapeAttribute(anchor)}" title="Копировать якорь ${escapeAttribute(anchor)}" aria-label="Копировать якорь ${escapeAttribute(anchor)}">#${number}</button>
-            <span class="card-timecode">${escapeHtml(timecode)}</span></div></div>
+            <span class="card-timecode">${escapeHtml(timecode)}</span></div>${momentButton}</div>
           ${isExpanded ? editor : `<div class="element-compact">${metaMarkup}${element.category ? `<span class="element-category-chip"><span class="category-icon">${categoryIcon(element.category)}</span>${escapeHtml(element.category)}</span>` : ''}<div class="element-description-preview ${preview ? '' : 'is-empty'}">${preview ? linkifyReferences(preview, total) : 'Что это и как работает'}</div>${extras.length ? `<div class="element-extra-preview">${extras.join(' · ')}</div>` : ''}${backlinkNumbers.length ? `<div class="element-backlinks">упоминается в: ${backlinkNumbers.map((from) => `<button class="ref-link" type="button" data-ref-number="${from}" title="Перейти к элементу #${String(from).padStart(2, '0')}">#${String(from).padStart(2, '0')}</button>`).join(' ')}</div>` : ''}</div>`}
           <button class="repeat-badge" type="button" data-heat="${repeatHeatLevel(weight)}" data-repeat-count="${element.repeatCount}" style="--heat:${(repeatHeatLevel(weight) / 6).toFixed(3)}" title="Клик: +1, Alt+клик: −1. Вес повторяемости ${weight} (×${element.repeatCount}${backlinkNumbers.length ? ` и ${backlinkNumbers.length} ссылок #NN` : ''})." aria-label="Повторы ${element.repeatCount}">×${element.repeatCount}</button>
           <div class="element-top-actions" aria-label="Действия элемента">${isExpanded ? '<button class="element-top-action element-collapse" type="button" data-collapse-element title="Свернуть" aria-label="Свернуть">−</button>' : ''}<button class="element-top-action delete" type="button" data-delete-element title="Удалить" aria-label="Удалить"><svg class="action-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 4.5h9M6 4.5V3h4v1.5M5 6.5l.5 6h5l.5-6"></path></svg></button></div>
@@ -2338,6 +2357,9 @@
           const activePair = pairs[current.index];
           dom.lightboxContent.innerHTML = `<div class="lightbox-pair"><section class="lightbox-pane"><div class="lightbox-label">Наш образец · ${escapeHtml(current.entry.family)}</div><div class="lightbox-pane-media" data-lightbox-backdrop>${lightboxMediaMarkup(activePair.ourMedia, activePair.type, `Наш образец ${current.entry.family}: ${activePair.label}`)}</div></section><section class="lightbox-pane"><div class="lightbox-label">Конкурент · ${escapeHtml(activePair.label)}</div><div class="lightbox-pane-media" data-lightbox-backdrop>${lightboxMediaMarkup(activePair.competitorMedia, activePair.type, `Конкурент ${current.entry.family}: ${activePair.label}`)}</div></section></div>`;
           dom.lightboxCounter.textContent = `${current.index + 1} / ${pairs.length}`;
+        } else if (current.mode === 'youtube') {
+          dom.lightboxContent.innerHTML = `<div class="lightbox-youtube">${youtubeSegmentFrameMarkup(current.segment, 'lightbox-youtube-frame')}<button class="youtube-segment-repeat" type="button" data-youtube-segment-repeat>ПОВТОРИТЬ ОТРЕЗОК</button></div>`;
+          dom.lightboxCounter.textContent = '';
         } else {
           dom.lightboxContent.innerHTML = lightboxMediaMarkup(current.source, current.type, current.label, current.poster);
           dom.lightboxCounter.textContent = '';
@@ -2388,6 +2410,15 @@
           label: media.dataset.lightboxLabel || media.alt || media.getAttribute('aria-label') || 'Медиа',
           poster: media.poster || media.getAttribute('poster') || ''
         });
+      }
+
+      function openYoutubeMoment(project, element) {
+        const segment = youtubeSegment(project, element);
+        if (!segment) {
+          showToast(projectYouTubeId(project) ? 'У карточки нет точного отрезка.' : 'У ролика нет YouTube ID.');
+          return;
+        }
+        showLightbox({ mode: 'youtube', segment });
       }
 
       async function loadOursTech() {
@@ -2705,8 +2736,10 @@
         const decision = { id: source.id, verdict: source.verdict };
         const family = asText(source.family).trim();
         const combo = asText(source.combo).trim();
+        const params = ACCEPTANCE_PARAMS.filter((param) => Array.isArray(source.params) && source.params.includes(param));
         if (family) decision.family = family;
         if (combo) decision.combo = combo;
+        if (params.length) decision.params = params;
         decision.ts = timestamp;
         return decision;
       }
@@ -2761,6 +2794,11 @@
         return `<div class="acceptance-panel" data-acceptance-combo-panel><p class="acceptance-panel-label">Опишите одной строкой, например: «текст + овал + кресты»</p><div class="acceptance-combo-row"><input class="acceptance-combo-input" data-acceptance-combo-input placeholder="текст + овал + кресты" autocomplete="off"><button class="acceptance-voice" type="button" data-acceptance-voice ${voiceAvailable ? '' : 'disabled'} title="${voiceAvailable ? 'Продиктовать' : 'Голосовой ввод не поддерживается'}" aria-label="Продиктовать">🎙</button></div><button class="acceptance-action acceptance-combo-save" type="button" data-acceptance-combo-save disabled>СОХРАНИТЬ СКЛЕЙКУ</button></div>`;
       }
 
+      function acceptanceParamsMarkup(selected, disabled = '') {
+        const active = new Set(selected);
+        return `<div class="acceptance-params"><span class="acceptance-params-label">ЧТО КРУТИТСЯ</span><div class="acceptance-param-list">${ACCEPTANCE_PARAMS.map((param) => `<button class="acceptance-param ${active.has(param) ? 'is-active' : ''}" type="button" data-acceptance-param="${param}" aria-pressed="${active.has(param)}" ${disabled}>${param}</button>`).join('')}</div></div>`;
+      }
+
       function renderAcceptanceMode() {
         const acceptance = state.acceptance;
         if (!acceptance.open) {
@@ -2781,9 +2819,15 @@
         const timecode = timecodesFrom(element)[0] || 'таймкод не указан';
         const category = categoryName(element.category);
         const disabled = acceptance.busy ? 'disabled' : '';
+        const segment = youtubeSegment(project, element);
+        const media = segment ? youtubeSegmentFrameMarkup(segment) : acceptanceMediaMarkup(element);
+        const mediaAction = segment
+          ? '<button class="youtube-segment-repeat" type="button" data-youtube-segment-repeat>ПОВТОРИТЬ ОТРЕЗОК</button>'
+          : `<span class="youtube-segment-unavailable">${projectYouTubeId(project) ? 'нет отрезка' : 'нет видео'}</span>`;
+        const params = acceptanceParamsMarkup(acceptance.params, disabled);
         const panel = acceptance.panel === 'family' ? acceptanceFamilyPickerMarkup(santehnikaData())
           : acceptance.panel === 'combo' ? acceptanceComboMarkup() : '';
-        dom.acceptanceMode.innerHTML = `${header}<main class="acceptance-body"><article class="acceptance-card" data-acceptance-element-id="${escapeAttribute(element.id)}"><div class="acceptance-visual"><div class="acceptance-media">${acceptanceMediaMarkup(element)}</div><div class="acceptance-caption"><strong>${escapeHtml(project.title || 'Ролик без названия')}</strong><span>${escapeHtml(timecode)}</span>${asText(element.description).trim() ? `<span>${escapeHtml(element.description)}</span>` : ''}</div></div><section class="acceptance-controls"><h2 class="acceptance-family">${escapeHtml(entry.family)}</h2><p class="acceptance-technique">Приём: ${escapeHtml(entry.technique || 'не указан')}</p><div class="acceptance-current-meta"><span>${escapeHtml(section?.title || 'ПРОЧЕЕ')}</span><span>${escapeHtml(SANTEHNIKA_TIER_LABELS[entry.tier])}</span>${category ? `<span>${escapeHtml(category)}</span>` : ''}</div><div class="acceptance-verdicts"><button class="acceptance-action is-base" type="button" data-acceptance-verdict="base" ${disabled}>БАЗА</button><button class="acceptance-action is-unique" type="button" data-acceptance-verdict="unique" ${disabled}>УНИК</button><button class="acceptance-action is-trash" type="button" data-acceptance-verdict="trash" ${disabled}>МУСОР</button></div><div class="acceptance-secondary"><button class="acceptance-action" type="button" data-acceptance-panel="family" ${disabled}>РАЗДЕЛ НЕ ТОТ</button><button class="acceptance-action" type="button" data-acceptance-panel="combo" ${disabled}>ЭТО СКЛЕЙКА</button></div><button class="acceptance-action acceptance-ok" type="button" data-acceptance-verdict="ok" ${disabled}>ОК, ДАЛЬШЕ</button>${panel}</section></article></main>`;
+        dom.acceptanceMode.innerHTML = `${header}<main class="acceptance-body"><article class="acceptance-card" data-acceptance-element-id="${escapeAttribute(element.id)}"><div class="acceptance-visual"><div class="acceptance-media">${media}</div>${mediaAction}<div class="acceptance-caption"><strong>${escapeHtml(project.title || 'Ролик без названия')}</strong><span>${escapeHtml(timecode)}</span>${asText(element.description).trim() ? `<span>${escapeHtml(element.description)}</span>` : ''}</div></div><section class="acceptance-controls"><h2 class="acceptance-family">${escapeHtml(entry.family)}</h2><p class="acceptance-technique">Приём: ${escapeHtml(entry.technique || 'не указан')}</p><div class="acceptance-current-meta"><span>${escapeHtml(section?.title || 'ПРОЧЕЕ')}</span><span>${escapeHtml(SANTEHNIKA_TIER_LABELS[entry.tier])}</span>${category ? `<span>${escapeHtml(category)}</span>` : ''}</div><div class="acceptance-verdicts"><button class="acceptance-action is-base" type="button" data-acceptance-verdict="base" ${disabled}>БАЗА</button><button class="acceptance-action is-unique" type="button" data-acceptance-verdict="unique" ${disabled}>УНИК</button><button class="acceptance-action is-trash" type="button" data-acceptance-verdict="trash" ${disabled}>МУСОР</button></div><div class="acceptance-secondary"><button class="acceptance-action" type="button" data-acceptance-panel="family" ${disabled}>РАЗДЕЛ НЕ ТОТ</button><button class="acceptance-action" type="button" data-acceptance-panel="combo" ${disabled}>ЭТО СКЛЕЙКА</button></div><button class="acceptance-action acceptance-ok" type="button" data-acceptance-verdict="ok" ${disabled}>ОК, ДАЛЬШЕ</button>${params}${panel}</section></article></main>`;
       }
 
       function openAcceptanceMode() {
@@ -2792,6 +2836,7 @@
         const firstPending = queue.findIndex(({ element }) => !acceptanceDecision(element));
         state.acceptance.index = firstPending === -1 ? queue.length : firstPending;
         state.acceptance.panel = '';
+        state.acceptance.params = [];
         state.acceptance.busy = false;
         state.acceptance.open = true;
         document.body.classList.add('has-acceptance');
@@ -2804,6 +2849,7 @@
         state.acceptance.recognition = null;
         state.acceptance.open = false;
         state.acceptance.panel = '';
+        state.acceptance.params = [];
         document.body.classList.remove('has-acceptance');
         renderAcceptanceMode();
         requestAnimationFrame(() => dom.workspaceInner.querySelector('[data-acceptance-open]')?.focus());
@@ -2819,6 +2865,8 @@
         const combo = asText(fields.combo).trim();
         if (family) decision.family = family;
         if (combo) decision.combo = combo;
+        const params = ACCEPTANCE_PARAMS.filter((param) => acceptance.params.includes(param));
+        if (params.length) decision.params = params;
         decision.ts = Date.now();
         item.element.acceptance = decision;
         acceptance.busy = true;
@@ -2827,6 +2875,7 @@
           await saveElement(item.element, false);
           acceptance.index += 1;
           acceptance.panel = '';
+          acceptance.params = [];
         } catch (error) {
           if (previous === undefined) delete item.element.acceptance;
           else item.element.acceptance = previous;
@@ -3646,6 +3695,61 @@
         } catch (error) {
           return '';
         }
+      }
+
+      function projectYouTubeId(project) {
+        for (const value of [project?.videoId, project?.youtubeId, project?.youtube_id]) {
+          const id = asText(value).trim();
+          if (/^[\w-]{6,}$/.test(id)) return id;
+        }
+        return youtubeVideoId(project?.url);
+      }
+
+      function elementSegmentTimes(element) {
+        const raw = timecodesFrom(element)[0] || '';
+        const clocks = raw.match(/\d+(?::\d+){1,2}(?:\.\d+)?/g) || [];
+        let start = clocks.length ? parseTimecode(clocks[0]) : null;
+        let end = clocks.length > 1 ? parseTimecode(clocks[1]) : start;
+        if (start === null) {
+          const seconds = /(?:^|[^\d.])(\d+(?:\.\d+)?)\s*[–—-]\s*(\d+(?:\.\d+)?)(?:$|[^\d.])/.exec(raw);
+          if (seconds) {
+            start = Number(seconds[1]);
+            end = Number(seconds[2]);
+          }
+        }
+        if (!Number.isFinite(start) || start < 0) return null;
+        if (!Number.isFinite(end) || end < start) end = start;
+        const segmentStart = Math.max(0, Math.floor(start - 1));
+        const segmentEnd = Math.max(segmentStart + 1, Math.ceil(end + 1));
+        return { start: segmentStart, end: segmentEnd };
+      }
+
+      function youtubeSegment(project, element) {
+        const videoId = projectYouTubeId(project);
+        const times = elementSegmentTimes(element);
+        if (!videoId || !times) return null;
+        const params = new URLSearchParams({
+          start: String(times.start),
+          end: String(times.end),
+          autoplay: '1',
+          mute: '1',
+          rel: '0'
+        });
+        return { videoId, ...times, url: `https://www.youtube.com/embed/${videoId}?${params}` };
+      }
+
+      function youtubeSegmentFrameMarkup(segment, className = '') {
+        const classes = ['youtube-segment-frame', className].filter(Boolean).join(' ');
+        return `<iframe class="${classes}" data-youtube-segment-frame src="${escapeAttribute(segment.url)}" title="Фрагмент YouTube ${escapeAttribute(segment.videoId)}" allow="accelerometer; autoplay; clipboard-write; compute-pressure; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+      }
+
+      function repeatYoutubeSegment(root) {
+        const frame = root?.querySelector?.('[data-youtube-segment-frame]');
+        if (!frame) return false;
+        const source = frame.src;
+        frame.src = 'about:blank';
+        requestAnimationFrame(() => { frame.src = source; });
+        return true;
       }
 
       function youtubeStartSeconds(value) {
@@ -4810,6 +4914,14 @@
           exportAcceptanceDecisions();
           return;
         }
+        const youtubeMoment = event.target.closest('[data-youtube-moment]');
+        if (youtubeMoment) {
+          const card = youtubeMoment.closest('[data-element-id]');
+          const element = card && findElement(card.dataset.elementId);
+          const project = element && findProject(element.projectId);
+          if (project && element) openYoutubeMoment(project, element);
+          return;
+        }
         const carouselButton = event.target.closest('[data-comparison-prev], [data-comparison-next]');
         if (carouselButton) {
           const family = carouselButton.dataset.comparisonPrev || carouselButton.dataset.comparisonNext;
@@ -5039,6 +5151,22 @@
       });
 
       dom.acceptanceMode.addEventListener('click', (event) => {
+        if (event.target.closest('[data-youtube-segment-repeat]')) {
+          repeatYoutubeSegment(dom.acceptanceMode);
+          return;
+        }
+        const paramButton = event.target.closest('[data-acceptance-param]');
+        if (paramButton && !state.acceptance.busy) {
+          const param = paramButton.dataset.acceptanceParam;
+          if (!ACCEPTANCE_PARAMS.includes(param)) return;
+          const selected = new Set(state.acceptance.params);
+          if (selected.has(param)) selected.delete(param);
+          else selected.add(param);
+          state.acceptance.params = ACCEPTANCE_PARAMS.filter((candidate) => selected.has(candidate));
+          paramButton.classList.toggle('is-active', selected.has(param));
+          paramButton.setAttribute('aria-pressed', String(selected.has(param)));
+          return;
+        }
         if (event.target.closest('[data-acceptance-close]')) {
           closeAcceptanceMode();
           return;
@@ -5241,6 +5369,10 @@
       });
 
       dom.lightbox.addEventListener('click', (event) => {
+        if (event.target.closest('[data-youtube-segment-repeat]')) {
+          repeatYoutubeSegment(dom.lightbox);
+          return;
+        }
         if (event.target.closest('[data-lightbox-close]')) {
           closeLightbox();
           return;
@@ -5315,6 +5447,12 @@
         const stableOrder = chronologicalElements([lateRange, middleRange, earlyRange, { ...middleRange, id: 'middle-2' }]).map((element) => element.id);
         expect(stableOrder.join() === 'early,middle,middle-2,late', 'range ordering is numeric and stable');
         expect(youtubeVideoId('https://www.youtube.com/watch?v=QOUszAHEZAE&t=211s') === 'QOUszAHEZAE', 'YouTube video ID');
+        const segment = youtubeSegment({ url: 'https://youtu.be/QOUszAHEZAE' }, { timecodes: ['1:05.2–1:07.4'] });
+        expect(segment?.videoId === 'QOUszAHEZAE' && segment.start === 64 && segment.end === 69 && segment.url === 'https://www.youtube.com/embed/QOUszAHEZAE?start=64&end=69&autoplay=1&mute=1&rel=0', 'YouTube segment URL');
+        const secondsSegment = elementSegmentTimes({ timecodes: ['0.0000–933.9667'] });
+        expect(secondsSegment?.start === 0 && secondsSegment.end === 935, 'raw-second segment bounds');
+        const pointSegment = elementSegmentTimes({ timecodes: ['2:51'] });
+        expect(pointSegment?.start === 170 && pointSegment.end === 172, 'single timecode segment bounds');
         expect(youtubeStartSeconds('https://youtu.be/QOUszAHEZAE?t=3m31s') === 211, 'YouTube start time');
         expect(capturedTimecodeFromPlayer({ getCurrentTime: () => 51.9 }) === '0:51', 'live player timecode');
         expect(capturedTimecodeFromPlayer(null) === '', 'missing player timecode');
@@ -5359,11 +5497,15 @@
           expect(santehnikaMeta({ family: 'HARD-CUT', technique: 'Match cut', tier: 'unique' }).includes('УНИКАЛЬНАЯ ВСТАВКА'), 'santehnika card badge shows the tier label');
           const acceptanceQueue = santehnikaQueue(santehnika);
           const grayCount = acceptanceQueue.filter((item) => item.entry.tier === 'gray').length;
+          const playerCount = acceptanceQueue.filter((item) => youtubeSegment(item.project, item.element)).length;
+          const withoutVideoId = acceptanceQueue.filter((item) => !projectYouTubeId(item.project)).length;
           expect(acceptanceQueue.length === santehnika.totals.elements, 'acceptance queue covers every santehnika element');
           expect(grayCount === santehnika.totals.elementsByTier.gray && acceptanceQueue.slice(0, grayCount).every((item) => item.entry.tier === 'gray') && acceptanceQueue.slice(grayCount).every((item) => item.entry.tier !== 'gray'), 'acceptance queue starts with every gray element');
+          expect(playerCount === acceptanceQueue.length && withoutVideoId === 0, 'every santehnika element has a YouTube segment');
           expect(SANTEHNIKA_SECTIONS.map((section) => section.title).join('|') === 'ПЕРЕХОДЫ|ЧАСТИЦЫ|ФУТАЖИ/КАРТИНКИ|ТИПОГРАФИКА|ГРАФИКА|ПРОЧЕЕ', 'santehnika section order is fixed');
           expect(santehnikaSectionId({ category: 'Переход' }, { family: 'TEXT-TYPOGRAPHY' }) === 'transitions', 'manual category overrides machine family');
-          expect(Boolean(acceptanceDecision({ id: 'test', acceptance: { id: 'test', verdict: 'ok', combo: 'текст + овал', ts: 1 } })), 'acceptance decision shape is valid');
+          const decision = acceptanceDecision({ id: 'test', acceptance: { id: 'test', verdict: 'ok', combo: 'текст + овал', params: ['СКОРОСТЬ', 'ТЕКСТ', 'НЕИЗВЕСТНО'], ts: 1 } });
+          expect(decision?.params?.join() === 'ТЕКСТ,СКОРОСТЬ', 'acceptance decision keeps canonical params');
           expect(viewFromHash('#santehnika') === 'santehnika' && viewFromHash('#comparison') === 'comparison' && viewFromHash('') === 'catalog', 'hash routing covers all three views');
         }
         expect(presenceCount().total >= 1, 'presence counts at least this tab');
@@ -5378,10 +5520,15 @@
         const sectionTotals = Object.fromEntries(SANTEHNIKA_SECTIONS.map((section) => [section.id, 0]));
         for (const item of queue) sectionTotals[item.sectionId] += 1;
         const grayCount = queue.filter((item) => item.entry.tier === 'gray').length;
+        const playerCount = queue.filter((item) => youtubeSegment(item.project, item.element)).length;
+        const withoutVideoId = queue.filter((item) => !projectYouTubeId(item.project)).length;
         return {
           total: queue.length,
           grayCount,
           grayPrefix: queue.slice(0, grayCount).every((item) => item.entry.tier === 'gray') && queue.slice(grayCount).every((item) => item.entry.tier !== 'gray'),
+          playerCount,
+          withoutVideoId,
+          withoutSegment: queue.length - playerCount,
           sectionTotals,
           sectionSum: Object.values(sectionTotals).reduce((sum, count) => sum + count, 0),
           decisions: acceptanceDecisions()
