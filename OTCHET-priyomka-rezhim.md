@@ -54,6 +54,14 @@
 - Визуальный QA: `/tmp/katalog-priyomka-qa.png` (временный локальный скриншот, не коммитится).
 - `data.json`: Git diff отсутствует; SHA-256 `ba83468ebdff50195af23749dc1d45eb4d62bb425abf4cc0a76af0e87ace97b0`.
 
+## Git и GitHub Pages
+
+- Функциональный коммит: `28e18cc` (`feat(santehnika): add acceptance mode`).
+- Push: `origin/main`, успешно.
+- Live URL: `https://stampy399-cmyk.github.io/katalog-elementov/index.html#santehnika`.
+- Pages обновился на 6-й curl-проверке: HTTP `200`, 319202 байта, найдены обе сигнатуры `data-acceptance-open` и `SANTEHNIKA_SECTIONS`.
+- Live-сайт обновлён: да.
+
 ## Неавтоматизированное
 
 - Встроенный Browser был недоступен: 0 подключённых экземпляров; QA выполнен в локальном Google Chrome через Playwright CLI.
