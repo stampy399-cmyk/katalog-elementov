@@ -659,7 +659,12 @@
     .acceptance-action.is-unique { color: #f59e0b; }
     .acceptance-action.is-trash { color: var(--danger); }
     .acceptance-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
-    .acceptance-ok { width: 100%; margin-top: 8px; border-color: var(--accent); background: var(--accent); color: #fff; }
+    .acceptance-forward { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 8px; margin-top: 8px; }
+    .acceptance-ok { width: 100%; border-color: var(--accent); background: var(--accent); color: #fff; }
+    .acceptance-repeat-last { display: grid; min-height: 64px; place-content: center; gap: 3px; border-color: color-mix(in srgb, var(--accent) 62%, var(--line)); background: var(--accent-soft); color: var(--accent); line-height: 1.15; }
+    .acceptance-repeat-last strong { font-size: 12px; letter-spacing: .025em; }
+    .acceptance-repeat-last small { display: block; max-width: 100%; overflow: hidden; color: var(--text); font-size: 9px; font-weight: 700; letter-spacing: 0; text-overflow: ellipsis; white-space: nowrap; }
+    .acceptance-repeat-last:disabled { border-color: var(--line); background: var(--surface-raised); color: var(--muted); }
     .acceptance-params { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
     .acceptance-params-label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 10px; font-weight: 750; letter-spacing: .055em; }
     .acceptance-param-list { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -674,8 +679,18 @@
     .acceptance-family-choice { min-height: 38px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-raised); color: var(--text); cursor: pointer; font-size: 11px; font-weight: 700; text-align: left; }
     .acceptance-family-choice:hover, .acceptance-family-choice:focus-visible { border-color: var(--accent); }
     .acceptance-family-details summary { padding: 5px 0; color: var(--muted); cursor: pointer; font-size: 11px; }
-    .acceptance-combo-row { display: grid; grid-template-columns: minmax(0, 1fr) 42px; gap: 7px; }
-    .acceptance-combo-input { height: 44px; padding: 0 11px; border: 1px solid var(--line); background: var(--surface-raised); }
+    .acceptance-combo-atoms { display: flex; flex-wrap: wrap; gap: 7px; }
+    .acceptance-combo-atom { min-height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 99px; background: var(--surface-raised); color: var(--muted); cursor: pointer; font-size: 10px; font-weight: 800; text-transform: uppercase; }
+    .acceptance-combo-atom:hover, .acceptance-combo-atom:focus-visible { border-color: var(--accent); color: var(--text); }
+    .acceptance-combo-atom.is-active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+    .acceptance-combo-result { display: grid; gap: 3px; min-height: 52px; padding: 9px 11px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); }
+    .acceptance-combo-result span { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .055em; }
+    .acceptance-combo-result strong { overflow-wrap: anywhere; font-size: 12px; line-height: 1.35; }
+    .acceptance-combo-result.is-empty strong { color: var(--muted); font-weight: 650; }
+    .acceptance-combo-row { display: grid; grid-template-columns: minmax(0, 1fr) auto 42px; gap: 7px; }
+    .acceptance-combo-input { height: 40px; padding: 0 10px; border: 1px solid var(--line); background: var(--surface-raised); font-size: 11px; }
+    .acceptance-combo-add { min-height: 40px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); color: var(--text); cursor: pointer; font-size: 10px; font-weight: 800; }
+    .acceptance-combo-add:disabled { cursor: not-allowed; opacity: .45; }
     .acceptance-voice { display: grid; place-items: center; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); cursor: pointer; font-size: 18px; }
     .acceptance-combo-save { width: 100%; }
     .acceptance-complete { display: grid; min-height: calc(100vh - 126px); place-items: center; text-align: center; }
@@ -796,7 +811,7 @@
     @media (max-width: 680px) { .stat-summary, .ability-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ability-family-summary { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; } .ability-family-counts { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; padding-left: 18px; } }
     @media (max-width: 900px) { .comparison-columns, .acceptance-card { grid-template-columns: 1fr; } .acceptance-media { max-height: none; } }
     @media (max-width: 760px) { .player-dock { grid-template-columns: 1fr; padding: 20px 18px 0; } .player-copy { padding: 0 2px; } .catalog-toolbar { padding: 14px 12px 0; } .primary-nav { gap: 8px; padding: 9px 10px; } .primary-nav-button { padding: 0 6px; font-size: clamp(11px, 1.9vw, 20px); } .lightbox { padding: 58px 12px 38px; } .lightbox-pair { grid-template-columns: 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 10px; } .lightbox-label { font-size: 12px; } }
-    @media (max-width: 620px) { .catalog-toolbar { align-items: stretch; flex-direction: column; } .catalog-controls { align-items: stretch; } .tier-filter { display: grid; grid-template-columns: repeat(3, 1fr); } .family-filter-select { flex: 1; width: auto; } .comparison-intro { align-items: start; flex-direction: column; } .acceptance-header { grid-template-columns: minmax(0, 1fr) auto; gap: 10px; padding: 10px 12px; } .acceptance-header > div:first-child { display: none; } .acceptance-progress { text-align: left; } .acceptance-header-button[data-acceptance-export] { display: none; } .acceptance-body { padding: 12px; } .acceptance-controls { padding: 14px; } .acceptance-action { min-height: 50px; font-size: 11px; } .acceptance-simple-families, .acceptance-full-families { grid-template-columns: 1fr; } .santehnika-section-header { align-items: start; flex-direction: column; gap: 4px; } .santehnika-section-counts { text-align: left; } }
+    @media (max-width: 620px) { .catalog-toolbar { align-items: stretch; flex-direction: column; } .catalog-controls { align-items: stretch; } .tier-filter { display: grid; grid-template-columns: repeat(3, 1fr); } .family-filter-select { flex: 1; width: auto; } .comparison-intro { align-items: start; flex-direction: column; } .acceptance-header { grid-template-columns: minmax(0, 1fr) auto; gap: 10px; padding: 10px 12px; } .acceptance-header > div:first-child { display: none; } .acceptance-progress { text-align: left; } .acceptance-header-button[data-acceptance-export] { display: none; } .acceptance-body { padding: 12px; } .acceptance-controls { padding: 14px; } .acceptance-action { min-height: 50px; font-size: 11px; } .acceptance-forward { grid-template-columns: 1fr; } .acceptance-combo-row { grid-template-columns: minmax(0, 1fr) auto; } .acceptance-voice { display: none; } .acceptance-simple-families, .acceptance-full-families { grid-template-columns: 1fr; } .santehnika-section-header { align-items: start; flex-direction: column; gap: 4px; } .santehnika-section-counts { text-align: left; } }
     @media (max-width: 620px) { .server-refresh { width: 32px; padding: 0; overflow: hidden; font-size: 0; } .server-refresh::before { content: "↻"; font-size: 17px; } }
     @media (max-width: 500px) { .brand { font-size: 12px; } .brand::after { content: none; } }
   </style>
@@ -888,6 +903,7 @@
       ]);
       const ACCEPTANCE_VERDICTS = Object.freeze(['base', 'unique', 'trash', 'ok']);
       const ACCEPTANCE_PARAMS = Object.freeze(['ТЕКСТ', 'ЦИФРА', 'ЦВЕТ', 'РАЗМЕР', 'СКОРОСТЬ', 'ПОЗИЦИЯ', 'КАРТИНКА']);
+      const ACCEPTANCE_COMBO_ATOMS = Object.freeze(['тёплый фильтр', 'глитч', 'засветка', 'зум', 'шум/зерно', 'пиктограмма', 'текст', 'овал/обводка', 'кресты']);
       const TYPING_QUIET_PERIOD = 1200;
       const DELETE_CONFIRMATION = 'УДАЛИТЬ';
       const PUBLISHED_DATA_URL = 'data.json';
@@ -1010,6 +1026,9 @@
           index: 0,
           panel: '',
           params: [],
+          comboAtoms: [],
+          comboCustomAtoms: [],
+          lastDecision: null,
           busy: false,
           recognition: null
         },
@@ -2789,9 +2808,71 @@
         return `<div class="acceptance-panel" data-acceptance-family-panel><p class="acceptance-panel-label">Куда отнести карточку?</p><div class="acceptance-simple-families">${simple}</div><details class="acceptance-family-details"><summary>Полный список семейств</summary><div class="acceptance-full-families">${full}</div></details></div>`;
       }
 
+      function normalizeAcceptanceComboAtom(value) {
+        return asText(value).trim().replace(/\s+/g, ' ');
+      }
+
+      function acceptanceComboAtomKey(value) {
+        return normalizeAcceptanceComboAtom(value).toLocaleLowerCase('ru');
+      }
+
+      function acceptanceComboAtomOptions(elements = state.elements, customAtoms = state.acceptance.comboCustomAtoms) {
+        const atoms = [];
+        const seen = new Set();
+        const add = (value) => {
+          const atom = normalizeAcceptanceComboAtom(value);
+          const key = acceptanceComboAtomKey(atom);
+          if (!atom || seen.has(key)) return;
+          seen.add(key);
+          atoms.push(atom);
+        };
+        ACCEPTANCE_COMBO_ATOMS.forEach(add);
+        elements.map((element) => ({ id: String(element.id), decision: acceptanceDecision(element) }))
+          .filter(({ decision }) => decision?.combo)
+          .sort((left, right) => right.decision.ts - left.decision.ts || left.id.localeCompare(right.id))
+          .forEach(({ decision }) => decision.combo.split('+').forEach(add));
+        customAtoms.forEach(add);
+        return atoms;
+      }
+
+      function acceptanceComboResult(atoms = state.acceptance.comboAtoms) {
+        return atoms.map(normalizeAcceptanceComboAtom).filter(Boolean).join(' + ');
+      }
+
+      function acceptanceComboAtomButtonsMarkup() {
+        const selected = new Set(state.acceptance.comboAtoms.map(acceptanceComboAtomKey));
+        return acceptanceComboAtomOptions().map((atom) => {
+          const active = selected.has(acceptanceComboAtomKey(atom));
+          return `<button class="acceptance-combo-atom ${active ? 'is-active' : ''}" type="button" data-acceptance-combo-atom="${escapeAttribute(atom)}" aria-pressed="${active}">${escapeHtml(atom)}</button>`;
+        }).join('');
+      }
+
       function acceptanceComboMarkup() {
         const voiceAvailable = Boolean(globalThis.SpeechRecognition || globalThis.webkitSpeechRecognition);
-        return `<div class="acceptance-panel" data-acceptance-combo-panel><p class="acceptance-panel-label">Опишите одной строкой, например: «текст + овал + кресты»</p><div class="acceptance-combo-row"><input class="acceptance-combo-input" data-acceptance-combo-input placeholder="текст + овал + кресты" autocomplete="off"><button class="acceptance-voice" type="button" data-acceptance-voice ${voiceAvailable ? '' : 'disabled'} title="${voiceAvailable ? 'Продиктовать' : 'Голосовой ввод не поддерживается'}" aria-label="Продиктовать">🎙</button></div><button class="acceptance-action acceptance-combo-save" type="button" data-acceptance-combo-save disabled>СОХРАНИТЬ СКЛЕЙКУ</button></div>`;
+        const result = acceptanceComboResult();
+        return `<div class="acceptance-panel" data-acceptance-combo-panel><p class="acceptance-panel-label">Выберите всё, из чего состоит склейка. Порядок нажатий сохранится.</p><div class="acceptance-combo-atoms" data-acceptance-combo-atoms>${acceptanceComboAtomButtonsMarkup()}</div><div class="acceptance-combo-result ${result ? '' : 'is-empty'}"><span>СКЛЕЙКА</span><strong data-acceptance-combo-result>${escapeHtml(result || 'Выберите один или несколько атомов')}</strong></div><div class="acceptance-combo-row"><input class="acceptance-combo-input" data-acceptance-combo-input placeholder="Своё слово (необязательно)" autocomplete="off"><button class="acceptance-combo-add" type="button" data-acceptance-combo-add disabled>ДОБАВИТЬ</button><button class="acceptance-voice" type="button" data-acceptance-voice ${voiceAvailable ? '' : 'disabled'} title="${voiceAvailable ? 'Продиктовать своё слово' : 'Голосовой ввод не поддерживается'}" aria-label="Продиктовать своё слово">🎙</button></div><button class="acceptance-action acceptance-combo-save" type="button" data-acceptance-combo-save ${result ? '' : 'disabled'}>СОХРАНИТЬ СКЛЕЙКУ</button></div>`;
+      }
+
+      function acceptanceDecisionSummary(decision) {
+        if (!decision) return 'Сначала ответьте на одну карточку';
+        const verdicts = { base: 'БАЗА', unique: 'УНИК', trash: 'МУСОР', ok: 'ОК' };
+        const parts = [decision.combo ? `СКЛЕЙКА: ${decision.combo}` : decision.family ? `РАЗДЕЛ: ${decision.family}` : verdicts[decision.verdict] || 'ОТВЕТ'];
+        if (decision.params?.length) parts.push(`КРУТИТСЯ: ${decision.params.join(', ')}`);
+        return parts.join(' · ');
+      }
+
+      function repeatAcceptanceFields(decision) {
+        if (!decision || !ACCEPTANCE_VERDICTS.includes(decision.verdict)) return null;
+        const fields = { verdict: decision.verdict, params: [...(decision.params || [])] };
+        if (decision.family) fields.family = decision.family;
+        if (decision.combo) fields.combo = decision.combo;
+        return fields;
+      }
+
+      function acceptanceRepeatLastMarkup(busy) {
+        const decision = state.acceptance.lastDecision;
+        const summary = acceptanceDecisionSummary(decision);
+        return `<button class="acceptance-action acceptance-repeat-last" type="button" data-repeat-last title="${escapeAttribute(summary)}" ${busy || !decision ? 'disabled' : ''}><strong>ТАК ЖЕ, КАК ПРОШЛАЯ</strong><small>${escapeHtml(summary)}</small></button>`;
       }
 
       function acceptanceParamsMarkup(selected, disabled = '') {
@@ -2827,7 +2908,7 @@
         const params = acceptanceParamsMarkup(acceptance.params, disabled);
         const panel = acceptance.panel === 'family' ? acceptanceFamilyPickerMarkup(santehnikaData())
           : acceptance.panel === 'combo' ? acceptanceComboMarkup() : '';
-        dom.acceptanceMode.innerHTML = `${header}<main class="acceptance-body"><article class="acceptance-card" data-acceptance-element-id="${escapeAttribute(element.id)}"><div class="acceptance-visual"><div class="acceptance-media">${media}</div>${mediaAction}<div class="acceptance-caption"><strong>${escapeHtml(project.title || 'Ролик без названия')}</strong><span>${escapeHtml(timecode)}</span>${asText(element.description).trim() ? `<span>${escapeHtml(element.description)}</span>` : ''}</div></div><section class="acceptance-controls"><h2 class="acceptance-family">${escapeHtml(entry.family)}</h2><p class="acceptance-technique">Приём: ${escapeHtml(entry.technique || 'не указан')}</p><div class="acceptance-current-meta"><span>${escapeHtml(section?.title || 'ПРОЧЕЕ')}</span><span>${escapeHtml(SANTEHNIKA_TIER_LABELS[entry.tier])}</span>${category ? `<span>${escapeHtml(category)}</span>` : ''}</div><div class="acceptance-verdicts"><button class="acceptance-action is-base" type="button" data-acceptance-verdict="base" ${disabled}>БАЗА</button><button class="acceptance-action is-unique" type="button" data-acceptance-verdict="unique" ${disabled}>УНИК</button><button class="acceptance-action is-trash" type="button" data-acceptance-verdict="trash" ${disabled}>МУСОР</button></div><div class="acceptance-secondary"><button class="acceptance-action" type="button" data-acceptance-panel="family" ${disabled}>РАЗДЕЛ НЕ ТОТ</button><button class="acceptance-action" type="button" data-acceptance-panel="combo" ${disabled}>ЭТО СКЛЕЙКА</button></div><button class="acceptance-action acceptance-ok" type="button" data-acceptance-verdict="ok" ${disabled}>ОК, ДАЛЬШЕ</button>${params}${panel}</section></article></main>`;
+        dom.acceptanceMode.innerHTML = `${header}<main class="acceptance-body"><article class="acceptance-card" data-acceptance-element-id="${escapeAttribute(element.id)}"><div class="acceptance-visual"><div class="acceptance-media">${media}</div>${mediaAction}<div class="acceptance-caption"><strong>${escapeHtml(project.title || 'Ролик без названия')}</strong><span>${escapeHtml(timecode)}</span>${asText(element.description).trim() ? `<span>${escapeHtml(element.description)}</span>` : ''}</div></div><section class="acceptance-controls"><h2 class="acceptance-family">${escapeHtml(entry.family)}</h2><p class="acceptance-technique">Приём: ${escapeHtml(entry.technique || 'не указан')}</p><div class="acceptance-current-meta"><span>${escapeHtml(section?.title || 'ПРОЧЕЕ')}</span><span>${escapeHtml(SANTEHNIKA_TIER_LABELS[entry.tier])}</span>${category ? `<span>${escapeHtml(category)}</span>` : ''}</div><div class="acceptance-verdicts"><button class="acceptance-action is-base" type="button" data-acceptance-verdict="base" ${disabled}>БАЗА</button><button class="acceptance-action is-unique" type="button" data-acceptance-verdict="unique" ${disabled}>УНИК</button><button class="acceptance-action is-trash" type="button" data-acceptance-verdict="trash" ${disabled}>МУСОР</button></div><div class="acceptance-secondary"><button class="acceptance-action" type="button" data-acceptance-panel="family" ${disabled}>РАЗДЕЛ НЕ ТОТ</button><button class="acceptance-action" type="button" data-acceptance-panel="combo" ${disabled}>ЭТО СКЛЕЙКА</button></div><div class="acceptance-forward"><button class="acceptance-action acceptance-ok" type="button" data-acceptance-verdict="ok" ${disabled}>ОК, ДАЛЬШЕ</button>${acceptanceRepeatLastMarkup(acceptance.busy)}</div>${params}${panel}</section></article></main>`;
       }
 
       function openAcceptanceMode() {
@@ -2837,6 +2918,9 @@
         state.acceptance.index = firstPending === -1 ? queue.length : firstPending;
         state.acceptance.panel = '';
         state.acceptance.params = [];
+        state.acceptance.comboAtoms = [];
+        state.acceptance.comboCustomAtoms = [];
+        state.acceptance.lastDecision = null;
         state.acceptance.busy = false;
         state.acceptance.open = true;
         document.body.classList.add('has-acceptance');
@@ -2850,6 +2934,9 @@
         state.acceptance.open = false;
         state.acceptance.panel = '';
         state.acceptance.params = [];
+        state.acceptance.comboAtoms = [];
+        state.acceptance.comboCustomAtoms = [];
+        state.acceptance.lastDecision = null;
         document.body.classList.remove('has-acceptance');
         renderAcceptanceMode();
         requestAnimationFrame(() => dom.workspaceInner.querySelector('[data-acceptance-open]')?.focus());
@@ -2865,17 +2952,21 @@
         const combo = asText(fields.combo).trim();
         if (family) decision.family = family;
         if (combo) decision.combo = combo;
-        const params = ACCEPTANCE_PARAMS.filter((param) => acceptance.params.includes(param));
+        const sourceParams = hasOwn(fields, 'params') && Array.isArray(fields.params) ? fields.params : acceptance.params;
+        const params = ACCEPTANCE_PARAMS.filter((param) => sourceParams.includes(param));
         if (params.length) decision.params = params;
-        decision.ts = Date.now();
+        decision.ts = Math.max(Date.now(), Number(acceptance.lastDecision?.ts || 0) + 1);
         item.element.acceptance = decision;
         acceptance.busy = true;
         renderAcceptanceMode();
         try {
           await saveElement(item.element, false);
+          acceptance.lastDecision = acceptanceDecision(item.element);
           acceptance.index += 1;
           acceptance.panel = '';
           acceptance.params = [];
+          acceptance.comboAtoms = [];
+          acceptance.comboCustomAtoms = [];
         } catch (error) {
           if (previous === undefined) delete item.element.acceptance;
           else item.element.acceptance = previous;
@@ -2884,6 +2975,58 @@
           renderAcceptanceMode();
           requestAnimationFrame(() => dom.acceptanceMode.querySelector('[data-acceptance-verdict]')?.focus());
         }
+      }
+
+      function refreshAcceptanceComboPanel(rebuildAtoms = false) {
+        const panel = dom.acceptanceMode.querySelector('[data-acceptance-combo-panel]');
+        if (!panel) return;
+        const selected = new Set(state.acceptance.comboAtoms.map(acceptanceComboAtomKey));
+        const atomList = panel.querySelector('[data-acceptance-combo-atoms]');
+        if (rebuildAtoms && atomList) atomList.innerHTML = acceptanceComboAtomButtonsMarkup();
+        for (const button of panel.querySelectorAll('[data-acceptance-combo-atom]')) {
+          const active = selected.has(acceptanceComboAtomKey(button.dataset.acceptanceComboAtom));
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-pressed', String(active));
+        }
+        const result = acceptanceComboResult();
+        const resultText = panel.querySelector('[data-acceptance-combo-result]');
+        if (resultText) resultText.textContent = result || 'Выберите один или несколько атомов';
+        resultText?.closest('.acceptance-combo-result')?.classList.toggle('is-empty', !result);
+        const saveButton = panel.querySelector('[data-acceptance-combo-save]');
+        if (saveButton) saveButton.disabled = !result || state.acceptance.busy;
+        const input = panel.querySelector('[data-acceptance-combo-input]');
+        const addButton = panel.querySelector('[data-acceptance-combo-add]');
+        if (addButton) addButton.disabled = !input?.value.trim() || state.acceptance.busy;
+      }
+
+      function toggleAcceptanceComboAtom(atom) {
+        const normalized = normalizeAcceptanceComboAtom(atom);
+        const key = acceptanceComboAtomKey(normalized);
+        if (!key || state.acceptance.busy) return;
+        const index = state.acceptance.comboAtoms.findIndex((candidate) => acceptanceComboAtomKey(candidate) === key);
+        if (index === -1) state.acceptance.comboAtoms.push(normalized);
+        else state.acceptance.comboAtoms.splice(index, 1);
+        refreshAcceptanceComboPanel();
+      }
+
+      function addAcceptanceCustomAtom(value) {
+        const normalized = normalizeAcceptanceComboAtom(value);
+        const key = acceptanceComboAtomKey(normalized);
+        if (!key || state.acceptance.busy) return false;
+        const existing = acceptanceComboAtomOptions().find((atom) => acceptanceComboAtomKey(atom) === key);
+        const atom = existing || normalized;
+        if (!existing) state.acceptance.comboCustomAtoms.push(atom);
+        if (!state.acceptance.comboAtoms.some((candidate) => acceptanceComboAtomKey(candidate) === key)) state.acceptance.comboAtoms.push(atom);
+        const input = dom.acceptanceMode.querySelector('[data-acceptance-combo-input]');
+        if (input) input.value = '';
+        refreshAcceptanceComboPanel(true);
+        return true;
+      }
+
+      function repeatLastAcceptanceDecision() {
+        const fields = repeatAcceptanceFields(state.acceptance.lastDecision);
+        if (!fields || state.acceptance.busy) return;
+        saveAcceptanceDecision(fields);
       }
 
       function startAcceptanceVoiceInput() {
@@ -2900,11 +3043,10 @@
         recognition.interimResults = false;
         recognition.maxAlternatives = 1;
         recognition.addEventListener('result', (event) => {
-          input.value = asText(event.results?.[0]?.[0]?.transcript).trim();
-          input.dispatchEvent(new Event('input', { bubbles: true }));
+          addAcceptanceCustomAtom(event.results?.[0]?.[0]?.transcript);
         });
         recognition.addEventListener('error', (event) => {
-          if (!['aborted', 'no-speech'].includes(event.error)) showToast('Не удалось распознать голос. Введите текст.');
+          if (!['aborted', 'no-speech'].includes(event.error)) showToast('Не удалось распознать голос. Добавьте слово вручную.');
         });
         recognition.addEventListener('end', () => { state.acceptance.recognition = null; });
         recognition.start();
@@ -5155,6 +5297,15 @@
           repeatYoutubeSegment(dom.acceptanceMode);
           return;
         }
+        if (event.target.closest('[data-repeat-last]')) {
+          repeatLastAcceptanceDecision();
+          return;
+        }
+        const comboAtom = event.target.closest('[data-acceptance-combo-atom]')?.dataset.acceptanceComboAtom;
+        if (comboAtom) {
+          toggleAcceptanceComboAtom(comboAtom);
+          return;
+        }
         const paramButton = event.target.closest('[data-acceptance-param]');
         if (paramButton && !state.acceptance.busy) {
           const param = paramButton.dataset.acceptanceParam;
@@ -5192,8 +5343,12 @@
           saveAcceptanceDecision({ verdict: 'ok', family });
           return;
         }
+        if (event.target.closest('[data-acceptance-combo-add]')) {
+          addAcceptanceCustomAtom(dom.acceptanceMode.querySelector('[data-acceptance-combo-input]')?.value);
+          return;
+        }
         if (event.target.closest('[data-acceptance-combo-save]')) {
-          const combo = dom.acceptanceMode.querySelector('[data-acceptance-combo-input]')?.value.trim() || '';
+          const combo = acceptanceComboResult();
           if (combo) saveAcceptanceDecision({ verdict: 'ok', combo });
           return;
         }
@@ -5203,14 +5358,14 @@
       dom.acceptanceMode.addEventListener('input', (event) => {
         const input = event.target.closest('[data-acceptance-combo-input]');
         if (!input) return;
-        const button = dom.acceptanceMode.querySelector('[data-acceptance-combo-save]');
+        const button = dom.acceptanceMode.querySelector('[data-acceptance-combo-add]');
         if (button) button.disabled = !input.value.trim();
       });
 
       dom.acceptanceMode.addEventListener('keydown', (event) => {
         if (event.key !== 'Enter' || !event.target.matches('[data-acceptance-combo-input]')) return;
         event.preventDefault();
-        dom.acceptanceMode.querySelector('[data-acceptance-combo-save]:not(:disabled)')?.click();
+        dom.acceptanceMode.querySelector('[data-acceptance-combo-add]:not(:disabled)')?.click();
       });
 
       dom.acceptanceMode.addEventListener('error', (event) => {
@@ -5506,6 +5661,16 @@
           expect(santehnikaSectionId({ category: 'Переход' }, { family: 'TEXT-TYPOGRAPHY' }) === 'transitions', 'manual category overrides machine family');
           const decision = acceptanceDecision({ id: 'test', acceptance: { id: 'test', verdict: 'ok', combo: 'текст + овал', params: ['СКОРОСТЬ', 'ТЕКСТ', 'НЕИЗВЕСТНО'], ts: 1 } });
           expect(decision?.params?.join() === 'ТЕКСТ,СКОРОСТЬ', 'acceptance decision keeps canonical params');
+          const atomOptions = acceptanceComboAtomOptions([
+            { id: 'older', acceptance: { id: 'older', verdict: 'ok', combo: 'текст + архивный атом', ts: 1 } },
+            { id: 'newer', acceptance: { id: 'newer', verdict: 'ok', combo: 'АРХИВНЫЙ АТОМ + своя форма', ts: 2 } }
+          ], ['новый атом']);
+          expect(atomOptions.slice(0, ACCEPTANCE_COMBO_ATOMS.length).join('|') === ACCEPTANCE_COMBO_ATOMS.join('|'), 'combo starter atoms keep fixed order');
+          expect(atomOptions.filter((atom) => acceptanceComboAtomKey(atom) === 'архивный атом').length === 1 && atomOptions.includes('своя форма') && atomOptions.includes('новый атом'), 'saved combo atoms are unique and extended');
+          expect(acceptanceComboResult(['зум', 'тёплый фильтр']) === 'зум + тёплый фильтр', 'combo result keeps click order');
+          const repeated = repeatAcceptanceFields({ id: 'old', verdict: 'ok', family: 'Графика', combo: 'овал + кресты', params: ['ТЕКСТ'], ts: 10 });
+          expect(repeated?.verdict === 'ok' && repeated.family === 'Графика' && repeated.combo === 'овал + кресты' && repeated.params?.join() === 'ТЕКСТ' && !hasOwn(repeated, 'id') && !hasOwn(repeated, 'ts'), 'repeat fields copy the answer without id and timestamp');
+          expect(acceptanceDecisionSummary({ verdict: 'ok', combo: 'овал + кресты', params: ['ТЕКСТ'] }) === 'СКЛЕЙКА: овал + кресты · КРУТИТСЯ: ТЕКСТ', 'repeat button explains the copied answer');
           expect(viewFromHash('#santehnika') === 'santehnika' && viewFromHash('#comparison') === 'comparison' && viewFromHash('') === 'catalog', 'hash routing covers all three views');
         }
         expect(presenceCount().total >= 1, 'presence counts at least this tab');
