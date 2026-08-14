@@ -606,6 +606,69 @@
     .santehnika-tier-group.is-gray .santehnika-tier-heading h3 { color: var(--muted); }
     .santehnika-tier-count { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
     .santehnika-technique { min-width: 0; }
+    .santehnika-intro-actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .acceptance-launch, .acceptance-export { min-height: 42px; padding: 0 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--text); cursor: pointer; font-size: 12px; font-weight: 800; letter-spacing: .04em; }
+    .acceptance-launch { min-height: 52px; padding: 0 24px; border-color: var(--accent); background: var(--accent); color: #fff; font-size: 15px; }
+    .acceptance-launch:hover, .acceptance-launch:focus-visible, .acceptance-export:hover, .acceptance-export:focus-visible { border-color: var(--accent); transform: translateY(-1px); }
+    .santehnika-toc { position: sticky; z-index: 7; top: 0; display: flex; gap: 7px; padding: 9px; overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--bg) 92%, transparent); box-shadow: 0 8px 24px rgba(0, 0, 0, .13); backdrop-filter: blur(14px); }
+    .santehnika-toc-button { flex: 1 0 164px; min-height: 50px; padding: 7px 9px; border: 1px solid transparent; border-radius: 8px; background: var(--surface); color: var(--text); cursor: pointer; text-align: left; }
+    .santehnika-toc-button:hover:not(:disabled), .santehnika-toc-button:focus-visible:not(:disabled) { border-color: var(--accent); }
+    .santehnika-toc-button:disabled { cursor: default; opacity: .45; }
+    .santehnika-toc-button strong, .santehnika-toc-button span { display: block; }
+    .santehnika-toc-button strong { font-size: 11px; letter-spacing: .045em; }
+    .santehnika-toc-button span { margin-top: 3px; color: var(--muted); font-size: 9px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .santehnika-sections { display: grid; gap: 34px; }
+    .santehnika-section { scroll-margin-top: 82px; }
+    .santehnika-section-header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 16px; padding: 0 0 10px; border-bottom: 2px solid var(--line); }
+    .santehnika-section-header h2 { margin: 0; font-size: 18px; letter-spacing: .055em; }
+    .santehnika-section-counts { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; text-align: right; }
+    .santehnika-section-families { display: grid; gap: 26px; }
+    body.has-acceptance { overflow: hidden; }
+    .acceptance-mode { position: fixed; z-index: 190; inset: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); overflow: hidden; background: var(--bg); }
+    .acceptance-mode[hidden] { display: none; }
+    .acceptance-header { display: grid; grid-template-columns: auto minmax(190px, 1fr) auto; align-items: center; gap: 18px; min-height: 82px; padding: 12px 22px; border-bottom: 1px solid var(--line); background: var(--surface); }
+    .acceptance-title { margin: 0; font-size: 17px; letter-spacing: .045em; }
+    .acceptance-phase { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .045em; text-transform: uppercase; }
+    .acceptance-progress { font-size: clamp(28px, 4vw, 46px); font-weight: 850; font-variant-numeric: tabular-nums; letter-spacing: -.045em; line-height: 1; text-align: center; }
+    .acceptance-header-actions { display: flex; align-items: center; gap: 8px; }
+    .acceptance-header-button { min-height: 38px; padding: 0 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); color: var(--text); cursor: pointer; font-size: 11px; font-weight: 750; }
+    .acceptance-close { width: 40px; padding: 0; font-size: 24px; line-height: 1; }
+    .acceptance-body { min-height: 0; padding: 22px; overflow-y: auto; }
+    .acceptance-card { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(320px, .65fr); gap: 22px; width: min(1240px, 100%); margin: 0 auto; }
+    .acceptance-visual { display: grid; min-height: 0; align-content: start; gap: 12px; }
+    .acceptance-media { display: grid; width: 100%; max-height: 62vh; overflow: hidden; aspect-ratio: 16 / 9; place-items: center; border: 1px solid var(--line); border-radius: 14px; background: #050607; box-shadow: var(--shadow); }
+    .acceptance-media img, .acceptance-media video { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .acceptance-media .paste-hint { position: static; width: calc(100% - 24px); height: calc(100% - 24px); }
+    .acceptance-caption { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; color: var(--muted); font-size: 12px; }
+    .acceptance-caption strong { color: var(--text); }
+    .acceptance-controls { align-self: start; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+    .acceptance-family { margin: 0; font-size: 19px; line-height: 1.2; }
+    .acceptance-technique { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+    .acceptance-current-meta { display: flex; flex-wrap: wrap; gap: 7px; margin: 13px 0 18px; }
+    .acceptance-current-meta span { padding: 4px 8px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 10px; font-weight: 700; }
+    .acceptance-verdicts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .acceptance-action { min-height: 54px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-raised); color: var(--text); cursor: pointer; font-size: 13px; font-weight: 850; letter-spacing: .025em; }
+    .acceptance-action:hover:not(:disabled), .acceptance-action:focus-visible:not(:disabled) { border-color: var(--accent); transform: translateY(-1px); }
+    .acceptance-action:disabled { cursor: wait; opacity: .52; }
+    .acceptance-action.is-base { color: var(--accent); }
+    .acceptance-action.is-unique { color: #f59e0b; }
+    .acceptance-action.is-trash { color: var(--danger); }
+    .acceptance-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+    .acceptance-ok { width: 100%; margin-top: 8px; border-color: var(--accent); background: var(--accent); color: #fff; }
+    .acceptance-panel { display: grid; gap: 9px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+    .acceptance-panel[hidden] { display: none; }
+    .acceptance-panel-label { margin: 0; color: var(--muted); font-size: 11px; }
+    .acceptance-simple-families, .acceptance-full-families { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .acceptance-family-choice { min-height: 38px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-raised); color: var(--text); cursor: pointer; font-size: 11px; font-weight: 700; text-align: left; }
+    .acceptance-family-choice:hover, .acceptance-family-choice:focus-visible { border-color: var(--accent); }
+    .acceptance-family-details summary { padding: 5px 0; color: var(--muted); cursor: pointer; font-size: 11px; }
+    .acceptance-combo-row { display: grid; grid-template-columns: minmax(0, 1fr) 42px; gap: 7px; }
+    .acceptance-combo-input { height: 44px; padding: 0 11px; border: 1px solid var(--line); background: var(--surface-raised); }
+    .acceptance-voice { display: grid; place-items: center; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); cursor: pointer; font-size: 18px; }
+    .acceptance-combo-save { width: 100%; }
+    .acceptance-complete { display: grid; min-height: calc(100vh - 126px); place-items: center; text-align: center; }
+    .acceptance-complete h2 { margin: 0 0 8px; font-size: 30px; }
+    .acceptance-complete p { margin: 0 0 20px; color: var(--muted); }
     .comparison-page { display: grid; gap: 18px; }
     .comparison-intro { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
     .comparison-intro h1 { margin: 0; font-size: 20px; letter-spacing: -.025em; }
@@ -716,9 +779,9 @@
     @media (max-width: 1000px) { .primary-nav-button { padding: 0 10px; font-size: clamp(14px, 1.7vw, 20px); } }
     @media (max-width: 680px) { .santehnika-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .santehnika-intro { align-items: start; flex-direction: column; } }
     @media (max-width: 680px) { .stat-summary, .ability-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ability-family-summary { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; } .ability-family-counts { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; padding-left: 18px; } }
-    @media (max-width: 900px) { .comparison-columns { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .comparison-columns, .acceptance-card { grid-template-columns: 1fr; } .acceptance-media { max-height: none; } }
     @media (max-width: 760px) { .player-dock { grid-template-columns: 1fr; padding: 20px 18px 0; } .player-copy { padding: 0 2px; } .catalog-toolbar { padding: 14px 12px 0; } .primary-nav { gap: 8px; padding: 9px 10px; } .primary-nav-button { padding: 0 6px; font-size: clamp(11px, 1.9vw, 20px); } .lightbox { padding: 58px 12px 38px; } .lightbox-pair { grid-template-columns: 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 10px; } .lightbox-label { font-size: 12px; } }
-    @media (max-width: 620px) { .catalog-toolbar { align-items: stretch; flex-direction: column; } .catalog-controls { align-items: stretch; } .tier-filter { display: grid; grid-template-columns: repeat(3, 1fr); } .family-filter-select { flex: 1; width: auto; } .comparison-intro { align-items: start; flex-direction: column; } }
+    @media (max-width: 620px) { .catalog-toolbar { align-items: stretch; flex-direction: column; } .catalog-controls { align-items: stretch; } .tier-filter { display: grid; grid-template-columns: repeat(3, 1fr); } .family-filter-select { flex: 1; width: auto; } .comparison-intro { align-items: start; flex-direction: column; } .acceptance-header { grid-template-columns: minmax(0, 1fr) auto; gap: 10px; padding: 10px 12px; } .acceptance-header > div:first-child { display: none; } .acceptance-progress { text-align: left; } .acceptance-header-button[data-acceptance-export] { display: none; } .acceptance-body { padding: 12px; } .acceptance-controls { padding: 14px; } .acceptance-action { min-height: 50px; font-size: 11px; } .acceptance-simple-families, .acceptance-full-families { grid-template-columns: 1fr; } .santehnika-section-header { align-items: start; flex-direction: column; gap: 4px; } .santehnika-section-counts { text-align: left; } }
     @media (max-width: 620px) { .server-refresh { width: 32px; padding: 0; overflow: hidden; font-size: 0; } .server-refresh::before { content: "↻"; font-size: 17px; } }
     @media (max-width: 500px) { .brand { font-size: 12px; } .brand::after { content: none; } }
   </style>
@@ -763,6 +826,8 @@
     </main>
   </div>
 
+  <section id="acceptanceMode" class="acceptance-mode" role="dialog" aria-modal="true" aria-label="Режим приёмки" hidden></section>
+
   <section id="menuPanel" class="panel menu-panel" aria-label="Меню">
     <button class="menu-item" type="button" data-action="export-json"><span class="menu-icon">⇩</span>Экспорт JSON</button>
     <button class="menu-item" type="button" data-action="import-json"><span class="menu-icon">⇧</span>Импорт JSON</button>
@@ -806,6 +871,7 @@
         'TEXT-TYPOGRAPHY', 'POSITION-SLIDE', 'GRID-LINES', 'LIGHT-GLOW', 'SATURATION-COLOR', 'OTHER',
         'CROSSFADE', 'BLEND-MODE', 'GEOMETRY-SHAPE', 'EMPTY', 'CAMERA-MOTION', 'BLUR-EFFECT'
       ]);
+      const ACCEPTANCE_VERDICTS = Object.freeze(['base', 'unique', 'trash', 'ok']);
       const TYPING_QUIET_PERIOD = 1200;
       const DELETE_CONFIRMATION = 'УДАЛИТЬ';
       const PUBLISHED_DATA_URL = 'data.json';
@@ -862,7 +928,8 @@
         calibrationSurface: byId('calibrationSurface'),
         modalSurface: byId('modalSurface'),
         toast: byId('toast'),
-        importFile: byId('importFile')
+        importFile: byId('importFile'),
+        acceptanceMode: byId('acceptanceMode')
       };
 
       const initialComparisonFamily = globalThis.location?.hash === '#comparison'
@@ -921,6 +988,14 @@
         expandedAbilityFamilies: new Set(initialComparisonFamily ? [initialComparisonFamily] : []),
         comparisonCarousel: new Map(),
         lightbox: null,
+        acceptance: {
+          open: false,
+          queue: [],
+          index: 0,
+          panel: '',
+          busy: false,
+          recognition: null
+        },
         player: {
           apiPromise: null,
           instance: null,
@@ -2334,6 +2409,14 @@
       const SANTEHNIKA_TIER_ORDER = Object.freeze(['base', 'unique', 'gray']);
       const SANTEHNIKA_TIER_TITLES = Object.freeze({ base: 'Базовый набор', unique: 'Уникальные вставки', gray: 'Серая зона' });
       const SANTEHNIKA_TIER_LABELS = Object.freeze({ base: 'БАЗОВЫЙ НАБОР', unique: 'УНИКАЛЬНАЯ ВСТАВКА', gray: 'СЕРАЯ ЗОНА' });
+      const SANTEHNIKA_SECTIONS = Object.freeze([
+        { id: 'transitions', title: 'ПЕРЕХОДЫ', label: 'Переходы', families: Object.freeze(['HARD-CUT', 'CROSSFADE', 'OPACITY-FADE', 'BLEND-MODE']) },
+        { id: 'particles', title: 'ЧАСТИЦЫ', label: 'Частицы', families: Object.freeze(['PARTICLES']) },
+        { id: 'footage', title: 'ФУТАЖИ/КАРТИНКИ', label: 'Футажи/картинки', families: Object.freeze(['PHOTO-IMAGE']) },
+        { id: 'typography', title: 'ТИПОГРАФИКА', label: 'Типографика', families: Object.freeze(['TEXT-TYPOGRAPHY']) },
+        { id: 'graphics', title: 'ГРАФИКА', label: 'Графика', families: Object.freeze(['GEOMETRY-SHAPE', 'GRID-LINES']) },
+        { id: 'other', title: 'ПРОЧЕЕ', label: 'Прочее', families: Object.freeze([]) }
+      ]);
       // Оценка высоты ещё не смонтированного семейства, чтобы полоса прокрутки не прыгала:
       // сетка карточек — 4 колонки по ~236 px, плюс заголовок группы.
       const SANTEHNIKA_CARD_HEIGHT = 236;
@@ -2385,17 +2468,40 @@
         return needles.some((needle) => haystack.includes(needle));
       }
 
+      function santehnikaOrderedFamilies(data) {
+        const ordered = SANTEHNIKA_SECTIONS.flatMap((section) => section.families);
+        for (const family of data.families.map((entry) => entry.family)) {
+          if (!ordered.includes(family)) ordered.push(family);
+        }
+        return ordered;
+      }
+
+      function santehnikaCategorySection(category) {
+        const key = categoryKey(category);
+        if (key.includes('переход')) return 'transitions';
+        if (key.includes('частиц')) return 'particles';
+        if (key.includes('футаж') || key.includes('изображ') || key.includes('картин')) return 'footage';
+        if (key.includes('типограф') || key === 'текст') return 'typography';
+        if (key.includes('инфограф') || key.includes('график') || key.includes('геометр') || key.includes('сетк') || key.includes('лини')) return 'graphics';
+        return 'other';
+      }
+
+      function santehnikaSectionId(element, entry) {
+        if (categoryName(element?.category)) return santehnikaCategorySection(element.category);
+        return SANTEHNIKA_SECTIONS.find((section) => section.families.includes(entry.family))?.id || 'other';
+      }
+
       function santehnikaGroups(data) {
         const needles = searchNeedles(state.search.trim());
-        const groups = new Map(data.families.map((family) => [family.family, {
-          family: family.family,
-          name: family.name,
-          total: family.elements,
-          techniques: family.techniques,
-          byTier: family.byTier,
+        const sections = SANTEHNIKA_SECTIONS.map((definition) => ({
+          ...definition,
           shown: 0,
-          tiers: { base: [], unique: [], gray: [] }
-        }]));
+          byTier: { base: 0, unique: 0, gray: 0 },
+          families: new Map(),
+          familyList: []
+        }));
+        const sectionById = new Map(sections.map((section) => [section.id, section]));
+        const familyMeta = new Map(data.families.map((family) => [family.family, family]));
         const editing = [];
         let shown = 0;
         for (const element of state.elements) {
@@ -2408,23 +2514,41 @@
           if (!santehnikaMatches(project, element, entry, needles)) continue;
           shown += 1;
           const item = { project, element, entry };
+          const section = sectionById.get(santehnikaSectionId(element, entry));
+          section.shown += 1;
+          section.byTier[entry.tier] += 1;
           if (String(element.id) === String(state.editingElementId)) {
             editing.push(item);
             continue;
           }
-          const group = groups.get(entry.family);
-          if (!group) continue;
+          let group = section.families.get(entry.family);
+          if (!group) {
+            group = {
+              key: `${section.id}:${entry.family}`,
+              family: entry.family,
+              name: familyMeta.get(entry.family)?.name || '',
+              shown: 0,
+              byTier: { base: 0, unique: 0, gray: 0 },
+              tiers: { base: [], unique: [], gray: [] }
+            };
+            section.families.set(entry.family, group);
+          }
           group.tiers[entry.tier].push(item);
+          group.byTier[entry.tier] += 1;
           group.shown += 1;
         }
-        const order = new Map(state.projects.map((project, index) => [String(project.id), index]));
-        for (const group of groups.values()) {
-          for (const tier of SANTEHNIKA_TIER_ORDER) {
-            group.tiers[tier].sort((left, right) => (order.get(String(left.element.projectId)) - order.get(String(right.element.projectId)))
-              || (elementNumber(left.element) - elementNumber(right.element)));
+        const projectOrder = new Map(state.projects.map((project, index) => [String(project.id), index]));
+        const familyOrder = new Map(santehnikaOrderedFamilies(data).map((family, index) => [family, index]));
+        for (const section of sections) {
+          section.familyList = [...section.families.values()].sort((left, right) => familyOrder.get(left.family) - familyOrder.get(right.family));
+          for (const group of section.familyList) {
+            for (const tier of SANTEHNIKA_TIER_ORDER) {
+              group.tiers[tier].sort((left, right) => (projectOrder.get(String(left.element.projectId)) - projectOrder.get(String(right.element.projectId)))
+                || (elementNumber(left.element) - elementNumber(right.element)) || String(left.element.id).localeCompare(String(right.element.id)));
+            }
           }
         }
-        return { groups: [...groups.values()], editing, shown };
+        return { sections, editing, shown };
       }
 
       function santehnikaTierGroupMarkup(tier, items) {
@@ -2447,10 +2571,10 @@
       }
 
       function santehnikaFamilyMarkup(group) {
-        const meta = `${group.shown} из ${group.total} · ${group.techniques} приёмов · база ${group.byTier.base} · уник ${group.byTier.unique} · серая ${group.byTier.gray}`;
-        return `<section class="family-section santehnika-family" data-santehnika-family="${escapeAttribute(group.family)}">
+        const meta = `всего ${group.shown} · база ${group.byTier.base} · уник ${group.byTier.unique} · серая ${group.byTier.gray}`;
+        return `<section class="family-section santehnika-family" data-santehnika-family="${escapeAttribute(group.key)}">
           <header class="family-heading"><h2>${escapeHtml(group.family)} <span class="santehnika-family-name">${escapeHtml(group.name)}</span></h2><span class="family-heading-meta">${escapeHtml(meta)}</span></header>
-          <div class="santehnika-body" data-santehnika-body="${escapeAttribute(group.family)}" style="min-height:${santehnikaBodyHeight(group)}px"></div>
+          <div class="santehnika-body" data-santehnika-body="${escapeAttribute(group.key)}" style="min-height:${santehnikaBodyHeight(group)}px"></div>
         </section>`;
       }
 
@@ -2458,7 +2582,20 @@
         return `<header class="santehnika-intro"><div><h1>Все элементы сантехники</h1>
           <p>Ниша «${escapeHtml(data.niche)}», канал ${escapeHtml(data.channel)}: ${data.totals.elements} элементов из ${data.totals.videos} роликов, разложены по ${data.totals.families} семействам и ${data.totals.techniques} приёмам.
           Базовый набор — приём встречается не меньше ${data.thresholds.N} раз в одном ролике и минимум в ${data.thresholds.M} роликах из ${data.totals.videos}. Уникальная вставка — 1–2 раза или только в одном ролике. Что не попало ни туда, ни туда — серая зона.</p></div>
-          <span class="santehnika-count">${shown} из ${data.totals.elements} ${santehnikaPlural(data.totals.elements)}</span></header>`;
+          <div class="santehnika-intro-actions"><button class="acceptance-launch" type="button" data-acceptance-open>ПРИЁМКА</button><button class="acceptance-export" type="button" data-acceptance-export>ЭКСПОРТ РЕШЕНИЙ</button><span class="santehnika-count">${shown} из ${data.totals.elements} ${santehnikaPlural(data.totals.elements)}</span></div></header>`;
+      }
+
+      function santehnikaCountsText(section) {
+        return `всего ${section.shown} · база ${section.byTier.base} · уник ${section.byTier.unique} · серая ${section.byTier.gray}`;
+      }
+
+      function santehnikaTocMarkup(sections) {
+        return `<nav class="santehnika-toc" aria-label="Разделы сантехники">${sections.map((section) => `<button class="santehnika-toc-button" type="button" data-santehnika-section-link="${section.id}" ${section.shown ? '' : 'disabled'}><strong>${section.title}</strong><span>${santehnikaCountsText(section)}</span></button>`).join('')}</nav>`;
+      }
+
+      function santehnikaSectionMarkup(section) {
+        const families = section.familyList.map(santehnikaFamilyMarkup).join('');
+        return `<section id="santehnika-section-${section.id}" class="santehnika-section" data-santehnika-section="${section.id}"><header class="santehnika-section-header"><h2>${section.title}</h2><span class="santehnika-section-counts">${santehnikaCountsText(section)}</span></header><div class="santehnika-section-families">${families || '<div class="family-empty">По выбранному фильтру элементов нет</div>'}</div></section>`;
       }
 
       function santehnikaStatsMarkup(data) {
@@ -2521,17 +2658,207 @@
           dom.workspaceInner.innerHTML = '<div class="family-empty">Разбор ниши не загружен: нет santehnika-data.js</div>';
           return;
         }
-        const { groups, editing, shown } = santehnikaGroups(data);
-        for (const group of groups) santehnikaSections.set(group.family, group);
-        const families = groups.filter((group) => group.shown > 0).map(santehnikaFamilyMarkup).join('');
+        const { sections, editing, shown } = santehnikaGroups(data);
+        for (const section of sections) {
+          for (const group of section.familyList) santehnikaSections.set(group.key, group);
+        }
         const editingMarkup = editing.length
           ? `<section class="editing-element" aria-label="Редактируемый элемент">${editing.map(({ project, element, entry }) => elementCard(project, element, santehnikaMeta(entry))).join('')}</section>`
           : '';
-        dom.workspaceInner.innerHTML = `<section class="santehnika-page">${santehnikaIntroMarkup(data, shown)}${santehnikaStatsMarkup(data)}${editingMarkup}<div class="santehnika-families">${families || '<div class="family-empty">По выбранному фильтру элементов нет</div>'}</div></section>`;
+        dom.workspaceInner.innerHTML = `<section class="santehnika-page">${santehnikaIntroMarkup(data, shown)}${santehnikaStatsMarkup(data)}${santehnikaTocMarkup(sections)}${editingMarkup}<div class="santehnika-sections">${sections.map(santehnikaSectionMarkup).join('')}</div></section>`;
         if (editing.length) renderPlayerDock();
         else dom.playerDock.hidden = true;
         observeSantehnikaBodies();
         requestAnimationFrame(() => resizeDescriptions());
+      }
+
+      function santehnikaQueue(data = santehnikaData()) {
+        if (!data) return [];
+        const sectionOrder = new Map(SANTEHNIKA_SECTIONS.map((section, index) => [section.id, index]));
+        const familyOrder = new Map(santehnikaOrderedFamilies(data).map((family, index) => [family, index]));
+        const projectOrder = new Map(state.projects.map((project, index) => [String(project.id), index]));
+        const tierOrder = new Map([['base', 0], ['unique', 1], ['gray', 2]]);
+        const queue = [];
+        for (const element of state.elements) {
+          const entry = santehnikaEntry(data, element);
+          const project = entry && findProject(element.projectId);
+          if (!entry || !project) continue;
+          queue.push({ project, element, entry, sectionId: santehnikaSectionId(element, entry) });
+        }
+        return queue.sort((left, right) => {
+          const grayOrder = Number(left.entry.tier !== 'gray') - Number(right.entry.tier !== 'gray');
+          return grayOrder
+            || sectionOrder.get(left.sectionId) - sectionOrder.get(right.sectionId)
+            || familyOrder.get(left.entry.family) - familyOrder.get(right.entry.family)
+            || tierOrder.get(left.entry.tier) - tierOrder.get(right.entry.tier)
+            || projectOrder.get(String(left.element.projectId)) - projectOrder.get(String(right.element.projectId))
+            || elementNumber(left.element) - elementNumber(right.element)
+            || String(left.element.id).localeCompare(String(right.element.id));
+        });
+      }
+
+      function acceptanceDecision(element) {
+        const source = element?.acceptance;
+        if (!source || String(source.id) !== String(element.id) || !ACCEPTANCE_VERDICTS.includes(source.verdict)) return null;
+        const timestamp = Number(source.ts);
+        if (!Number.isFinite(timestamp) || timestamp <= 0) return null;
+        const decision = { id: source.id, verdict: source.verdict };
+        const family = asText(source.family).trim();
+        const combo = asText(source.combo).trim();
+        if (family) decision.family = family;
+        if (combo) decision.combo = combo;
+        decision.ts = timestamp;
+        return decision;
+      }
+
+      function acceptanceDecisions() {
+        return santehnikaQueue().map(({ element }) => acceptanceDecision(element)).filter(Boolean);
+      }
+
+      function exportAcceptanceDecisions() {
+        const decisions = acceptanceDecisions();
+        downloadText('resheniya-priyomki.json', JSON.stringify(decisions, null, 2), 'application/json;charset=utf-8');
+        showToast(`Решения экспортированы: ${decisions.length}.`);
+      }
+
+      function acceptanceMediaMarkup(element) {
+        const sources = previewSourceList(element);
+        if (!sources.length) return '<div class="paste-hint">Кадр недоступен</div>';
+        const source = sources[0];
+        if (/\.(?:mp4|webm|mov)(?:[?#]|$)/i.test(source) || source.startsWith('data:video/')) {
+          return `<video src="${escapeAttribute(source)}" controls playsinline preload="metadata"></video>`;
+        }
+        return `<img src="${escapeAttribute(source)}" data-acceptance-sources="${escapeAttribute(JSON.stringify(sources))}" data-acceptance-source-index="0" alt="Кадр проверяемого элемента" decoding="async">`;
+      }
+
+      function acceptancePhase(queue, index) {
+        const grayTotal = queue.findIndex((item) => item.entry.tier !== 'gray');
+        const grayCount = grayTotal === -1 ? queue.length : grayTotal;
+        const gray = index < grayCount;
+        return {
+          title: gray ? 'СЕРАЯ ЗОНА' : 'ОСТАЛЬНЫЕ ПО РАЗДЕЛАМ',
+          current: gray ? index + 1 : index - grayCount + 1,
+          total: gray ? grayCount : queue.length - grayCount,
+          grayCount
+        };
+      }
+
+      function acceptanceHeaderMarkup(queue, index) {
+        const phase = index < queue.length ? acceptancePhase(queue, index) : null;
+        const saved = queue.filter(({ element }) => acceptanceDecision(element)).length;
+        return `<header class="acceptance-header"><div><h1 class="acceptance-title">РЕЖИМ ПРИЁМКИ</h1><span class="acceptance-phase">${phase ? `${phase.title} · всего ${index + 1} из ${queue.length}` : `готово · сохранено ${saved}`}</span></div><strong class="acceptance-progress">${phase ? `${phase.current} из ${phase.total}` : `${queue.length} из ${queue.length}`}</strong><div class="acceptance-header-actions"><button class="acceptance-header-button" type="button" data-acceptance-export>ЭКСПОРТ РЕШЕНИЙ</button><button class="acceptance-header-button acceptance-close" type="button" data-acceptance-close aria-label="Закрыть">×</button></div></header>`;
+      }
+
+      function acceptanceFamilyPickerMarkup(data) {
+        const simple = SANTEHNIKA_SECTIONS.map((section) => `<button class="acceptance-family-choice" type="button" data-acceptance-family="${escapeAttribute(section.label)}">${escapeHtml(section.label)}</button>`).join('');
+        const familyNames = new Map(data.families.map((entry) => [entry.family, entry.name]));
+        const full = santehnikaOrderedFamilies(data).map((family) => `<button class="acceptance-family-choice" type="button" data-acceptance-family="${escapeAttribute(family)}">${escapeHtml(family)} · ${escapeHtml(familyNames.get(family) || '')}</button>`).join('');
+        return `<div class="acceptance-panel" data-acceptance-family-panel><p class="acceptance-panel-label">Куда отнести карточку?</p><div class="acceptance-simple-families">${simple}</div><details class="acceptance-family-details"><summary>Полный список семейств</summary><div class="acceptance-full-families">${full}</div></details></div>`;
+      }
+
+      function acceptanceComboMarkup() {
+        const voiceAvailable = Boolean(globalThis.SpeechRecognition || globalThis.webkitSpeechRecognition);
+        return `<div class="acceptance-panel" data-acceptance-combo-panel><p class="acceptance-panel-label">Опишите одной строкой, например: «текст + овал + кресты»</p><div class="acceptance-combo-row"><input class="acceptance-combo-input" data-acceptance-combo-input placeholder="текст + овал + кресты" autocomplete="off"><button class="acceptance-voice" type="button" data-acceptance-voice ${voiceAvailable ? '' : 'disabled'} title="${voiceAvailable ? 'Продиктовать' : 'Голосовой ввод не поддерживается'}" aria-label="Продиктовать">🎙</button></div><button class="acceptance-action acceptance-combo-save" type="button" data-acceptance-combo-save disabled>СОХРАНИТЬ СКЛЕЙКУ</button></div>`;
+      }
+
+      function renderAcceptanceMode() {
+        const acceptance = state.acceptance;
+        if (!acceptance.open) {
+          dom.acceptanceMode.hidden = true;
+          dom.acceptanceMode.innerHTML = '';
+          return;
+        }
+        dom.acceptanceMode.hidden = false;
+        const queue = acceptance.queue;
+        const item = queue[acceptance.index];
+        const header = acceptanceHeaderMarkup(queue, acceptance.index);
+        if (!item) {
+          dom.acceptanceMode.innerHTML = `${header}<main class="acceptance-body"><section class="acceptance-complete"><div><h2>Приёмка завершена</h2><p>Сохранено ${acceptanceDecisions().length} решений из ${queue.length}.</p><button class="acceptance-launch" type="button" data-acceptance-export>ЭКСПОРТ РЕШЕНИЙ</button></div></section></main>`;
+          return;
+        }
+        const { project, element, entry, sectionId } = item;
+        const section = SANTEHNIKA_SECTIONS.find((candidate) => candidate.id === sectionId);
+        const timecode = timecodesFrom(element)[0] || 'таймкод не указан';
+        const category = categoryName(element.category);
+        const disabled = acceptance.busy ? 'disabled' : '';
+        const panel = acceptance.panel === 'family' ? acceptanceFamilyPickerMarkup(santehnikaData())
+          : acceptance.panel === 'combo' ? acceptanceComboMarkup() : '';
+        dom.acceptanceMode.innerHTML = `${header}<main class="acceptance-body"><article class="acceptance-card" data-acceptance-element-id="${escapeAttribute(element.id)}"><div class="acceptance-visual"><div class="acceptance-media">${acceptanceMediaMarkup(element)}</div><div class="acceptance-caption"><strong>${escapeHtml(project.title || 'Ролик без названия')}</strong><span>${escapeHtml(timecode)}</span>${asText(element.description).trim() ? `<span>${escapeHtml(element.description)}</span>` : ''}</div></div><section class="acceptance-controls"><h2 class="acceptance-family">${escapeHtml(entry.family)}</h2><p class="acceptance-technique">Приём: ${escapeHtml(entry.technique || 'не указан')}</p><div class="acceptance-current-meta"><span>${escapeHtml(section?.title || 'ПРОЧЕЕ')}</span><span>${escapeHtml(SANTEHNIKA_TIER_LABELS[entry.tier])}</span>${category ? `<span>${escapeHtml(category)}</span>` : ''}</div><div class="acceptance-verdicts"><button class="acceptance-action is-base" type="button" data-acceptance-verdict="base" ${disabled}>БАЗА</button><button class="acceptance-action is-unique" type="button" data-acceptance-verdict="unique" ${disabled}>УНИК</button><button class="acceptance-action is-trash" type="button" data-acceptance-verdict="trash" ${disabled}>МУСОР</button></div><div class="acceptance-secondary"><button class="acceptance-action" type="button" data-acceptance-panel="family" ${disabled}>РАЗДЕЛ НЕ ТОТ</button><button class="acceptance-action" type="button" data-acceptance-panel="combo" ${disabled}>ЭТО СКЛЕЙКА</button></div><button class="acceptance-action acceptance-ok" type="button" data-acceptance-verdict="ok" ${disabled}>ОК, ДАЛЬШЕ</button>${panel}</section></article></main>`;
+      }
+
+      function openAcceptanceMode() {
+        const queue = santehnikaQueue();
+        state.acceptance.queue = queue;
+        const firstPending = queue.findIndex(({ element }) => !acceptanceDecision(element));
+        state.acceptance.index = firstPending === -1 ? queue.length : firstPending;
+        state.acceptance.panel = '';
+        state.acceptance.busy = false;
+        state.acceptance.open = true;
+        document.body.classList.add('has-acceptance');
+        renderAcceptanceMode();
+        requestAnimationFrame(() => dom.acceptanceMode.querySelector('[data-acceptance-verdict]')?.focus());
+      }
+
+      function closeAcceptanceMode() {
+        try { state.acceptance.recognition?.abort(); } catch (error) { /* Speech input is already stopped. */ }
+        state.acceptance.recognition = null;
+        state.acceptance.open = false;
+        state.acceptance.panel = '';
+        document.body.classList.remove('has-acceptance');
+        renderAcceptanceMode();
+        requestAnimationFrame(() => dom.workspaceInner.querySelector('[data-acceptance-open]')?.focus());
+      }
+
+      async function saveAcceptanceDecision(fields) {
+        const acceptance = state.acceptance;
+        const item = acceptance.queue[acceptance.index];
+        if (!item || acceptance.busy || !ACCEPTANCE_VERDICTS.includes(fields.verdict)) return;
+        const previous = item.element.acceptance;
+        const decision = { id: item.element.id, verdict: fields.verdict };
+        const family = asText(fields.family).trim();
+        const combo = asText(fields.combo).trim();
+        if (family) decision.family = family;
+        if (combo) decision.combo = combo;
+        decision.ts = Date.now();
+        item.element.acceptance = decision;
+        acceptance.busy = true;
+        renderAcceptanceMode();
+        try {
+          await saveElement(item.element, false);
+          acceptance.index += 1;
+          acceptance.panel = '';
+        } catch (error) {
+          if (previous === undefined) delete item.element.acceptance;
+          else item.element.acceptance = previous;
+        } finally {
+          acceptance.busy = false;
+          renderAcceptanceMode();
+          requestAnimationFrame(() => dom.acceptanceMode.querySelector('[data-acceptance-verdict]')?.focus());
+        }
+      }
+
+      function startAcceptanceVoiceInput() {
+        const Recognition = globalThis.SpeechRecognition || globalThis.webkitSpeechRecognition;
+        const input = dom.acceptanceMode.querySelector('[data-acceptance-combo-input]');
+        if (!Recognition || !input) {
+          showToast('Голосовой ввод не поддерживается этим браузером.');
+          return;
+        }
+        try { state.acceptance.recognition?.abort(); } catch (error) { /* A new recording replaces the old one. */ }
+        const recognition = new Recognition();
+        state.acceptance.recognition = recognition;
+        recognition.lang = 'ru-RU';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        recognition.addEventListener('result', (event) => {
+          input.value = asText(event.results?.[0]?.[0]?.transcript).trim();
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        });
+        recognition.addEventListener('error', (event) => {
+          if (!['aborted', 'no-speech'].includes(event.error)) showToast('Не удалось распознать голос. Введите текст.');
+        });
+        recognition.addEventListener('end', () => { state.acceptance.recognition = null; });
+        recognition.start();
       }
 
       // Карточка из вкладки «САНТЕХНИКА» принадлежит своему ролику: перед раскрытием
@@ -4470,6 +4797,19 @@
       }, true);
 
       dom.appShell.addEventListener('click', (event) => {
+        const sectionLink = event.target.closest('[data-santehnika-section-link]');
+        if (sectionLink) {
+          dom.workspaceInner.querySelector(`#santehnika-section-${CSS.escape(sectionLink.dataset.santehnikaSectionLink)}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+        if (event.target.closest('[data-acceptance-open]')) {
+          openAcceptanceMode();
+          return;
+        }
+        if (event.target.closest('[data-acceptance-export]')) {
+          exportAcceptanceDecisions();
+          return;
+        }
         const carouselButton = event.target.closest('[data-comparison-prev], [data-comparison-next]');
         if (carouselButton) {
           const family = carouselButton.dataset.comparisonPrev || carouselButton.dataset.comparisonNext;
@@ -4698,6 +5038,67 @@
         }
       });
 
+      dom.acceptanceMode.addEventListener('click', (event) => {
+        if (event.target.closest('[data-acceptance-close]')) {
+          closeAcceptanceMode();
+          return;
+        }
+        if (event.target.closest('[data-acceptance-export]')) {
+          exportAcceptanceDecisions();
+          return;
+        }
+        const verdict = event.target.closest('[data-acceptance-verdict]')?.dataset.acceptanceVerdict;
+        if (verdict) {
+          saveAcceptanceDecision({ verdict });
+          return;
+        }
+        const panel = event.target.closest('[data-acceptance-panel]')?.dataset.acceptancePanel;
+        if (panel) {
+          state.acceptance.panel = panel;
+          renderAcceptanceMode();
+          if (panel === 'combo') requestAnimationFrame(() => dom.acceptanceMode.querySelector('[data-acceptance-combo-input]')?.focus());
+          return;
+        }
+        const family = event.target.closest('[data-acceptance-family]')?.dataset.acceptanceFamily;
+        if (family) {
+          saveAcceptanceDecision({ verdict: 'ok', family });
+          return;
+        }
+        if (event.target.closest('[data-acceptance-combo-save]')) {
+          const combo = dom.acceptanceMode.querySelector('[data-acceptance-combo-input]')?.value.trim() || '';
+          if (combo) saveAcceptanceDecision({ verdict: 'ok', combo });
+          return;
+        }
+        if (event.target.closest('[data-acceptance-voice]')) startAcceptanceVoiceInput();
+      });
+
+      dom.acceptanceMode.addEventListener('input', (event) => {
+        const input = event.target.closest('[data-acceptance-combo-input]');
+        if (!input) return;
+        const button = dom.acceptanceMode.querySelector('[data-acceptance-combo-save]');
+        if (button) button.disabled = !input.value.trim();
+      });
+
+      dom.acceptanceMode.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' || !event.target.matches('[data-acceptance-combo-input]')) return;
+        event.preventDefault();
+        dom.acceptanceMode.querySelector('[data-acceptance-combo-save]:not(:disabled)')?.click();
+      });
+
+      dom.acceptanceMode.addEventListener('error', (event) => {
+        const image = event.target;
+        if (!(image instanceof HTMLImageElement) || !image.matches('[data-acceptance-sources]')) return;
+        let sources = [];
+        try { sources = JSON.parse(image.dataset.acceptanceSources || '[]'); } catch (error) { sources = []; }
+        const next = Number(image.dataset.acceptanceSourceIndex || 0) + 1;
+        if (Array.isArray(sources) && sources[next]) {
+          image.dataset.acceptanceSourceIndex = String(next);
+          image.src = sources[next];
+        } else {
+          showUnavailablePreview(image);
+        }
+      }, true);
+
       // Поиск перерисовывает весь каталог, поэтому ввод не должен блокировать
       // набор: рендер откладывается до паузы в наборе.
       let searchRenderTimer = null;
@@ -4869,6 +5270,13 @@
       });
 
       document.addEventListener('keydown', (event) => {
+        if (state.acceptance.open) {
+          if (event.key === 'Escape') {
+            closeAcceptanceMode();
+            event.preventDefault();
+          }
+          return;
+        }
         if (state.lightbox) {
           if (event.key === 'Escape') closeLightbox();
           if (event.key === 'ArrowLeft') moveLightbox(-1);
@@ -4949,6 +5357,13 @@
           const sample = santehnikaEntry(santehnika, { id: ids[0] });
           expect(Boolean(sample?.family && sample.technique && sample.tier), 'santehnika element resolves family, technique and tier');
           expect(santehnikaMeta({ family: 'HARD-CUT', technique: 'Match cut', tier: 'unique' }).includes('УНИКАЛЬНАЯ ВСТАВКА'), 'santehnika card badge shows the tier label');
+          const acceptanceQueue = santehnikaQueue(santehnika);
+          const grayCount = acceptanceQueue.filter((item) => item.entry.tier === 'gray').length;
+          expect(acceptanceQueue.length === santehnika.totals.elements, 'acceptance queue covers every santehnika element');
+          expect(grayCount === santehnika.totals.elementsByTier.gray && acceptanceQueue.slice(0, grayCount).every((item) => item.entry.tier === 'gray') && acceptanceQueue.slice(grayCount).every((item) => item.entry.tier !== 'gray'), 'acceptance queue starts with every gray element');
+          expect(SANTEHNIKA_SECTIONS.map((section) => section.title).join('|') === 'ПЕРЕХОДЫ|ЧАСТИЦЫ|ФУТАЖИ/КАРТИНКИ|ТИПОГРАФИКА|ГРАФИКА|ПРОЧЕЕ', 'santehnika section order is fixed');
+          expect(santehnikaSectionId({ category: 'Переход' }, { family: 'TEXT-TYPOGRAPHY' }) === 'transitions', 'manual category overrides machine family');
+          expect(Boolean(acceptanceDecision({ id: 'test', acceptance: { id: 'test', verdict: 'ok', combo: 'текст + овал', ts: 1 } })), 'acceptance decision shape is valid');
           expect(viewFromHash('#santehnika') === 'santehnika' && viewFromHash('#comparison') === 'comparison' && viewFromHash('') === 'catalog', 'hash routing covers all three views');
         }
         expect(presenceCount().total >= 1, 'presence counts at least this tab');
@@ -4958,6 +5373,20 @@
       }
 
       globalThis.__catalogSelfTest = runCatalogSelfTest;
+      globalThis.__acceptanceQA = () => {
+        const queue = santehnikaQueue();
+        const sectionTotals = Object.fromEntries(SANTEHNIKA_SECTIONS.map((section) => [section.id, 0]));
+        for (const item of queue) sectionTotals[item.sectionId] += 1;
+        const grayCount = queue.filter((item) => item.entry.tier === 'gray').length;
+        return {
+          total: queue.length,
+          grayCount,
+          grayPrefix: queue.slice(0, grayCount).every((item) => item.entry.tier === 'gray') && queue.slice(grayCount).every((item) => item.entry.tier !== 'gray'),
+          sectionTotals,
+          sectionSum: Object.values(sectionTotals).reduce((sum, count) => sum + count, 0),
+          decisions: acceptanceDecisions()
+        };
+      };
 
       dom.serverRefresh.addEventListener('click', () => {
         refreshFromPublishedData({ force: true, notify: true }).catch((error) => {
