@@ -635,44 +635,60 @@
     .acceptance-header-actions { display: flex; align-items: center; gap: 8px; }
     .acceptance-header-button { min-height: 38px; padding: 0 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); color: var(--text); cursor: pointer; font-size: 11px; font-weight: 750; }
     .acceptance-close { width: 40px; padding: 0; font-size: 24px; line-height: 1; }
-    .acceptance-body { min-height: 0; padding: 22px; overflow-y: auto; }
-    .acceptance-card { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(320px, .65fr); gap: 22px; width: min(1240px, 100%); margin: 0 auto; }
-    .acceptance-visual { display: grid; min-height: 0; align-content: start; gap: 12px; }
-    .acceptance-media { display: grid; width: 100%; max-height: 62vh; overflow: hidden; aspect-ratio: 16 / 9; place-items: center; border: 1px solid var(--line); border-radius: 14px; background: #050607; box-shadow: var(--shadow); }
+    .acceptance-body { min-height: 0; padding: 14px 22px 28px; overflow-y: auto; }
+    .acceptance-card { display: grid; grid-template-columns: 1fr; gap: 10px; width: min(1380px, 100%); margin: 0 auto; }
+    .acceptance-visual { display: grid; min-height: 0; align-content: start; gap: 8px; }
+    .acceptance-media { display: grid; width: 100%; max-height: 72vh; overflow: hidden; aspect-ratio: 16 / 9; place-items: center; border: 1px solid var(--line); border-radius: 14px; background: #050607; box-shadow: var(--shadow); }
     .acceptance-media img, .acceptance-media video, .acceptance-media iframe { display: block; width: 100%; height: 100%; border: 0; object-fit: contain; }
+    .acceptance-player-mount { width: 100%; height: 100%; background: #050607; }
     .acceptance-media .paste-hint { position: static; width: calc(100% - 24px); height: calc(100% - 24px); }
+    .acceptance-media-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
     .youtube-segment-repeat { justify-self: start; min-height: 38px; padding: 0 13px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-raised); color: var(--text); cursor: pointer; font-size: 11px; font-weight: 800; letter-spacing: .035em; }
     .youtube-segment-repeat:hover, .youtube-segment-repeat:focus-visible { border-color: var(--accent); color: var(--accent); }
+    .youtube-segment-repeat small { margin-left: 7px; color: var(--muted); font-size: 9px; }
+    .acceptance-speed-controls { display: flex; align-items: center; gap: 5px; }
+    .acceptance-speed-label { margin-right: 3px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .05em; }
+    .acceptance-speed { min-height: 32px; padding: 0 9px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-raised); color: var(--muted); cursor: pointer; font-size: 10px; font-weight: 800; }
+    .acceptance-speed.is-active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+    .acceptance-player-status { margin-left: 4px; color: var(--muted); font-size: 9px; }
     .youtube-segment-unavailable { width: max-content; padding: 5px 9px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 10px; font-weight: 750; text-transform: uppercase; }
-    .acceptance-caption { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; color: var(--muted); font-size: 12px; }
-    .acceptance-caption strong { color: var(--text); }
-    .acceptance-controls { align-self: start; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
-    .acceptance-family { margin: 0; font-size: 19px; line-height: 1.2; }
-    .acceptance-technique { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
-    .acceptance-current-meta { display: flex; flex-wrap: wrap; gap: 7px; margin: 13px 0 18px; }
+    .acceptance-compact-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 5px 9px; min-height: 28px; color: var(--muted); font-size: 10px; text-align: center; }
+    .acceptance-compact-meta strong { color: var(--text); }
+    .acceptance-ai-details { color: var(--muted); font-size: 10px; }
+    .acceptance-ai-details summary { width: max-content; margin: 0 auto; padding: 3px 8px; cursor: pointer; font-weight: 750; }
+    .acceptance-ai-details p { max-width: 1100px; margin: 5px auto 0; line-height: 1.45; }
+    .acceptance-controls { display: grid; gap: 8px; align-self: start; padding: 0; border: 0; background: transparent; }
+    .acceptance-current-meta { display: flex; flex-wrap: wrap; gap: 7px; margin: 0; }
     .acceptance-current-meta span { padding: 4px 8px; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); font-size: 10px; font-weight: 700; }
-    .acceptance-verdicts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .acceptance-primary-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
     .acceptance-action { min-height: 54px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-raised); color: var(--text); cursor: pointer; font-size: 13px; font-weight: 850; letter-spacing: .025em; }
     .acceptance-action:hover:not(:disabled), .acceptance-action:focus-visible:not(:disabled) { border-color: var(--accent); transform: translateY(-1px); }
     .acceptance-action:disabled { cursor: wait; opacity: .52; }
     .acceptance-action.is-base { color: var(--accent); }
     .acceptance-action.is-unique { color: #f59e0b; }
     .acceptance-action.is-trash { color: var(--danger); }
-    .acceptance-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
-    .acceptance-forward { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 8px; margin-top: 8px; }
+    .acceptance-primary-actions > .acceptance-action { display: grid; min-height: 72px; place-content: center; gap: 4px; line-height: 1.15; }
+    .acceptance-primary-actions .acceptance-action strong { font-size: 15px; }
+    .acceptance-primary-actions .acceptance-action small { color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: 0; }
     .acceptance-ok { width: 100%; border-color: var(--accent); background: var(--accent); color: #fff; }
-    .acceptance-repeat-last { display: grid; min-height: 64px; place-content: center; gap: 3px; border-color: color-mix(in srgb, var(--accent) 62%, var(--line)); background: var(--accent-soft); color: var(--accent); line-height: 1.15; }
+    .acceptance-ok small { color: rgba(255, 255, 255, .75) !important; }
+    .acceptance-repeat-last { border-color: color-mix(in srgb, var(--accent) 62%, var(--line)); background: var(--accent-soft); color: var(--accent); }
     .acceptance-repeat-last strong { font-size: 12px; letter-spacing: .025em; }
     .acceptance-repeat-last small { display: block; max-width: 100%; overflow: hidden; color: var(--text); font-size: 9px; font-weight: 700; letter-spacing: 0; text-overflow: ellipsis; white-space: nowrap; }
     .acceptance-repeat-last:disabled { border-color: var(--line); background: var(--surface-raised); color: var(--muted); }
-    .acceptance-params { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+    .acceptance-more-button { border-style: dashed; }
+    .acceptance-more { display: grid; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+    .acceptance-more[hidden] { display: none; }
+    .acceptance-more-actions { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 7px; }
+    .acceptance-more-actions .acceptance-action { min-height: 48px; font-size: 11px; }
+    .acceptance-params { margin-top: 2px; padding-top: 9px; border-top: 1px solid var(--line); }
     .acceptance-params-label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 10px; font-weight: 750; letter-spacing: .055em; }
     .acceptance-param-list { display: flex; flex-wrap: wrap; gap: 6px; }
     .acceptance-param { min-height: 32px; padding: 0 9px; border: 1px solid var(--line); border-radius: 99px; background: var(--surface-raised); color: var(--muted); cursor: pointer; font-size: 10px; font-weight: 800; }
     .acceptance-param:hover:not(:disabled), .acceptance-param:focus-visible:not(:disabled) { border-color: var(--accent); color: var(--text); }
     .acceptance-param.is-active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
     .acceptance-param:disabled { cursor: wait; opacity: .5; }
-    .acceptance-panel { display: grid; gap: 9px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+    .acceptance-panel { display: grid; gap: 9px; margin-top: 2px; padding-top: 10px; border-top: 1px solid var(--line); }
     .acceptance-panel[hidden] { display: none; }
     .acceptance-panel-label { margin: 0; color: var(--muted); font-size: 11px; }
     .acceptance-simple-families, .acceptance-full-families { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
@@ -809,9 +825,9 @@
     @media (max-width: 1000px) { .primary-nav-button { padding: 0 10px; font-size: clamp(14px, 1.7vw, 20px); } }
     @media (max-width: 680px) { .santehnika-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .santehnika-intro { align-items: start; flex-direction: column; } }
     @media (max-width: 680px) { .stat-summary, .ability-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ability-family-summary { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; } .ability-family-counts { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; padding-left: 18px; } }
-    @media (max-width: 900px) { .comparison-columns, .acceptance-card { grid-template-columns: 1fr; } .acceptance-media { max-height: none; } }
+    @media (max-width: 900px) { .comparison-columns { grid-template-columns: 1fr; } .acceptance-media { max-height: none; } }
     @media (max-width: 760px) { .player-dock { grid-template-columns: 1fr; padding: 20px 18px 0; } .player-copy { padding: 0 2px; } .catalog-toolbar { padding: 14px 12px 0; } .primary-nav { gap: 8px; padding: 9px 10px; } .primary-nav-button { padding: 0 6px; font-size: clamp(11px, 1.9vw, 20px); } .lightbox { padding: 58px 12px 38px; } .lightbox-pair { grid-template-columns: 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 10px; } .lightbox-label { font-size: 12px; } }
-    @media (max-width: 620px) { .catalog-toolbar { align-items: stretch; flex-direction: column; } .catalog-controls { align-items: stretch; } .tier-filter { display: grid; grid-template-columns: repeat(3, 1fr); } .family-filter-select { flex: 1; width: auto; } .comparison-intro { align-items: start; flex-direction: column; } .acceptance-header { grid-template-columns: minmax(0, 1fr) auto; gap: 10px; padding: 10px 12px; } .acceptance-header > div:first-child { display: none; } .acceptance-progress { text-align: left; } .acceptance-header-button[data-acceptance-export] { display: none; } .acceptance-body { padding: 12px; } .acceptance-controls { padding: 14px; } .acceptance-action { min-height: 50px; font-size: 11px; } .acceptance-forward { grid-template-columns: 1fr; } .acceptance-combo-row { grid-template-columns: minmax(0, 1fr) auto; } .acceptance-voice { display: none; } .acceptance-simple-families, .acceptance-full-families { grid-template-columns: 1fr; } .santehnika-section-header { align-items: start; flex-direction: column; gap: 4px; } .santehnika-section-counts { text-align: left; } }
+    @media (max-width: 620px) { .catalog-toolbar { align-items: stretch; flex-direction: column; } .catalog-controls { align-items: stretch; } .tier-filter { display: grid; grid-template-columns: repeat(3, 1fr); } .family-filter-select { flex: 1; width: auto; } .comparison-intro { align-items: start; flex-direction: column; } .acceptance-header { grid-template-columns: minmax(0, 1fr) auto; gap: 10px; padding: 10px 12px; } .acceptance-header > div:first-child { display: none; } .acceptance-progress { text-align: left; } .acceptance-header-button[data-acceptance-export] { display: none; } .acceptance-body { padding: 8px; } .acceptance-action { min-height: 48px; font-size: 10px; } .acceptance-primary-actions { gap: 5px; } .acceptance-primary-actions > .acceptance-action { min-height: 66px; padding: 6px; } .acceptance-primary-actions .acceptance-action strong { font-size: 10px; } .acceptance-repeat-last small { max-width: 27vw; } .acceptance-more-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); } .acceptance-combo-row { grid-template-columns: minmax(0, 1fr) auto; } .acceptance-voice { display: none; } .acceptance-simple-families, .acceptance-full-families { grid-template-columns: 1fr; } .santehnika-section-header { align-items: start; flex-direction: column; gap: 4px; } .santehnika-section-counts { text-align: left; } }
     @media (max-width: 620px) { .server-refresh { width: 32px; padding: 0; overflow: hidden; font-size: 0; } .server-refresh::before { content: "↻"; font-size: 17px; } }
     @media (max-width: 500px) { .brand { font-size: 12px; } .brand::after { content: none; } }
   </style>
@@ -904,6 +920,7 @@
       const ACCEPTANCE_VERDICTS = Object.freeze(['base', 'unique', 'trash', 'ok']);
       const ACCEPTANCE_PARAMS = Object.freeze(['ТЕКСТ', 'ЦИФРА', 'ЦВЕТ', 'РАЗМЕР', 'СКОРОСТЬ', 'ПОЗИЦИЯ', 'КАРТИНКА']);
       const ACCEPTANCE_COMBO_ATOMS = Object.freeze(['тёплый фильтр', 'глитч', 'засветка', 'зум', 'шум/зерно', 'пиктограмма', 'текст', 'овал/обводка', 'кресты']);
+      const ACCEPTANCE_SPEEDS = Object.freeze([0.25, 0.5, 1]);
       const TYPING_QUIET_PERIOD = 1200;
       const DELETE_CONFIRMATION = 'УДАЛИТЬ';
       const PUBLISHED_DATA_URL = 'data.json';
@@ -1025,10 +1042,20 @@
           queue: [],
           index: 0,
           panel: '',
+          moreOpen: false,
           params: [],
           comboAtoms: [],
           comboCustomAtoms: [],
           lastDecision: null,
+          speed: 0.25,
+          playerInstance: null,
+          playerGeneration: 0,
+          playerLoopTimer: null,
+          playerReady: false,
+          playerFallback: false,
+          playerSegment: null,
+          playerLoopCount: 0,
+          playerManualRestarts: 0,
           busy: false,
           recognition: null
         },
@@ -2872,7 +2899,7 @@
       function acceptanceRepeatLastMarkup(busy) {
         const decision = state.acceptance.lastDecision;
         const summary = acceptanceDecisionSummary(decision);
-        return `<button class="acceptance-action acceptance-repeat-last" type="button" data-repeat-last title="${escapeAttribute(summary)}" ${busy || !decision ? 'disabled' : ''}><strong>ТАК ЖЕ, КАК ПРОШЛАЯ</strong><small>${escapeHtml(summary)}</small></button>`;
+        return `<button class="acceptance-action acceptance-repeat-last" type="button" data-repeat-last title="${escapeAttribute(summary)}" ${busy || !decision ? 'disabled' : ''}><strong>ТАК ЖЕ, КАК ПРОШЛАЯ</strong><small>1 · ${escapeHtml(summary)}</small></button>`;
       }
 
       function acceptanceParamsMarkup(selected, disabled = '') {
@@ -2880,8 +2907,33 @@
         return `<div class="acceptance-params"><span class="acceptance-params-label">ЧТО КРУТИТСЯ</span><div class="acceptance-param-list">${ACCEPTANCE_PARAMS.map((param) => `<button class="acceptance-param ${active.has(param) ? 'is-active' : ''}" type="button" data-acceptance-param="${param}" aria-pressed="${active.has(param)}" ${disabled}>${param}</button>`).join('')}</div></div>`;
       }
 
+      function acceptanceDetailPanelMarkup() {
+        if (state.acceptance.panel === 'family') return acceptanceFamilyPickerMarkup(santehnikaData());
+        if (state.acceptance.panel === 'combo') return acceptanceComboMarkup();
+        return '';
+      }
+
+      function acceptanceMoreMarkup(disabled) {
+        return `<section class="acceptance-more" data-acceptance-more-panel ${state.acceptance.moreOpen ? '' : 'hidden'}><div class="acceptance-more-actions"><button class="acceptance-action is-base" type="button" data-acceptance-verdict="base" ${disabled}>БАЗА</button><button class="acceptance-action is-unique" type="button" data-acceptance-verdict="unique" ${disabled}>УНИК</button><button class="acceptance-action is-trash" type="button" data-acceptance-verdict="trash" ${disabled}>МУСОР</button><button class="acceptance-action" type="button" data-acceptance-panel="family" ${disabled}>РАЗДЕЛ НЕ ТОТ</button><button class="acceptance-action" type="button" data-acceptance-panel="combo" ${disabled}>ЭТО СКЛЕЙКА</button></div>${acceptanceParamsMarkup(state.acceptance.params, disabled)}<div data-acceptance-detail-panel>${acceptanceDetailPanelMarkup()}</div></section>`;
+      }
+
+      function acceptanceSpeedControlsMarkup(segment) {
+        if (!segment) return '';
+        return `<div class="acceptance-speed-controls"><span class="acceptance-speed-label">СКОРОСТЬ</span>${ACCEPTANCE_SPEEDS.map((speed) => `<button class="acceptance-speed ${state.acceptance.speed === speed ? 'is-active' : ''}" type="button" data-acceptance-speed="${speed}" aria-pressed="${state.acceptance.speed === speed}">${speed}×</button>`).join('')}<span class="acceptance-player-status" data-acceptance-player-status>API загружается · автоповтор</span></div>`;
+      }
+
+      function acceptanceMediaToolbarMarkup(segment, project) {
+        if (!segment) return `<span class="youtube-segment-unavailable">${projectYouTubeId(project) ? 'нет отрезка' : 'нет видео'}</span>`;
+        return `<div class="acceptance-media-toolbar"><button class="youtube-segment-repeat" type="button" data-youtube-segment-repeat>ПОВТОРИТЬ ОТРЕЗОК <small>R</small></button>${acceptanceSpeedControlsMarkup(segment)}</div>`;
+      }
+
+      function acceptancePrimaryActionsMarkup(disabled) {
+        return `<div class="acceptance-primary-actions">${acceptanceRepeatLastMarkup(state.acceptance.busy)}<button class="acceptance-action acceptance-ok" type="button" data-acceptance-verdict="ok" ${disabled}><strong>ОК, ДАЛЬШЕ</strong><small>ПРОБЕЛ / ENTER</small></button><button class="acceptance-action acceptance-more-button" type="button" data-acceptance-more aria-expanded="${state.acceptance.moreOpen}" ${disabled}><strong>ДРУГОЕ…</strong><small>БАЗА, УНИК, СКЛЕЙКА И ЕЩЁ</small></button></div>`;
+      }
+
       function renderAcceptanceMode() {
         const acceptance = state.acceptance;
+        resetAcceptanceSegmentPlayer();
         if (!acceptance.open) {
           dom.acceptanceMode.hidden = true;
           dom.acceptanceMode.innerHTML = '';
@@ -2901,14 +2953,12 @@
         const category = categoryName(element.category);
         const disabled = acceptance.busy ? 'disabled' : '';
         const segment = youtubeSegment(project, element);
-        const media = segment ? youtubeSegmentFrameMarkup(segment) : acceptanceMediaMarkup(element);
-        const mediaAction = segment
-          ? '<button class="youtube-segment-repeat" type="button" data-youtube-segment-repeat>ПОВТОРИТЬ ОТРЕЗОК</button>'
-          : `<span class="youtube-segment-unavailable">${projectYouTubeId(project) ? 'нет отрезка' : 'нет видео'}</span>`;
-        const params = acceptanceParamsMarkup(acceptance.params, disabled);
-        const panel = acceptance.panel === 'family' ? acceptanceFamilyPickerMarkup(santehnikaData())
-          : acceptance.panel === 'combo' ? acceptanceComboMarkup() : '';
-        dom.acceptanceMode.innerHTML = `${header}<main class="acceptance-body"><article class="acceptance-card" data-acceptance-element-id="${escapeAttribute(element.id)}"><div class="acceptance-visual"><div class="acceptance-media">${media}</div>${mediaAction}<div class="acceptance-caption"><strong>${escapeHtml(project.title || 'Ролик без названия')}</strong><span>${escapeHtml(timecode)}</span>${asText(element.description).trim() ? `<span>${escapeHtml(element.description)}</span>` : ''}</div></div><section class="acceptance-controls"><h2 class="acceptance-family">${escapeHtml(entry.family)}</h2><p class="acceptance-technique">Приём: ${escapeHtml(entry.technique || 'не указан')}</p><div class="acceptance-current-meta"><span>${escapeHtml(section?.title || 'ПРОЧЕЕ')}</span><span>${escapeHtml(SANTEHNIKA_TIER_LABELS[entry.tier])}</span>${category ? `<span>${escapeHtml(category)}</span>` : ''}</div><div class="acceptance-verdicts"><button class="acceptance-action is-base" type="button" data-acceptance-verdict="base" ${disabled}>БАЗА</button><button class="acceptance-action is-unique" type="button" data-acceptance-verdict="unique" ${disabled}>УНИК</button><button class="acceptance-action is-trash" type="button" data-acceptance-verdict="trash" ${disabled}>МУСОР</button></div><div class="acceptance-secondary"><button class="acceptance-action" type="button" data-acceptance-panel="family" ${disabled}>РАЗДЕЛ НЕ ТОТ</button><button class="acceptance-action" type="button" data-acceptance-panel="combo" ${disabled}>ЭТО СКЛЕЙКА</button></div><div class="acceptance-forward"><button class="acceptance-action acceptance-ok" type="button" data-acceptance-verdict="ok" ${disabled}>ОК, ДАЛЬШЕ</button>${acceptanceRepeatLastMarkup(acceptance.busy)}</div>${params}${panel}</section></article></main>`;
+        const media = segment ? '<div class="acceptance-player-mount" data-acceptance-youtube-player></div>' : acceptanceMediaMarkup(element);
+        const description = asText(element.description).trim();
+        const details = description ? `<details class="acceptance-ai-details"><summary>подробнее</summary><p>${escapeHtml(description)}</p></details>` : '';
+        const meta = `<div class="acceptance-compact-meta"><strong>${escapeHtml(entry.technique || 'приём не указан')}</strong><span>${escapeHtml(entry.family)}</span><span>${escapeHtml(SANTEHNIKA_TIER_LABELS[entry.tier])}</span><span>${escapeHtml(section?.title || 'ПРОЧЕЕ')}</span>${category ? `<span>${escapeHtml(category)}</span>` : ''}<span>${escapeHtml(project.title || 'Ролик без названия')} · ${escapeHtml(timecode)}</span></div>`;
+        dom.acceptanceMode.innerHTML = `${header}<main class="acceptance-body"><article class="acceptance-card" data-acceptance-v2 data-acceptance-element-id="${escapeAttribute(element.id)}"><div class="acceptance-visual"><div class="acceptance-media">${media}</div>${acceptanceMediaToolbarMarkup(segment, project)}${meta}${details}</div><section class="acceptance-controls">${acceptancePrimaryActionsMarkup(disabled)}${acceptanceMoreMarkup(disabled)}</section></article></main>`;
+        if (segment && !acceptance.busy) requestAnimationFrame(() => initializeAcceptanceSegmentPlayer(segment));
       }
 
       function openAcceptanceMode() {
@@ -2917,15 +2967,17 @@
         const firstPending = queue.findIndex(({ element }) => !acceptanceDecision(element));
         state.acceptance.index = firstPending === -1 ? queue.length : firstPending;
         state.acceptance.panel = '';
+        state.acceptance.moreOpen = false;
         state.acceptance.params = [];
         state.acceptance.comboAtoms = [];
         state.acceptance.comboCustomAtoms = [];
         state.acceptance.lastDecision = null;
+        state.acceptance.speed = 0.25;
         state.acceptance.busy = false;
         state.acceptance.open = true;
         document.body.classList.add('has-acceptance');
         renderAcceptanceMode();
-        requestAnimationFrame(() => dom.acceptanceMode.querySelector('[data-acceptance-verdict]')?.focus());
+        requestAnimationFrame(() => dom.acceptanceMode.querySelector('[data-acceptance-verdict="ok"]')?.focus());
       }
 
       function closeAcceptanceMode() {
@@ -2933,6 +2985,7 @@
         state.acceptance.recognition = null;
         state.acceptance.open = false;
         state.acceptance.panel = '';
+        state.acceptance.moreOpen = false;
         state.acceptance.params = [];
         state.acceptance.comboAtoms = [];
         state.acceptance.comboCustomAtoms = [];
@@ -2964,6 +3017,7 @@
           acceptance.lastDecision = acceptanceDecision(item.element);
           acceptance.index += 1;
           acceptance.panel = '';
+          acceptance.moreOpen = false;
           acceptance.params = [];
           acceptance.comboAtoms = [];
           acceptance.comboCustomAtoms = [];
@@ -2973,7 +3027,7 @@
         } finally {
           acceptance.busy = false;
           renderAcceptanceMode();
-          requestAnimationFrame(() => dom.acceptanceMode.querySelector('[data-acceptance-verdict]')?.focus());
+          requestAnimationFrame(() => dom.acceptanceMode.querySelector('[data-acceptance-verdict="ok"]')?.focus());
         }
       }
 
@@ -2997,6 +3051,28 @@
         const input = panel.querySelector('[data-acceptance-combo-input]');
         const addButton = panel.querySelector('[data-acceptance-combo-add]');
         if (addButton) addButton.disabled = !input?.value.trim() || state.acceptance.busy;
+      }
+
+      function toggleAcceptanceMorePanel() {
+        const acceptance = state.acceptance;
+        if (acceptance.busy) return;
+        acceptance.moreOpen = !acceptance.moreOpen;
+        const panel = dom.acceptanceMode.querySelector('[data-acceptance-more-panel]');
+        if (panel) panel.hidden = !acceptance.moreOpen;
+        const button = dom.acceptanceMode.querySelector('[data-acceptance-more]');
+        button?.setAttribute('aria-expanded', String(acceptance.moreOpen));
+      }
+
+      function showAcceptanceDetailPanel(panelName) {
+        if (!['family', 'combo'].includes(panelName) || state.acceptance.busy) return;
+        state.acceptance.panel = panelName;
+        state.acceptance.moreOpen = true;
+        const morePanel = dom.acceptanceMode.querySelector('[data-acceptance-more-panel]');
+        if (morePanel) morePanel.hidden = false;
+        dom.acceptanceMode.querySelector('[data-acceptance-more]')?.setAttribute('aria-expanded', 'true');
+        const slot = dom.acceptanceMode.querySelector('[data-acceptance-detail-panel]');
+        if (slot) slot.innerHTML = acceptanceDetailPanelMarkup();
+        if (panelName === 'combo') requestAnimationFrame(() => slot?.querySelector('[data-acceptance-combo-atom]')?.focus());
       }
 
       function toggleAcceptanceComboAtom(atom) {
@@ -3892,6 +3968,190 @@
         frame.src = 'about:blank';
         requestAnimationFrame(() => { frame.src = source; });
         return true;
+      }
+
+      function acceptancePlayerVars(segment) {
+        const playerVars = {
+          playsinline: 1,
+          rel: 0,
+          autoplay: 1,
+          mute: 1,
+          controls: 1,
+          enablejsapi: 1,
+          start: segment.start,
+          end: segment.end
+        };
+        if (/^https?:$/.test(location.protocol)) playerVars.origin = location.origin;
+        return playerVars;
+      }
+
+      function resetAcceptanceSegmentPlayer() {
+        const acceptance = state.acceptance;
+        acceptance.playerGeneration += 1;
+        clearInterval(acceptance.playerLoopTimer);
+        acceptance.playerLoopTimer = null;
+        try {
+          acceptance.playerInstance?.destroy?.();
+        } catch (error) {
+          // YouTube may already have detached its iframe during a card change.
+        }
+        acceptance.playerInstance = null;
+        acceptance.playerReady = false;
+        acceptance.playerFallback = false;
+        acceptance.playerSegment = null;
+        acceptance.playerLoopCount = 0;
+        acceptance.playerManualRestarts = 0;
+      }
+
+      function updateAcceptancePlayerStatus(text) {
+        const status = dom.acceptanceMode.querySelector('[data-acceptance-player-status]');
+        if (status) status.textContent = text;
+      }
+
+      function updateAcceptanceSpeedControls() {
+        const acceptance = state.acceptance;
+        for (const button of dom.acceptanceMode.querySelectorAll('[data-acceptance-speed]')) {
+          const active = Number(button.dataset.acceptanceSpeed) === acceptance.speed;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-pressed', String(active));
+          button.disabled = acceptance.playerFallback;
+        }
+      }
+
+      function restartAcceptanceSegment(automatic = false) {
+        const acceptance = state.acceptance;
+        const player = acceptance.playerInstance;
+        const segment = acceptance.playerSegment;
+        if (!acceptance.playerReady || !player || !segment) return false;
+        try {
+          player.seekTo(segment.start, true);
+          player.playVideo();
+          player.setPlaybackRate(acceptance.speed);
+          if (automatic) acceptance.playerLoopCount += 1;
+          else acceptance.playerManualRestarts += 1;
+          const media = dom.acceptanceMode.querySelector('.acceptance-media');
+          if (media) {
+            media.dataset.loopCount = String(acceptance.playerLoopCount);
+            media.dataset.manualRestarts = String(acceptance.playerManualRestarts);
+          }
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+
+      function monitorAcceptanceSegment() {
+        const acceptance = state.acceptance;
+        const segment = acceptance.playerSegment;
+        if (!acceptance.playerReady || !segment) return;
+        try {
+          const current = Number(acceptance.playerInstance?.getCurrentTime?.());
+          if (Number.isFinite(current) && current >= segment.end - 0.04) restartAcceptanceSegment(true);
+        } catch (error) {
+          // The next tick retries while the API switches video states.
+        }
+      }
+
+      function showAcceptancePlayerFallback(segment, generation) {
+        const acceptance = state.acceptance;
+        if (generation !== acceptance.playerGeneration || !acceptance.open) return;
+        clearInterval(acceptance.playerLoopTimer);
+        acceptance.playerLoopTimer = null;
+        try { acceptance.playerInstance?.destroy?.(); } catch (error) { /* The failed iframe may already be gone. */ }
+        acceptance.playerInstance = null;
+        acceptance.playerReady = false;
+        acceptance.playerFallback = true;
+        acceptance.playerSegment = segment;
+        const media = dom.acceptanceMode.querySelector('.acceptance-media');
+        if (media) media.innerHTML = youtubeSegmentFrameMarkup(segment, 'acceptance-fallback-frame');
+        updateAcceptanceSpeedControls();
+        updateAcceptancePlayerStatus('API недоступен · обычный iframe');
+      }
+
+      function setAcceptancePlaybackSpeed(value) {
+        const speed = Number(value);
+        if (!ACCEPTANCE_SPEEDS.includes(speed)) return false;
+        const acceptance = state.acceptance;
+        acceptance.speed = speed;
+        try {
+          if (acceptance.playerReady) acceptance.playerInstance?.setPlaybackRate?.(speed);
+        } catch (error) {
+          // The selected speed is retained and applied on the next ready event.
+        }
+        updateAcceptanceSpeedControls();
+        updateAcceptancePlayerStatus(acceptance.playerFallback ? 'API недоступен · обычный iframe' : `${speed}× · автоповтор включён`);
+        return true;
+      }
+
+      function repeatAcceptanceSegment() {
+        if (restartAcceptanceSegment(false)) return true;
+        return repeatYoutubeSegment(dom.acceptanceMode);
+      }
+
+      function initializeAcceptanceSegmentPlayer(segment) {
+        const acceptance = state.acceptance;
+        const generation = acceptance.playerGeneration;
+        const mount = dom.acceptanceMode.querySelector('[data-acceptance-youtube-player]');
+        if (!mount || !segment || !acceptance.open) return;
+        acceptance.playerSegment = segment;
+        loadYouTubePlayerApi().then((YT) => {
+          if (generation !== acceptance.playerGeneration || !mount.isConnected) return;
+          acceptance.playerInstance = new YT.Player(mount, {
+            videoId: segment.videoId,
+            playerVars: acceptancePlayerVars(segment),
+            events: {
+              onReady: (event) => {
+                if (generation !== acceptance.playerGeneration) return;
+                acceptance.playerInstance = event.target;
+                acceptance.playerReady = true;
+                try { event.target.mute(); } catch (error) { /* mute is already requested in playerVars. */ }
+                restartAcceptanceSegment(false);
+                acceptance.playerManualRestarts = 0;
+                const media = dom.acceptanceMode.querySelector('.acceptance-media');
+                if (media) media.dataset.manualRestarts = '0';
+                clearInterval(acceptance.playerLoopTimer);
+                acceptance.playerLoopTimer = setInterval(monitorAcceptanceSegment, 100);
+                setAcceptancePlaybackSpeed(acceptance.speed);
+              },
+              onStateChange: (event) => {
+                if (generation !== acceptance.playerGeneration) return;
+                if (event.data === YT.PlayerState?.ENDED) restartAcceptanceSegment(true);
+              },
+              onPlaybackRateChange: () => {
+                if (generation !== acceptance.playerGeneration) return;
+                const actual = Number(acceptance.playerInstance?.getPlaybackRate?.());
+                updateAcceptancePlayerStatus(`${Number.isFinite(actual) ? actual : acceptance.speed}× · автоповтор включён`);
+              },
+              onError: () => showAcceptancePlayerFallback(segment, generation)
+            }
+          });
+        }).catch(() => showAcceptancePlayerFallback(segment, generation));
+      }
+
+      function acceptancePlayerDiagnostics(forceTime = null) {
+        const acceptance = state.acceptance;
+        if (forceTime !== null && forceTime !== undefined && Number.isFinite(Number(forceTime)) && acceptance.playerReady) {
+          try { acceptance.playerInstance?.seekTo?.(Number(forceTime), true); } catch (error) { /* Diagnostic remains read-only if seek fails. */ }
+        }
+        let current = null;
+        let rate = null;
+        try {
+          current = Number(acceptance.playerInstance?.getCurrentTime?.());
+          rate = Number(acceptance.playerInstance?.getPlaybackRate?.());
+        } catch (error) {
+          current = null;
+          rate = null;
+        }
+        return {
+          ready: acceptance.playerReady,
+          fallback: acceptance.playerFallback,
+          start: acceptance.playerSegment?.start ?? null,
+          end: acceptance.playerSegment?.end ?? null,
+          current: Number.isFinite(current) ? current : null,
+          rate: Number.isFinite(rate) ? rate : null,
+          loopCount: acceptance.playerLoopCount,
+          manualRestarts: acceptance.playerManualRestarts
+        };
       }
 
       function youtubeStartSeconds(value) {
@@ -5294,7 +5554,16 @@
 
       dom.acceptanceMode.addEventListener('click', (event) => {
         if (event.target.closest('[data-youtube-segment-repeat]')) {
-          repeatYoutubeSegment(dom.acceptanceMode);
+          repeatAcceptanceSegment();
+          return;
+        }
+        const speed = event.target.closest('[data-acceptance-speed]')?.dataset.acceptanceSpeed;
+        if (speed) {
+          setAcceptancePlaybackSpeed(speed);
+          return;
+        }
+        if (event.target.closest('[data-acceptance-more]')) {
+          toggleAcceptanceMorePanel();
           return;
         }
         if (event.target.closest('[data-repeat-last]')) {
@@ -5333,9 +5602,7 @@
         }
         const panel = event.target.closest('[data-acceptance-panel]')?.dataset.acceptancePanel;
         if (panel) {
-          state.acceptance.panel = panel;
-          renderAcceptanceMode();
-          if (panel === 'combo') requestAnimationFrame(() => dom.acceptanceMode.querySelector('[data-acceptance-combo-input]')?.focus());
+          showAcceptanceDetailPanel(panel);
           return;
         }
         const family = event.target.closest('[data-acceptance-family]')?.dataset.acceptanceFamily;
@@ -5556,10 +5823,29 @@
         if (state.menuOpen && !dom.menuPanel.contains(event.target) && !dom.menuButton.contains(event.target)) closeMenu();
       });
 
+      function acceptanceHotkeyAction(key) {
+        if (key === ' ' || key === 'Spacebar' || key === 'Enter') return 'ok';
+        if (key === '1') return 'repeat-last';
+        if (asText(key).toLocaleLowerCase() === 'r') return 'repeat-segment';
+        if (key === 'Escape') return 'close';
+        return '';
+      }
+
       document.addEventListener('keydown', (event) => {
         if (state.acceptance.open) {
-          if (event.key === 'Escape') {
+          if (event.defaultPrevented || isTextEditing(event.target)) return;
+          const action = acceptanceHotkeyAction(event.key);
+          if (action === 'close') {
             closeAcceptanceMode();
+            event.preventDefault();
+          } else if (!event.repeat && action === 'repeat-last') {
+            dom.acceptanceMode.querySelector('[data-repeat-last]:not(:disabled)')?.click();
+            event.preventDefault();
+          } else if (!event.repeat && action === 'repeat-segment') {
+            repeatAcceptanceSegment();
+            event.preventDefault();
+          } else if (!event.repeat && action === 'ok') {
+            dom.acceptanceMode.querySelector('[data-acceptance-verdict="ok"]:not(:disabled)')?.click();
             event.preventDefault();
           }
           return;
@@ -5604,6 +5890,10 @@
         expect(youtubeVideoId('https://www.youtube.com/watch?v=QOUszAHEZAE&t=211s') === 'QOUszAHEZAE', 'YouTube video ID');
         const segment = youtubeSegment({ url: 'https://youtu.be/QOUszAHEZAE' }, { timecodes: ['1:05.2–1:07.4'] });
         expect(segment?.videoId === 'QOUszAHEZAE' && segment.start === 64 && segment.end === 69 && segment.url === 'https://www.youtube.com/embed/QOUszAHEZAE?start=64&end=69&autoplay=1&mute=1&rel=0', 'YouTube segment URL');
+        const acceptanceVars = acceptancePlayerVars(segment);
+        expect(acceptanceVars.enablejsapi === 1 && acceptanceVars.start === 64 && acceptanceVars.end === 69 && acceptanceVars.autoplay === 1 && acceptanceVars.mute === 1, 'acceptance player API vars');
+        expect(ACCEPTANCE_SPEEDS.join() === '0.25,0.5,1', 'acceptance speed choices');
+        expect([' ', 'Enter', '1', 'r', 'R'].map(acceptanceHotkeyAction).join() === 'ok,ok,repeat-last,repeat-segment,repeat-segment', 'acceptance hotkey mapping');
         const secondsSegment = elementSegmentTimes({ timecodes: ['0.0000–933.9667'] });
         expect(secondsSegment?.start === 0 && secondsSegment.end === 935, 'raw-second segment bounds');
         const pointSegment = elementSegmentTimes({ timecodes: ['2:51'] });
@@ -5680,6 +5970,7 @@
       }
 
       globalThis.__catalogSelfTest = runCatalogSelfTest;
+      globalThis.__acceptancePlayerQA = acceptancePlayerDiagnostics;
       globalThis.__acceptanceQA = () => {
         const queue = santehnikaQueue();
         const sectionTotals = Object.fromEntries(SANTEHNIKA_SECTIONS.map((section) => [section.id, 0]));
