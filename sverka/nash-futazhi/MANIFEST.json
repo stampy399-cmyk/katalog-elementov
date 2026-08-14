@@ -1,0 +1,37 @@
+[
+  {
+    "group_id": "photo-image--фото-полноэкранный-футаж--f13955fb",
+    "file": "photo-fullscreen.mp4",
+    "status": "gotov"
+  },
+  {
+    "group_id": "photo-image--архивное-фото-хроника--00bf5eb9",
+    "file": "archive-photo.mp4",
+    "status": "gotov"
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-3bf9cff8--a6090963",
+    "file": "carousel.mp4",
+    "status": "gotov"
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-983f7465--3b982ae7",
+    "file": "error-insert.mp4",
+    "status": "gotov"
+  },
+  {
+    "group_id": "other--возврат-к-исходному-саду--869dc8a3",
+    "file": "return-garden.mp4",
+    "status": "gotov"
+  },
+  {
+    "group_id": "inset-window--картинка-в-картинке-врезка--cf91b323",
+    "file": "picture-picture.mp4",
+    "status": "gotov"
+  },
+  {
+    "group_id": "inset-window--сплит-скрин--0dd179a6",
+    "file": "split-screen.mp4",
+    "status": "gotov"
+  }
+]

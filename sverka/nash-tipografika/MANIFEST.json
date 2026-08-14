@@ -1,0 +1,65 @@
+[
+  {
+    "group_id": "text-typography--текстовая-плашка--16320f2c",
+    "nazvanie": "Текстовая плашка",
+    "file": "tekstovaya_plashka.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 876.55,
+    "end": 879.366,
+    "baza": "база"
+  },
+  {
+    "group_id": "text-typography--заголовок-тезис--f800a8ab",
+    "nazvanie": "Заголовок / тезис",
+    "file": "zagolovok__tezis.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 909.0,
+    "end": 913.6,
+    "baza": "база"
+  },
+  {
+    "group_id": "text-typography--число-метрика--b8e7ec5e",
+    "nazvanie": "Число / метрика",
+    "file": "chislo__metrika.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 410,
+    "end": 412,
+    "baza": "база"
+  },
+  {
+    "group_id": "text-typography--текстовая-плашка-выноска--afe5f2c1",
+    "nazvanie": "Текстовая плашка / выноска",
+    "file": "tekstovaya_plashka__vynoska.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 92,
+    "end": 94,
+    "baza": "база"
+  },
+  {
+    "group_id": "text-typography--cta-призыв--94c847f2",
+    "nazvanie": "CTA / призыв",
+    "file": "cta__prizyv.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 723.0,
+    "end": 726.009,
+    "baza": "база"
+  },
+  {
+    "group_id": "text-typography--список-пункты--d588b39f",
+    "nazvanie": "Список / пункты",
+    "file": "spisok__punkty.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 596,
+    "end": 598,
+    "baza": "база"
+  },
+  {
+    "group_id": "text-typography--логотип-именная-подпись--66e2d769",
+    "nazvanie": "Логотип / именная подпись",
+    "file": "logotip__imennaya_podpis.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 376.007,
+    "end": 377.005,
+    "baza": "база"
+  }
+]

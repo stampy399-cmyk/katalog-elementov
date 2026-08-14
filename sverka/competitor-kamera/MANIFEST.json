@@ -1,0 +1,173 @@
+[
+  {
+    "group_id": "empty--неразмеченный-элемент-3bf9cff8--a6090963",
+    "nazvanie": "Зум и сдвиг фото в карусели",
+    "file": "camera-zum-i-sdvig-foto-v-karuseli-a6090963.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 19.0,
+    "end": 23.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-59dfbf19--1cb9de73",
+    "nazvanie": "Зум в центр к статичному кадру",
+    "file": "camera-zum-v-centr-kinoplenka-1cb9de73.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 53.0,
+    "end": 57.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-6346a349--57ace42c",
+    "nazvanie": "Быстрый зум в центр",
+    "file": "camera-bystryi-zum-v-centr-57ace42c.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 41.0,
+    "end": 45.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-663141be--942d2729",
+    "nazvanie": "Медленный зум в центр",
+    "file": "camera-medlennyi-zum-v-centr-942d2729.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 50.0,
+    "end": 54.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-85497c8a--217d09f4",
+    "nazvanie": "Медленный наезд на фото",
+    "file": "camera-medlennyi-naezd-na-foto-217d09f4.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 32.0,
+    "end": 36.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-92dc27ac--8419b914",
+    "nazvanie": "Зум вперёд",
+    "file": "camera-zum-vpered-8419b914.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 26.0,
+    "end": 30.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-a2070a5d--865b6438",
+    "nazvanie": "Искажение кадра",
+    "file": "camera-iskazhenie-kadra-865b6438.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 55.0,
+    "end": 59.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-abb4c7e8--efaa7d09",
+    "nazvanie": "Зум между кадрами",
+    "file": "camera-zum-mezhdu-kadrami-efaa7d09.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 44.0,
+    "end": 48.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-c247b96d--a1fbd888",
+    "nazvanie": "Плавный зум вправо",
+    "file": "camera-plavnyi-zum-vpravo-a1fbd888.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 56.0,
+    "end": 60.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-c72d86e1--876c5246",
+    "nazvanie": "Быстрый зум в правый нижний угол",
+    "file": "camera-bystryi-zum-v-pravyi-nizhnii-ugol-876c5246.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 42.0,
+    "end": 46.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-e37e9de2--d9eb951d",
+    "nazvanie": "Медленный зум-аут футажа",
+    "file": "camera-medlennyi-zum-aut-futazha-d9eb951d.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 38.0,
+    "end": 42.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-eba7d7f7--a6a0d520",
+    "nazvanie": "Зум в угол",
+    "file": "camera-zum-v-ugol-a6a0d520.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 27.0,
+    "end": 31.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-ef54a32e--5cb3eb80",
+    "nazvanie": "Зум-переход по фото",
+    "file": "camera-zum-perehod-po-foto-5cb3eb80.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 43.0,
+    "end": 47.0,
+    "baza": false
+  },
+  {
+    "group_id": "camera-motion--движение-камеры--caba5b73",
+    "nazvanie": "Движение камеры / аэросъёмка",
+    "file": "camera-dvizhenie-kamery-caba5b73.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 410.0,
+    "end": 418.0,
+    "baza": false
+  },
+  {
+    "group_id": "scale-zoom--масштабирование-кадра--38fc27e2",
+    "nazvanie": "Масштабирование кадра",
+    "file": "camera-masshtabirovanie-kadra-38fc27e2.mp4",
+    "video_id": "zcHZn8y2f_s",
+    "start": 514.8,
+    "end": 522.6,
+    "baza": true
+  },
+  {
+    "group_id": "scale-zoom--плавный-наезд--4d5e8c40",
+    "nazvanie": "Плавный наезд",
+    "file": "camera-plavnyi-naezd-4d5e8c40.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 121.0,
+    "end": 123.0,
+    "baza": true
+  },
+  {
+    "group_id": "scale-zoom--плавный-отъезд--44e20d1f",
+    "nazvanie": "Плавный отъезд",
+    "file": "camera-plavnyi-otyezd-44e20d1f.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 76.0,
+    "end": 80.0,
+    "baza": false
+  },
+  {
+    "group_id": "blur-effect--размытие-перевод-фокуса--1483db51",
+    "nazvanie": "Макросъёмка с переводом фокуса",
+    "file": "camera-makrosemka-perevod-fokusa-1483db51.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 127.0,
+    "end": 130.0,
+    "baza": false
+  },
+  {
+    "group_id": "position-slide--позиционная-анимация--8d036d7b",
+    "nazvanie": "Позиционное движение кадра",
+    "file": "camera-pozicionnaya-animaciya-kadra-8d036d7b.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 493.95,
+    "end": 499.367,
+    "baza": true
+  }
+]

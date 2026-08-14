@@ -1,0 +1,106 @@
+[
+  {
+    "group_id": "inset-window--прямая-склейка--6a2ecd70",
+    "file": "inset-window--прямая-склейка--6a2ecd70.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P1.mp4"],
+    "footage_after": ["P2.mp4"]
+  },
+  {
+    "group_id": "hard-cut--прямая-жесткая-склейка--d50f9c4d",
+    "file": "hard-cut--прямая-жесткая-склейка--d50f9c4d.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P2.mp4"],
+    "footage_after": ["P3.mp4"]
+  },
+  {
+    "group_id": "hard-cut--световой-переход-со-склейкой--7fa9d360",
+    "file": "hard-cut--световой-переход-со-склейкой--7fa9d360.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P3.mp4"],
+    "footage_after": ["P4.mp4"]
+  },
+  {
+    "group_id": "keyframes-motion--ключевая-анимация-объекта--75d2fe85",
+    "file": "keyframes-motion--ключевая-анимация-объекта--75d2fe85.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P4.mp4"],
+    "footage_after": ["P1.mp4"]
+  },
+  {
+    "group_id": "other--переход-через-красную-заливку--1c489052",
+    "file": "other--переход-через-красную-заливку--1c489052.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P1.mp4"],
+    "footage_after": ["P3.mp4"]
+  },
+  {
+    "group_id": "other--черная-пауза-экран--5f9f2769",
+    "file": "other--черная-пауза-экран--5f9f2769.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P2.mp4"],
+    "footage_after": ["P4.mp4"]
+  },
+  {
+    "group_id": "crossfade--кроссфейд-растворение--87aa8480",
+    "file": "crossfade--кроссфейд-растворение--87aa8480.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P3.mp4"],
+    "footage_after": ["P1.mp4"]
+  },
+  {
+    "group_id": "crossfade--film-burn-с-растворением--07ba90f5",
+    "file": "crossfade--film-burn-с-растворением--07ba90f5.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P4.mp4"],
+    "footage_after": ["P2.mp4"]
+  },
+  {
+    "group_id": "light-glow--световой-переход-wash--e393c129",
+    "file": "light-glow--световой-переход-wash--e393c129.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P1.mp4"],
+    "footage_after": ["P4.mp4"]
+  },
+  {
+    "group_id": "light-glow--film-burn-light-leak--234963b2",
+    "file": "light-glow--film-burn-light-leak--234963b2.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P2.mp4"],
+    "footage_after": ["P3.mp4"]
+  },
+  {
+    "group_id": "light-glow--световой-стингер--26bcd244",
+    "file": "light-glow--световой-стингер--26bcd244.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P3.mp4"],
+    "footage_after": ["P1.mp4", "P2.mp4", "P4.mp4"]
+  },
+  {
+    "group_id": "light-glow--световая-вспышка--145d67dc",
+    "file": "light-glow--световая-вспышка--145d67dc.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P4.mp4"],
+    "footage_after": ["P1.mp4"]
+  },
+  {
+    "group_id": "grid-lines--переход-через-сетку--ca80b3b0",
+    "file": "grid-lines--переход-через-сетку--ca80b3b0.mp4",
+    "status": "gotov",
+    "version": 2,
+    "footage_before": ["P2.mp4"],
+    "footage_after": ["P4.mp4"]
+  }
+]

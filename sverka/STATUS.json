@@ -1,0 +1,530 @@
+{
+  "#01": {
+    "group_id": "inset-window--прямая-склейка--6a2ecd70",
+    "family": "Переходы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#02": {
+    "group_id": "hard-cut--прямая-жесткая-склейка--d50f9c4d",
+    "family": "Переходы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#03": {
+    "group_id": "hard-cut--световой-переход-со-склейкой--7fa9d360",
+    "family": "Переходы",
+    "status": "доработать",
+    "kommentariy": "плохо, изучить приём глубже"
+  },
+  "#04": {
+    "group_id": "keyframes-motion--ключевая-анимация-объекта--75d2fe85",
+    "family": "Переходы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#05": {
+    "group_id": "other--переход-через-красную-заливку--1c489052",
+    "family": "Переходы",
+    "status": "доработать",
+    "kommentariy": "очень плохо, всегда идёт с типографикой (текст на заливке)"
+  },
+  "#06": {
+    "group_id": "other--черная-пауза-экран--5f9f2769",
+    "family": "Переходы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#07": {
+    "group_id": "crossfade--кроссфейд-растворение--87aa8480",
+    "family": "Переходы",
+    "status": "доработать",
+    "kommentariy": "хорошо, чуть доработать"
+  },
+  "#08": {
+    "group_id": "crossfade--film-burn-с-растворением--07ba90f5",
+    "family": "Переходы",
+    "status": "доработать",
+    "kommentariy": "хорошо, чуть доработать"
+  },
+  "#09": {
+    "group_id": "light-glow--световой-переход-wash--e393c129",
+    "family": "Переходы",
+    "status": "доработать",
+    "kommentariy": "хорошо, чуть доработать"
+  },
+  "#10": {
+    "group_id": "light-glow--film-burn-light-leak--234963b2",
+    "family": "Переходы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#11": {
+    "group_id": "light-glow--световой-стингер--26bcd244",
+    "family": "Переходы",
+    "status": "доработать",
+    "kommentariy": "плохо, кадр почти пустой"
+  },
+  "#12": {
+    "group_id": "light-glow--световая-вспышка--145d67dc",
+    "family": "Переходы",
+    "status": "доработать",
+    "kommentariy": "есть над чем работать"
+  },
+  "#13": {
+    "group_id": "grid-lines--переход-через-сетку--ca80b3b0",
+    "family": "Переходы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#14": {
+    "group_id": "empty--неразмеченный-элемент-29f32a7c--4cc57def",
+    "family": "Частицы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#15": {
+    "group_id": "empty--неразмеченный-элемент-2c55431e--c6121190",
+    "family": "Частицы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#16": {
+    "group_id": "empty--неразмеченный-элемент-70a553d1--31226553",
+    "family": "Частицы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#17": {
+    "group_id": "empty--неразмеченный-элемент-db5ea07c--cee9f2d8",
+    "family": "Частицы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#18": {
+    "group_id": "empty--неразмеченный-элемент-eba7d7f7--a6a0d520",
+    "family": "Частицы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#19": {
+    "group_id": "other--частицы-оверлей--4e3a82df",
+    "family": "Частицы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#20": {
+    "group_id": "position-slide--пленочная-пыль-зерно--1358a562",
+    "family": "Частицы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#21": {
+    "group_id": "text-typography--текстовая-плашка--16320f2c",
+    "family": "Частицы",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#22": {
+    "group_id": "blend-mode--акцентная-цветовая-тонировка--2c7f5f48",
+    "family": "Фильтры",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#23": {
+    "group_id": "position-slide--пленочная-пыль-зерно--1358a562",
+    "family": "Фильтры",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#24": {
+    "group_id": "saturation-color--обесцвечивание-футажа--21db3adb",
+    "family": "Фильтры",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#25": {
+    "group_id": "saturation-color--изменение-цвета-насыщенности--d1fd89bd",
+    "family": "Фильтры",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#26": {
+    "group_id": "text-typography--заголовок-тезис--f800a8ab",
+    "family": "Типографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#27": {
+    "group_id": "text-typography--число-метрика--b8e7ec5e",
+    "family": "Типографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#28": {
+    "group_id": "text-typography--текстовая-плашка-выноска--afe5f2c1",
+    "family": "Типографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#29": {
+    "group_id": "text-typography--cta-призыв--94c847f2",
+    "family": "Типографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#30": {
+    "group_id": "text-typography--логотип-именная-подпись--66e2d769",
+    "family": "Типографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#31": {
+    "group_id": "text-typography--нижние-субтитры--b2a86c08",
+    "family": "Типографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#32": {
+    "group_id": "text-typography--дата-хронология--ad076495",
+    "family": "Типографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#33": {
+    "group_id": "text-typography--список-пункты--d588b39f",
+    "family": "Типографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#34": {
+    "group_id": "text-typography--текстовая-плашка--16320f2c",
+    "family": "Типографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#35": {
+    "group_id": "empty--неразмеченный-элемент-6c6e31f3--d98f1243",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#36": {
+    "group_id": "empty--неразмеченный-элемент-8add73ec--0fa6dc2f",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#37": {
+    "group_id": "empty--неразмеченный-элемент-d4cad72d--14fc3f0b",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#38": {
+    "group_id": "inset-window--карточка-метрики-стоимости--e5338774",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#39": {
+    "group_id": "geometry-shape--шейп-выноска-к-детали--2d6ed679",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#40": {
+    "group_id": "geometry-shape--кольцевая-диаграмма--42e41db9",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#41": {
+    "group_id": "geometry-shape--геометрический-маркер-акцент--01104434",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#42": {
+    "group_id": "geometry-shape--геометрическое-сравнение--4899cf31",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#43": {
+    "group_id": "hard-cut--выноска-к-объекту--c5075f14",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#44": {
+    "group_id": "hard-cut--cta-призыв--45a3d059",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#45": {
+    "group_id": "keyframes-motion--кинетическая-типографика--f0c0f075",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#46": {
+    "group_id": "opacity-fade--фейд-изменение-прозрачности--fdd1846a",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#47": {
+    "group_id": "opacity-fade--аннотация-маркер--675e1efe",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#48": {
+    "group_id": "other--техническая-схема-процесса--77bad188",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#49": {
+    "group_id": "other--анимированный-график--60bd19b5",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#50": {
+    "group_id": "other--визуальное-сравнение--ae8e0b86",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#51": {
+    "group_id": "other--временная-шкала--23b2cd57",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#52": {
+    "group_id": "other--выноска-к-объекту--e2299b25",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#53": {
+    "group_id": "other--иконка-с-чек-листом--eb446172",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#54": {
+    "group_id": "other--неразмеченный-прием-8db2b615--7ca67d6c",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#55": {
+    "group_id": "other--смета-расчет-стоимости--876f250b",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#56": {
+    "group_id": "position-slide--слайд-въезд-элемента--95983f09",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#57": {
+    "group_id": "grid-lines--сравнение-на-сетке--0066f4d8",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#58": {
+    "group_id": "grid-lines--техническая-сетка--8e9f79b1",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#59": {
+    "group_id": "grid-lines--карточка-на-технической-сетке--545e3389",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#60": {
+    "group_id": "grid-lines--сетка-графика-оси--23b53311",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#61": {
+    "group_id": "grid-lines--линия-выноска--8e022838",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#62": {
+    "group_id": "text-typography--список-пункты--d588b39f",
+    "family": "Инфографика",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#63": {
+    "group_id": "empty--неразмеченный-элемент-3bf9cff8--a6090963",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#64": {
+    "group_id": "empty--неразмеченный-элемент-59dfbf19--1cb9de73",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#65": {
+    "group_id": "empty--неразмеченный-элемент-6346a349--57ace42c",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#66": {
+    "group_id": "empty--неразмеченный-элемент-663141be--942d2729",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#67": {
+    "group_id": "empty--неразмеченный-элемент-85497c8a--217d09f4",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#68": {
+    "group_id": "empty--неразмеченный-элемент-92dc27ac--8419b914",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#69": {
+    "group_id": "empty--неразмеченный-элемент-a2070a5d--865b6438",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#70": {
+    "group_id": "empty--неразмеченный-элемент-abb4c7e8--efaa7d09",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#71": {
+    "group_id": "empty--неразмеченный-элемент-c247b96d--a1fbd888",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#72": {
+    "group_id": "empty--неразмеченный-элемент-c72d86e1--876c5246",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#73": {
+    "group_id": "empty--неразмеченный-элемент-e37e9de2--d9eb951d",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#74": {
+    "group_id": "empty--неразмеченный-элемент-eba7d7f7--a6a0d520",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#75": {
+    "group_id": "empty--неразмеченный-элемент-ef54a32e--5cb3eb80",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#76": {
+    "group_id": "camera-motion--движение-камеры--caba5b73",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#77": {
+    "group_id": "scale-zoom--масштабирование-кадра--38fc27e2",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#78": {
+    "group_id": "scale-zoom--плавный-наезд--4d5e8c40",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#79": {
+    "group_id": "scale-zoom--плавный-отъезд--44e20d1f",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#80": {
+    "group_id": "blur-effect--размытие-перевод-фокуса--1483db51",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#81": {
+    "group_id": "position-slide--позиционная-анимация--8d036d7b",
+    "family": "Камера",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#82": {
+    "group_id": "photo-image--фото-полноэкранный-футаж--f13955fb",
+    "family": "Футажи",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#83": {
+    "group_id": "photo-image--архивное-фото-хроника--00bf5eb9",
+    "family": "Футажи",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#84": {
+    "group_id": "empty--неразмеченный-элемент-3bf9cff8--a6090963",
+    "family": "Футажи",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#85": {
+    "group_id": "empty--неразмеченный-элемент-983f7465--3b982ae7",
+    "family": "Футажи",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#86": {
+    "group_id": "other--возврат-к-исходному-саду--869dc8a3",
+    "family": "Футажи",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#87": {
+    "group_id": "inset-window--картинка-в-картинке-врезка--cf91b323",
+    "family": "Футажи",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  },
+  "#88": {
+    "group_id": "inset-window--сплит-скрин--0dd179a6",
+    "family": "Футажи",
+    "status": "не просмотрено",
+    "kommentariy": ""
+  }
+}

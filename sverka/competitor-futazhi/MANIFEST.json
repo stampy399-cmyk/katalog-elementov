@@ -1,0 +1,65 @@
+[
+  {
+    "group_id": "photo-image--фото-полноэкранный-футаж--f13955fb",
+    "nazvanie": "Полноэкранное фото / футаж",
+    "file": "photo-fullscreen.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 0.0,
+    "end": 3.8,
+    "baza": true
+  },
+  {
+    "group_id": "photo-image--архивное-фото-хроника--00bf5eb9",
+    "nazvanie": "Архивное фото / хроника",
+    "file": "archive-photo.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 0.8,
+    "end": 4.8,
+    "baza": true
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-3bf9cff8--a6090963",
+    "nazvanie": "Карусель фотографий",
+    "file": "carousel.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 19.0,
+    "end": 23.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-983f7465--3b982ae7",
+    "nazvanie": "Ошибочная вставка футажа",
+    "file": "error-insert.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 47.0,
+    "end": 51.0,
+    "baza": false
+  },
+  {
+    "group_id": "other--возврат-к-исходному-саду--869dc8a3",
+    "nazvanie": "Возврат к исходному саду",
+    "file": "return-garden.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 144.0,
+    "end": 148.0,
+    "baza": false
+  },
+  {
+    "group_id": "inset-window--картинка-в-картинке-врезка--cf91b323",
+    "nazvanie": "Картинка в картинке",
+    "file": "picture-picture.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 53.0,
+    "end": 57.0,
+    "baza": false
+  },
+  {
+    "group_id": "inset-window--сплит-скрин--0dd179a6",
+    "nazvanie": "Разделённый экран",
+    "file": "split-screen.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 384.0,
+    "end": 388.0,
+    "baza": false
+  }
+]

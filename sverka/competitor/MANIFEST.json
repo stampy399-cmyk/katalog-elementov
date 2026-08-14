@@ -1,0 +1,106 @@
+[
+  {
+    "group_id": "inset-window--прямая-склейка--6a2ecd70",
+    "nazvanie": "Прямая склейка без промежуточной графики",
+    "file": "inset-window--pryamaya-skleika--6a2ecd70.mp4",
+    "video_id": "zcHZn8y2f_s",
+    "start": 5.767,
+    "end": 5.8
+  },
+  {
+    "group_id": "hard-cut--прямая-жесткая-склейка--d50f9c4d",
+    "nazvanie": "Прямая жёсткая склейка",
+    "file": "hard-cut--pryamaya-zhestkaya-skleika--d50f9c4d.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 494.0,
+    "end": 494.1
+  },
+  {
+    "group_id": "hard-cut--световой-переход-со-склейкой--7fa9d360",
+    "nazvanie": "Световой переход со склейкой / light-leak",
+    "file": "hard-cut--svetovoi-perehod-so-skleikoi--7fa9d360.mp4",
+    "video_id": "zcHZn8y2f_s",
+    "start": 54.68,
+    "end": 55.43
+  },
+  {
+    "group_id": "keyframes-motion--ключевая-анимация-объекта--75d2fe85",
+    "nazvanie": "Прямые склейки и переходные кадры; старая группа ошибочно названа «Ключевая анимация объекта»",
+    "file": "keyframes-motion--klyuchevaya-animatsiya-obekta--75d2fe85.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 358.7,
+    "end": 359.3
+  },
+  {
+    "group_id": "other--переход-через-красную-заливку--1c489052",
+    "nazvanie": "Переход через красную заливку",
+    "file": "other--perehod-cherez-krasnuyu-zalivku--1c489052.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 105.0,
+    "end": 107.8
+  },
+  {
+    "group_id": "other--черная-пауза-экран--5f9f2769",
+    "nazvanie": "Чёрная пауза / экран как межсценовый разделитель",
+    "file": "other--chernaya-pauza-ekran--5f9f2769.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 860.0,
+    "end": 862.0
+  },
+  {
+    "group_id": "crossfade--кроссфейд-растворение--87aa8480",
+    "nazvanie": "Кроссфейд / растворение",
+    "file": "crossfade--krossfeid-rastvorenie--87aa8480.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 677.0,
+    "end": 679.0
+  },
+  {
+    "group_id": "crossfade--film-burn-с-растворением--07ba90f5",
+    "nazvanie": "Film-burn с растворением",
+    "file": "crossfade--film-burn-s-rastvoreniem--07ba90f5.mp4",
+    "video_id": "zcHZn8y2f_s",
+    "start": 455.77,
+    "end": 456.19
+  },
+  {
+    "group_id": "light-glow--световой-переход-wash--e393c129",
+    "nazvanie": "Световой переход / wash / glitch-dissolve",
+    "file": "light-glow--svetovoi-perehod-wash--e393c129.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 176.0,
+    "end": 176.5
+  },
+  {
+    "group_id": "light-glow--film-burn-light-leak--234963b2",
+    "nazvanie": "Film-burn / light-leak",
+    "file": "light-glow--film-burn-light-leak--234963b2.mp4",
+    "video_id": "zcHZn8y2f_s",
+    "start": 485.9,
+    "end": 486.8
+  },
+  {
+    "group_id": "light-glow--световой-стингер--26bcd244",
+    "nazvanie": "Световой стингер, собирающий следующий план/сравнение",
+    "file": "light-glow--svetovoi-stinger--26bcd244.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 98.0,
+    "end": 98.9
+  },
+  {
+    "group_id": "light-glow--световая-вспышка--145d67dc",
+    "nazvanie": "Световая или glitch-вспышка со сменой плана",
+    "file": "light-glow--svetovaya-vspyshka--145d67dc.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 1.3333,
+    "end": 1.75
+  },
+  {
+    "group_id": "grid-lines--переход-через-сетку--ca80b3b0",
+    "nazvanie": "Переход через промежуточный grid-кадр",
+    "file": "grid-lines--perehod-cherez-setku--ca80b3b0.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 6.8,
+    "end": 7.2
+  }
+]

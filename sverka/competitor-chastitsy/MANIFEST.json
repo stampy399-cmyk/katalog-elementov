@@ -1,0 +1,74 @@
+[
+  {
+    "group_id": "empty--неразмеченный-элемент-29f32a7c--4cc57def",
+    "nazvanie": "Пыль поверх фотографии",
+    "file": "chastitsy-pyl-poverh-fotografii-4cc57def.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 19.0,
+    "end": 23.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-2c55431e--c6121190",
+    "nazvanie": "Снежинки после зума",
+    "file": "chastitsy-snezhinki-posle-zuma-c6121190.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 54.0,
+    "end": 58.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-70a553d1--31226553",
+    "nazvanie": "Мелкие частицы с эффектом киноплёнки",
+    "file": "chastitsy-melkie-chastitsy-s-effektom-kinoplenki-31226553.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 46.0,
+    "end": 50.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-db5ea07c--cee9f2d8",
+    "nazvanie": "Слабые частицы на киноплёнке",
+    "file": "chastitsy-slabye-chastitsy-na-kinoplenke-cee9f2d8.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 35.0,
+    "end": 39.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-eba7d7f7--a6a0d520",
+    "nazvanie": "Тёплые вращающиеся световые круги",
+    "file": "chastitsy-teplye-vrashchayushchiesya-svetovye-krugi-a6a0d520.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 27.0,
+    "end": 31.0,
+    "baza": false
+  },
+  {
+    "group_id": "other--частицы-оверлей--4e3a82df",
+    "nazvanie": "Белые снежинки поверх кадра",
+    "file": "chastitsy-belye-snezhinki-poverh-kadra-4e3a82df.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 13.0,
+    "end": 17.0,
+    "baza": false
+  },
+  {
+    "group_id": "position-slide--пленочная-пыль-зерно--1358a562",
+    "nazvanie": "Плёночная пыль и зерно",
+    "file": "chastitsy-plenochnaya-pyl-i-zerno-1358a562.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 889.0,
+    "end": 897.0,
+    "baza": false
+  },
+  {
+    "group_id": "text-typography--текстовая-плашка--16320f2c",
+    "nazvanie": "Падающие листья поверх кадра",
+    "file": "chastitsy-padayushchie-listya-poverh-kadra-16320f2c.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 876.55,
+    "end": 879.366,
+    "baza": true
+  }
+]

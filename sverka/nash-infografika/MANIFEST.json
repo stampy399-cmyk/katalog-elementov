@@ -1,0 +1,254 @@
+[
+  {
+    "group_id": "empty--неразмеченный-элемент-6c6e31f3--d98f1243",
+    "nazvanie": "Слово с кругами и крестиками",
+    "file": "infografika-slovo-s-krugami-i-krestikami-d98f1243.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 40.0,
+    "end": 44.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-8add73ec--0fa6dc2f",
+    "nazvanie": "Таблица с графиком",
+    "file": "infografika-tablica-s-grafikom-0fa6dc2f.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 37.0,
+    "end": 41.0,
+    "baza": false
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-d4cad72d--14fc3f0b",
+    "nazvanie": "Растущая шкала с числом",
+    "file": "infografika-rastushchaya-shkala-s-chislom-14fc3f0b.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 50.0,
+    "end": 54.0,
+    "baza": false
+  },
+  {
+    "group_id": "inset-window--карточка-метрики-стоимости--e5338774",
+    "nazvanie": "Карточка метрики / стоимости",
+    "file": "infografika-kartochka-metriki-stoimosti-e5338774.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 58.0333,
+    "end": 63.0333,
+    "baza": true
+  },
+  {
+    "group_id": "geometry-shape--шейп-выноска-к-детали--2d6ed679",
+    "nazvanie": "Фигурная выноска к детали",
+    "file": "infografika-figurnaya-vynoska-k-detali-2d6ed679.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 277.0,
+    "end": 282.0,
+    "baza": true
+  },
+  {
+    "group_id": "geometry-shape--кольцевая-диаграмма--42e41db9",
+    "nazvanie": "Кольцевая диаграмма",
+    "file": "infografika-kolcevaya-diagramma-42e41db9.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 30.0,
+    "end": 34.9,
+    "baza": false
+  },
+  {
+    "group_id": "geometry-shape--геометрический-маркер-акцент--01104434",
+    "nazvanie": "Геометрический маркер",
+    "file": "infografika-geometricheskij-marker-01104434.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 117.0,
+    "end": 121.0,
+    "baza": false
+  },
+  {
+    "group_id": "geometry-shape--геометрическое-сравнение--4899cf31",
+    "nazvanie": "Геометрическое сравнение",
+    "file": "infografika-geometricheskoe-sravnenie-4899cf31.mp4",
+    "video_id": "zcHZn8y2f_s",
+    "start": 570.55,
+    "end": 576.12,
+    "baza": false
+  },
+  {
+    "group_id": "hard-cut--выноска-к-объекту--c5075f14",
+    "nazvanie": "Выноска к объекту",
+    "file": "infografika-vynoska-k-obektu-c5075f14.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 370.0,
+    "end": 375.0,
+    "baza": false
+  },
+  {
+    "group_id": "hard-cut--cta-призыв--45a3d059",
+    "nazvanie": "Плашка с линией-указателем",
+    "file": "infografika-cta-prizyv-45a3d059.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 308.717,
+    "end": 310.7,
+    "baza": false
+  },
+  {
+    "group_id": "keyframes-motion--кинетическая-типографика--f0c0f075",
+    "nazvanie": "Экранный интерфейс приложения",
+    "file": "infografika-ekrannyj-interfejs-prilozheniya-f0c0f075.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 538.0,
+    "end": 544.0,
+    "baza": false
+  },
+  {
+    "group_id": "opacity-fade--фейд-изменение-прозрачности--fdd1846a",
+    "nazvanie": "Появление выноски прозрачностью",
+    "file": "infografika-poyavlenie-vynoski-prozrachnostyu-fdd1846a.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 213.633,
+    "end": 217.033,
+    "baza": true
+  },
+  {
+    "group_id": "opacity-fade--аннотация-маркер--675e1efe",
+    "nazvanie": "Аннотация маркером",
+    "file": "infografika-annotaciya-markerom-675e1efe.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 52.0,
+    "end": 63.0,
+    "baza": false
+  },
+  {
+    "group_id": "other--техническая-схема-процесса--77bad188",
+    "nazvanie": "Техническая схема процесса",
+    "file": "infografika-tehnicheskaya-shema-processa-77bad188.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 322.0,
+    "end": 336.0,
+    "baza": false
+  },
+  {
+    "group_id": "other--анимированный-график--60bd19b5",
+    "nazvanie": "Анимированный график",
+    "file": "infografika-animirovannyj-grafik-60bd19b5.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 73.0,
+    "end": 77.0,
+    "baza": false
+  },
+  {
+    "group_id": "other--визуальное-сравнение--ae8e0b86",
+    "nazvanie": "Визуальное сравнение",
+    "file": "infografika-vizualnoe-sravnenie-ae8e0b86.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 649.0,
+    "end": 654.5,
+    "baza": false
+  },
+  {
+    "group_id": "other--временная-шкала--23b2cd57",
+    "nazvanie": "Временная шкала",
+    "file": "infografika-vremennaya-shkala-23b2cd57.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 47.0,
+    "end": 51.0,
+    "baza": false
+  },
+  {
+    "group_id": "other--выноска-к-объекту--e2299b25",
+    "nazvanie": "Выноска к объекту с температурой",
+    "file": "infografika-vynoska-k-obektu-s-temperaturoj-e2299b25.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 811.0,
+    "end": 814.9,
+    "baza": false
+  },
+  {
+    "group_id": "other--иконка-с-чек-листом--eb446172",
+    "nazvanie": "Иконка с перечнем",
+    "file": "infografika-ikona-s-perechnem-eb446172.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 15.0,
+    "end": 18.0,
+    "baza": false
+  },
+  {
+    "group_id": "other--неразмеченный-прием-8db2b615--7ca67d6c",
+    "nazvanie": "Знак предупреждения со списком",
+    "file": "infografika-znak-preduprezhdeniya-so-spiskom-7ca67d6c.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 4.0,
+    "end": 8.0,
+    "baza": false
+  },
+  {
+    "group_id": "other--смета-расчет-стоимости--876f250b",
+    "nazvanie": "Смета затрат",
+    "file": "infografika-smeta-raschet-stoimosti-876f250b.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 600.0,
+    "end": 608.5,
+    "baza": false
+  },
+  {
+    "group_id": "position-slide--слайд-въезд-элемента--95983f09",
+    "nazvanie": "Въезд графического элемента",
+    "file": "infografika-vezd-graficheskogo-elementa-95983f09.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 558.0,
+    "end": 564.0,
+    "baza": false
+  },
+  {
+    "group_id": "grid-lines--сравнение-на-сетке--0066f4d8",
+    "nazvanie": "Сравнение на сетке",
+    "file": "infografika-sravnenie-na-setke-0066f4d8.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 690.2,
+    "end": 695.383,
+    "baza": true
+  },
+  {
+    "group_id": "grid-lines--техническая-сетка--8e9f79b1",
+    "nazvanie": "Техническая сетка",
+    "file": "infografika-tehnicheskaya-setka-8e9f79b1.mp4",
+    "video_id": "zcHZn8y2f_s",
+    "start": 237.6,
+    "end": 237.85,
+    "baza": true
+  },
+  {
+    "group_id": "grid-lines--карточка-на-технической-сетке--545e3389",
+    "nazvanie": "Карточка на технической сетке",
+    "file": "infografika-kartochka-na-tehnicheskoj-setke-545e3389.mp4",
+    "video_id": "zcHZn8y2f_s",
+    "start": 404.9,
+    "end": 410.1,
+    "baza": false
+  },
+  {
+    "group_id": "grid-lines--сетка-графика-оси--23b53311",
+    "nazvanie": "Сетка графика / оси",
+    "file": "infografika-setka-grafika-osi-23b53311.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 74.7,
+    "end": 76.3,
+    "baza": false
+  },
+  {
+    "group_id": "grid-lines--линия-выноска--8e022838",
+    "nazvanie": "Линия-выноска",
+    "file": "infografika-liniya-vynoska-8e022838.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 814.3,
+    "end": 814.6,
+    "baza": false
+  },
+  {
+    "group_id": "text-typography--список-пункты--d588b39f",
+    "nazvanie": "Список пунктов",
+    "file": "infografika-spisok-punkty-d588b39f.mp4",
+    "video_id": "nNgwfV-_ydM",
+    "start": 596.0,
+    "end": 600.0,
+    "baza": true
+  }
+]

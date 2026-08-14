@@ -1,0 +1,50 @@
+[
+  {
+    "group_id": "empty--неразмеченный-элемент-29f32a7c--4cc57def",
+    "file": "chastitsy-pyl-poverh-fotografii-4cc57def.mp4",
+    "status": "gotov",
+    "color_check": "pass"
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-2c55431e--c6121190",
+    "file": "chastitsy-snezhinki-posle-zuma-c6121190.mp4",
+    "status": "gotov",
+    "color_check": "pass"
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-70a553d1--31226553",
+    "file": "chastitsy-melkie-chastitsy-s-effektom-kinoplenki-31226553.mp4",
+    "status": "gotov",
+    "color_check": "pass"
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-db5ea07c--cee9f2d8",
+    "file": "chastitsy-slabye-chastitsy-na-kinoplenke-cee9f2d8.mp4",
+    "status": "gotov",
+    "color_check": "pass"
+  },
+  {
+    "group_id": "empty--неразмеченный-элемент-eba7d7f7--a6a0d520",
+    "file": "chastitsy-teplye-vrashchayushchiesya-svetovye-krugi-a6a0d520.mp4",
+    "status": "gotov",
+    "color_check": "pass"
+  },
+  {
+    "group_id": "other--частицы-оверлей--4e3a82df",
+    "file": "chastitsy-belye-snezhinki-poverh-kadra-4e3a82df.mp4",
+    "status": "gotov",
+    "color_check": "pass"
+  },
+  {
+    "group_id": "position-slide--пленочная-пыль-зерно--1358a562",
+    "file": "chastitsy-plenochnaya-pyl-i-zerno-1358a562.mp4",
+    "status": "gotov",
+    "color_check": "pass"
+  },
+  {
+    "group_id": "text-typography--текстовая-плашка--16320f2c",
+    "file": "chastitsy-padayushchie-listya-poverh-kadra-16320f2c.mp4",
+    "status": "gotov",
+    "color_check": "pass"
+  }
+]

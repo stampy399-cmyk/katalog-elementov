@@ -1,0 +1,20 @@
+[
+  {"group_id":"zvuk-hit-01","file":"zvuk-hit-01.mp3","status":"gotov"},
+  {"group_id":"zvuk-hit-02","file":"zvuk-hit-02.mp3","status":"gotov"},
+  {"group_id":"zvuk-hit-03","file":"zvuk-hit-03.mp3","status":"gotov"},
+  {"group_id":"zvuk-riser-01","file":"zvuk-riser-01.mp3","status":"gotov"},
+  {"group_id":"zvuk-riser-02","file":"zvuk-riser-02.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-01","file":"zvuk-whoosh-01.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-02","file":"zvuk-whoosh-02.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-03","file":"zvuk-whoosh-03.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-04","file":"zvuk-whoosh-04.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-05","file":"zvuk-whoosh-05.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-06","file":"zvuk-whoosh-06.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-07","file":"zvuk-whoosh-07.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-08","file":"zvuk-whoosh-08.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-09","file":"zvuk-whoosh-09.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-10","file":"zvuk-whoosh-10.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-11","file":"zvuk-whoosh-11.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-12","file":"zvuk-whoosh-12.mp3","status":"gotov"},
+  {"group_id":"zvuk-whoosh-13","file":"zvuk-whoosh-13.mp3","status":"gotov"}
+]

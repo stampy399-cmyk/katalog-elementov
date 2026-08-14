@@ -1,0 +1,38 @@
+[
+  {
+    "group_id": "blend-mode--акцентная-цветовая-тонировка--2c7f5f48",
+    "nazvanie": "Акцентная цветовая тонировка",
+    "file": "filtry-akcentnaya-cvetovaya-tonirovka-2c7f5f48.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 105.0,
+    "end": 107.8,
+    "baza": true
+  },
+  {
+    "group_id": "position-slide--пленочная-пыль-зерно--1358a562",
+    "nazvanie": "Плёночная пыль / зерно",
+    "file": "filtry-plenochnaya-pyl-zerno-1358a562.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 889.0,
+    "end": 897.0,
+    "baza": false
+  },
+  {
+    "group_id": "saturation-color--обесцвечивание-футажа--21db3adb",
+    "nazvanie": "Обесцвечивание футажа",
+    "file": "filtry-obescvechivanie-futazha-21db3adb.mp4",
+    "video_id": "4QRQ90F0Iv8",
+    "start": 150.0,
+    "end": 152.867,
+    "baza": true
+  },
+  {
+    "group_id": "saturation-color--изменение-цвета-насыщенности--d1fd89bd",
+    "nazvanie": "Изменение цвета / насыщенности",
+    "file": "filtry-izmenenie-cveta-nasyshennosti-d1fd89bd.mp4",
+    "video_id": "QOUszAHEZAE",
+    "start": 77.0,
+    "end": 81.0,
+    "baza": true
+  }
+]
